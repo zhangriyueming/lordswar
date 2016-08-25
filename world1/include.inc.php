@@ -31,7 +31,7 @@ if($config['ip_control'] && !(in_array($_SERVER['REMOTE_ADDR'], $allow_ips)))
 require_once(PATH."/lib/functions.php");
 $time = time();
 $db = new DB_MySQL();
-$db->connect($config['db_host'], $config['db_user'], $config['db_pw'], $config['db_name'], "MySql");
+$db->connect_($config['db_dsn'], $config['db_user'], $config['db_pw']);
 if($time+5 < time()){
 	exit("Sem resposta do MySQL! Verifique a conexão!");
 }
@@ -59,13 +59,13 @@ $arr_builds_starts_by_one = $config['buildings_starting_by_one'];
 $lang = new aLang("index", "PT");
 Registry::set("lang", $lang);
 
-include("/include/configs/bbcodes.php");
+include(PATH."/include/configs/bbcodes.php");
 
 
 
 
-$sql_bonus_villages = mysql_query("SELECT * FROM villages WHERE id = '".$_GET["village"]."'");
-$vill = mysql_fetch_assoc($sql_bonus_villages);
+$sql_bonus_villages = $db->query("SELECT * FROM villages WHERE id = '".$_GET["village"]."'");
+$vill = $sql_bonus_villages->fetch(PDO::FETCH_ASSOC);
 if ($vill["bonus"] == "1")
 {
   include("include/configs/max_storage_bonus.php");

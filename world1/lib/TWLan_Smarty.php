@@ -1,7 +1,7 @@
 <?php
 class TWLan_Smarty extends Smarty {
-	function TWLan_Smarty() {
-		$this->Smarty();
+	function __construct() {
+		parent::__construct();
 		$this->register_function('continent', 'twlan_smarty_continent');
 		$this->register_function('generateLink', array(&$this, 'generateLink'));
 		$this->register_modifier('round', 'round');

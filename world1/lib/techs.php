@@ -20,7 +20,7 @@ class techs {
 	var $db;
 	var $smith_factor;
 
-	function techs(){
+	function __construct(){
 		global $config;
 		global $db;
 

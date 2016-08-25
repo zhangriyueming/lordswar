@@ -134,12 +134,12 @@ class awards {
 				}
 			}
 			if($stage[$dbname] > $row[$dbnames]){
-				$array[] = $dbnames."='".$stage[$dbname]."'";
+				$array[] = $dbnames."='".($stage[$dbname] ? $stage[$dbname] : 0)."'";
 				$row['total_stage'] += $stage[$dbname]-$row[$dbnames];
 				$this->r_upstage($user,$dbname,$stage[$dbname]);
 			}
 			if($stage[$dbname] < $row[$dbnames]){
-				$array[] = $dbnames."='".$stage[$dbname]."'";
+				$array[] = $dbnames."='".($stage[$dbname] ? $stage[$dbname] : 0)."'";
 				$row['total_stage'] -= $row[$dbnames]-$stage[$dbname];
 			}
 		}

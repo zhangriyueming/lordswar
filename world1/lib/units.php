@@ -26,7 +26,7 @@ class units{
     var $unitfactor;
     var $config;
 
-    function units(){
+    function __construct(){
 		global $config;
 		$this->config = $config;
     }

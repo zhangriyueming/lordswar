@@ -1,9 +1,9 @@
 <?php
-class getvillagedata{
+class getuserdata{
 	var $array;
 	var $db;
 
-	function getvillagedata(){
+	function __construct(){
 		global $db;
 		$this->db = $db;
 	}
@@ -12,26 +12,26 @@ class getvillagedata{
 	
 		$sql = "SELECT ";
 		$sql .= implode(",",$array);
-		$sql .= " FROM `villages` WHERE `id`='".$id."'";
+		$sql .= " FROM `users` WHERE `id`='".$id."'";
 		$result = $db->query($sql);
 		$row = $db->fetch($result);
 		if($count){
 			$count = $db->numrows($result);
-			$row['exist_village'] = !isset($count) ? 0 : $count;
+			$row['exist_user'] = !isset($count) ? 0 : $count;
 		}
 		return $row;
 	}
-	function getbyvillagename($name, $array, $count=true){
+	function getbyusername($username, $array, $count=true){
 		global $db;
 	
 		$sql = "SELECT ";
 		$sql .= implode(",",$array);
-		$sql .= " FROM `villages` WHERE `name`='".$name."'";
+		$sql .= " FROM `users` WHERE `username`='".$username."'";
 		$result = $db->query($sql);
 		$row = $db->fetch($result);
 		if($count){
 			$count = $db->numrows($result);
-			$row['exist_village'] = !isset($count) ? 0 : $count;
+			$row['exist_user'] = !isset($count) ? 0 : $count;
 		}
 		return $row;
 	}

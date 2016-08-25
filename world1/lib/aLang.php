@@ -5,7 +5,7 @@ class aLang {
 	var $path = "";
 	var $parsed = array();
 
-	function aLang($section, $language, $path = "") {
+	function __construct($section, $language, $path = "") {
             $this->path = PATH . "/lang/";
             $this->section = $section;
             $this->lang = $language;

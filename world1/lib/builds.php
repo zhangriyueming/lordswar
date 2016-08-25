@@ -24,7 +24,7 @@ class builds{
 	var $graphicCoords = array();
 	var $Classe;
 
-	function builds(){
+	function __construct(){
 		global $config;
 		$this->config = $config;
 	}

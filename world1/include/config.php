@@ -15,10 +15,12 @@ Velocidade do mundo e tropas estão sujeitos a modificações.
 **********************************************************/ 
 
 // Configurações do banco de dados
-$config['db_host'] = 'localhost'; // Host of the Database
-$config['db_user'] = ''; // Database username
-$config['db_pw'] = ''; // Database Password
-$config['db_name'] = ''; // Database name
+// $config['db_dsn']='mysql:host=tribalwars_db_1;charset=utf8;dbname=tribalwars_main';
+$config['db_dsn']='mysql:host=tribalwars_db_1;charset=utf8;dbname=pkmhunters_world';
+$config['db_host'] = 'localhost'; // Host of your Database, probably Localhost
+$config['db_user'] = 'root'; // Database Username
+$config['db_pw'] = '96kw9o69Q6'; // Database Password
+$config['db_name'] = ''; // Database Name
 
 // Zona de horário a ser seguido:
 date_default_timezone_set("Amsterdam/Europe");
@@ -29,7 +31,7 @@ $config['ano'] = '2014'; // Year of server start
 $config['cdn'] = '../global_cdn'; // Image / JS directory
 $config['forum'] = ''; // Link to your forum
 $config['version'] = 'V0.1 '; // Version number
-$config['global_db'] = ''; // DATABASE name!
+$config['global_db'] = 'tribalwars_main'; // DATABASE name!
 $config['world_name'] = 'Wereld 1'; // Name of the World :) 
 $config['c_db_name'] = 'pkmhunters_world'; // Name of the world database
 
