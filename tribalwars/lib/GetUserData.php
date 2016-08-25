@@ -3,7 +3,7 @@ class getuserdata{
 	var $array;
 	var $db;
 
-	function getuserdata(){
+	function __construct(){
 		global $db;
 
 		$this->db = $db;
@@ -38,14 +38,17 @@ class getuserdata{
 		$sql = 'SELECT COUNT(`username`) AS `exist_user`';
 		$array_pop = array_pop($array);
 		foreach($array as $key){
-			$sql .= ', `'.$key.'`';
+			$sql .= ', ANY_VALUE(`'.$key.'`) AS `'.$key.'`';
 		}
 		$sql .= ' FROM `users` WHERE `username` = \'' . $username . '\' GROUP BY ';
 		$sql .= '`'.$array_pop.'`';
+		// die($sql);
 		$result = $this->db->query($sql);
 		$row = $this->db->fetch($result);
 
 		$row['exist_user'] = !isset($row['exist_user']) ? 0 : $row['exist_user'];
+
+		// die(implode(',',$row));
 
 		return $row;
 	}

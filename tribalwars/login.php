@@ -5,7 +5,7 @@ session_start();
 
 $tpl = new TWLan_Smarty();
 $world = $db->fetch($db->query("SELECT * FROM `worlds` WHERE `db`='".parse($_GET['world'])."'"));
-$check_db = mysql_query("SELECT * FROM `$world[db]`.`users`");
+$check_db = $db->query("SELECT * FROM `$world[db]`.`users`");
 if(!$check_db){ 
 	header('Location: ./'); 
 	exit;

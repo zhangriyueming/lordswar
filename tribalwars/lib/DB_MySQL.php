@@ -4,27 +4,17 @@ class DB_MySQL{
     var $connection;
     var $queries;
     var $ms_querys;
+    var $pdo;
 
-	function connect($host="",$user="",$pass="",$db=""){
-		$this->connection = @mysql_connect($host, $user, $pass);
-		if(!$this->connection){
-			printf('No database connection could be established.<br />Error message: %s', htmlentities(mysql_error()));
-			exit;
+	function connect_($dsn="",$user="",$pass="") {
+		try	{
+			$this->pdo = new PDO($dsn, $user, $pass);
+		} catch (Exception $e) {
+			throw new Exception('连接数据库失败');
 		}
-		if(!@mysql_select_db($db, $this->connection)){
-			printf('Cannot select database "%s".<br />Error message: %s', htmlentities($db), htmlentities(mysql_error()));
-			exit;
-		}
-		if(is_resource($this->connection)){
-			return true;
-		}
+		return true;
 	}
-	function disconnect(){
-		$close = @mysql_close($this->connection);
-		$this->connection = NULL;
-		$this->queries = 0;
-		return $close;
-	}
+
 	function query($query,$show_error=true){
 		if(!defined('FILTER_LOCKTABLES') || FILTER_LOCKTABLES){
 			$pos = strpos(strtoupper($sql), 'LOCK TABLES');
@@ -33,14 +23,44 @@ class DB_MySQL{
 			}
 		}
 		if($show_error){
-			$result = @mysql_query($query, $this->connection);
-			if(!$result){
-				printf('Failing SQL: %s<br />Error: %s', htmlentities($query), htmlentities(mysql_error($this->connection)));
-				exit;
+			if (!$result = $this->pdo->query($query)) {
+				$err = $this->pdo->errorInfo();
+				throw new Exception(end($err));
 			}
+			// if(!$result){
+			// 	printf('Failing SQL: %s<br />Error: %s', htmlentities($query), htmlentities(mysql_error($this->connection)));
+			// 	exit;
+			// }
 		}
 		return $result;
 	}
+
+	function insert($sql, $params = null) {
+		if ($params && !is_array($params))
+			$params = array($params);
+		if ($params) {
+			if (!$stmt = $this->pdo->prepare($sql)) {
+				throw new Exception('解析查询语句出错，SQL语句：'.$sql);
+			}
+			if (!$ret = $stmt->execute($params)) {
+				$err = $stmt->errorInfo();
+				throw new Exception(end($err));
+			}
+			return $ret;
+		} else {
+			if ($this->pdo->exec($sql)) {
+				return true;
+			} else {
+				$err = $this->pdo->errorInfo();
+				throw new Exception(end($err));
+			}
+		}
+	}
+
+	function exec($query) {
+		$this->pdo->exec($query);
+	}
+
 	function unb_query($query,$show_error=true){
 		if($show_error){
 			$result = @mysql_unbuffered_query($query, $this->connection);
@@ -65,24 +85,25 @@ class DB_MySQL{
 	function affectedrows(){
 		return @mysql_affected_rows();
 	}
-	function __destruct(){
-        self::disconnect();
-	}
 	function fetch($result,$fetchmode=""){
-		if(is_resource($result)){
+
+		// if(is_resource($result)){
 			if(isset($fetchmode)){
-				return mysql_fetch_assoc($result);
+				return $result->fetch(PDO::FETCH_ASSOC);
+				// return mysql_fetch_assoc($result);
 			}else{
-				return mysql_fetch_array($result);
+				return $result->fetch(PDO::FETCH_ARRAY);
+				// return mysql_fetch_array($result);
             }
-        }
+        // }
     }
 	function freeresult($result){
 		return @mysql_free_result($result);
 	}
 	function numrows($result){
-		$rows = @mysql_num_rows($result);
-		return $rows ? $rows : 0;
+		$row_count = $result->rowCount();
+		// $rows = @mysql_num_rows($result);
+		return $row_count ? $row_count : 0;
 	}
 	function getlastid(){
 		return @mysql_insert_id($this->connection);

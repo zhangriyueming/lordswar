@@ -52,7 +52,7 @@ require_once(PATH."/include/config.php");
 require_once(PATH."/lib/functions.php");
 $time = time();
 $db = new DB_MySQL();
-$db->connect($config['db_host'], $config['db_user'], $config['db_pw'], $config['prefix'].$config['db_name'], "MySql");
+$db->connect_($config['db_dsn'], $config['db_user'], $config['db_pw']);
 if($time+5 < time())
 	exit("Sem resposta do MySQL! Verifique a conexão!");
 

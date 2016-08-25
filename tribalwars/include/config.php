@@ -10,9 +10,10 @@
 date_default_timezone_set("America/Sao_Paulo");
 
 // Configurações do banco de dados
+$config['db_dsn']='mysql:host=tribalwars_db_1;charset=utf8;dbname=tribalwars_main';
 $config['db_host'] = 'localhost'; // Host of your Database, probably Localhost
-$config['db_user'] = ''; // Database Username
-$config['db_pw'] = ''; // Database Password
+$config['db_user'] = 'root'; // Database Username
+$config['db_pw'] = '96kw9o69Q6'; // Database Password
 $config['db_name'] = ''; // Database Name
 
 // Acesso master ao painel administrativo
