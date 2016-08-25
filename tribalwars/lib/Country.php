@@ -5,7 +5,7 @@ class Country{
 	var $country_code = '';
 	var $country_name = '';
 
-	function Country(){
+	function __construct(){
 		$this->set_ip();
 	}
 	function get_ip_num(){

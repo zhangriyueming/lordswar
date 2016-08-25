@@ -2,7 +2,7 @@
 class sid{
 	var $db;
 
-	function sid(){
+	function __construct(){
 		global $db;
 
 		$this->db = $db;
