@@ -1,0 +1,24 @@
+
+web:
+    build: ./
+    ports:
+        - "80:80"
+    expose:
+        - "80"
+    volumes:
+        - ./tribalwars:/var/www/html
+    environment:
+        - VIRTUAL_HOST=tribalwars.sowicm.com
+    links:
+        - db
+
+db:
+    image: "mysql:latest"
+    expose:
+        - "3306"
+    ports:
+        - "3306:3306"
+    environment:
+        - MYSQL_ROOT_PASSWORD=96kw9o69Q6
+    volumes:
+        - ./mysql:/var/lib/mysql
