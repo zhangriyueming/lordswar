@@ -184,7 +184,7 @@ if(!(empty($_GET['target']))){
 	$village_array['next_link'] .= '';
 }
 
-$tpl = new Smarty();
+$tpl = new SmartyBC();
 if(isset($_GET['action']) && $_GET['action'] == "logout"){
 	require("actions/logout.php");
 }
