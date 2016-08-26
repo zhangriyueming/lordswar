@@ -618,13 +618,13 @@ function simulate($att,$att_tech,$def,$def_tech,$others){
 		
 		$knight_item_dbname = $knight_items->getByUnit($dbname);
 		$knight_att_factor = 1;
-		if(in_array($knight_item_dbname, $others['att_knight_items']) && $config['statue_style'] > 1)
+		if($others['att_knight_items'] && in_array($knight_item_dbname, $others['att_knight_items']) && $config['statue_style'] > 1)
 		{
 			$knight_att_factor = ($knight_items->getItem($knight_item_dbname));
 			$knight_att_factor = $knight_att_factor['att'];
 		}
 		$knight_def_factor = 1;
-		if(in_array($knight_item_dbname, $others['def_knight_items']) && $config['statue_style'] > 1)
+		if($others['att_knight_items'] && in_array($knight_item_dbname, $others['def_knight_items']) && $config['statue_style'] > 1)
 		{
 			$knight_def_factor = ($knight_items->getItem($knight_item_dbname));
 			$knight_def_factor = $knight_def_factor['deff'];
