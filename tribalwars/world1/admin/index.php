@@ -64,5 +64,6 @@ $tpl->assign("load_msec", round(msec()-$load_msec));
 $tpl->assign("screen", @$_GET['screen']);
 $tpl->assign("allow_screens", $allow_screens);
 $tpl->assign("extern_menue", $extern_menue);
+$tpl->assign("config", $config);
 $tpl->display("index.tpl");
 ?>

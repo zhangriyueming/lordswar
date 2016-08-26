@@ -26,35 +26,35 @@
 							<input type="radio" name="graphic" value="global">
 						</td>
 						<td width="50">
-							<img src="../graphic/minibutton/global.png">
+							<img src="{$config.cdn}/graphic/minibutton/global.png">
 						</td>
 						
 						<td width="20">
 							<input type="radio" name="graphic" value="sds">
 						</td>
 						<td width="50">
-							<img src="../graphic/minibutton/sds.png">
+							<img src="{$config.cdn}/graphic/minibutton/sds.png">
 						</td>
 					
 						<td width="20">
 							<input type="radio" name="graphic" value="usds">
 						</td>
 						<td width="50">
-							<img src="../graphic/minibutton/usds.png">
+							<img src="{$config.cdn}/graphic/minibutton/usds.png">
 						</td>
 						
 						<td width="20">
 							<input type="radio" name="graphic" value="w1">
 						</td>
 						<td width="50">
-							<img src="../graphic/minibutton/w1.png">
+							<img src="{$config.cdn}/graphic/minibutton/w1.png">
 						</td>
 						
 						<td width="20">
 							<input type="radio" name="graphic" value="m1">
 						</td>
 						<td width="50">
-							<img src="../graphic/minibutton/m1.png">
+							<img src="{$config.cdn}/graphic/minibutton/m1.png">
 						</td>
 					</tr>
 				</table>
