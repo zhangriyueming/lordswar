@@ -1065,7 +1065,8 @@ function assume_offer($row,$dealers,$wood,$stone,$iron,$num_assume=1,$do){
 	if($dealers < (ceil($row['buy']/1000)*$num_assume)){
  		return "not_enough_dealers";
  	}
- 	if($$row['buy_ress'] < ($row['buy']*$num_assume)){
+ 	$kk = $row['buy_ress'];
+ 	if($$kk < ($row['buy']*$num_assume)){
  		return "not_enough_ress";
  	}
 	if(!$do){
