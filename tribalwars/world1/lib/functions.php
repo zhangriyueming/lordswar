@@ -262,20 +262,21 @@ function format_time($sek){
 	return sprintf("%01s", $anzahl_std).":".sprintf("%02s", $anzahl_min).":".sprintf("%02s", $sek);
 }
 function format_date($stamp, $show_sek="false"){
+	$lang = new aLang('game', 'CN');
 	$today_day = date("d", $time = time());
 	$tomorrow_day = date("d", $time + 86400);
 	$return = "";
 	if($today_day == date("d", $stamp)){
-		$return = "Vandaag";
+		$return = $lang->get('today');
 	}elseif($tomorrow_day == date("d", $stamp)){
-		$return = "Morgen";
+		$return = $lang->get('tomorrow');
 	}else{
-		$return = "Op ".date("d.m", $stamp);
+		$return = $lang->get('op').date("d.m", $stamp);
 	}
 	if($show_sek){
-		$return .= " om ".date("G:i:s", $stamp)." uur";
+		$return .= $lang->get('om').date("G:i:s", $stamp).$lang->get('uur');
 	}else{
-		$return .= " om ".date("G:i", $stamp)." uur";
+		$return .= $lang->get('om').date("G:i", $stamp).$lang->get('uur');
 	}
 	return $return;
 }
@@ -952,10 +953,11 @@ function add_movement($from_userid,$from_id,$to_userid,$to_id,$units,$type,$star
 	$event_idA = $db->getlastid();
 }
 function get_movement_message($type,$villagename,$from){
+	$lang = new aLang('game', 'CN');
 	if($from == "own"){
 		switch($type){
 			case "attack" :
-				return "Aanval op ".$villagename;
+				return $lang->get('aanval_op').$villagename;
 			case "support" :
 				return "Ondersteuning aan ".$villagename;
 			case "back" :
@@ -976,9 +978,10 @@ function get_movement_message($type,$villagename,$from){
 	return false;
 }
 function get_movement_message_only_type($type){
+	$lang = new aLang('game', 'CN');
 	switch($type){
 		case "attack" :
-			return "Aanval";
+			return $lang->get('aanval');
 		case "support" :
 			return "Ondersteuning";
 		case "back" :
