@@ -66,9 +66,9 @@
 		<td align="center"><table width="40"><tr><td style="background-color:rgb({$arr.ratio_red}, {$arr.ratio_green}, 100); color:#000000; text-align:center;">{$arr.ratio_max}</td></tr></table></td>
 		<td align="center">{$arr.multi} {$lang->get('oferta')}</td>
 		<td align="center">
-		{if $arr.message=='not_enough_dealers'}
+		{if $arr.message==='not_enough_dealers'}
 			{$lang->get('Mercadores insuficientes')}
-		{elseif $arr.message=='not_enough_ress'}
+		{elseif $arr.message==='not_enough_ress'}
 			{$lang->get('Recursos insuficientes')}
 		{else}{php} die($arr.message); {/php}
 			<form action="game.php?village={$village.id}&amp;screen=market&amp;mode=other_offer&amp;action=accept_multi&amp;id={$id}&amp;site={$site}&amp;h={$hkey}" method="post">
