@@ -67,10 +67,10 @@ if (isset($_GET['action']) && $_GET['action'] == "modify_offers"){
 					if($row['from_village'] != $village['id']){
      					$error = "Desculpe, más houve um erro ao apagar a oferta!";
 					}else{
-						$db->query("UPDATE `offers` SET `do_action`='del' WHERE `id`='".$id."' AND `do_action`=''");
-						if($db->affectedrows() == 1){
-							$db->query("DELETE FROM `offers_multi` WHERE `id`='".$id."'");
-							$offers_back = $db->affectedrows();
+						$res = $db->query("UPDATE `offers` SET `do_action`='del' WHERE `id`='".$id."'");
+						if($res->rowCount() == 1){
+							$res = $db->query("DELETE FROM `offers_multi` WHERE `id`='".$id."'");
+							$offers_back = $res->rowCount();
 							$db->query("DELETE FROM `offers` WHERE `id`='".$id."'");
 							$dealers = ceil($row['sell']/1000)*$offers_back;
 							$ress_back = $row['sell']*$offers_back;
@@ -144,12 +144,12 @@ if (isset($_GET['action']) && $_GET['action'] == "modify_offers"){
 	     					$error = "Desculpe, más houve um erro ao redurzir a oferta!";
 						}else{
 							if(empty($error)){
-								$db->query("DELETE FROM `offers_multi` WHERE `id`='".$id."' LIMIT ".$mod_count."");
-								$offers_delete = $db->affectedrows();
+								$res = $db->query("DELETE FROM `offers_multi` WHERE `id`='".$id."' LIMIT ".$mod_count."");
+								$offers_delete = $res->rowCount();
 								$dealers = ceil($row['sell']/1000)*$offers_delete;
 								$ress = $row['sell']*$dealers;
-								$db->query("UPDATE `offers` SET `multi`=`multi`-'".$offers_delete."',`do_action`='update' WHERE `id`='".$id."' AND `do_action`=''");
-								if($db->affectedrows() == 1){
+								$res = $db->query("UPDATE `offers` SET `multi`=`multi`-'".$offers_delete."',`do_action`='update' WHERE `id`='".$id."' AND `do_action`=''");
+								if($res->rowCount() == 1){
 									$db->query("UPDATE `villages` SET `dealers_outside`=`dealers_outside`-'".$dealers."',`r_".$row['sell_ress']."`=`r_".$row['sell_ress']."`+'".$ress."' WHERE `id`='".$village['id']."'");
 									if($db->numrows($db->query("SELECT `id` FROM `offers_multi` WHERE `id`='".$id."'")) == 0){
 										$db->query("DELETE FROM `offers` WHERE `id`='".$id."'");
