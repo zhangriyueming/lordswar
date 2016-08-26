@@ -10,7 +10,7 @@
 			<img src="{$config.cdn}/graphic/big_buildings/statue1.png" title="Lehmgrube" alt="" />
 		</td>   
 		<td>
-			<h2>Estátua ({$village.statue|stage})</h2>
+			<h2>{$buildname} ({$village.statue|stage})</h2>
 			{$description}
 	</td>
 </tr>

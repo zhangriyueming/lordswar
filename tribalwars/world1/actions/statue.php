@@ -577,6 +577,8 @@ while($a == $db->fetch($teste)){
 	}
 }
 
+$lang = new aLang('game', $config['lang']);
+
 $tpl->assign("description", $cl_builds->get_description_bydbname($buildname));
 $tpl->assign("cl_units",$cl_units);
 $tpl->assign("buildname",$cl_builds->get_name($buildname));

@@ -61,14 +61,14 @@ class aLang {
 	
 	function get($varname) {
 	if (!$this->exists($this->section, $varname)) {
-		return sprintf('Tradução para %s(%s) não disponível!', htmlentities($this->section), htmlentities($varname));
+		return sprintf('Missing %s(%s)!', htmlentities($this->section), htmlentities($varname));
 		}
 		return $this->parsed[$this->section][$varname];
 	}
 	
 	function grab($section, $varname) {
 		if (!$this->exists($section, $varname)) {
-			return sprintf('Tradução para %s[%s] não disponível!', htmlentities($section), htmlentities($varname));
+			return sprintf('Missing %s[%s]!', htmlentities($section), htmlentities($varname));
 		}
 		return $this->parsed[$section][$varname];
 	}
