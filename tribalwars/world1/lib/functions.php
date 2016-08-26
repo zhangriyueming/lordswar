@@ -1074,8 +1074,8 @@ function assume_offer($row,$dealers,$wood,$stone,$iron,$num_assume=1,$do){
 		$numB = floor($$row['buy_ress']/($row['buy']*$num_assume));
 		return min($numA,$numB,$row['multi']);
 	}else{
-		$db->query("DELETE FROM `offers_multi` WHERE `id`='".$row['id']."' LIMIT ".$num_assume."");
-		$num_assume = $db->affectedrows();
+		$res = $db->query("DELETE FROM `offers_multi` WHERE `id`='".$row['id']."' LIMIT ".$num_assume."");
+		$num_assume = $res->rowCount();
 
 		if($row['buy_ress']=='wood'){ $wood = $row['buy']*$num_assume; }else{ $wood = 0; }
 		if($row['buy_ress']=='stone'){ $stone = $row['buy']*$num_assume; }else{ $stone = 0; }

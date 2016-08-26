@@ -42,7 +42,7 @@
 			<td valign="top">
 				<table class="vis">
 					<tr>
-						<th colspan="3">{$lang->get('destino')}</th>
+						<th colspan="3">{$lang->get('Destino')}</th>
 					</tr>
 					<tr>
 						<td>
@@ -69,19 +69,19 @@
 	</table>
 </form>
 {if count($own) > 0}
-<h3>Seus transportes</h3>
+<h3>{$lang->get('Seus transportes')}</h3>
 <table class="vis" width="100%">
 	<tr>
-		<th width="180">Destino</th>
-		<th width="80">Recursos</th>
-		<th width="65">Mercadores</th>
-		<th width="70">Duração</th>
-		<th width="100">Chegada</th>
-		<th width="70">Chegada em</th>
+		<th width="180">{$lang->get('Destino')}</th>
+		<th width="80">{$lang->get('Recursos')}</th>
+		<th width="65">{$lang->get('Mercadores')}</th>
+		<th width="70">{$lang->get('Duração')}</th>
+		<th width="100">{$lang->get('Chegada')}</th>
+		<th width="70">{$lang->get('Chegada em')}</th>
 	</tr>
 	{foreach from=$own item=arr key=id}
 	<tr>
-		<td>{if $arr.type=='to'}Transporte à {else}Retorno de {/if}<br /><a href="game.php?village={$village.id}&amp;screen=info_village&amp;id={$arr.villageid}">{$arr.villagename}</a></td>
+		<td>{if $arr.type=='to'}{$lang->get('Transporte à')}{else}Retorno de{/if}<br /><a href="game.php?village={$village.id}&amp;screen=info_village&amp;id={$arr.villageid}">{$arr.villagename}</a></td>
 		<td>{if $arr.wood > 0}<img src="{$config.cdn}/graphic/icons/wood.png" title="Madeira" alt="" />{$arr.wood} {/if}{if $arr.stone > 0}<img src="{$config.cdn}/graphic/icons/stone.png" title="Argila" alt="" />{$arr.stone} {/if}{if $arr.iron > 0}<img src="{$config.cdn}/graphic/icons/iron.png" title="Ferro" alt="" />{$arr.iron} {/if}</td>
 		<td>{$arr.dealers}</td>
 		<td>{$arr.duration}</td>
@@ -95,15 +95,15 @@
 </table>
 {/if}
 {if count($others) > 0}
-<h3>Transportes em chegada</h3>
+<h3>{$lang->get('Transportes em chegada')}</h3>
 <table class="vis" width="100%">
 	<tr>
-		<th width="160">Origem</th>
+		<th width="160">{$lang->get('Origem')}</th>
 		{if $others_see_ress}
-		<th width="80">Mercadores</th>
+		<th width="80">{$lang->get('Mercadores')}</th>
 		{/if}
-		<th width="100">Chegada</th>
-		<th width="70">Chegada em</th>
+		<th width="100">{$lang->get('Chegada')}</th>
+		<th width="70">{$lang->get('Chegada em')}</th>
 	</tr>
 		{foreach from=$others item=arr key=id}
 			<tr>

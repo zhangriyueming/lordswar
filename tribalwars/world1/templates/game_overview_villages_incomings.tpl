@@ -1,7 +1,7 @@
 <table class="vis" width="100%">
 	<tr>
 		<th width="100">{$lang->get('comando')}</th>
-		<th width="200">{$lang->get('destino')}</th>
+		<th width="200">{$lang->get('Destino')}</th>
 		<th width="150">{$lang->get('jogador')}</th>
 		<th width="160">{$lang->get('chegada')}</th>
 		<th width="80">{$lang->get('chegada_em')}</th>

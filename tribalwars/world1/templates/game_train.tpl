@@ -2,7 +2,7 @@
 <table>
 	<tr>
 		<td>
-			<h2>Recrutar em massa</h2>
+			<h2>{$lang->get('Recrutar em massa')}</h2>
 			Nesta visualização você pode produzir qualquer tipo de unidade, desde que todos os requerimentos de tais unidades tenham sido preenchidos (edfícios e tecnologias).
 		</td>
 	</tr>
@@ -252,21 +252,21 @@
 	{if !empty($error)}<div class="error">{$error}</div>{/if}
 <table class="vis">
 	<tr>
-		<td {if $mode==''}class="selected"{/if}><a href="game.php?village={$village.id}&amp;screen=train">{if $mode==''}&raquo; {/if}Recrutar</a></td>
-		<td {if $mode=='mass'}class="selected"{/if}><a href="game.php?village={$village.id}&amp;screen=train&amp;mode=mass">{if $mode=='mass'}&raquo; {/if}Recrutamento em massa</a></td>
+		<td {if $mode==''}class="selected"{/if}><a href="game.php?village={$village.id}&amp;screen=train">{if $mode==''}&raquo; {/if}{$lang->get('Recrutar')}</a></td>
+		<td {if $mode=='mass'}class="selected"{/if}><a href="game.php?village={$village.id}&amp;screen=train&amp;mode=mass">{if $mode=='mass'}&raquo; {/if}{$lang->get('Recrutamento em massa')}</a></td>
 	</tr>
 </table>
 <form action="game.php?village={$village.id}&screen=train&action=train&h={$hkey}" id="train_form" method="post">
 	<table class="vis" width="100%">
 		<tr>
-			<th width="200">Unidade</th>
+			<th width="200">{$lang->get('Unidade')}</th>
 			<th><center><img src="{$config.cdn}/graphic/icons/wood.png"></center></th>
 			<th><center><img src="{$config.cdn}/graphic/icons/stone.png"></center></th>
 			<th><center><img src="{$config.cdn}/graphic/icons/iron.png"></center></th>
 			<th><center><img src="{$config.cdn}/graphic/icons/farm.png"></center></th>
-			<th class="nowrap" width="120">Duração</th>
-			<th class="nowrap">Recrutar</th>
-			<th>Recrutar</th>
+			<th class="nowrap" width="120">{$lang->get('Duração')}</th>
+			<th class="nowrap">{$lang->get('im_dorf_insgesamt')}</th>
+			<th>{$lang->get('rekrutieren')}</th>
 		</tr>
 		{foreach from=$units item=currentunit}
 			{$cl_units->check_needed($currentunit,$village)}
@@ -285,15 +285,15 @@
         	{/if}
 		{/foreach}
 		<script type='text/javascript'>{if $get.mode!="mass"}window.setInterval("trainManager.tick()", 1000);{/if}</script>
-		<tr><th colspan="8"><div align="right"><input type="submit" value="Recrutar" class="button" /></div></th></tr>
+		<tr><th colspan="8"><div align="right"><input type="submit" value="{$lang->get('rekrutieren')}" class="button" /></div></th></tr>
 	</table>
 </form>
 {else}
 <table>
 	<tr>
 		<td>
-			<h2>Recrutar em massa</h2>
-			<p>Nesta visualização você pode produzir qualquer tipo de unidade, desde que todos os requerimentos de tais unidades tenham sido preenchidos (edfícios e tecnologias).</p>
+			<h2>{$lang->get('Recrutar em massa')}</h2>
+			<p>{$lang->get('recrutar_em_massa_desc')}</p>
 		</td>
 	</tr>
 </table><br />
@@ -335,20 +335,20 @@
 {/literal}
    </script>
 <div style="text-align:center">
-	<input type="button" value="Inserir tropas" onclick="return filler(false);" class="button" alt="" />
-	<input type="button" value="Inserir máximo" onclick="return filler(true);" class="button" alt="" />
+	<input type="button" value="{$lang->get('Inserir tropas')}" onclick="return filler(false);" class="button" alt="" />
+	<input type="button" value="{$lang->get('Inserir máximo')}" onclick="return filler(true);" class="button" alt="" />
 </div>
 {if !empty($error)}<div class="error">{$error}</div>{/if}
 <table class="vis">
 	<tr>
-		<td {if $mode==''}class="selected"{/if}><a href="game.php?village={$village.id}&amp;screen=train">{if $mode==''}&raquo; {/if}Recrutar</a></td>
-		<td {if $mode=='mass'}class="selected"{/if}><a href="game.php?village={$village.id}&amp;screen=train&amp;mode=mass">{if $mode=='mass'}&raquo; {/if}Recrutamento em massa</a></td>
+		<td {if $mode==''}class="selected"{/if}><a href="game.php?village={$village.id}&amp;screen=train">{if $mode==''}&raquo; {/if}{$lang->get('Recrutar')}</a></td>
+		<td {if $mode=='mass'}class="selected"{/if}><a href="game.php?village={$village.id}&amp;screen=train&amp;mode=mass">{if $mode=='mass'}&raquo; {/if}{$lang->get('Recrutamento em massa')}</a></td>
 	</tr>
 </table>
 <form method="post" action="game.php?village={$village.id}&amp;screen=train&amp;mode=mass&amp;group=0&amp;action=train_mass&amp;h={$hkey}&amp;site={$get.site}" id="mass_train_form">
 	<table class="vis" width="100%">
 		<tr>
-			<th width="100%">Aldeias ({php} echo count($_smarty_tpl->tpl_vars['villages']); {/php})</th>
+			<th width="100%">{$lang->get('Aldeias')} ({php} echo count($_smarty_tpl->tpl_vars['villages']); {/php})</th>
 			<th><center><img src="{$config.cdn}/graphic/icons/wood.png"></center></th>
 			<th><center><img src="{$config.cdn}/graphic/icons/stone.png"></center></th>
 			<th><center><img src="{$config.cdn}/graphic/icons/iron.png"></center></th>
@@ -397,7 +397,7 @@
 			{/foreach}
 		</tr>
 		{/foreach}
-		<tr><th colspan="15"><div align="right"><input type="submit" value="Recrutar" class="button" /></div></th></tr>
+		<tr><th colspan="15"><div align="right"><input type="submit" value="{$lang->get('recrutamento')}" class="button" /></div></th></tr>
 	</table>
 	<div align="center">
     {section name=show_sites start=1 loop=$sites+1 step=1}
