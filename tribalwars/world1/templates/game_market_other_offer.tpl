@@ -9,27 +9,27 @@
 <form action="game.php?village={$village.id}&amp;screen=market&amp;mode=other_offer&amp;action=search&amp;h={$hkey}" method="post">
 	<table class="vis">
 		<tr>
-			<td>Busco:</td>
+			<td>{$lang->get('Busco')}:</td>
 			<td>
 				<select name="res_sell">
-					<option value="all" {if $market.market_sell=='all'}selected="selected"{/if}>Todos</option>
-					<option value="wood" {if $market.market_sell=='wood'}selected="selected"{/if}>Madeira</option>
-					<option value="stone" {if $market.market_sell=='stone'}selected="selected"{/if}>Argila</option>
-					<option value="iron" {if $market.market_sell=='iron'}selected="selected"{/if}>Ferro</option>
+					<option value="all" {if $market.market_sell=='all'}selected="selected"{/if}>{$lang->get('Todos')}</option>
+					<option value="wood" {if $market.market_sell=='wood'}selected="selected"{/if}>{$lang->get('madeira')}</option>
+					<option value="stone" {if $market.market_sell=='stone'}selected="selected"{/if}>{$lang->get('argila')}</option>
+					<option value="iron" {if $market.market_sell=='iron'}selected="selected"{/if}>{$lang->get('ferro')}</option>
 				</select>
 			</td>
-			<td width="100">Rasão máxima:</td>
+			<td width="100">{$lang->get('Rasão máxima')}:</td>
 			<td><input name="ratio_max" value="{$market.market_ratio_max}" type="text" size="4" /> (Ex: 1.8)</td>
 		</tr>
 		<tr>
-			<td>Ofereço:</td>
+			<td>{$lang->get('Ofereço')}:</td>
 			<td><select name="res_buy">
-				<option value="all" {if $market.market_buy=='all'}selected="selected"{/if}>Todos</option>
-				<option value="wood" {if $market.market_buy=='wood'}selected="selected"{/if}>Madeira</option>
-				<option value="stone" {if $market.market_buy=='stone'}selected="selected"{/if}>Argila</option>
-				<option value="iron" {if $market.market_buy=='iron'}selected="selected"{/if}>Ferro</option>
+				<option value="all" {if $market.market_buy=='all'}selected="selected"{/if}>{$lang->get('Todos')}</option>
+				<option value="wood" {if $market.market_buy=='wood'}selected="selected"{/if}>{$lang->get('madeira')}</option>
+				<option value="stone" {if $market.market_buy=='stone'}selected="selected"{/if}>{$lang->get('argila')}</option>
+				<option value="iron" {if $market.market_buy=='iron'}selected="selected"{/if}>{$lang->get('ferro')}</option>
 			</select></td>
-			<td colspan="2" align="center"><input type="submit" class="button" value="Buscar" /></td>
+			<td colspan="2" align="center"><input type="submit" class="button" value="{$lang->get('Buscar')}" /></td>
 		</tr>
 	</table><br />
 </form>

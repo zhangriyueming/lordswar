@@ -1,4 +1,10 @@
 <?php
+if($ACTIONS_MASSIVKEY_HIGHAAASSDD != "sdjahsdkJHSAJDKHALKJHSADJHSADNsjdhaksjdlhJNASDKL"){
+	exit;
+}
+
+$lang = new aLang('game', $config['lang']);
+$buildname = "storage";
 $storage_datas['storage_size'] = $arr_maxstorage[$village['storage']];
 
 if($village['storage'] == $cl_builds->get_maxstage("storage")){
@@ -31,6 +37,7 @@ $tpl->assign("stone_sec_date", $stone['end']);
 $tpl->assign("iron_sec_date", $iron['end']);
 
 $tpl->assign("store_datas", $storage_datas);
-$tpl->assign("description", $cl_builds->get_description_bydbname('storage'));
+$tpl->assign("buildname", $cl_builds->get_name($buildname));
+$tpl->assign("description", $cl_builds->get_description_bydbname($buildname));
 $tpl->register_modifier("stage", "stage");
 ?>

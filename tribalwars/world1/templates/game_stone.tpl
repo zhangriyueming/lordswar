@@ -5,7 +5,7 @@
 		</td>
 		<td>
 			<h2>
-				Lehmgrube ({$village.stone|stage})
+				{$buildname} ({$village.stone|stage})
 			</h2>
 			{$description}
 		</td>
@@ -14,13 +14,13 @@
 <br />
 	<table class="vis">
 		<tr>
-			<td width="200">
+			<th width="200">
 				<img src="{$config.cdn}/graphic/lehm.png" title="Lehm" alt="" />
-				Aktuelle Produktion
-			</td>
+				{$lang->get('Aktuelle Produktion')}
+			</th>
 			<td>
 				<b>{$stone_datas.stone_production} </b>
-				Einheiten pro Minute
+				{$lang->get('per')}{$lang->get('minuut')}
 			</td>
 		</tr>
 
@@ -29,13 +29,13 @@
 		{else}
 
 			<tr>
-				<td>
+				<th>
 					<img src="{$config.cdn}/graphic/lehm.png" title="Lehm" alt="" />
-				Produktion bei ({$village.stone+1|stage})
-			</td>
+				{$lang->get('Production of next stage')}
+			</th>
 			<td>
 				<b>{$stone_datas.stone_production_next}</b>
-				Einheiten pro Minute
+				{$lang->get('per')}{$lang->get('minuut')}
 			</td>
 		</tr>
     {/if}

@@ -5,7 +5,7 @@
 		</td>
 		<td>
 			<h2>
-				Wall ({$village.wall|stage})
+				{$buildname} ({$village.wall|stage})
 			</h2>
 			{$description}
 		</td>
@@ -14,32 +14,32 @@
 <br />
 <table class="vis">
 	<tr>
-		<td width="200">
-			Aktuell
-		</td>
+		<th width="200">
+			{$lang->get('Aktuell')}
+		</th>
 		<td width="200">
 			<strong>{$wall_datas.basic_defense}</strong>
-			Grundverteidigung
+			{$lang->get('Grundverteidigung')}
 		</td>
 		<td width="200">
 			<strong>{$wall_datas.wall_bonus}%</strong>
-			Verteidigungsbonus
+			{$lang->get('Verteidigungsbonus')}
 		</td>
 	</tr>
 
 	{if $wall_datas.basic_defense_next}
 
 		<tr>
-			<td>
-				Auf ({$village.wall+1|stage})
-			</td>
+			<th>
+				{$lang->get('Auf')}
+			</th>
 			<td>
 				<strong>{$wall_datas.basic_defense_next}</strong>
-				Grundverteidigung
+				{$lang->get('Grundverteidigung')}
 			</td>
 			<td>
 				<strong>{$wall_datas.wall_bonus_next}%</strong>
-				Verteidigungsbonus
+				{$lang->get('Verteidigungsbonus')}
 			</td>
 		</tr>
 

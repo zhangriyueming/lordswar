@@ -3,6 +3,8 @@ if($ACTIONS_MASSIVKEY_HIGHAAASSDD != "sdjahsdkJHSAJDKHALKJHSADJHSADNsjdhaksjdlhJ
 	exit;
 }
 
+$lang = new aLang('game', $config['lang']);
+$buildname = "farm";
 $farm_datas['farm_size'] = $arr_farm[$village['farm']];
 if($village['farm'] == $cl_builds->get_maxstage("farm")){
 	$farm_datas['farm_size_next'] = false;
@@ -20,6 +22,7 @@ foreach($cl_units->get_array("dbname") as $dbname){
 	$farm_datas['own_units'] += $village_all['all_'.$dbname];
 }
 $tpl->assign("farm_datas", $farm_datas);
-$tpl->assign("description", $cl_builds->get_description_bydbname('farm'));
+$tpl->assign("buildname", $cl_builds->get_name($buildname));
+$tpl->assign("description", $cl_builds->get_description_bydbname($buildname));
 $tpl->register_modifier("stage", "stage");
 ?>

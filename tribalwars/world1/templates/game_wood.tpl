@@ -5,7 +5,7 @@
 		</td>
 		<td>
 			<h2>
-				Holzfäller ({$village.wood|stage})
+				{$buildname} ({$village.wood|stage})
 			</h2>
 			{$description}
 		</td>
@@ -14,13 +14,13 @@
 <br />
 <table class="vis">
 	<tr>
-		<td width="200">
+		<th width="200">
 			<img src="{$config.cdn}/graphic/holz.png" title="Holz" alt="" />
-			Aktuelle Produktion
-		</td>
+			{$lang->get('Aktuelle Produktion')}
+		</th>
 		<td>
 			<b>{$wood_datas.wood_production}</b>
-			Einheiten pro Minute
+			{$lang->get('per')}{$lang->get('minuut')}
 		</td>
 	</tr>
 
@@ -30,13 +30,13 @@
 	{else}
 
 		<tr>
-			<td>
+			<th>
 				<img src="{$config.cdn}/graphic/holz.png" title="Holz" alt="" />
-				Produktion bei ({$village.wood+1|stage})
-			</td>
+				{$lang->get('Production of next stage')}
+			</th>
 
 			<td>
-  				<b>{$wood_datas.wood_production_next}</b> Einheiten pro Minute
+  				<b>{$wood_datas.wood_production_next}</b> {$lang->get('per')}{$lang->get('minuut')}
         	</td>
 		</tr>
     {/if}

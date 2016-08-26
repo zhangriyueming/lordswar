@@ -4,19 +4,19 @@
 			<img src="{$config.cdn}/graphic/big_buildings/storage1.png" title="Speicher" alt="" />
 		</td>
 		<td>
-			<h2>Speicher ({$village.storage|stage})</h2>
+			<h2>{$buildname} ({$village.storage|stage})</h2>
 			{$description}
 		</td>
 	</tr>
 </table>
 <br />
-<table>
+<table class="vis" style="border:1px solid #804000; margin-left:5px;">
 	<tr>
-		<td width="220">
-			Aktuelle Speicherkapazität:
-		</td>
+		<th width="220">
+			{$lang->get('Aktuelle Speicherkapazit')}:
+		</th>
 		<td>
-			<b>{$store_datas.storage_size}</b> Einheiten je Rohstoff
+			<b>{$store_datas.storage_size}</b> {$lang->get('Einheiten je Rohstoff')}
 		</td>
 	</tr>
 	
@@ -25,11 +25,11 @@
 	{else}
 
 		<tr>
+			<th>
+				{$lang->get('Speicherkapazit of next stage')}:
+			</th>
 			<td>
-				Speicherkapazität bei ({$village.storage+1|stage})
-			</td>
-			<td>
-				<b>{$store_datas.storage_size_next}</b> Einheiten je Rohstoff
+				<b>{$store_datas.storage_size_next}</b> {$lang->get('Einheiten je Rohstoff')}
 			</td>
 		</tr>
 
@@ -41,10 +41,10 @@
 <table class="vis">
 	<tr>
 		<th width="150">
-			Speicher voll
+			{$lang->get('Speicher voll')}
 		</th>
 		<th>
-			Zeit (hh:mm:ss)
+			{$lang->get('zeit')}
 		</th>
 	</tr>
 	{if $wood_sec!=0}
