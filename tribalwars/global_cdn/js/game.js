@@ -500,7 +500,7 @@ function changeView(){
 			if(i==0) setCookie('gfx_label', 1);
 		}
 	}
-	(gid('show_level').innerHTML == 'Gebouwlevels weergeven') ? gid('show_level').innerHTML = 'Gebouwlevels verbergen': gid('show_level').innerHTML = 'Gebouwlevels weergeven';
+	(gid('show_level').innerHTML == gid('show_level_off').innerHTML) ? gid('show_level').innerHTML = gid('show_level_on').innerHTML: gid('show_level').innerHTML = gid('show_level_off').innerHTML;
 }
 function selectAll(c,b){
 	for(var a = 0; a < c.length; a++){

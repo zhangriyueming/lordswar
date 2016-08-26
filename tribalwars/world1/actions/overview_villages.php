@@ -3,12 +3,13 @@ if($ACTIONS_MASSIVKEY_HIGHAAASSDD != "sdjahsdkJHSAJDKHALKJHSADJHSADNsjdhaksjdlhJ
 	exit;
 }
 
+$lang = new aLang("game", $config['lang']);
 $links = array(
-	"Combinado" => "combined",
-	"Produção" => "prod",
-	"Tropas" => "units",
-	"Comandos" => "commands",
-	"Chegando" => "incomings"
+	$lang->get('combined') => "combined",
+	$lang->get('production') => "prod",
+	$lang->get('troops') => "units",
+	$lang->get('commands') => "commands",
+	$lang->get('incomings') => "incomings"
 );
 if(isset($_GET['mode']) && $user['villages_mode'] != $_GET['mode'] && in_array($_GET['mode'], $links)){
 	$db->query("UPDATE `users` SET `villages_mode`='".parse($_GET['mode'])."' WHERE `id`='".$user['id']."'");

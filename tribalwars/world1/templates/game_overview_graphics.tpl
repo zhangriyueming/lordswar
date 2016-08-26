@@ -3,6 +3,8 @@
 <td valign="top">
 	<table class="vis" width="100%" style="margin-bottom:3px; border-spacing:1px;">
 		<tr>
+			<span style="display:none" id="show_level_off">{$lang->get("buildinglevels")}</span>
+			<span style="display:none" id="show_level_on">{$lang->get("buildinglevels_on")}</span>
 			<th width="50%"><div align="center"><a href="javascript:void(0);" onclick="changeView();" id="show_level">{$lang->get("buildinglevels")}</a></div></th>
 			<th width="50%"><div align="center"><a href="game.php?village={$village.id}&amp;screen=overview&amp;action=set_visual&amp;visual=0&amp;h={$hkey}">{$lang->get("graphicshide")}</a></div></th>
 		</tr>

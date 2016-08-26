@@ -184,7 +184,7 @@
 		</tr>
 	</table>
 	<table class="principal" style="margin-bottom: 30px;">
-		<tr><th style="text-align:center;">&copy;2012 | {$config.name} - {$lang->get("rights")}</th></tr>
+		<tr><th style="text-align:center;">&copy;2016 | {$config.name} - {$lang->get("rights")}</th></tr>
 	</table>
 	<div id="footer">
 		<div id="linkContainer">

@@ -1,6 +1,6 @@
 <table class="vis" width="100%">
 	<tr>
-		<th>Aldeias</th>
+		<th>{$lang->get("aldeias")}</th>
 		<th><div align="center"><img src="{$config.cdn}/graphic/overview/main.png" title="Castelo" alt="" /></div></th>
 		<th><div align="center"><img src="{$config.cdn}/graphic/overview/barracks.png" title="Quartel" alt="" /></div></th>
 		<th><div align="center"><img src="{$config.cdn}/graphic/overview/stable.png" title="Estábulo" alt="" /></div></th>

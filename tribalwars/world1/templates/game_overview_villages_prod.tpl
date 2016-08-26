@@ -1,13 +1,13 @@
 <table class="vis" width="100%">
 	<tr>
-		<th>Aldeias</th>
-		<th>Pontos</th>
-		<th>Recursos</th>
-		<th>Armazém</th>
-		<th>Moinho</th>
-		<th>Construção</th>
-		<th>Pesquisa</th>
-		<th>Recrutamento</th>
+		<th>{$lang->get("aldeias")}</th>
+		<th>{$lang->get("pontos")}</th>
+		<th>{$lang->get("recursos")}</th>
+		<th>{$lang->get("armazém")}</th>
+		<th>{$lang->get('moinho')}</th>
+		<th>{$lang->get("construção")}</th>
+		<th>{$lang->get('pesquisa')}</th>
+		<th>{$lang->get('recrutamento')}</th>
 	</tr>
 {foreach from=$villages item=id key=arr_id}
 	<tr class="{$villages.$arr_id.lit}">

@@ -1,9 +1,9 @@
 <table class="vis" style="width:100%">
 	<tr>
-		<th>Aldeias</th>
+		<th>{$lang->get("aldeias")}</th>
 		<th>&nbsp;</th>
 		{foreach from=$unit item=name key=dbname}<th width="35"><div align="center"><img src="{$config.cdn}/graphic/unit/{$dbname}.png" title="{$name}" /></div></th>{/foreach}
-		<th>Ação</th>
+		<th>{$lang->get('ação')}</th>
 	</tr>
 	{foreach from=$villages item=id key=arr_id}
 	<tr class="{$villages.$arr_id.lit}">

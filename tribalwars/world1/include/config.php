@@ -26,7 +26,7 @@ $config['db_name'] = ''; // Database Name
 date_default_timezone_set("Asia/Shanghai");
 
 // Configurações especiais:
-$config['name'] = 'Tribalwars'; // Game name :) Can be your own ;D
+$config['name'] = 'Lordswar'; // Game name :) Can be your own ;D
 $config['ano'] = '2014'; // Year of server start
 $config['cdn'] = 'http://localhost/global_cdn'; // Image / JS directory
 $config['forum'] = ''; // Link to your forum
@@ -35,7 +35,8 @@ $config['global_db'] = 'tribalwars_main'; // DATABASE name!
 $config['world_name'] = 'Wereld 1'; // Name of the World :) 
 $config['c_db_name'] = 'pkmhunters_world'; // Name of the world database
 
-
+// $config['lang'] = 'PT';
+$config['lang'] = 'CN';
 
 // Stuff down here are just configuration lines. Like the world speed, movement speed etc. 
 

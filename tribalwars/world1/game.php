@@ -236,7 +236,7 @@ if($user['join_actions'] == "n"){
 }
 
 require_once("configs.php");
-$lang = new aLang("game", "PT");
+$lang = new aLang("game", $config['lang']);
 $tpl->assign("lang", $lang);
 $tpl->assign("servertime", date("G:i:s"));
 $tpl->assign("serverdate", date("d/m/Y"));
