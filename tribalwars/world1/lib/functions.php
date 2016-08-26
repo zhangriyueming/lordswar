@@ -236,10 +236,11 @@ function stage($stage){
 	return $lang->get("niet_gebouwd");
 }
 function tech($stage){
+	global $lang;
 	if($stage > 0){
 		return "Level ".$stage;
 	}
-	return "Niet onderzocht";
+	return $lang->get('niet_onderzocht');
 }
 function format_time($sek){
 	//if ($sek > 3600000000)

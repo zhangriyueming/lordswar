@@ -3,6 +3,7 @@ if($ACTIONS_MASSIVKEY_HIGHAAASSDD != 'sdjahsdkJHSAJDKHALKJHSADJHSADNsjdhaksjdlhJ
 	exit;
 }
 
+$buildname = "smith";
 $show_build = ($cl_builds->check_needed('smith',$village) && $village['smith'] > 0) ? true : false;
 if($show_build){
 	foreach($cl_techs->get_array("dbname") as $id=>$dbname){
@@ -42,7 +43,7 @@ if($show_build){
 			$catapult = $information->unit_catapult_tec_level;
 
 			if($user['premium_active'] == 0){
-				$error = "Por favor ative as funcionalidades das moedas";
+				$error = "请先激活会员";
 			}elseif($spear == "1" AND $sword == "1" AND $axe == "1" AND $light == "1" AND $heavy == "1" AND $archer == "1" AND $marcher == "1" AND $ram == "1" AND $catapult == "1"){
 				$error = "Voc&ecirc; j&aacute; pesquisou tudo!";
 			}elseif($information->smith <= "15"){
@@ -160,7 +161,8 @@ $tpl->assign("show_build",$show_build);
 $tpl->assign("cl_techs", $cl_techs);
 $tpl->assign("time", time());
 $tpl->assign("techs", $techs);
-$tpl->assign("description", $cl_builds->get_description_bydbname('smith'));
+$tpl->assign("buildname", $cl_builds->get_name($buildname));
+$tpl->assign("description", $cl_builds->get_description_bydbname($buildname));
 $tpl->register_modifier("format_date", "format_date");
 $tpl->register_modifier("format_time", "format_time");
 ?>

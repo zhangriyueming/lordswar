@@ -157,7 +157,8 @@ class techs {
 		return $this->dbname[$id];
 	}
 	function get_name($name){
-		return $this->name[$name];
+		global $lang;
+		return $lang->get($name);
 	}
 	function get_maxStage($dbname){
 		return $this->maxStage[$dbname];
