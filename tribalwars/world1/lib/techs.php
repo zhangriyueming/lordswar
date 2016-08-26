@@ -96,7 +96,7 @@ class techs {
 
   		if($arr_maxstorage[$village['storage']]<max($wood,$stone,$iron)){
   			$this->tech_error = "not_enough_storage";
-  			$this->tech_graphic = $dbname."_inactive.png";
+  			$this->tech_graphic = $dbname."_grey.png";
   			return "";
   		}
 		if($wood>$village['r_wood'] || $stone>$village['r_stone'] || $iron>$village['r_iron']){
@@ -124,7 +124,7 @@ class techs {
 			$wait_seconds = ceil(max($timeA,$timeB,$timeC));
 			$this->time_wait = format_time($wait_seconds);
 			$this->tech_error = "not_enough_ress";
-			$this->tech_graphic = $dbname."_inactive.png";
+			$this->tech_graphic = $dbname."_grey.png";
 			return "";
 		}
 		$this->tech_error = "no_error";
