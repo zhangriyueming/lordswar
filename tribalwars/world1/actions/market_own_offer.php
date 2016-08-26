@@ -109,8 +109,8 @@ if (isset($_GET['action']) && $_GET['action'] == "modify_offers"){
 								$error = "Desculpe, más você não pode suprir está oferta!";
 							}
 							if(empty($error)){
-								$db->query("UPDATE `offers` SET `multi`=`multi`+'".$mod_count."',`do_action`='update' WHERE `id`='".$id."' AND `do_action`=''");
-								if($db->affectedRows() == 1){
+								$res = $db->query("UPDATE `offers` SET `multi`=`multi`+'".$mod_count."',`do_action`='update' WHERE `id`='".$id."' AND (`do_action` IS NULL OR `do_action`='')");
+								if($res->rowCount() == 1){
 									for($i=1;$i<=$mod_count;$i++){
 										$db->query("INSERT INTO `offers_multi` (`id`) VALUES ('".$id."')");	
 									}
