@@ -70,10 +70,10 @@
 			{$lang->get('Mercadores insuficientes')}
 		{elseif $arr.message==='not_enough_ress'}
 			{$lang->get('Recursos insuficientes')}
-		{else}{php} die($arr.message); {/php}
+		{else}
 			<form action="game.php?village={$village.id}&amp;screen=market&amp;mode=other_offer&amp;action=accept_multi&amp;id={$id}&amp;site={$site}&amp;h={$hkey}" method="post">
 				<input type="text" name="count" size="3" value="1" onclick="javascript:this.value=''" />
-				<input type="submit" class="button" value="Aceitar" size="5" />
+				<input type="submit" class="button" value="{$lang->get('Aceitar')}" size="5" />
 			</form>
 		{/if}
 		</td>
