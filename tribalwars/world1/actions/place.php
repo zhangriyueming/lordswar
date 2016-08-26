@@ -3,14 +3,17 @@ if($ACTIONS_MASSIVKEY_HIGHAAASSDD != "sdjahsdkJHSAJDKHALKJHSADJHSADNsjdhaksjdlhJ
 	exit;
 }
 
+$lang = new aLang('game', $config['lang']);
+
+$buildname = "place";
 $show_build = $cl_builds->check_needed("place",$village);
 if($show_build){
 	if(!isset($_GET['mode'])) $_GET['mode'] = "command";
 
 	$links = array(
-		"Comandos" => "command",
-		"Tropas" => "units",
-		"Simulador" => "sim"
+		$lang->get('Comandos') => "command",
+		$lang->get("Tropas") => "units",
+		$lang->get("Simulador") => "sim"
 	);
 	$allow_mods = array("command","units","sim");
 	if(isset($_GET['mode']) && $_GET['mode'] == "command"){
@@ -23,11 +26,14 @@ if($show_build){
 		include("place_sim.php");
 	}
 }
+
+
 $tpl->assign("cl_units",$cl_units);
 $tpl->assign("allow_mods", $allow_mods);
 $tpl->assign("mode", $_GET['mode']);
 $tpl->assign("links", $links);
 $tpl->assign("show_build",$show_build);
-$tpl->assign("description", $cl_builds->get_description_bydbname('place'));
+$tpl->assign("buildname", $cl_builds->get_name($buildname));
+$tpl->assign("description", $cl_builds->get_description_bydbname($buildname));
 $tpl->assign("config", $config);
 ?>

@@ -22,19 +22,19 @@
 	<tbody>
 	<tr>
 	{if $mode=='main'}
-	<td class="selected" width="100">
+	<th class="selected" width="100">
 	{else}
-	<td width="100">
+	<th width="100">
 	{/if}
-	<a href="game.php?village={$village.id}&amp;screen=statue&amp;mode=main">Paladino</a>
-	</td>
+	<a href="game.php?village={$village.id}&amp;screen=statue&amp;mode=main">{$lang->get('Paladino')}</a>
+	</th>
 	{if $mode=='inventory'}
-	<td class="selected" width="100">
+	<th class="selected" width="100">
 	{else}
-	<td width="100">
+	<th width="100">
 	{/if}
-	<a href="game.php?village={$village.id}&amp;screen=statue&amp;mode=inventory">Sala de armas</a>
-	</td>
+	<a href="game.php?village={$village.id}&amp;screen=statue&amp;mode=inventory">{$lang->get('Sala de armas')}</a>
+	</th>
 	</tr>
 	</tbody>
 	</table>
@@ -42,7 +42,7 @@
 	{if $mode=="inventory"}
 <div style="width:840px;float:left;">
 	<div style="float:right;width:210px;padding-right:5px;">
-		<p>Items are effective only for units joined by a Paladin equipped with that particular item.s</p>
+		<p>{$lang->get('Items are effective only for units joined by a Paladin equipped with')}</p>
 	</div>
 	<div style="float:left;position:relative;z-index:9996;width:605px;padding-left:2px;">
 		<div style="width:600px;height:430px;padding:0;margin-right:10px;z-index:9997">
@@ -69,7 +69,7 @@
 	{if count($knight_items->name)==$items_found}
 		<th>{$lang->grab("statue", "all_items_found")}
 	{else}
-		<th colspan="3">Progresso para o próximo item:</th>
+		<th colspan="3">{$lang->get('Progresso para o próximo item')}:</th>
 	</tr>
 	<tr>
 		<td>0%</td>
@@ -181,7 +181,7 @@
 <table class="vis">
 	<tr>
 		<td>
-			Nome: <input type="text" name="knights_name" value="{$knightname}" /> <input type="submit" value="Renomear" />
+			{$lang->get('Name')}: <input type="text" name="knights_name" value="{$knightname}" /> <input type="submit" value="{$lang->get('Renomear')}" />
 		</td>
 	</tr>
 </table>

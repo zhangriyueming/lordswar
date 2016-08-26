@@ -4,7 +4,7 @@
 			<img src="{$config.cdn}/graphic/big_buildings/place1.png" title="Lehmgrube" alt="" />
 		</td>   
 		<td>
-			<h2>Versammlungsplatz ({$village.place|stage})</h2>
+			<h2>{$buildname} ({$village.place|stage})</h2>
 			{$description}
 		</td>
 	</tr>

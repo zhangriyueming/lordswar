@@ -1,5 +1,5 @@
 {if !empty($error)}<div class="error">{$error}</div>{/if}
-<h3>Distribuir ordens</h3>
+<h3>{$lang->get('Distribuir ordens')}</h3>
 <form name="units" action="game.php?village={$village.id}&amp;screen=place&amp;try=confirm" method="post">
 	<table>
 		<tr>
@@ -15,14 +15,14 @@
 				</td>
 			{/foreach}
 		</tr>
-		<tr><td><a id="selectAllUnits" href="javascript:void(0);" onclick="selectAllUnits(true)">&raquo; Todas tropas</a></td></tr>
+		<tr><td><a id="selectAllUnits" href="javascript:void(0);" onclick="selectAllUnits(true)">&raquo; {$lang->get('Todas tropas')}</a></td></tr>
 	</table>
 	<table>
 		<tr>
 			<td>X: <input type="text" name="x" tabindex="13" id="inputx" value="{$values.x}" size="5" maxlength="3" onkeyup="xProcess('inputx', 'inputy')" /></td>
 			<td>Y: <input type="text" name="y" tabindex="14" id="inputy" value="{$values.y}" size="5" maxlength="3" /></td>
-			<td rowspan="2"><input class="button red" name="attack" type="submit" value="ATACAR" /></td>
-			<td rowspan="2"><input class="button green" name="support" type="submit" value="APOIAR" /></td>
+			<td rowspan="2"><input class="button red" name="attack" type="submit" value="{$lang->get('ATACAR')}" /></td>
+			<td rowspan="2"><input class="button green" name="support" type="submit" value="{$lang->get('APOIAR')}" /></td>
 		</tr>
 	</table>
 </form>

@@ -2,15 +2,15 @@
 	<div style="color:red; font-size:large">{$error}</div>
 {/if}
 
-<h3>Verteidigung</h3>
+<h3>{$lang->get('Verteidigung')}</h3>
 
 <form action="game.php?village={$village.id}&amp;screen=place&amp;mode=units&amp;action=command_other&amp;h={$hkey}" method="post">
 
 <table class="vis" width="100%">
-<tr><th>Herkunft</th>{foreach from=$cl_units->get_array("dbname") item=dbname key=name}<th width="40"><img src="{$config.cdn}/graphic/unit/{$dbname}.png" title="{$name}" alt="" /></th>{/foreach}</tr>
+<tr><th>{$lang->get('Herkunft')}</th>{foreach from=$cl_units->get_array("dbname") item=dbname key=name}<th width="40"><img src="{$config.cdn}/graphic/unit/{$dbname}.png" title="{$name}" alt="" /></th>{/foreach}</tr>
 
 <tr>
-	<td>Aus diesem Dorf</td>
+	<td>{$lang->get('Aus diesem Dorf')}</td>
 	{foreach from=$own_units item=num_units}{if $num_units>0}<td>{$num_units}</td>{else}<td class="hidden">0</td>{/if}{/foreach}
 </tr>
 
@@ -28,7 +28,7 @@
 {/foreach}
 
 <tr>
-	<th>Insgesamt</th>
+	<th>{$lang->get('Insgesamt')}</th>
 	{foreach from=$all_units item=num_units}{if $num_units>0}<th>{$num_units}</th>{else}<th class="hidden">0</th>{/if}{/foreach}
 
 </tr>
