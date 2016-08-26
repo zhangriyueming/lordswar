@@ -308,6 +308,8 @@ if($show_build){
 	$tpl->assign("recruit_units", $recruit_units);
 }
 
+$lang = new aLang('game', $config['lang']);
+
 $tpl->assign("description", $cl_builds->get_description_bydbname($buildname));
 $tpl->assign("cl_units", $cl_units);
 $tpl->assign("buildname", $cl_builds->get_name($buildname));

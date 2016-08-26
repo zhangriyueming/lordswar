@@ -1,4 +1,5 @@
 <?php
+global $lang;
 $storage_datas['storage_size'] = $arr_maxstorage[$village['storage']];
 
 if($village['iron'] == $cl_builds->get_maxstage("iron")){
@@ -13,9 +14,9 @@ $full = @round($diff/round($arr_production[$village['iron']]*$config['speed']/36
 $min = $full;
 if($viewType == "table"){
 	if($min <= 0){
-		echo "<b>Produção completa!</b>";
+		echo "<b>".$lang->get('produção_completa')."!</b>";
 	}else{
-		echo "<b>Completo em <span class=\"timer\">".format_time($min)."</span></b>";
+		echo "<b>".$lang->get('completo_em_1')."<span class=\"timer\">".format_time($min)."</span>".$lang->get('completo_em_2')."</b>";
 	}
 }else{
 	if($min > 0){

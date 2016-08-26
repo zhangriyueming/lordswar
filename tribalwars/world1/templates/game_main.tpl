@@ -19,7 +19,7 @@
 {if $num_build_all > 0}
 <table class="vis">
 	<tr>
-		<th width="250">Ordem{$lang->get("build")}</th>
+		<th width="250">{$lang->get("ordembuild")}</th>
 		<th width="100">{$lang->get("during")}</th>
 		<th width="150">{$lang->get("doneat")}</th>
 		<th>{$lang->get("cancel")}</th>
@@ -43,7 +43,7 @@
 	</tr>
 	{/foreach}
 	{if $num_do_build > 2}
-	<tr><td colspan="4">{$lang->get("extrags")}: <b>{$cl_builds->get_buildsharpens_costs($num_do_build)}%</b><br /><small>{$lang->get("novergoeding")}</small></td></tr>
+	<tr><td colspan="4">{$lang->get("extrags_1")}<b>{$cl_builds->get_buildsharpens_costs($num_do_build)}%</b>{$lang->get("extrags_2")}<br /><small>{$lang->get("novergoeding")}</small></td></tr>
 	{/if}
 </table><br />
 {/if}
@@ -178,7 +178,7 @@
 		<tr><th colspan="3">{$lang->get("dorpsnaam")}</th></tr>
 		<tr>
 			<td><input type="text" name="name" value="{$village.name}" /></td>
-			<td><input type="submit" value="Aanpassen" class="button" /></td>
+			<td><input type="submit" value="{$lang->get('aanpassen')}" class="button" /></td>
 		</tr>
 	</table>
 </form>

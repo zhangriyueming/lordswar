@@ -229,10 +229,11 @@ function convert_to_continents($x, $y){
     }
 }
 function stage($stage){
+	global $lang;
 	if($stage > 0){
 		return "Level ".$stage;
 	}
-	return "Niet gebouwd";
+	return $lang->get("niet_gebouwd");
 }
 function tech($stage){
 	if($stage > 0){

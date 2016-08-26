@@ -154,6 +154,8 @@ foreach($cl_techs->get_array("dbname") as $dbname){
 	$techs[$dbname] = $village["unit_".$dbname."_tec_level"];
 }
 
+$lang = new aLang('game', $config['lang']);
+
 $tpl->assign("show_build",$show_build);
 $tpl->assign("cl_techs", $cl_techs);
 $tpl->assign("time", time());

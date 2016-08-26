@@ -3,7 +3,7 @@
 	<tr>
 		<td width="450" valign="top">
 			<table class="vis" width="100%" style="margin-bottom:3px; border-spacing:1px;">
-				<tr><th colspan="2">Edifícios</th></tr>
+				<tr><th colspan="2">{$lang->get('edifícios')}</th></tr>
 				{foreach from=$built_builds item=dbname key=id}
 					<tr>
 						<td width="50%"><a href="game.php?village={$village.id}&screen={$dbname}"><img src="{$config.cdn}/graphic/buildings/{$dbname}.png"> {$cl_builds->get_name($dbname)}</a> ({$village.$dbname|stage})</td>
@@ -54,17 +54,17 @@
 				{/foreach}
 			</table>
 			{/if}<br />
-			<a href="game.php?village={$village.id}&amp;screen=overview&amp;action=set_visual&amp;visual=1&amp;h={$hkey}">&raquo; Visualização gráfica da aldeia</a>
+			<a href="game.php?village={$village.id}&amp;screen=overview&amp;action=set_visual&amp;visual=1&amp;h={$hkey}">&laquo; {$lang->get('visualização_gráfica')}</a>
 		</td>
 		<td valign="top">
 			<table class="vis" width="100%" style="margin-bottom:3px; border-spacing:1px;">
-				<tr><th colspan="2">Produção</th></tr>
-				<tr><td width="90"><img src="{$config.cdn}/graphic/holz.png" title="Madeira" alt="" /> Madeira</td><td><strong>{$wood_prod_overview}</strong> por {if $speed > 10}Minuto{else}Hora{/if}</td></tr>
-				<tr><td><img src="{$config.cdn}/graphic/lehm.png" title="Argila" alt="" /> Argila</td><td><strong>{$stone_prod_overview}</strong> por {if $speed > 10}Minuto{else}Hora{/if}</td></tr>
-				<tr><td><img src="{$config.cdn}/graphic/eisen.png" title="Ferro" alt="" /> Ferro</td><td><strong>{$iron_prod_overview}</strong> por {if $speed > 10}Minuto{else}Hora{/if}</td></tr>
+				<tr><th colspan="2">{$lang->get("productie")}</th></tr>
+				<tr><td width="90"><img src="{$config.cdn}/graphic/holz.png" title="{$lang->get('madeira')}" alt="" /> {$lang->get('madeira')}</td><td><strong>{$wood_prod_overview}</strong> {$lang->get("per")} {if $speed > 10}{$lang->get("minuut")}{else}{$lang->get("uur")}{/if}</td></tr>
+				<tr><td><img src="{$config.cdn}/graphic/lehm.png" title="{$lang->get('argila')}" alt="" /> {$lang->get('argila')}</td><td><strong>{$stone_prod_overview}</strong> {$lang->get("per")} {if $speed > 10}{$lang->get("minuut")}{else}{$lang->get("uur")}{/if}</td></tr>
+				<tr><td><img src="{$config.cdn}/graphic/eisen.png" title="{$lang->get('ferro')}" alt="" /> {$lang->get('ferro')}</td><td><strong>{$iron_prod_overview}</strong> {$lang->get("per")} {if $speed > 10}{$lang->get("minuut")}{else}{$lang->get("uur")}{/if}</td></tr>
 			</table>
 			<table class="vis" width="100%" style="margin-bottom:3px; border-spacing:1px;">
-				<tr><th>Unidades</th></tr>
+				<tr><th>{$lang->get("troepen")}</th></tr>
                 {foreach from=$in_village_units item=num key=dbname}
                 	<tr><td><img src="{$config.cdn}/graphic/unit/{$dbname}.png"> <b>{$num}</b> {$cl_units->get_name($dbname)}</td></tr>
                 {/foreach}
