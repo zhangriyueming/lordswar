@@ -55,7 +55,7 @@ if(isset($_GET['action']) && $_GET['action'] == "change_name"){
 		}
 		if(empty($error)){
 			$p_name = parse($_POST['name']);
-			$db->unb_query("UPDATE `villages` SET `name`='".$p_name."' WHERE `id`='".$village['id']."'");
+			$db->unb_exec("UPDATE `villages` SET `name`='".$p_name."' WHERE `id`='".$village['id']."'");
 			$d->open();
 			header("LOCATION: game.php?screen=main&village=".$village['id']);
 			exit;
