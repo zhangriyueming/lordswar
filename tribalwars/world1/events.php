@@ -5,7 +5,7 @@ function check_recruit($id,$time){
 	global $db;
 
 	$result = $db->query("SELECT * FROM `recruit` WHERE `id` = '".$id."'");
-	while($row = $db->Fetch($result)){
+	while($row = $db->fetch($result)){
 	    $diff_time = $time - $row['time_start'];
 	    $units_finished = (floor($diff_time/$row['time_per_unit']))-$row['num_finished'];
 
@@ -41,7 +41,7 @@ function check_builds($id){
 				$add_sql = ",`main_build`='' ";
 			else{
 				$result2 = $db->query("SELECT `building`,`end_time` FROM `build` WHERE `villageid` = '".$row['villageid']."' ORDER BY `end_time` LIMIT 1");
-				$next_build = $db->Fetch($result2);
+				$next_build = $db->fetch($result2);
 				$add_sql=",`main_build`='".$next_build['building'].",".$next_build['end_time']."' ";
 			}
 
@@ -67,12 +67,12 @@ function check_destroy($id){
 
 		if($db->affectedrows() == 1){
 			$result2 = $db->query("SELECT COUNT(*) AS `build_count` FROM `build` WHERE `villageid` = '".$row['villageid']."'");
-			$row2 = $db->Fetch($result2);
+			$row2 = $db->fetch($result2);
 			if($row2['build_count'] == "0")
 				$add_sql = ",`main_build`='' ";
 			else{
 				$result2 = $db->query("SELECT `building`,`end_time` FROM `build` WHERE `villageid` = '".$row['villageid']."' ORDER BY `end_time` LIMIT 1");
-				$next_build = $db->Fetch($result2);
+				$next_build = $db->fetch($result2);
 
 				$add_sql=",`main_build`='".$next_build['building'].",".$next_build['end_time']."' ";
 			}
@@ -97,7 +97,7 @@ function check_tech($id){
 
 	$return = array();
 	$result = $db->query("SELECT * FROM `research` WHERE `id` = '".$id."'");
-	while($row = $db->Fetch($result)){
+	while($row = $db->fetch($result)){
 		$db->unb_query("DELETE FROM research WHERE `id` = '".$id."'");
 		$db->unb_query("UPDATE `villages` SET `unit_".$row['research']."_tec_level` = `unit_".$row['research']."_tec_level`+'1',`smith_tec` ='' where id='".$row['villageid']."'");
 	}
@@ -107,7 +107,7 @@ function check_dealers($id,$event_id){
 	global $cl_reports;
 
 	$result = $db->query("SELECT * FROM `dealers` WHERE `id` = '".$id."'");
-	$row=$db->Fetch($result);
+	$row=$db->fetch($result);
 
 	$also_back = false;
 	if($row['type'] == 'to'){
@@ -123,7 +123,7 @@ function check_dealers($id,$event_id){
 		$db->unb_query("UPDATE `events` SET `can_knot`='0',`event_time`='".$end_time."',`cid`='0' WHERE `event_id` = '".$id."' AND `event_type` = 'dealers'");
 
 		$result = $db->query("SELECT `name` FROM `villages` WHERE `id` = '".$row['from_village']."'");
-		$from_village = $db->Fetch($result);
+		$from_village = $db->fetch($result);
 
 		$result = $db->query("SELECT `username` FROM `users` WHERE `id` = '".$row['to_userid']."'");
 		$to_user = $db->fetch($result);
@@ -148,7 +148,7 @@ function do_movement($id,$event_id,$time){
 
 	$logging .= msec().": Lese query mov<br />";
 	$result = $db->query("SELECT * FROM `movements` WHERE `id` = '".$id."'");
-	$row = $db->Fetch($result);
+	$row = $db->fetch($result);
 	$row['id'] = $id;
 
 	if(!isset($row['type'])){
@@ -292,7 +292,7 @@ function do_movement_support($row){
 	$row['to_username'] = entparse($arr['username']);
 
 	$result = $db->query("SELECT `name` FROM `villages` WHERE `id`='".$row['from_village']."'");
-	$arr=$db->Fetch($result);
+	$arr=$db->fetch($result);
 	$row['from_villagename'] = entparse($arr['name']);
 
 	$cl_reports->support($row['from_userid'],$row['from_village'],$row['from_villagename'],$row['to_userid'],$row['to_username'],$row['to_village'],$row['units'],$row['end_time']);

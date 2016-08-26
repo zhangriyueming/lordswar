@@ -3,21 +3,21 @@ function check_recruit($id,$time){
 	global $db;
 
 	$result = $db->query("SELECT * FROM `recruit` WHERE `id` = '".$id."'");
-	while($row = $db->Fetch($result)){
+	while($row = $db->fetch($result)){
 	    $diff_time = $time - $row['time_start'];
 	    $units_finished = (floor($diff_time/$row['time_per_unit']))-$row['num_finished'];
 
 		if($units_finished+$row['num_finished'] > $row['num_unit'])
 		    $units_finished = $row['num_unit']-$row['num_finished'];
 
-	    $db->unb_query("UPDATE `unit_place` SET `".$row['unit']."` = `".$row['unit']."`+'".$units_finished."' WHERE `villages_from_id` = '".$row['villageid']."' AND `villages_to_id` = '".$row['villageid']."'");
-	    $db->unb_query("UPDATE `villages` SET `all_".$row['unit']."` = `all_".$row['unit']."`+'".$units_finished."' WHERE `id` = '".$row['villageid']."'");
+	    $db->unb_exec("UPDATE `unit_place` SET `".$row['unit']."` = `".$row['unit']."`+'".$units_finished."' WHERE `villages_from_id` = '".$row['villageid']."' AND `villages_to_id` = '".$row['villageid']."'");
+	    $db->unb_exec("UPDATE `villages` SET `all_".$row['unit']."` = `all_".$row['unit']."`+'".$units_finished."' WHERE `id` = '".$row['villageid']."'");
 
 		if($units_finished+$row['num_finished'] == $row['num_unit']){
-	        $db->unb_query("DELETE FROM `recruit` WHERE `id` = '".$id."'");
+	        $db->unb_exec("DELETE FROM `recruit` WHERE `id` = '".$id."'");
 	        return true;
 	    }else{
-	        $db->unb_query("UPDATE `recruit` SET `num_finished` = `num_finished`+'".$units_finished."' WHERE `id` = '".$id."'");
+	        $db->unb_exec("UPDATE `recruit` SET `num_finished` = `num_finished`+'".$units_finished."' WHERE `id` = '".$id."'");
 	        return $row['time_start']+(($units_finished+$row['num_finished'])*$row['time_per_unit'])+$row['time_per_unit'];
 	    }
 	}
@@ -31,15 +31,15 @@ function check_builds($id){
 	$reload_player = array();
 	$result = $db->query("SELECT * FROM `build` WHERE (`id` = '".$id."' AND `mode` = 'build')");
 	while($row = $db->fetch($result)){
-		$db->query("DELETE FROM `build` WHERE `id` = '".$id."'");
-		if($db->affectedrows() == 1){
+		$res = $db->query("DELETE FROM `build` WHERE `id` = '".$id."'");
+		if($res->rowCount() == 1){
 			$result2 = $db->query("SELECT COUNT(*) AS `build_count` FROM `build` WHERE `villageid` = '".$row['villageid']."'");
 			$row2 = $db->fetch($result2);
 			if($row2['build_count'] == '0')
 				$add_sql = ",`main_build`='' ";
 			else{
 				$result2 = $db->query("SELECT `building`,`end_time` FROM `build` WHERE `villageid` = '".$row['villageid']."' ORDER BY `end_time` LIMIT 1");
-				$next_build = $db->Fetch($result2);
+				$next_build = $db->fetch($result2);
 				$add_sql=",`main_build`='".$next_build['building'].",".$next_build['end_time']."' ";
 			}
 
@@ -47,7 +47,7 @@ function check_builds($id){
 				$res = $db->query("SELECT last_prod_aktu,wood,stone,iron,r_wood,r_stone,r_iron,storage from villages where id=".$row['villageid']."");
 	        	ressis($villagedata, $row['end_time']);
 			}
-			$db->unb_query("UPDATE `villages` SET `".$row['building']."` = `".$row['building']."`+'1' ".$add_sql." WHERE `id` = '".$row['villageid']."'");
+			$db->unb_exec("UPDATE `villages` SET `".$row['building']."` = `".$row['building']."`+'1' ".$add_sql." WHERE `id` = '".$row['villageid']."'");
 			return $row['villageid'];
 		}
 	}
@@ -65,12 +65,12 @@ function check_destroy($id){
 
 		if($db->affectedrows() == 1){
 			$result2 = $db->query("SELECT COUNT(*) AS `build_count` FROM `build` WHERE `villageid` = '".$row['villageid']."'");
-			$row2 = $db->Fetch($result2);
+			$row2 = $db->fetch($result2);
 			if($row2['build_count'] == "0")
 				$add_sql = ",`main_build`='' ";
 			else{
 				$result2 = $db->query("SELECT `building`,`end_time` FROM `build` WHERE `villageid` = '".$row['villageid']."' ORDER BY `end_time` LIMIT 1");
-				$next_build = $db->Fetch($result2);
+				$next_build = $db->fetch($result2);
 
 				$add_sql=",`main_build`='".$next_build['building'].",".$next_build['end_time']."' ";
 			}
@@ -85,7 +85,7 @@ function check_destroy($id){
 			foreach($builds as $key=>$value)
 				$destroy_village[$value] = $Village[$value];
 			$bh = $cl_builds->get_bh($building_destroy, $destroy_village[$building_destroy]);
-			$db->unb_query("UPDATE `villages` SET `".$row['building']."`=`".$row['building']."`-'1',`r_bh`=`r_bh`-'".$bh."' ".$add_sql." WHERE `id`='".$row['villageid']."'");
+			$db->unb_exec("UPDATE `villages` SET `".$row['building']."`=`".$row['building']."`-'1',`r_bh`=`r_bh`-'".$bh."' ".$add_sql." WHERE `id`='".$row['villageid']."'");
 			return $row['villageid'];
 		}
 	}
@@ -95,9 +95,9 @@ function check_tech($id){
 
 	$return = array();
 	$result = $db->query("SELECT * FROM `research` WHERE `id` = '".$id."'");
-	while($row = $db->Fetch($result)){
-		$db->unb_query("DELETE FROM research WHERE `id` = '".$id."'");
-		$db->unb_query("UPDATE `villages` SET `unit_".$row['research']."_tec_level` = `unit_".$row['research']."_tec_level`+'1',`smith_tec` ='' where id='".$row['villageid']."'");
+	while($row = $db->fetch($result)){
+		$db->unb_exec("DELETE FROM research WHERE `id` = '".$id."'");
+		$db->unb_exec("UPDATE `villages` SET `unit_".$row['research']."_tec_level` = `unit_".$row['research']."_tec_level`+'1',`smith_tec` ='' where id='".$row['villageid']."'");
 	}
 }
 function check_dealers($id,$event_id){
@@ -105,11 +105,11 @@ function check_dealers($id,$event_id){
 	global $cl_reports;
 
 	$result = $db->query("SELECT * FROM `dealers` WHERE `id` = '".$id."'");
-	$row=$db->Fetch($result);
+	$row=$db->fetch($result);
 
 	$also_back = false;
 	if($row['type'] == 'to'){
-		$db->unb_query("UPDATE `villages` SET `r_wood`=`r_wood`+'".$row['wood']."',`r_stone`=`r_stone`+'".$row['stone']."',`r_iron`=`r_iron`+'".$row['iron']."' WHERE `id` = '".$row['to_village']."'");
+		$db->unb_exec("UPDATE `villages` SET `r_wood`=`r_wood`+'".$row['wood']."',`r_stone`=`r_stone`+'".$row['stone']."',`r_iron`=`r_iron`+'".$row['iron']."' WHERE `id` = '".$row['to_village']."'");
 
 		$start_time = $row['end_time'];
 		$end_time = $row['end_time'] + ($row['end_time'] - $row['start_time']);
@@ -117,11 +117,11 @@ function check_dealers($id,$event_id){
 		if($end_time <= time())
 			$also_back = true;
 
-		$db->unb_query("UPDATE `dealers` SET `wood`='0',`stone`='0',`iron`='0',`start_time`='".$start_time."',`end_time`='".$end_time."',`type`='back' WHERE `id` = '".$id."'");
-		$db->unb_query("UPDATE `events` SET `can_knot`='0',`event_time`='".$end_time."',`cid`='0' WHERE `event_id` = '".$id."' AND `event_type` = 'dealers'");
+		$db->unb_exec("UPDATE `dealers` SET `wood`='0',`stone`='0',`iron`='0',`start_time`='".$start_time."',`end_time`='".$end_time."',`type`='back' WHERE `id` = '".$id."'");
+		$db->unb_exec("UPDATE `events` SET `can_knot`='0',`event_time`='".$end_time."',`cid`='0' WHERE `event_id` = '".$id."' AND `event_type` = 'dealers'");
 
 		$result = $db->query("SELECT `name` FROM `villages` WHERE `id` = '".$row['from_village']."'");
-		$from_village = $db->Fetch($result);
+		$from_village = $db->fetch($result);
 
 		$result = $db->query("SELECT `username` FROM `users` WHERE `id` = '".$row['to_userid']."'");
 		$to_user = $db->fetch($result);
@@ -129,13 +129,13 @@ function check_dealers($id,$event_id){
 		$cl_reports->sendRess($row['from_userid'],$row['from_village'],entparse($from_village['name']),$row['to_userid'],entparse($to_user['username']),$row['to_village'],$row['wood'],$row['stone'],$row['iron'],$row['end_time']);
 		
 		if(!$also_back){
-			$db->unb_query("DELETE FROM `run_events` WHERE `id` = '".$event_id."dealers'");
+			$db->unb_exec("DELETE FROM `run_events` WHERE `id` = '".$event_id."dealers'");
 			return false;
 		}
 	}
 	if($row['type'] == 'back' || $also_back){
- 		$db->unb_query("UPDATE `villages` SET `dealers_outside`=`dealers_outside`-'".$row['dealers']."',`r_wood`=`r_wood`+'".$row['wood']."',`r_stone`=`r_stone`+'".$row['stone']."',`r_iron`=`r_iron`+'".$row['iron']."' WHERE `id`='".$row['from_village']."'");
- 		$db->unb_query("DELETE FROM `dealers` WHERE `id` = '".$id."'");
+ 		$db->unb_exec("UPDATE `villages` SET `dealers_outside`=`dealers_outside`-'".$row['dealers']."',`r_wood`=`r_wood`+'".$row['wood']."',`r_stone`=`r_stone`+'".$row['stone']."',`r_iron`=`r_iron`+'".$row['iron']."' WHERE `id`='".$row['from_village']."'");
+ 		$db->unb_exec("DELETE FROM `dealers` WHERE `id` = '".$id."'");
  		return true;
 	}
 }
@@ -146,7 +146,7 @@ function do_movement($id,$event_id,$time){
 
 	$logging .= msec().": Lese query mov<br />";
 	$result = $db->query("SELECT * FROM `movements` WHERE `id` = '".$id."'");
-	$row = $db->Fetch($result);
+	$row = $db->fetch($result);
 	$row['id'] = $id;
 
 	if(!isset($row['type'])){
@@ -207,9 +207,9 @@ function do_movement_back($row){
 		$i++;
 	}
 	$sql .= " WHERE `villages_from_id`='".$row['from_village']."' AND `villages_to_id`='".$row['from_village']."'";
-	$db->unb_query($sql);
+	$db->unb_exec($sql);
 
-	$db->unb_query("DELETE FROM `movements` WHERE `id`='".$row['id']."'");
+	$db->unb_exec("DELETE FROM `movements` WHERE `id`='".$row['id']."'");
 	return true;
 }
 function do_movement_return($row){
@@ -231,9 +231,9 @@ function do_movement_return($row){
 	$sql .= " WHERE `villages_from_id`='".$row['to_village']."' AND `villages_to_id`='".$row['to_village']."'";
 	$db->query($sql);
 	if($row['wood'] > 0 || $row['stone'] > 0 || $row['iron'] > 0)
-	    $db->unb_query("UPDATE `villages` SET `r_wood`=`r_wood`+'".$row['wood']."',`r_stone`=`r_stone`+'".$row['stone']."',`r_iron`=`r_iron`+'".$row['iron']."' WHERE `id`='".$row['to_village']."'");
+	    $db->unb_exec("UPDATE `villages` SET `r_wood`=`r_wood`+'".$row['wood']."',`r_stone`=`r_stone`+'".$row['stone']."',`r_iron`=`r_iron`+'".$row['iron']."' WHERE `id`='".$row['to_village']."'");
 
-	$db->unb_query("DELETE FROM `movements` WHERE `id`='".$row['id']."'");
+	$db->unb_exec("DELETE FROM `movements` WHERE `id`='".$row['id']."'");
 	return true;
 }
 
@@ -283,19 +283,19 @@ function do_movement_support($row){
 		}
 		$sql .= " WHERE `villages_from_id`='".$row['from_village']."' AND `villages_to_id`='".$row['to_village']."'";
 	}
-	$db->unb_query($sql);
+	$db->unb_exec($sql);
 
 	$result = $db->query("SELECT `username` FROM `users` WHERE `id`='".$row['to_userid']."'");
 	$arr = $db->fetch($result);
 	$row['to_username'] = entparse($arr['username']);
 
 	$result = $db->query("SELECT `name` FROM `villages` WHERE `id`='".$row['from_village']."'");
-	$arr=$db->Fetch($result);
+	$arr=$db->fetch($result);
 	$row['from_villagename'] = entparse($arr['name']);
 
 	$cl_reports->support($row['from_userid'],$row['from_village'],$row['from_villagename'],$row['to_userid'],$row['to_username'],$row['to_village'],$row['units'],$row['end_time']);
 
-	$db->unb_query("DELETE FROM `movements` WHERE `id`='".$row['id']."'");
+	$db->unb_exec("DELETE FROM `movements` WHERE `id`='".$row['id']."'");
 	return true;
 }
 function do_movement_attack($row,$event_id,$event_time,$var=""){
@@ -317,10 +317,10 @@ function do_movement_attack($row,$event_id,$event_time,$var=""){
         if(($to_user['ally'] == $from_user['ally'] && $to_user['ally'] != '-1' && $row['to_userid'] != $row['from_userid']) || $config['attack_visit']){
 			$return_end = $row['end_time']+($row['end_time']- $row['start_time']);
             $db->query("UPDATE `movements` SET `type`='return',`to_hidden`='1',`from_village`='".$row['to_village']."', `from_userid`='".$row['to_userid']."',`to_village`='".$row['from_village']."',`to_userid`='".$row['from_userid']."',`start_time`=".$row['end_time'].",`end_time`='".$return_end."' WHERE `id`='".$row['id']."'");
-			$db->unb_query("UPDATE `events` SET `event_time`='".$return_end."',`can_knot`='0',`cid`='0' WHERE `event_id`='".$row['id']."' AND `event_type`='movement'");
-			$db->unb_query("DELETE FROM `run_events` WHERE `id`='".$event_id."movement'");
-			$db->unb_query("UPDATE `users` SET `attacks`=`attacks`-'1' where `id`='".$row['to_userid']."'");
-			$db->unb_query("UPDATE `villages` SET `attacks`=`attacks`-'1' where `id`='".$row['to_village']."'");
+			$db->unb_exec("UPDATE `events` SET `event_time`='".$return_end."',`can_knot`='0',`cid`='0' WHERE `event_id`='".$row['id']."' AND `event_type`='movement'");
+			$db->unb_exec("DELETE FROM `run_events` WHERE `id`='".$event_id."movement'");
+			$db->unb_exec("UPDATE `users` SET `attacks`=`attacks`-'1' where `id`='".$row['to_userid']."'");
+			$db->unb_exec("UPDATE `villages` SET `attacks`=`attacks`-'1' where `id`='".$row['to_village']."'");
 
 			$result = $db->query("SELECT `name` FROM `villages` WHERE `id`='".$row['to_village']."'");
 			$vil_to = $db->fetch($result);
@@ -577,11 +577,11 @@ function do_movement_attack($row,$event_id,$event_time,$var=""){
 			}
 
 			if($db->numrows($db->query("SELECT `id` FROM `offers_multi` WHERE `id`='".$offers['id']."'")) == 0)
-				$db->unb_query("DELETE FROM `offers` WHERE `id`='".$offers['id']."'");
+				$db->unb_exec("DELETE FROM `offers` WHERE `id`='".$offers['id']."'");
 			else
-				$db->unb_query("UPDATE `offers` SET `multi`=`multi`-'".$num."' WHERE `id`='".$offers['id']."'");
+				$db->unb_exec("UPDATE `offers` SET `multi`=`multi`-'".$num."' WHERE `id`='".$offers['id']."'");
 
-			$db->unb_query("UPDATE `villages` SET `dealers_outside`=`dealers_outside`-'".(ceil($offers['sell']/1000)*$num)."' WHERE `id`='".$row['to_village']."'");
+			$db->unb_exec("UPDATE `villages` SET `dealers_outside`=`dealers_outside`-'".(ceil($offers['sell']/1000)*$num)."' WHERE `id`='".$row['to_village']."'");
 		}
 	}
 	$rows_query = array();
@@ -654,19 +654,19 @@ function do_movement_attack($row,$event_id,$event_time,$var=""){
 				$i = 0;
 				foreach($cl_units->get_array('dbname') as $dbname){
 					if($dbname == 'unit_snob' && $units[$i] != 0){
-					    $db->unb_query("UPDATE `villages` SET `recruited_snobs`=`recruited_snobs`-'".$units[$i]."' WHERE `id`='".$row['to_village']."'");
+					    $db->unb_exec("UPDATE `villages` SET `recruited_snobs`=`recruited_snobs`-'".$units[$i]."' WHERE `id`='".$row['to_village']."'");
 					}
 				    $i++;
 				}
 				if($mov['type'] != 'attack'){
-					$db->unb_query("DELETE FROM `events` WHERE `event_id`='".$mov['id']."' AND `event_type`='movement'");
-					$db->unb_query("DELETE FROM `movements` WHERE `id`='".$mov['id']."'");
+					$db->unb_exec("DELETE FROM `events` WHERE `event_id`='".$mov['id']."' AND `event_type`='movement'");
+					$db->unb_exec("DELETE FROM `movements` WHERE `id`='".$mov['id']."'");
 				}
 			}
 
-			$db->unb_query("UPDATE `events` SET `user_id`='".$row['from_userid']."' WHERE `villageid`='".$row['to_village']."'");
-			$db->unb_query("UPDATE `movements` SET `die`='1', `from_userid`='".$row['from_userid']."' WHERE `send_from_village`='".$row['to_village']."'");
-			$db->unb_query("UPDATE `movements` SET `to_userid`='".$row['from_userid']."' WHERE `to_village`='".$row['to_village']."' AND `type`='attack'");
+			$db->unb_exec("UPDATE `events` SET `user_id`='".$row['from_userid']."' WHERE `villageid`='".$row['to_village']."'");
+			$db->unb_exec("UPDATE `movements` SET `die`='1', `from_userid`='".$row['from_userid']."' WHERE `send_from_village`='".$row['to_village']."'");
+			$db->unb_exec("UPDATE `movements` SET `to_userid`='".$row['from_userid']."' WHERE `to_village`='".$row['to_village']."' AND `type`='attack'");
 
 			$rows_query[] = "`userid`='".$row['from_userid']."'";
 			$rows_query[] = "`r_bh`=`r_bh`-'".$bh_outside."'";
@@ -675,7 +675,7 @@ function do_movement_attack($row,$event_id,$event_time,$var=""){
 			if($def_snobed_by != '-1')
 				$db->query("UPDATE `villages` SET `control_villages`=`control_villages`-'1' WHERE `id`='".$def_snobed_by."'");
 
-			$db->unb_query("UPDATE `villages` SET `control_villages`=`control_villages`+'1',`recruited_snobs`=`recruited_snobs`-'1',`all_unit_snob`=`all_unit_snob`-'1',`r_bh`=`r_bh`-".$cl_units->get_bhprice('unit_snob')." where `id`='".$row['from_village']."'");
+			$db->unb_exec("UPDATE `villages` SET `control_villages`=`control_villages`+'1',`recruited_snobs`=`recruited_snobs`-'1',`all_unit_snob`=`all_unit_snob`-'1',`r_bh`=`r_bh`-".$cl_units->get_bhprice('unit_snob')." where `id`='".$row['from_village']."'");
 
 			if(!in_array($row['to_userid'],$reload_allys))
 				$reload_alllys[] = $row['to_userid'];
@@ -686,11 +686,11 @@ function do_movement_attack($row,$event_id,$event_time,$var=""){
 			$result = $db->query("SELECT `username` FROM `users` WHERE `id`='".$row['from_userid']."'");
 			$att_player = $db->fetch($result);			
 
-			$db->unb_query("UPDATE `users` SET `villages`=`villages`-'1',`attacks`=`attacks`-'$def_attacks',`ennobled_by`='".$att_player['username']."' WHERE `id`='".$row['to_userid']."'");
-			$db->unb_query("UPDATE `offers` SET `userid`=".$row['from_userid']." WHERE `from_village`=".$row['to_village']."");
-			$db->unb_query("UPDATE `users` SET `villages`=`villages`+'1',`attacks`=`attacks`+'$def_attacks' WHERE `id`='".$row['from_userid']."'");
-			$db->unb_query("UPDATE `dealers` SET `from_userid`='".$row['from_userid']."' WHERE `from_village`='".$row['to_village']."'");
-			$db->unb_query("UPDATE `dealers` SET `to_userid`='".$row['from_userid']."' WHERE `to_village`='".$row['to_village']."'");
+			$db->unb_exec("UPDATE `users` SET `villages`=`villages`-'1',`attacks`=`attacks`-'$def_attacks',`ennobled_by`='".$att_player['username']."' WHERE `id`='".$row['to_userid']."'");
+			$db->unb_exec("UPDATE `offers` SET `userid`=".$row['from_userid']." WHERE `from_village`=".$row['to_village']."");
+			$db->unb_exec("UPDATE `users` SET `villages`=`villages`+'1',`attacks`=`attacks`+'$def_attacks' WHERE `id`='".$row['from_userid']."'");
+			$db->unb_exec("UPDATE `dealers` SET `from_userid`='".$row['from_userid']."' WHERE `from_village`='".$row['to_village']."'");
+			$db->unb_exec("UPDATE `dealers` SET `to_userid`='".$row['from_userid']."' WHERE `to_village`='".$row['to_village']."'");
 
 			$insert_snobed_def = true;
 		}else{
@@ -786,7 +786,7 @@ function do_movement_attack($row,$event_id,$event_time,$var=""){
 				$sqlq .= ",'".($simulate['att'][$dbname] - $simulate['att_lose'][$dbname])."'";
 		}
 		$sqlq .= ")";
-		$db->unb_query($sqlq);
+		$db->unb_exec($sqlq);
 	}
 
 	$result = $db->query("SELECT `name`,`x`,`y`,`continent` FROM `villages` WHERE `id`='".$row['to_village']."'");
@@ -859,18 +859,18 @@ function do_movement_attack($row,$event_id,$event_time,$var=""){
 		}
 	}
 
-	$db->unb_query("UPDATE `users` SET `killed_units_att`=`killed_units_att`+".$bh_def.",`killed_units_altogether`=`killed_units_altogether`+".$bh_def." WHERE `id`='".$row['from_userid']."'");
+	$db->unb_exec("UPDATE `users` SET `killed_units_att`=`killed_units_att`+".$bh_def.",`killed_units_altogether`=`killed_units_altogether`+".$bh_def." WHERE `id`='".$row['from_userid']."'");
 	if($from_user['ally'] != '-1'){
-		$db->unb_query("UPDATE `ally` SET `killed_units_att`=`killed_units_att`+".$bh_def.",`killed_units_altogether`=`killed_units_altogether`+".$bh_def." WHERE `id`='".$from_user['ally']."'");
+		$db->unb_exec("UPDATE `ally` SET `killed_units_att`=`killed_units_att`+".$bh_def.",`killed_units_altogether`=`killed_units_altogether`+".$bh_def." WHERE `id`='".$from_user['ally']."'");
 	}
 
 	$row_querys = array();
 	if($row['die'] != 1)
 		$row_querys[] = "`r_bh`=`r_bh`-'$att_bh_profit'";	
 
-	$db->unb_query("UPDATE `users` SET `killed_units_def`=`killed_units_def`+".$att_bh_profit.",`killed_units_altogether`=`killed_units_altogether`+".$att_bh_profit." WHERE `id`=".$row['to_userid']."");
+	$db->unb_exec("UPDATE `users` SET `killed_units_def`=`killed_units_def`+".$att_bh_profit.",`killed_units_altogether`=`killed_units_altogether`+".$att_bh_profit." WHERE `id`=".$row['to_userid']."");
 	if($to_user['ally'] != '-1'){
-		$db->unb_query("UPDATE `ally` SET `killed_units_def`=`killed_units_def`+".$att_bh_profit.",`killed_units_altogether`=`killed_units_altogether`+".$att_bh_profit." WHERE `id`='".$to_user['ally']."'");
+		$db->unb_exec("UPDATE `ally` SET `killed_units_def`=`killed_units_def`+".$att_bh_profit.",`killed_units_altogether`=`killed_units_altogether`+".$att_bh_profit." WHERE `id`='".$to_user['ally']."'");
 	}
 
 	if($simulate['att_lose']['unit_snob'] != 0 && $row['die'] != 1)
@@ -880,7 +880,7 @@ function do_movement_attack($row,$event_id,$event_time,$var=""){
 			$row_querys[] = "`all_".$dbname."`=`all_".$dbname."`-'".$simulate['att_lose'][$dbname]."'";
 	}
 	if(count($row_querys)){
-		$db->unb_query("UPDATE `villages` SET ".implode(",", $row_querys)." WHERE `id`='".$row['from_village']."'");
+		$db->unb_exec("UPDATE `villages` SET ".implode(",", $row_querys)." WHERE `id`='".$row['from_village']."'");
 	}
 	$result = $db->query("SELECT `username` FROM `users` WHERE `id`='".$row['from_userid']."'");
 	$arr = $db->fetch($result);
@@ -992,7 +992,9 @@ function check_events(){
 			$db->query("DELETE FROM `events` WHERE `id`='".$row['id']."'");
 			$logging .= msec().": Lï¿½sche event main<br />";
 		}else{
-			$db->unb_query("UPDATE `events` SET `is_locked`='0' WHERE `id`=".$row['id']." AND `is_locked`='1'");
+			$db->setBufferedQuery(false);
+			$db->query("UPDATE `events` SET `is_locked`='0' WHERE `id`=".$row['id']." AND `is_locked`='1'");
+			$db->setBufferedQuery(true);
 			$logging .= msec().": update event main<br />";
 		}
 		if($row['event_type'] == 'movement' && $do_event){

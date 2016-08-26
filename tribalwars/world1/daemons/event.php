@@ -23,7 +23,7 @@ for ($i = 0; $i < 59; ++$i) {
     require_once(PATH."/lib/functions.php");
     require_once(PATH."/lib/DB_MySQL.php");
     $db = new DB_MySQL();
-    $db->connect($config['db_host'], $config['db_user'], $config['db_pw'], $config['db_name']);
+    $db->connect_($config['db_dsn'], $config['db_user'], $config['db_pw']);
     if($time+5 < time()){
         exit("Connection Gereed :D");
     }
@@ -66,5 +66,6 @@ for ($i = 0; $i < 59; ++$i) {
     // }
             time_sleep_until($start + $i + 1);
 }
-
+echo '\n';
+echo microtime(true)-$start;
 ?>
