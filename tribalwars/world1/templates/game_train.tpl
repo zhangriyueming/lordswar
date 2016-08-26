@@ -14,7 +14,7 @@
 		<th>Unidade</th>
 	</tr>
 	{foreach from=$recruited key=current_village item=single_recruit}
-	{php}$this->_tpl_vars['cur_vil_info'] = $GLOBALS['db']->fetch($GLOBALS['db']->query("SELECT * FROM `villages` WHERE `id`='".$this->_tpl_vars['current_village']."'"));{/php}
+	{php}$_smarty_tpl->tpl_vars['cur_vil_info'] = $GLOBALS['db']->fetch($GLOBALS['db']->query("SELECT * FROM `villages` WHERE `id`='".$_smarty_tpl->tpl_vars['current_village']."'"));{/php}
 	<tr>
 		<td><a href="game.php?village=395&amp;screen=info_village&amp;id=395">{$cur_vil_info.name|entparse} ({$cur_vil_info.x}|{$cur_vil_info.y}) K{$cur_vil_info.continent}</a></td>
 		<td>{foreach from=$single_recruit key=single_unit item=single_count}<img title="{$cl_units->get_name($single_unit)}" src="{$config.cdn}/graphic/unit/unit_{$cl_units->get_graphicName($single_unit)}.png"/>{$single_count}{/foreach}</td>
@@ -348,7 +348,7 @@
 <form method="post" action="game.php?village={$village.id}&amp;screen=train&amp;mode=mass&amp;group=0&amp;action=train_mass&amp;h={$hkey}&amp;site={$get.site}" id="mass_train_form">
 	<table class="vis" width="100%">
 		<tr>
-			<th width="100%">Aldeias ({php} echo count($this->_tpl_vars['villages']); {/php})</th>
+			<th width="100%">Aldeias ({php} echo count($_smarty_tpl->tpl_vars['villages']); {/php})</th>
 			<th><center><img src="{$config.cdn}/graphic/icons/wood.png"></center></th>
 			<th><center><img src="{$config.cdn}/graphic/icons/stone.png"></center></th>
 			<th><center><img src="{$config.cdn}/graphic/icons/iron.png"></center></th>
@@ -357,9 +357,9 @@
 		</tr>
 		{foreach from=$villages item=currentvillage}
 {php}
-	$this->_tpl_vars['cur_vil_inf'] = $GLOBALS['db']->fetch($GLOBALS['db']->query("SELECT * FROM `villages` WHERE `id`='".$this->_tpl_vars['currentvillage']."'"));
-	$tmp_farm = $this->_tpl_vars['cur_vil_inf']['farm'];
-	$this->_tpl_vars['cur_vil_inf']['farmLimits'] = $this->_tpl_vars['arr_farm'][$tmp_farm]-$this->_tpl_vars['cur_vil_inf']['r_bh'];
+	$_smarty_tpl->tpl_vars['cur_vil_inf'] = $GLOBALS['db']->fetch($GLOBALS['db']->query("SELECT * FROM `villages` WHERE `id`='".$_smarty_tpl->tpl_vars['currentvillage']."'"));
+	$tmp_farm = $_smarty_tpl->tpl_vars['cur_vil_inf']['farm'];
+	$_smarty_tpl->tpl_vars['cur_vil_inf']['farmLimits'] = $_smarty_tpl->tpl_vars['arr_farm']->value[$tmp_farm]-$_smarty_tpl->tpl_vars['cur_vil_inf']['r_bh'];
 {/php}
 		<script type="text/javascript">
 			trainManagers[{$currentvillage}]=new trainManager;
@@ -369,17 +369,17 @@
 			window.setInterval("trainManagers[{$currentvillage}].tick()",1000);
 		</script>
 		<tr class="row_a selected">
-			<td><a href="game.php?village={$currentvillage}&amp;screen=overview">{php}echo urldecode($this->_tpl_vars['cur_vil_inf']['name']);{/php} ({$cur_vil_inf.x}|{$cur_vil_inf.y}) K{$cur_vil_inf.continent}</a></td>
+			<td><a href="game.php?village={$currentvillage}&amp;screen=overview">{php}echo urldecode($_smarty_tpl->tpl_vars['cur_vil_inf']['name']);{/php} ({$cur_vil_inf.x}|{$cur_vil_inf.y}) K{$cur_vil_inf.continent}</a></td>
 			<td style="white-space:nowrap; text-align:center;">{$cur_vil_inf.r_wood|round}</td>
 			<td style="white-space:nowrap; text-align:center;">{$cur_vil_inf.r_stone|round}</td>
 			<td style="white-space:nowrap; text-align:center;">{$cur_vil_inf.r_iron|round}</td>
-			<td align="center">{$cur_vil_inf.r_bh}/<br />{php} echo $this->_tpl_vars['farmLimits'][$this->_tpl_vars['cur_vil_inf']['farm']];{/php}</td>
+			<td align="center">{$cur_vil_inf.r_bh}/<br />{php} echo $_smarty_tpl->tpl_vars['farmLimits']->value[$_smarty_tpl->tpl_vars['cur_vil_inf']->value['farm']];{/php}</td>
 			{foreach from=$units item=currentunit}	
 				{$cl_units->check_needed($currentunit,$cur_vil_inf)}
-				{if not is_numeric($cl_units->last_error)}{php}$this->_tpl_vars['cl_units']->last_error=-1;{/php}{/if}						
+				{if not is_numeric($cl_units->last_error)}{php}$_smarty_tpl->tpl_vars['cl_units']->last_error=-1;{/php}{/if}						
 			<td align="center">
 				<div style="white-space:nowrap; margin-bottom: 3px;">
-					{php}$this->_tpl_vars['prod_tmp'] = $this->_tpl_vars['in_prod'][$this->_tpl_vars['cur_vil_inf']['id']];{/php}
+					{php}$_smarty_tpl->tpl_vars['prod_tmp'] = $_smarty_tpl->tpl_vars['in_prod']->value[$_smarty_tpl->tpl_vars['cur_vil_inf']->value['id']];{/php}
 						{if not $prod_tmp.$currentunit}
 					<a href="game.php?village={$village.id}&amp;screen=train"><span class="dot brown"></a>
 						{else}
