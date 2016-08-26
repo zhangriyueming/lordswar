@@ -6,6 +6,7 @@ if(!in_array($unit, $cl_units->get_array("dbname"))){
 	exit("Desculpe, más não encontramos está unidade!");
 }
 
+$lang = new aLang('game', $config['lang']);
 $tpl = new TWLan_Smarty();
 $tpl->assign("unit", $unit);
 $tpl->assign("cl_units", $cl_units);

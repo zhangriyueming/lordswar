@@ -959,20 +959,20 @@ function get_movement_message($type,$villagename,$from){
 			case "attack" :
 				return $lang->get('aanval_op').$villagename;
 			case "support" :
-				return "Ondersteuning aan ".$villagename;
+				return $lang->get('support_aan').$villagename;
 			case "back" :
-				return "Terugkeer van ".$villagename;
+				return $lang->get('back_from_1').$villagename.$lang->get('back_from_2');
 			case "return" :
-				return "Terugkeer van ".$villagename;
+				return $lang->get('back_from_1').$villagename.$lang->get('back_from_2');
 			case "cancel" :
-				return "Terugkeer van ".$villagename;
+				return $lang->get('back_from_1').$villagename.$lang->get('back_from_2');
 		}
 	}else{
 		switch($type){
 			case "attack" :
-				return "Aanval op ".$villagename;
+				return $lang->get('aanval_op').$villagename;
 			case "support" :
-				return "Ondersteuning aan ".$villagename;
+				return $lang->get('support_aan').$villagename;
 		}
 	}
 	return false;
@@ -983,13 +983,13 @@ function get_movement_message_only_type($type){
 		case "attack" :
 			return $lang->get('aanval');
 		case "support" :
-			return "Ondersteuning";
+			return $lang->get('support');
 		case "back" :
-			return "Terugkeer";
+			return $lang->get('back');
 		case "return" :
-			return "Terugkeer";
+			return $lang->get('back');
 		case "cancel" :
-			return "Terugkeer";
+			return $lang->get('back');
 	}
 	return false;
 }

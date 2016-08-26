@@ -66,8 +66,8 @@ if(isset($_GET['action']) && $_GET['action'] == "accept"){
 		exit("ERRO DESCONHECIDO!");
 	}
 	if(empty($error)){
-		$db->query("DELETE FROM `ally_invites` WHERE `id`='".$id."'");
-        if($db->affectedrows() != 0){
+		$res = $db->query("DELETE FROM `ally_invites` WHERE `id`='".$id."'");
+        if($res->rowCount() != 0){
 			$db->query("UPDATE `users` SET `ally`='".$row['from_ally']."',`ally_titel`='',`ally_found`='0',`ally_lead`='0',`ally_invite`='0',`ally_diplomacy`='0',`ally_mass_mail`='0' WHERE `id`='".$user['id']."'");
 			$getIntro = $db->query("SELECT `short`,`name`,`intro_igm` FROM `ally` WHERE `id`='".$row['from_ally']."'");
 			while($getIntroRow = $db->fetch($getIntro)){

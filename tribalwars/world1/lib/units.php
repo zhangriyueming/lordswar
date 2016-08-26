@@ -292,7 +292,8 @@ class units{
 		}
     }
     function get_name($dbname){
-		return $this->name[$dbname];
+    	global $lang;
+		return $lang->get($dbname);
     }
     function get_booty($dbname){
 		return $this->booty[$dbname];
