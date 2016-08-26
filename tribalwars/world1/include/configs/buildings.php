@@ -13,7 +13,7 @@ $cl_builds->set_points("10","1.2");
 $cl_builds->set_needbuilds(array());
 $cl_builds->set_maxstage("30");
 $cl_builds->set_specials(array());
-$cl_builds->set_description("No Edifício Principal você pode construir ou melhorar outros edifícios. Quanto maior o nível, mais rápida será a construção de edifícios.");
+// $cl_builds->set_description("No Edifício Principal você pode construir ou melhorar outros edifícios. Quanto maior o nível, mais rápida será a construção de edifícios.");
 $cl_builds->set_graphicCoords("373,187,417,129,407,72,329,65,306,99,311,150");
 
 $cl_builds->add_build("Kazerne", "barracks");

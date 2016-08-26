@@ -198,6 +198,8 @@ foreach($cladiri as $build){
 	}
 }
 
+$lang = new aLang('game', $config['lang']);
+
 $tpl->assign("neconstruit", $build_no);
 $tpl->assign("mode", $mode);
 $tpl->assign("cl_builds", $cl_builds);

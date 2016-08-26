@@ -6,36 +6,36 @@ if(isset($_GET['action']) && $_GET['action'] == "create"){
 	$c = new do_action($user['id']);
 	$c->close();
 	if($session['hkey'] != $_GET['h']){
-		$error = "Desculpe, más o código de segurança está invalido!";
+		$error = "安全代码无效!";
 	}
-	if(!$config['create_ally']) $error = "Desculpe, más está ação não está permitida!";
+	if(!$config['create_ally']) $error = "不允许创建部落!";
 
     $_POST['name'] = trim($_POST['name']);
     $_POST['tag'] = trim($_POST['tag']);
 	if(empty($error) && strlen($_POST['name']) < 4){
-		$error = "Desculpe, más o nome da tribo deve ter entre 4 e 32 caracteres!";
+		$error = "联盟的名称应该在4到32个字符!";
 	}
 	if(empty($error) && strlen($_POST['name']) > 32){
-		$error = "Desculpe, más o nome da tribo deve ter entre 4 e 32 caracteres!";
+		$error = "联盟的名称应该在4到32个字符!";
 	}
 	if(empty($error) && strlen($_POST['tag']) < 2){
-		$error = "Desculpe, más a TAG da tribo deve ter entre 2 e 6 caracteres!";
+		$error = "联盟的缩写应该在2到9个字符!";
 	}
-	if(empty($error) && strlen($_POST['tag']) > 6){
-		$error = "Desculpe, más a TAG da tribo deve ter entre 2 e 6 caracteres!";
+	if(empty($error) && strlen($_POST['tag']) > 9){
+		$error = "联盟的缩写应该在2到9个字符!";
 	}
 	$result = $db->query("SELECT COUNT(`id`) AS `count` FROM `ally` WHERE `name`='".parse($_POST['name'])."'");
 	$row = $db->fetch($result);
 	if(empty($error) && $row['count'] > 0){
-		$error = "Desculpe, más o nome '".$_POST['name']."' já está em uso!";
+		$error = "联盟名'".$_POST['name']."'已经存在!";
 	}
 	$result = $db->query("SELECT COUNT(`id`) AS `count` FROM `ally` WHERE `short`='".parse($_POST['tag'])."'");
 	$row = $db->fetch($result);
 	if(empty($error) && $row['count'] > 0){
-		$error = "Desculpe, más a TAG '".$_POST['tag']."' já está em uso!";
+		$error = "联盟缩写'".$_POST['tag']."'已经存在!";
 	}
 	if($user['ally'] != '-1'){
-		$error = "Desculpe, más você ja pertecnce à uma tribo!";
+		$error = "你已经属于一个联盟，无法创建!";
 	}
 	if(empty($error)){
 		$intern_text = parse("Tribo fundada por [player]".entparse($user['username'])."[/player]\n\nEste texto pode ser alterado pelos administradores da tribo.");

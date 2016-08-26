@@ -91,13 +91,15 @@ class builds{
 		return $this->dbname[$id];
 	}
 	function get_name($name){
-		return $this->name[$name];
+		global $lang;
+		return $lang->get($name);
 	}
 	function get_description($id){
 		return $this->description[$id];
 	}
 	function get_description_bydbname($dbname){
-		return $this->description_dbname[$dbname];
+		global $lang;
+		return $lang->get($dbname.'_desc');
 	}
 	function get_maxstage($dbname){
 		return $this->max_stage[$dbname];
