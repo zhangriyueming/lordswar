@@ -23,7 +23,7 @@ $config['db_pw'] = '96kw9o69Q6'; // Database Password
 $config['db_name'] = ''; // Database Name
 
 // Zona de horário a ser seguido:
-date_default_timezone_set("Amsterdam/Europe");
+// date_default_timezone_set("Amsterdam/Europe");
 
 // Configurações especiais:
 $config['name'] = 'Tribalwars'; // Game name :) Can be your own ;D
