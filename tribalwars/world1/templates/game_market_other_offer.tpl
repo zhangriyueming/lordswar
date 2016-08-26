@@ -1,11 +1,11 @@
 {if !empty($error)}<div class="error">{$error}</div>{/if}
 <table class="vis">
 	<tr>
-		<th>Mercadores: {$inside_dealers}/{$max_dealers}</th>
-		<th>Transporte máximo: {math equation="x * 1000" x=$inside_dealers}</th>
+		<th>{$lang->get('mercadores')}: {$inside_dealers}/{$max_dealers}</th>
+		<th>{$lang->get('Transporte máximo')}: {math equation="x * 1000" x=$inside_dealers}</th>
 	</tr>
 </table>
-<h3>Buscar ofertas</h3>
+<h3>{$lang->get('Buscar ofertas')}</h3>
 <form action="game.php?village={$village.id}&amp;screen=market&amp;mode=other_offer&amp;action=search&amp;h={$hkey}" method="post">
 	<table class="vis">
 		<tr>
@@ -50,12 +50,12 @@
 {/if}
 <table class="vis">
 	<tr>
-		<th>Ofereço</th>
-		<th>Busco</th>
-		<th>Jogador</th>
-		<th>Duração</th>
-		<th>Rasão</th>
-		<th>Ofertas</th>
+		<th>{$lang->get('Ofereço')}</th>
+		<th>{$lang->get('Busco')}</th>
+		<th>{$lang->get('jogador')}</th>
+		<th>{$lang->get('Duração')}</th>
+		<th>{$lang->get('Rasão')}</th>
+		<th>{$lang->get('Ofertas')}</th>
 	</tr>
 	{foreach from=$offers item=arr key=id}
 	<tr>
@@ -64,17 +64,17 @@
 		<td align="center"><a href="game.php?village=820&amp;screen=info_player&amp;id={$arr.userid}">{$arr.username}</a></td>
 		<td align="center">{$arr.unit_running}</td>
 		<td align="center"><table width="40"><tr><td style="background-color:rgb({$arr.ratio_red}, {$arr.ratio_green}, 100); color:#000000; text-align:center;">{$arr.ratio_max}</td></tr></table></td>
-		<td align="center">{$arr.multi} oferta(s)</td>
+		<td align="center">{$arr.multi} {$lang->get('oferta')}</td>
 		<td align="center">
 		{if $arr.message=='not_enough_dealers'}
-			Mercadores insuficientes.
+			{$lang->get('Mercadores insuficientes')}
 		{elseif $arr.message=='not_enough_ress'}
-			Recursos insuficientes.
-		{else}
+			{$lang->get('Recursos insuficientes')}
+		{else}{php} die($arr.message); {/php}
 			<form action="game.php?village={$village.id}&amp;screen=market&amp;mode=other_offer&amp;action=accept_multi&amp;id={$id}&amp;site={$site}&amp;h={$hkey}" method="post">
 				<input type="text" name="count" size="3" value="1" onclick="javascript:this.value=''" />
 				<input type="submit" class="button" value="Aceitar" size="5" />
-			</form>						
+			</form>
 		{/if}
 		</td>
 	</tr>

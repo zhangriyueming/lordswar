@@ -69,10 +69,10 @@
 		<tr><th colspan="4"><input name="all" type="checkbox" onclick="selectAll(this.form, this.checked)" /> {$lang->get('Selecionar todos')}</th></tr>
 	</table><br />
 	<center>
-		<input type="submit" value="Apagar" class="button" name="delete" />
+		<input type="submit" value="{$lang->get('Apagar')}" class="button" name="delete" />
 		<input type="text" size="2" name="mod_count" value="1" style="text-align:center;" />
-		<input type="submit" value="Adicionar oferta" class="button green" name="increase" />
-		<input type="submit" value="Reduzir oferta" class="button red" name="decrease" />
+		<input type="submit" value="{$lang->get('Adicionar oferta')}" class="button green" name="increase" />
+		<input type="submit" value="{$lang->get('Reduzir oferta')}" class="button red" name="decrease" />
 	</center>
 </form>
 {/if}

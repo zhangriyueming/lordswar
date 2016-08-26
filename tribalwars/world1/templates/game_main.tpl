@@ -96,7 +96,7 @@
 					{else}
 						{if $build_village.$dbname < 1}
 							{if count($do_build)>2 && $user.confirm_queue==1}
-		<td align="center"><a href="javascript:ask('Wil je extra betalen?', 'game.php?village={$village.id}&amp;screen=main&amp;action=build&amp;id={$dbname}&amp;force&amp;h={$hkey}')">{$lang->get("builds")}</a></td>
+		<td align="center"><a href="javascript:ask('{$lang->get('Wil je extra betalen')}', 'game.php?village={$village.id}&amp;screen=main&amp;action=build&amp;id={$dbname}&amp;force&amp;h={$hkey}')">{$lang->get("builds")}</a></td>
 							{else}
 		<td align="center"><a href="game.php?village={$village.id}&screen=main&action=build&id={$dbname}&h={$hkey}">{$lang->get("builds")}</a></td>
 							{/if}
