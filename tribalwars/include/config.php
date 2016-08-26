@@ -7,7 +7,7 @@
 /*******************************************/
 
 // Timezone
-date_default_timezone_set("America/Sao_Paulo");
+date_default_timezone_set("Asia/Shanghai");
 
 // Configurações do banco de dados
 $config['db_dsn']='mysql:host=tribalwars_db_1;charset=utf8;dbname=tribalwars_main';
