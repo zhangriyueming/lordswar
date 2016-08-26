@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-08-26 11:04:28
+/* Smarty version 3.1.30, created on 2016-08-26 11:16:11
   from "/var/www/html/world1/templates/game_train.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_57c0223c77a088_58580593',
+  'unifunc' => 'content_57c024fb76dc15_14142043',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '728767b38413c93d13b0bcef432b4f039f5772b5' => 
     array (
       0 => '/var/www/html/world1/templates/game_train.tpl',
-      1 => 1472209466,
+      1 => 1472210170,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_57c0223c77a088_58580593 (Smarty_Internal_Template $_smarty_tpl) {
+function content_57c024fb76dc15_14142043 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['get']->value['action'] == "train_mass" && $_smarty_tpl->tpl_vars['recruited']->value != array()) {?>
 <table>
 	<tr>
@@ -259,9 +259,9 @@ echo '<script'; ?>
 >
 <?php if ($_smarty_tpl->tpl_vars['get']->value['mode'] != "mass") {
 $tmp = new getvillagedata();
-	$_smarty_tpl->tpl_vars['cur_vil_inf'] = $tmp->getbyid($_smarty_tpl->tpl_vars['village'].id,array("farm","r_bh","r_wood","r_iron","r_stone"));
-    $tmp_farm = $_smarty_tpl->tpl_vars['cur_vil_inf'].farm;
-    $_smarty_tpl->tpl_vars['cur_vil_inf']['farmLimits'] = $_smarty_tpl->tpl_vars['arr_farm'][$tmp_farm]-$_smarty_tpl->tpl_vars['cur_vil_inf']->r_bh;
+	$_smarty_tpl->tpl_vars['cur_vil_inf'] = $tmp->getbyid($_smarty_tpl->tpl_vars['village']->value['id'],array("farm","r_bh","r_wood","r_iron","r_stone"));
+    $tmp_farm = $_smarty_tpl->tpl_vars['cur_vil_inf']['farm'];
+    $_smarty_tpl->tpl_vars['cur_vil_inf']['farmLimits'] = $_smarty_tpl->tpl_vars['arr_farm'][$tmp_farm]-$_smarty_tpl->tpl_vars['cur_vil_inf']['r_bh'];
 echo '<script'; ?>
  type="text/javascript">
     trainManager = new trainManager;

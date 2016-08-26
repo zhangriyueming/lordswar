@@ -209,9 +209,9 @@
 {if $get.mode != "mass"}
 {php}
 	$tmp = new getvillagedata();
-	$this->_tpl_vars['cur_vil_inf'] = $tmp->getbyid($this->_tpl_vars['village']['id'],array("farm","r_bh","r_wood","r_iron","r_stone"));
-    $tmp_farm = $this->_tpl_vars['cur_vil_inf']['farm'];
-    $this->_tpl_vars['cur_vil_inf']['farmLimits'] = $this->_tpl_vars['arr_farm'][$tmp_farm]-$this->_tpl_vars['cur_vil_inf']['r_bh'];
+	$_smarty_tpl->tpl_vars['cur_vil_inf'] = $tmp->getbyid($_smarty_tpl->tpl_vars['village']->value['id'],array("farm","r_bh","r_wood","r_iron","r_stone"));
+    $tmp_farm = $_smarty_tpl->tpl_vars['cur_vil_inf']['farm'];
+    $_smarty_tpl->tpl_vars['cur_vil_inf']['farmLimits'] = $_smarty_tpl->tpl_vars['arr_farm'][$tmp_farm]-$_smarty_tpl->tpl_vars['cur_vil_inf']['r_bh'];
 {/php}
 <script type="text/javascript">
     trainManager = new trainManager;
