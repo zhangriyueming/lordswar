@@ -520,7 +520,7 @@ function grow_vill(){
 			$max_stage = $stages[$rand];
 			$bh = $cl_builds->get_bh($build, $vill[$build]+1);
 			if($vill[$build] < $max_stage){
-				$db->query("UPDATE `villages` SET `".$build."`=".$vill[$build]."+1,`l_grow`='".time()."',`r_bh`='' WHERE `id`='".$vill['id']."'");
+				$db->query("UPDATE `villages` SET `".$build."`=".$vill[$build]."+1,`l_grow`='".time()."',`r_bh`=NULL WHERE `id`='".$vill['id']."'");
 			}
 			load_bh($vill['id']);
 		}

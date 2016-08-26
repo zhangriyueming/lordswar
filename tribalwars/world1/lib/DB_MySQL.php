@@ -17,7 +17,7 @@ class DB_MySQL{
 
 	function query($query,$show_error=true){
 		if(!defined('FILTER_LOCKTABLES') || FILTER_LOCKTABLES){
-			$pos = strpos(strtoupper($sql), 'LOCK TABLES');
+			$pos = strpos(strtoupper($query), 'LOCK TABLES');
 			if($pos !== FALSE && $pos < 3){
 				return NULL;
 			}
@@ -81,6 +81,12 @@ class DB_MySQL{
 
 	function setBufferedQuery($buffered = true) {
 		$this->pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, $buffered);
+	}
+
+	function unb_exec($query) {
+		$this->setBufferedQuery(false);
+		$this->query($query);
+		$this->setBufferedQuery(true);
 	}
 
 	// function unb_query($query,$show_error=true){
