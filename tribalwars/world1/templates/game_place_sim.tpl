@@ -8,8 +8,8 @@
 			{/foreach}
 		</tr>
 		<tr>
-			<td rowspan="2">Angreifer</td>
-			<td>Einheiten:</td>
+			<td rowspan="2">{$lang->get('Angreifer')}</td>
+			<td>{$lang->get('Einheiten')}:</td>
 			{foreach from=$simulate_values.att item=num key=unitname}
 				{if $num=="0"}
 					<td class="hidden">0</td>
@@ -19,7 +19,7 @@
 			{/foreach}
 		</tr>
 		<tr>
-			<td>Verluste:</td>
+			<td>{$lang->get('Verluste')}:</td>
 			{foreach from=$simulate_values.att_lose item=num key=unitname}
 				{if $num=="0"}
 					<td class="hidden">0</td>
@@ -32,8 +32,8 @@
 			<td style="display:none"></td>
 		</tr>
 		<tr>
-			<td rowspan="2">Verteidiger</td>
-			<td>Einheiten:</td>
+			<td rowspan="2">{$lang->get('Verteidiger')}</td>
+			<td>{$lang->get('Einheiten')}:</td>
 			{foreach from=$simulate_values.def item=num key=unitname}
 				{if $num=="0"}
 					<td class="hidden">0</td>
@@ -43,7 +43,7 @@
 			{/foreach}
 		</tr>
 		<tr>
-			<td>Verluste:</td>
+			<td>{$lang->get('Verluste')}:</td>
 			{foreach from=$simulate_values.def_lose item=num key=unitname}
 				{if $num=="0"}
 					<td class="hidden">0</td>

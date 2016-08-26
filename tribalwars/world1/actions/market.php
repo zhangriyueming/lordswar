@@ -3,13 +3,15 @@ if($ACTIONS_MASSIVKEY_HIGHAAASSDD != "sdjahsdkJHSAJDKHALKJHSADJHSADNsjdhaksjdlhJ
 	exit;
 }
 
+$lang = new aLang('game', $config['lang']);
+$buildname = "market";
 $show_build = ($cl_builds->check_needed('market',$village) && $village['market']>0)?true:false;
 if (!isset($_GET['mode'])) $_GET['mode'] = "send";
 
 $links = array(
-	"Enviar recursos" => "send",
-	"Suas ofertas" => "own_offer",
-	"Outras ofertas" => "other_offer",
+	$lang->get("Enviar recursos") => "send",
+	$lang->get("Suas ofertas") => "own_offer",
+	$lang->get("Outras ofertas") => "other_offer",
 );
 $allow_mods = array("send","own_offer","other_offer");
 if($show_build){
@@ -21,10 +23,13 @@ if($show_build){
 	$tpl->assign("max_dealers", $max_dealers);
 	$tpl->assign("inside_dealers", $inside_dealers);
 }
+
+
 $tpl->assign("allow_mods", $allow_mods);
 $tpl->assign("mode", $_GET['mode']);
 $tpl->assign("links", $links);
-$tpl->assign("description", $cl_builds->get_description_bydbname('market'));
+$tpl->assign("buildname", $cl_builds->get_name($buildname));
+$tpl->assign("description", $cl_builds->get_description_bydbname($buildname));
 $tpl->assign("show_build", $show_build);
 $tpl->register_modifier("stage", "stage");
 ?>

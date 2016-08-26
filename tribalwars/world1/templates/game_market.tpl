@@ -4,7 +4,7 @@
 			<img src="{$config.cdn}/graphic/big_buildings/market1.png" title="Lehmgrube" alt="" />
 		</td>   
 		<td>
-			<h2>Mercado ({$village.market|stage})</h2>
+			<h2>{$buildname} ({$village.market|stage})</h2>
 			{$description}
 		</td>
 	</tr>

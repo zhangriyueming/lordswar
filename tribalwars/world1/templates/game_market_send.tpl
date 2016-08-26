@@ -1,8 +1,8 @@
 {if !empty($error)}<div class="error">{$error}</div>{/if}
 <table class="vis">
 	<tr>
-		<th>Mercadores: {$inside_dealers}/{$max_dealers}</th>
-		<th>Transporte máximo: {math equation="x * 1000" x=$inside_dealers}</th>
+		<th>{$lang->get('mercadores')}: {$inside_dealers}/{$max_dealers}</th>
+		<th>{$lang->get('Transporte máximo')}: {math equation="x * 1000" x=$inside_dealers}</th>
 	</tr>
 </table><br />
 <form action="game.php?village={$village.id}&amp;screen=market&amp;try=confirm_send" method="post" name="market">
@@ -11,7 +11,7 @@
 			<td valign="top">
 				<table class="vis">
 					<tr>
-						<th>Recursos</th>
+						<th>{$lang->get('recursos')}</th>
 					</tr>
 					<tr>
 						<td>
@@ -42,7 +42,7 @@
 			<td valign="top">
 				<table class="vis">
 					<tr>
-						<th colspan="3">Destino</th>
+						<th colspan="3">{$lang->get('destino')}</th>
 					</tr>
 					<tr>
 						<td>

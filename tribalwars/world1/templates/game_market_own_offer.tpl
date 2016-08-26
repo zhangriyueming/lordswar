@@ -1,15 +1,15 @@
 {if !empty($error)}<div class="error">{$error}</div>{/if}
 <table class="vis">
 	<tr>
-		<th>Mercadores: {$inside_dealers}/{$max_dealers}</th>
-		<th>Transporte máximo: {math equation="x * 1000" x=$inside_dealers}</th>
+		<th>{$lang->get('mercadores')}: {$inside_dealers}/{$max_dealers}</th>
+		<th>{$lang->get('Transporte máximo')}: {math equation="x * 1000" x=$inside_dealers}</th>
 	</tr>
 </table>
-<h3>Criar oferta</h3>
+<h3>{$lang->get('Criar oferta')}</h3>
 <form action="game.php?village={$village.id}&amp;screen=market&amp;mode=own_offer&amp;action=new_offer&amp;h={$hkey}" method="post">
 	<table class="vis">
 		<tr>
-			<td width="150">Ofereço:</td>
+			<td width="150">{$lang->get('Ofereço')}:</td>
 			<td align="center"><input name="sell" type="text" size="7" value="" /></td>
 			<td align="center">
 				<table cellspacing="0" cellpadding="0">
@@ -25,7 +25,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td>Busco:</td>
+			<td>{$lang->get('Busco')}:</td>
 			<td align="center"><input name="buy" type="text" size="7" value="" /></td>
 			<td align="center">
 				<table cellspacing="0" cellpadding="0">
@@ -41,22 +41,22 @@
 			</td>
 		</tr>
 		<tr>
-			<td>Quantidade de ofertas:</td>
+			<td>{$lang->get('Quantidade de ofertas')}:</td>
 			<td align="center"><input name="multi" type="text" size="7" value="1" /></td>
-			<td>oferta(s)</td>
+			<td>{$lang->get('oferta')}</td>
 		</tr>
-		<tr><th colspan="3"><span style="float:right;"><input type="submit" value="Criar" class="button" /></span></th></tr>
+		<tr><th colspan="3"><span style="float:right;"><input type="submit" value="{$lang->get('Criar')}" class="button" /></span></th></tr>
 	</table>
 </form>
 {if count($offers)>0}
-<h3>Suas ofertas</h3>
+<h3>{$lang->get('Suas ofertas')}</h3>
 <form action="game.php?village={$village.id}&amp;screen=market&amp;mode=own_offer&amp;action=modify_offers&amp;h={$hkey}" method="post">
 	<table class="vis">
 		<tr>
-			<th>Ofereço</th>
-			<th>Busco</th>
-			<th>Ofertas</th>
-			<th>Adicionado em</th>
+			<th>{$lang->get('Ofereço')}</th>
+			<th>{$lang->get('Busco')}</th>
+			<th>{$lang->get('Ofertas')}</th>
+			<th>{$lang->get('Adicionado em')}</th>
 		</tr>
 		{foreach from=$offers item=arr key=id}
 		<tr>
@@ -66,7 +66,7 @@
 			<td align="center">{$arr.time|replace:"heute um":"hoje &agrave;s"|replace:"Uhr":""|replace:"am":"em"|replace:"um":"&agrave;s"|replace:"morgen":"amanh&atilde;"}</td>
 		</tr>
 		{/foreach}
-		<tr><th colspan="4"><input name="all" type="checkbox" onclick="selectAll(this.form, this.checked)" /> Selecionar todos</th></tr>
+		<tr><th colspan="4"><input name="all" type="checkbox" onclick="selectAll(this.form, this.checked)" /> {$lang->get('Selecionar todos')}</th></tr>
 	</table><br />
 	<center>
 		<input type="submit" value="Apagar" class="button" name="delete" />
