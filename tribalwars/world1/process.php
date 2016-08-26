@@ -11,6 +11,7 @@ if(isset($_POST["action"]) && $_POST['action'] == 'login'){
 	$playerid = $login->login_js($_POST['username'], $_POST['password']);
 	if(is_numeric($playerid)){
 		exit('{"message":"Succesvol ingelogd. Een ogenblik geduld, we laden het spel!","type":"sucess"}');
+		
 	}
 	exit($playerid);
 }
@@ -65,28 +66,16 @@ if(isset($_POST["action"]) && $_POST["action"] == "register"){
 		}
 		if(!$error && empty($_POST['email']) || !checkMail($_POST['email'])){
 			$error = true;
-			exit('{"message":"Sorry, het e-mail adres dat je hebt ingevuld is ongeldig!","type":"error","sms":"mail"}');
+		exit('{"message":"Sorry, het e-mail adres dat je hebt ingevuld is ongeldig!","type":"error","sms":"mail"}');
 		}
 
 		if(!$error && $check == 1){
 			$error = true;
 			exit('{"message":"Het e-mail adres \''.$_POST['email'].'\' is al in gebruik!","type":"error","sms":"mail"}');
 		}
-
-		if(!$error && md5(strtoupper($_POST['captcha'])) != $_COOKIE['security']){
-	                $error = true;
-			exit('{"message":"Oeps, de ingevoerde beveiligingscode is onjuist!","type":"error","sms":"captcha"}');
-		}
-
+		
 		if(!isset($error)){
-			$db->insert("INSERT INTO `users` (`username`,`password`,`email`,`join_date`) VALUES (:name, :pass, :email, :join_date)",
-				array(
-					'name' => $p_name,
-					'pass' => md5(crc32(md5(sha1(md5($p_password))))),
-					'email' => $p_mail,
-					'join_date' => time()
-					));
-			// $db->exec("INSERT INTO `users` (`username`,`password`,`email`,`join_date`) VALUES ('".$p_name."','".md5(crc32(md5(sha1(md5($p_password)))))."','".$p_mail."','".time()."')");
+			$db->query("INSERT INTO `users` (`username`,`password`,`email`,`join_date`) VALUES ('".$p_name."','".md5($p_password)."','".$p_mail."','".time()."')");
 			exit('{"message":"Je bent succesvol geregistreerd! Nog eventjes geduld, we slaan de gegevens op!","type":"sucess"}');
 		}
 }
@@ -94,7 +83,7 @@ if(isset($_POST["action"]) && $_POST["action"] == "register"){
 if (isset($_POST['action']) && $_POST['action'] == 'configs') {
 	if ($_POST['style'] == '0'){
 		$error = true;
-		exit('{"message":"Selecteer een stijl!","type":"error"}');
+	exit('{"message":"Selecteer een stijl!","type":"error"}');
 	}
 	
 	if (!$error && $_POST['lang'] == '0'){
@@ -111,6 +100,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'configs') {
 		} else {
 			$db->query("UPDATE configs SET style = '".$_POST['style']."', lang = '".$_POST['lang']."' WHERE ip = '".$_SERVER['REMOTE_ADDR']."'");
 			exit('{"message":"Stijl en taal zijn succesvol gewijzigd! Een ogenblikje geduld alsjeblieft. ","type":"sucess"}');
+			
 		}
 	}
 }
