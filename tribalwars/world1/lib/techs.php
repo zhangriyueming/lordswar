@@ -79,14 +79,14 @@ class techs {
         }
 		if($this->get_maxstage($dbname) <= $village['unit_'.$dbname.'_tec_level']){
 			$this->tech_error = "max_stage";
-			$this->tech_graphic = $dbname."_big.png";
+			$this->tech_graphic = $dbname.".png";
 			return "";			
 		}
 		$needed_done = true;
 		foreach($this->get_needed($dbname) as $needed_build=>$needed_stage){
 			if($village[$needed_build]<$needed_stage){
 				$this->tech_error = "not_fulfilled";
-				$this->tech_graphic = $dbname."_big_locked.png";
+				$this->tech_graphic = $dbname."_cross.png";
 				return "";
 			}
 		}
@@ -96,7 +96,7 @@ class techs {
 
   		if($arr_maxstorage[$village['storage']]<max($wood,$stone,$iron)){
   			$this->tech_error = "not_enough_storage";
-  			$this->tech_graphic = $dbname."_big_inactive.png";
+  			$this->tech_graphic = $dbname."_inactive.png";
   			return "";
   		}
 		if($wood>$village['r_wood'] || $stone>$village['r_stone'] || $iron>$village['r_iron']){
@@ -124,11 +124,11 @@ class techs {
 			$wait_seconds = ceil(max($timeA,$timeB,$timeC));
 			$this->time_wait = format_time($wait_seconds);
 			$this->tech_error = "not_enough_ress";
-			$this->tech_graphic = $dbname."_big_inactive.png";
+			$this->tech_graphic = $dbname."_inactive.png";
 			return "";
 		}
 		$this->tech_error = "no_error";
-		$this->tech_graphic = $dbname."_big.png";
+		$this->tech_graphic = $dbname.".png";
 		return "";
 	}
 	function research($dbname,$village){
