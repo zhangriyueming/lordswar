@@ -357,9 +357,10 @@
 		</tr>
 		{foreach from=$villages item=currentvillage}
 {php}
-	$_smarty_tpl->tpl_vars['cur_vil_inf'] = $GLOBALS['db']->fetch($GLOBALS['db']->query("SELECT * FROM `villages` WHERE `id`='".$_smarty_tpl->tpl_vars['currentvillage']."'"));
-	$tmp_farm = $_smarty_tpl->tpl_vars['cur_vil_inf']['farm'];
-	$_smarty_tpl->tpl_vars['cur_vil_inf']['farmLimits'] = $_smarty_tpl->tpl_vars['arr_farm']->value[$tmp_farm]-$_smarty_tpl->tpl_vars['cur_vil_inf']['r_bh'];
+	$_smarty_tpl->tpl_vars['cur_vil_inf'] = new Smarty_Variable();
+	$_smarty_tpl->tpl_vars['cur_vil_inf']->value = $GLOBALS['db']->fetch($GLOBALS['db']->query("SELECT * FROM `villages` WHERE `id`='".$_smarty_tpl->tpl_vars['currentvillage']."'"));
+	$tmp_farm = $_smarty_tpl->tpl_vars['cur_vil_inf']->value['farm'];
+	$_smarty_tpl->tpl_vars['cur_vil_inf']->value['farmLimits'] = $_smarty_tpl->tpl_vars['arr_farm']->value[$tmp_farm]-$_smarty_tpl->tpl_vars['cur_vil_inf']->value['r_bh'];
 {/php}
 		<script type="text/javascript">
 			trainManagers[{$currentvillage}]=new trainManager;
@@ -369,7 +370,7 @@
 			window.setInterval("trainManagers[{$currentvillage}].tick()",1000);
 		</script>
 		<tr class="row_a selected">
-			<td><a href="game.php?village={$currentvillage}&amp;screen=overview">{php}echo urldecode($_smarty_tpl->tpl_vars['cur_vil_inf']['name']);{/php} ({$cur_vil_inf.x}|{$cur_vil_inf.y}) K{$cur_vil_inf.continent}</a></td>
+			<td><a href="game.php?village={$currentvillage}&amp;screen=overview">{php}echo urldecode($_smarty_tpl->tpl_vars['cur_vil_inf']->value['name']);{/php} ({$cur_vil_inf.x}|{$cur_vil_inf.y}) K{$cur_vil_inf.continent}</a></td>
 			<td style="white-space:nowrap; text-align:center;">{$cur_vil_inf.r_wood|round}</td>
 			<td style="white-space:nowrap; text-align:center;">{$cur_vil_inf.r_stone|round}</td>
 			<td style="white-space:nowrap; text-align:center;">{$cur_vil_inf.r_iron|round}</td>
