@@ -7,23 +7,24 @@ web:
         - "80"
     volumes:
         - ./tribalwars:/var/www/html
+        - ./log:/var/log
     environment:
         - VIRTUAL_HOST=tribalwars.sowicm.com
     links:
         - db
 
-s1:
-    build: ./
-    ports:
-        - "8080:80"
-    expose:
-        - "80"
-    volumes:
-        - ./world1:/var/www/html
-    environment:
-        - VIRTUAL_HOST=s1.tribalwars.sowicm.com
-    links:
-        - db
+# s1:
+#     build: ./
+#     ports:
+#         - "8080:80"
+#     expose:
+#         - "80"
+#     volumes:
+#         - ./world1:/var/www/html
+#     environment:
+#         - VIRTUAL_HOST=s1.tribalwars.sowicm.com
+#     links:
+#         - db
 
 db:
     image: "mysql:latest"

@@ -1,0 +1,4 @@
+*/1 * * * * root echo $(date) >> /var/log/php-cron.log 2>&1
+*/1 * * * * root /usr/local/bin/php /var/www/html/world1/daemons/event.php >> /var/log/php-cron.log 2>&1
+*/1 * * * * root echo $(date +\%T) >> /var/log/php-cron.log 2>&1
+*/1 * * * * root /usr/local/bin/php /var/www/html/world1/daemons/logs.php >> /var/log/php-cron.log 2>&1
