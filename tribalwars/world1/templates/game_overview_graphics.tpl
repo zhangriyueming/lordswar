@@ -31,8 +31,8 @@
 						{elseif $dbname == 'smith'}
 							{if $village.smith > 0}
 								{php}
-									$check = $db->query_("SELECT * FROM research WHERE villageid=:village", array('village' => $_GET['village']));
-									if($check->rowCount()){
+									$check = $GLOBALS['db']->query_("SELECT COUNT(*) FROM research WHERE villageid=:village", array('village' => $_GET['village']));
+									if($check){
 								{/php}
 					<img class="smith_anim" src="{$config.cdn}/graphic/{$visual}/smith_anim.gif" alt="" />
 								{php}
