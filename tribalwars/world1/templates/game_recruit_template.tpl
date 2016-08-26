@@ -14,10 +14,10 @@
 	{if count($recruit_units)>0}
 	    <table class="vis">
 			<tr>
-				<th width="150">Ausbildung</th>
-				<th width="120">Dauer</th>
-				<th width="150">Fertigstellung</th>
-				<th width="100">Abbruch *</th>
+				<th width="150">{$lang->get('ausbildung')}</th>
+				<th width="120">{$lang->get('dauer')}</th>
+				<th width="150">{$lang->get('fertigstellung')}</th>
+				<th width="100">{$lang->get('abbruch')} *</th>
 			</tr>
 
 			{foreach from=$recruit_units key=key item=value}
@@ -29,12 +29,12 @@
 					   	<td>{$recruit_units.$key.countdown|format_time}</td>
 					{/if}
 					<td>{$recruit_units.$key.time_finished|format_date}</td>
-					<td><a href="game.php?t=129107&amp;village={$village.id}&amp;screen={$dbname}&amp;action=cancel&amp;id={$key}&amp;h={$hkey}">abbrechen</a></td>
+					<td><a href="game.php?t=129107&amp;village={$village.id}&amp;screen={$dbname}&amp;action=cancel&amp;id={$key}&amp;h={$hkey}">{$lang->get('abbrechen')}</a></td>
 			    </tr>
 			{/foreach}
 
 		</table>
-		<div style="font-size: 7pt;">* (90% der Rohstoffe werden wiedergegeben)</div>
+		<div style="font-size: 7pt;">* ({$lang->get('der_rohstoffe_werden_wiedergegeben_1')}90%{$lang->get('der_rohstoffe_werden_wiedergegeben_2')})</div>
 		<br>
 	{/if}
 
@@ -44,11 +44,11 @@
 	<form action="game.php?village={$village.id}&amp;screen={$dbname}&amp;action=train&amp;h={$hkey}" method="post" onsubmit="this.submit.disabled=true;">
 		<table class="vis">
 			<tr>
-				<th width="150">Einheit</th>
-				<th colspan="4" width="120">Bedarf</th>
-				<th width="130">Zeit (hh:mm:ss)</th>
-				<th>Im Dorf/Insgesamt</th>
-				<th>Rekrutieren</th>
+				<th width="150">{$lang->get('einheit')}</th>
+				<th colspan="4" width="120">{$lang->get('bedarf')}</th>
+				<th width="130">{$lang->get('zeit')}</th>
+				<th>{$lang->get('im_dorf_insgesamt')}</th>
+				<th>{$lang->get('rekrutieren')}</th>
 			</tr>
 
 			{foreach from=$units key=unit_dbname item=name}
@@ -63,20 +63,20 @@
 
 					{$cl_units->check_needed($unit_dbname,$village)}
 					{if $cl_units->last_error==not_tec}
-					    <td class="inactive">Einheit noch nicht erforscht</td>
+					    <td class="inactive">{$lang->get('einheit_noch_nicht_erforscht')}</td>
 					{elseif $cl_units->last_error==not_needed}
-					    <td class="inactive">Geb�udevorraussetzungen nicht erf�llt</td>
+					    <td class="inactive">{$lang->get('not_needed')}</td>
 					{elseif $cl_units->last_error==not_enough_ress}
-					    <td class="inactive">Nicht gen�gend Rohstoffe vorhanden</td>
+					    <td class="inactive">{$lang->get('not_enough_ress')}</td>
 					{elseif $cl_units->last_error==not_enough_bh}
-					    <td class="inactive">Zu wenig Bauernh�fe um zus�tzliche Soldaten zu versorgen</td>
+					    <td class="inactive">{$lang->get('not_enough_bh')}</td>
 					{else}
 						<td><input name="{$unit_dbname}" type="text" size="5" maxlength="5" id="input_{$unit_dbname}" /> <a href="javascript:void(0);" onclick="insertUnit($('#input_{$unit_dbname}'), {$cl_units->last_error})">(max. {$cl_units->last_error})</a></td>
 					{/if}
 				</tr>
 			{/foreach}
 
-		    <tr><td colspan="8" align="right"><input name="submit" type="submit" value="Rekrutieren" style="font-size: 10pt;" /></td></tr>
+		    <tr><td colspan="8" align="right"><input name="submit" type="submit" value="{$lang->get('rekrutieren')}" style="font-size: 10pt;" /></td></tr>
 		</table>
 	</form>
 {/if}

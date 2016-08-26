@@ -110,7 +110,7 @@
 					<div style="width:100%; background-image: url({$config.cdn}/graphic/bars/bars_bg.jpg); border: solid 1px #CFAB65;">
 					<div style="width:{$porcents}%; background:url({$config.cdn}/graphic/bars/bars.gif) repeat; color:#000000; text-align:center;"><b>{$porcents}%</b></div>
 					</td>
-					<td align="center"><a href="javascript:ask('Het kost je extra grondstoffen om te bouwen. Wil je doorgaan?', 'game.php?village={$village.id}&amp;screen=main&amp;action=build&amp;id={$dbname}&amp;force&amp;h={$hkey}')"><img src="{$config.cdn}/graphic/icons/plus.png"></a></td>
+					<td align="center"><a href="javascript:ask('{$lang->get('extra_confirm')}', 'game.php?village={$village.id}&amp;screen=main&amp;action=build&amp;id={$dbname}&amp;force&amp;h={$hkey}')"><img src="{$config.cdn}/graphic/icons/plus.png"></a></td>
 				</tr>
 			</table>
 		</td>

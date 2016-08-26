@@ -221,8 +221,8 @@
 <table width="100%">
 	<tr>
 		<td>
-			<h2>Recrutar</h2>
-			Nesta visualização você pode produzir qualquer tipo de unidade, desde que todos os requerimentos de tais unidades tenham sido preenchidos (edfícios e tecnologias).
+			<h2>{$lang->get('recrutar')}</h2>
+			{$lang->get('recrutar_desc')}
 		</td>
 	</tr>
 </table><br />

@@ -3,6 +3,8 @@ if($ACTIONS_MASSIVKEY_HIGHAAASSDD != "sdjahsdkJHSAJDKHALKJHSADJHSADNsjdhaksjdlhJ
 	exit;
 }
 
+$lang = new aLang('game', $config['lang']);
+
 $show_build = ($cl_builds->check_needed($buildname,$village) && $village[$buildname]>0)?true:false;
 if($show_build){
     $units = $cl_units->get_recruit_in_units($buildname);
@@ -110,7 +112,7 @@ if($show_build){
             $error = "Desculpe, más houve um erro ao executar a ação!";
         }
 		if (!in_array($row['unit'], array_flip($units))){
-            $error = "Desculpe, más o rerutamento não pode ser cancelado!";
+            $error = "资源不足以训练这么多!";
         }
 		if(empty($error)){
 			while(true){
@@ -181,6 +183,7 @@ if($show_build){
 	$tpl->assign("units_all", $units_all);
 	$tpl->assign("recruit_units", $recruit_units);
 }
+$lang = new aLang('game', $config['lang']);
 $tpl->assign("description", $cl_builds->get_description_bydbname($buildname));
 $tpl->assign("cl_units", $cl_units);
 $tpl->assign("buildname", $cl_builds->get_name($buildname));

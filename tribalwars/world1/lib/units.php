@@ -31,7 +31,10 @@ class units{
 		$this->config = $config;
     }
     function add_unit($name, $dbname){
+    	// global $lang;
 		$this->dbname[$name] = $dbname;
+		// return $lang->get($dbname);
+		// $this->name[$dbname] = $lang->get($dbname);
 		$this->name[$dbname] = $name;
 		$this->last_dbname = $dbname;
     }
@@ -114,10 +117,11 @@ class units{
 		return $time;
     }
     function get_recruit_in_units($building){
+    	global $lang;
 		$units = "";
 		foreach($this->name as $dbname=>$name){
 		    if($this->recruit_in[$dbname] == $building)
-				$units[$dbname] = $name;
+				$units[$dbname] = $lang->get($dbname);//$name;
 		}
 		return $units;
     }
