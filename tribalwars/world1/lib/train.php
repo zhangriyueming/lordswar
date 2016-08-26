@@ -94,7 +94,7 @@ class train{
 				$sql .= (count($this->Units) == $i) ? "all_$key,".$key."_tec_level" : "all_$key,".$key."_tec_level,";
 			++$i;
 		}
-		$sql .= " from villages where id='".$village['id']."'";
+		$sql .= "all_unit_spear from villages where id='".$village['id']."'";
 		$result = $this->db->query($sql);
 
 		return $this->db->Fetch($result);
