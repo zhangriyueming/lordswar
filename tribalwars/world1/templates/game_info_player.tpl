@@ -1,28 +1,28 @@
-<h2 style="margin-bottom:5px;">Jogador: {$info_user.username}</h2>
+<h2 style="margin-bottom:5px;">{$lang->get('Jogador')}: {$info_user.username}</h2>
 <table width="100%">
 	<tr>
 		<td valign="top" width="45%">
 			<table class="vis" width="100%" style="border:1px solid #804000;">
-				<tr><th colspan="2">Titulo de nobresa: {$tUser.title}</th></tr>
-				<tr><td width="100">Pontos:</td><td>{$info_user.points|format_number}</td></tr>
-				<tr><td>Ranking:</td><td>{$info_user.rang}</td></tr>
-				<tr><td width="155">Oponentes derrotados:</td><td>{$info_user.killed_units_altogether|format_number} P (Rank: <B>{$info_user.killed_units_altogether_rank}</b>)</td></tr>
+				<tr><th colspan="2">{$lang->get('Titulo de nobresa')}: {$tUser.title}</th></tr>
+				<tr><td width="100">{$lang->get('Pontos')}:</td><td>{$info_user.points|format_number}</td></tr>
+				<tr><td>{$lang->get('Ranking')}:</td><td>{$info_user.rang}</td></tr>
+				<tr><td width="155">{$lang->get('Oponentes derrotados')}:</td><td>{$info_user.killed_units_altogether|format_number} P (Rank: <B>{$info_user.killed_units_altogether_rank}</b>)</td></tr>
 				{if !empty($info_ally.short)}
-				<tr><td>Tribo:</td><td><a href="game.php?village={$village.id}&amp;screen=info_ally&amp;id={$info_ally.id}">{$info_ally.short}</a></td></tr>
+				<tr><td>{$lang->get('Tribo')}:</td><td><a href="game.php?village={$village.id}&amp;screen=info_ally&amp;id={$info_ally.id}">{$info_ally.short}</a></td></tr>
 				{/if}
-				<tr><td colspan="2"><a href="game.php?village={$village.id}&amp;screen=mail&amp;mode=new&amp;player={$info_user.id}">&raquo; Enviar mensagem</a></td></tr>
+				<tr><td colspan="2"><a href="game.php?village={$village.id}&amp;screen=mail&amp;mode=new&amp;player={$info_user.id}">&raquo; {$lang->get('Enviar mensagem')}</a></td></tr>
 			{if $can_invite}
-				<tr><td colspan="2"><a href="javascript:ask('Deseja convidar o jogador {$info_user.username} para sua tribo?', 'game.php?village={$village.id}&screen=ally&mode=invite&action=invite_id&id={$info_user.id}&h={$hkey}')">&raquo; Convidar para tribo</a></td></tr>
+				<tr><td colspan="2"><a href="javascript:ask('Deseja convidar o jogador {$info_user.username} para sua tribo?', 'game.php?village={$village.id}&screen=ally&mode=invite&action=invite_id&id={$info_user.id}&h={$hkey}')">&raquo; {$lang->get('Convidar para tribo')}</a></td></tr>
 			{/if}
 			{if $friend_invite && $info_user.id != $user.id}
-				<tr><td colspan="2"><a href="game.php?village={$village.id}&screen=friends&amp;action=add_buddy_id&id={$info_user.id}">&raquo; Adicionar como amigo</a></td></tr>
+				<tr><td colspan="2"><a href="game.php?village={$village.id}&screen=friends&amp;action=add_buddy_id&id={$info_user.id}">&raquo; {$lang->get('Adicionar como amigo')}</a></td></tr>
 			{/if}
 			</table><br />
 			<table class="vis" width="100%" style="border:1px solid #804000;">
 				<tr>
-					<th width="180" {if $info_user.id == $user.id}colspan="2"{/if}>Aldeias</th>
-					<th width="80">Coordenada</th>
-					<th>Pontos</th>
+					<th width="180" {if $info_user.id == $user.id}colspan="2"{/if}>{$lang->get('Aldeias')}</th>
+					<th width="80">{$lang->get('Coordenada')}</th>
+					<th>{$lang->get('Pontos')}</th>
 				</tr>
 				{foreach from=$villages item=arr key=id}
 				<tr>
@@ -59,7 +59,7 @@
 			</table>
 			{/if}
 			<table width="100%" class="vis" style="border:1px solid #804000;">
-				<tr><th colspan="2">Medalhas Obtidas</th></tr>
+				<tr><th colspan="2">{$lang->get('Medalhas Obtidas')}</th></tr>
 				{foreach from=$medalhas item=medalha key=dbname}
 				<tr>
 					<td width="60" valign="top" rowspan="2"><div class="award level{$medalha.id}"{if $info_user.id == $user.id}title="{$medalha.title}"{/if}><img src="{$config.cdn}/graphic/awards/{$dbname}.png" /></td>
@@ -68,14 +68,14 @@
 				<tr>
 					<td valign="bottom">
 						<div style="font-size:7pt; color:#666; margin-top:2px;">{$cl_awards->get_thisStage($dbname,$medalha.id)}</div>
-						{if $info_user.id == $user.id}<div style="font-size:7pt; color:#666; margin-top:2px;">&raquo; Próximo nível: {$cl_awards->get_nextStage($dbname,$medalha.id)}</div>{/if}
+						{if $info_user.id == $user.id}<div style="font-size:7pt; color:#666; margin-top:2px;">&raquo; {$lang->get('Próximo nível')}: {$cl_awards->get_nextStage($dbname,$medalha.id)}</div>{/if}
 					</td>
 				</tr>
 				{/foreach}
 			</table><br />
 			{if $info_user.id == $user.id}
 			<table width="100%" class="vis" style="border:1px solid #804000;">
-				<tr><th colspan="2">Medalhas que ainda não foram obtidas</th></tr>
+				<tr><th colspan="2">{$lang->get('Medalhas que ainda não foram obtidas')}</th></tr>
 				{foreach from=$medalof item=medalha key=dbname}
 				<tr>
 					<td width="60" rowspan="2"><div class="award level{$medalha.id}" title="{$medalha.title}"><img src="{$config.cdn}/graphic/awards/dummy.png" /></div></td>
