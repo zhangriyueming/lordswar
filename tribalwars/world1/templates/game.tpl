@@ -54,7 +54,7 @@
 					<tr><td><a href="game.php?village={$village.id}&amp;screen=mail&amp;mode=block">&raquo; {$lang->get("blockmessager")}</a></td></tr>
 				</table>
 			</td>
-			<td><div align="center"><a href="game.php?village={$village.id}&amp;screen=ranking">{$lang->get("ranking")}</a> <b>({$user.rang}.|{$user.points|format_number} P)</b></div>
+			<td><div align="center"><a href="game.php?village={$village.id}&amp;screen=ranking">{$lang->get("ranking")}</a></div>
 				<table cellspacing="0" width="255">
 					<tr><td><a href="game.php?village={$village.id}&amp;screen=ranking&amp;mode=ally">&raquo; {$lang->get("alliances")}</a></td></tr>
 					<tr><td><a href="game.php?village={$village.id}&amp;screen=ranking&amp;mode=player">&raquo; {$lang->get("players")}</a></td></tr>
