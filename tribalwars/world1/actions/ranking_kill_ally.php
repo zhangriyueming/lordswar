@@ -6,9 +6,9 @@ if($ACTIONS_MASSIVKEY_HIGHAAASSDD != "sdjahsdkJHSAJDKHALKJHSADJHSADNsjdhaksjdlhJ
 if(empty($_GET['type'])) $_GET['type'] = "att";
 
 $links_kill = array(
-	"Como atacante" => "att",
-	"Como defensor" => "def",
-	"Total" => "all"
+	$lang->get("Como atacante") => "att",
+	$lang->get("Como defensor") => "def",
+	$lang->get("Total") => "all"
 );
 $allow_mods_kill = array("att","def","all");
 if(in_array($_GET['type'], $allow_mods_kill)){

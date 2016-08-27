@@ -1,15 +1,15 @@
-<h3>Novo item</h3>
+<h3>获取了新装备</h3>
 <br />
 <br />
-<p>Enquanto examinava as proximidades, o paladino encontrou o seguinte item:
+<p>骑士在外探索时发现了以下装备:
 <br /><br />
 <i>{$lang->grab("knight", $itemname)|regex_replace:'/\'/':'&rsquo;'}</i>
 <br /><br />
-Através de uma pesquisa mais profunda, foram encontradas as seguintes propriedades do item:
+通过进一步的研究，我们发现了以下装备属性:
 <br /><br />
 <i>{$lang->grab("knight_items_des", "$itemname")|regex_replace:'/\'/':'&rsquo;'}</i>
 <br /><br />
-O paladino pode ser equipado com o item na sala de armas.
+可以去雕像处让骑士装备上。
 <br /><br />
-<a href="game.php?screen=statue&mode=inventory">Para a sala de armas</a></p>
+<a href="game.php?screen=statue&mode=inventory">前往装备</a></p>
 <br />
