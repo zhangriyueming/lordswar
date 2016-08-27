@@ -9,7 +9,8 @@ if($viewType == "table"){
 	}
 }else{
 	if($village['r_bh'] >= $arr_farm[$village['farm']]){
-		echo "Cheia!";
+		global $lang;
+		echo $lang->get('Cheia');
 	}else{
 		echo $village['r_bh'].'/'.$arr_farm[$village['farm']];
 	}

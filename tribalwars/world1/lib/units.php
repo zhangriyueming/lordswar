@@ -271,7 +271,8 @@ class units{
 		return $this->needed[$dbname];
     }
     function get_description($dbname){
-		return $this->description[$dbname];
+		global $lang;
+		return $lang->get($dbname.'_desc');
     }
     function get_countNeeded($dbname){
 		return count($this->needed[$dbname]);

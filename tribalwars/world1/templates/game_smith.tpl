@@ -18,10 +18,10 @@
 	{if $is_researches}
 		<table class="vis">
 		<tr>
-			<th width="220">Forschungsauftrag</th>
-			<th width="100">Dauer</th>
-			<th width="120">Fertigstellung</th>
-			<th rowspan="2"><a href="game.php?village={$village.id}&amp;screen=smith&amp;action=cancel&amp;h={$hkey}">abbrechen</a></th>
+			<th width="220">{$lang->get('Forschungsauftrag')}</th>
+			<th width="100">{$lang->get('Dauer')}</th>
+			<th width="120">{$lang->get('Fertigstellung')}</th>
+			<th rowspan="2"><a href="game.php?village={$village.id}&amp;screen=smith&amp;action=cancel&amp;h={$hkey}">{$lang->get('abbrechen')}</a></th>
 		</tr>
 		<tr>
 		    {assign var=research_unitname value=$research.research}

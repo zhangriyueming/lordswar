@@ -209,9 +209,10 @@
 {if $get.mode != "mass"}
 {php}
 	$tmp = new getvillagedata();
-	$_smarty_tpl->tpl_vars['cur_vil_inf'] = $tmp->getbyid($_smarty_tpl->tpl_vars['village']->value['id'],array("farm","r_bh","r_wood","r_iron","r_stone"));
-    $tmp_farm = $_smarty_tpl->tpl_vars['cur_vil_inf']['farm'];
-    $_smarty_tpl->tpl_vars['cur_vil_inf']['farmLimits'] = $_smarty_tpl->tpl_vars['arr_farm']->value[$tmp_farm]-$_smarty_tpl->tpl_vars['cur_vil_inf']['r_bh'];
+	$_smarty_tpl->tpl_vars['cur_vil_inf'] = new Smarty_Variable();
+	$_smarty_tpl->tpl_vars['cur_vil_inf']->value = $tmp->getbyid($_smarty_tpl->tpl_vars['village']->value['id'],array("farm","r_bh","r_wood","r_iron","r_stone"));
+    $tmp_farm = $_smarty_tpl->tpl_vars['cur_vil_inf']->value['farm'];
+    $_smarty_tpl->tpl_vars['cur_vil_inf']->value['farmLimits'] = $_smarty_tpl->tpl_vars['arr_farm']->value[$tmp_farm]-$_smarty_tpl->tpl_vars['cur_vil_inf']->value['r_bh'];
 {/php}
 <script type="text/javascript">
     trainManager = new trainManager;
@@ -229,10 +230,10 @@
 	{if count($recruit_units)>0}
 <table class="vis" width="100%">
 	<tr>
-		<th width="150">Unidade</th>
-		<th width="120">Duração</th>
-		<th width="150">Término</th>
-		<th width="100">Cancelar *</th>
+		<th width="150">{$lang->get('ausbildung')}</th>
+		<th width="120">{$lang->get('Duração')}</th>
+		<th width="150">{$lang->get('Término')}</th>
+		<th width="100">{$lang->get('Cancelar')} *</th>
 	</tr>
 		{foreach from=$recruit_units key=key item=value}
     <tr {if $recruit_units.$key.lit}class="lit"{/if}>
@@ -243,11 +244,11 @@
 	   	<td>{$recruit_units.$key.countdown|format_time}</td>
 			{/if}
 		<td>{$recruit_units.$key.time_finished|format_date}</td>
-		<td><a href="game.php?village={$village.id}&amp;screen=train&amp;action=cancel&amp;id={$key}&amp;h={$hkey}">cancelar</a></td>
+		<td><a href="game.php?village={$village.id}&amp;screen=train&amp;action=cancel&amp;id={$key}&amp;h={$hkey}">{$lang->get('cancelar')}</a></td>
     </tr>
 		{/foreach}
 </table>
-<div style="font-size: 7pt;">* (Apenas 90% dos recursos serão devolvidos!)</div><br />
+<div style="font-size: 7pt;">* ({$lang->get('der_rohstoffe_werden_wiedergegeben_1')}90%{$lang->get('der_rohstoffe_werden_wiedergegeben_2')})</div><br />
 	{/if}
 	{if !empty($error)}<div class="error">{$error}</div>{/if}
 <table class="vis">
