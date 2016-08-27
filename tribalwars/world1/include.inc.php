@@ -56,7 +56,7 @@ $arr_builds_starts_by_one = $config['buildings_starting_by_one'];
 
 
 // Inventário estátua
-$lang = new aLang("index", $config['lang']);
+$lang = new aLang("game", $config['lang']);
 Registry::set("lang", $lang);
 
 include(PATH."/include/configs/bbcodes.php");

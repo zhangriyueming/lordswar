@@ -5,11 +5,11 @@ if($ACTIONS_MASSIVKEY_HIGHAAASSDD != "sdjahsdkJHSAJDKHALKJHSADJHSADNsjdhaksjdlhJ
 
 if(!isset($_GET['mode'])) $_GET['mode'] = "player";
 $links = array(
-	"Tribos" => "ally",
-	"Jogadores" => "player",
-	"Pontos de batalha" => "kill_player",
-	"Pontos de batalha (tribos)" => "kill_ally",
-	"Medalhas" => "medal"
+	$lang->get("Tribos") => "ally",
+	$lang->get("Jogadores") => "player",
+	$lang->get("Pontos de batalha") => "kill_player",
+	$lang->get("Pontos de batalha tribos") => "kill_ally",
+	$lang->get("Medalhas") => "medal"
 );
 if($_GET['mode'] == "player"){
 	include("ranking_player.php");
