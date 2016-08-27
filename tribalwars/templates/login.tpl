@@ -21,14 +21,14 @@
 				<tr><td width="150">{$lang->get('Inicio')}:</td><td align="center">{$world.start|format_date}</td></tr>
 				<tr><td width="150">{$lang->get('Fim')}:</td><td align="center">{$world.end|format_date}</td></tr>
 				<tr><td width="150">{$lang->get('Velocidade')}:</td><td align="center">{$config.speed}x</td></tr>
-				<tr><td width="150">{$lang->get('Velocidade das tropas')}:</td><td align="center">{$config.movement_speed}x</td></tr>
+				<tr><td width="150">{$lang->get('Velocidade das tropas')}:</td><td align="center">{$config.movement_speed|format_number_}x</td></tr>
 				<tr><td width="150">{$lang->get('Alojamento')}:</td><td align="center">{$farm.30|format_number}</td></tr>
 				<tr><td width="150">{$lang->get('Armazém')}:</td><td align="center">{$storage.30|format_number}</td></tr>
 				<tr><td width="150">{$lang->get('Academia')}:</td><td align="center">{if $config.ag_style==0}{$lang->get('Por aldeia')}{elseif $config.ag_style==1}{$lang->get('Soma das academias')}{elseif $config.ag_style==2}{$lang->get('Moedas de ouro')}{/if}</td></tr>
 				<tr><td width="150">{$lang->get('Aldeia bonus')}:</td><td align="center">{$lang->get('ativada ou desativada')}</td></tr>
 				<tr><td width="150">{$lang->get('Tribo')}:</td><td align="center">{if $config.create_ally}{$lang->get('Ativada')}{else}{$lang->get('Desativada')}{/if}</td></tr>
 				<tr><td width="150">{$lang->get('Recrutamento tribo')}</td><td align="center">{if $config.leave_ally}{$lang->get('Ativada')}{else}{$lang->get('Desativada')}{/if}</td></tr>
-				<tr><td width="150">{$lang->get('Limite de membros')}:</td><td align="center">{$lang->get('limite de membros')}</td></tr>
+				<tr><td width="150">{$lang->get('Limite de membros')}:</td><td align="center">{$config.members_ally}</td></tr>
 			</table>
 			<table width="100%" style="border:1px solid #804000;" class="vis">
 				<tr><th colspan="2">&raquo; {$lang->get('Você deseja fazer parte deste mundo')}</th></tr>

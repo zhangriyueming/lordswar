@@ -217,9 +217,12 @@ if($config['noob_protection'] > 0){
 	}
 }
 
+require_once("configs.php");
+$lang = new aLang("game", $config['lang']);
+
 if($user['join_actions'] == "n"){
 	$title = parse($lang->get('Welkom bij').$config['name']."!");
-	$db->query("INSERT INTO `mail_subject` (`subject`,`last_post`,`from_id`,`to_id`,`from_username`,`to_username`,`post_num`,`status_from`,`status_to`,`delete_from`,`delete_to`) VALUES ('".$title."', '".time()."', '-1', '".	    $user['id']."', 'Equipe ".$config['name']."', '".$user['username']."', '1', 'answered', 'new', 'n', 'n')");
+	$db->query("INSERT INTO `mail_subject` (`subject`,`last_post`,`from_id`,`to_id`,`from_username`,`to_username`,`post_num`,`status_from`,`status_to`,`delete_from`,`delete_to`) VALUES ('".$title."', '".time()."', '-1', '".	    $user['id']."', '".$lang->get('Equipe').$config['name']."', '".$user['username']."', '1', 'answered', 'new', 'n', 'n')");
 	$text = parse($lang->get('Welkom bij').$config['world_name']." [player]".entparse($user['username'])."[/player]!
 
     我们希望你在这里享受冒险的乐趣。
@@ -230,14 +233,12 @@ if($user['join_actions'] == "n"){
 
     祝你好远,
     Lordswar 小组");
-	$db->query("INSERT INTO `mail_in` (`from_id`,`from_username`,`to_id`,`to_username`,`subject`,`text`,`time`) VALUES ('-1','Equipe ".$config['name']."','".$user['id']."' ,'".entparse($user['username'])."','".$title ."','".$text."','".time()."')");
+	$db->query("INSERT INTO `mail_in` (`from_id`,`from_username`,`to_id`,`to_username`,`subject`,`text`,`time`) VALUES ('-1','".$lang->get('Equipe').$config['name']."','".$user['id']."' ,'".entparse($user['username'])."','".$title ."','".$text."','".time()."')");
 	$db->query("UPDATE `users` SET `new_mail`='1',`join_actions`='y' WHERE `id`='".$user['id']."' LIMIT 1");
 	header("LOCATION: game.php?village=".$_GET['village']."&screen=overview");
 	exit;
 }
 
-require_once("configs.php");
-$lang = new aLang("game", $config['lang']);
 $tpl->assign("lang", $lang);
 $tpl->assign("servertime", date("G:i:s"));
 $tpl->assign("serverdate", date("d/m/Y"));

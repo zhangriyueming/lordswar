@@ -74,6 +74,9 @@ function numberFormat($num){
 function format_number($number){
 	return str_replace(".","<span class=\"grey\">.</span>",numberFormat($number));
 }
+function format_number_($num) {
+	return number_format($num, 2);
+}
 function getfirstvillage($userid){
 	global $db;
 

@@ -75,6 +75,9 @@ function format_number($number){
 	return numberFormat($number);
 	// return str_replace(",","<span class=\"grey\">,</span>",numberFormat($number));
 }
+function format_number_($num) {
+	return number_format($num, 2);
+}
 function getfirstvillage($userid){
 	global $db;
 
@@ -173,7 +176,8 @@ function create_village($userid,$username='',$direction){
 	}while($row2['count_village'] == "1");
 
 	if($userid != "-1"){
- 		$villagename = parse("Aldeia de ".entparse($username));
+		global $lang;
+ 		$villagename = parse($lang->get('Aldeia de 1').entparse($username).$lang->get('Aldeia de 2'));
  	}else{
  		$villagename = parse(entparse($config['left_name']));
  	}	
