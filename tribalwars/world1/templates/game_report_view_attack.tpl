@@ -1,7 +1,7 @@
-{if $report.wins=='att'}<h3 style="margin-bottom:5px;">O atacante venceu!</h3>{else}<h3 style="margin-bottom:5px;">O defensor venceu</h3>{/if}
+{if $report.wins=='att'}<h3 style="margin-bottom:5px;">{$lang->get('O atacante venceu')}</h3>{else}<h3 style="margin-bottom:5px;">{$lang->get('O defensor venceu')}</h3>{/if}
 <div class="report_image {$report.image}" style="margin-left:1px;">    	    	        
 	<div class="report_transparent_overlay">
-		<h4 style="color:#000000;">Sorte (do ponto de vista do atacante)</h4>
+		<h4 style="color:#000000;">{$lang->get('Sorte')} ({$lang->get('do ponto de vista do atacante')})</h4>
 		{if $report.luck < 0}
 		<table id="attack_luck">
 			<tr>
@@ -40,13 +40,13 @@
 		</table>
 		{/if}
 	{if $moral_activ=='true'}
-		<h4 style="color:#000000;">Moral: {$report.moral}%</h4>
+		<h4 style="color:#000000;">{$lang->get('Moral')}: {$report.moral}%</h4>
 	{/if}
 	</div>
 </div>
 <table width="428" style="border:1px solid #804000;" align="center">
-	<tr><th style="width:20%">Atacante:</th><th><a href="game.php?village={$village.id}&amp;screen=info_player&amp;id={$report.from_user}">{$report.from_username|entparse}</a></th></tr>
-	<tr><td>Origem:</td><td><a href="game.php?village={$village.id}&amp;screen=info_village&amp;id={$report.from_village}">{$report.from_villagename} ({$report.from_x}|{$report.from_y}) K{$report.from_continent}</a></td></tr>
+	<tr><th style="width:20%">{$lang->get('Atacante')}:</th><th><a href="game.php?village={$village.id}&amp;screen=info_player&amp;id={$report.from_user}">{$report.from_username|entparse}</a></th></tr>
+	<tr><td>{$lang->get('Origem')}:</td><td><a href="game.php?village={$village.id}&amp;screen=info_village&amp;id={$report.from_village}">{$report.from_villagename} ({$report.from_x}|{$report.from_y}) K{$report.from_continent}</a></td></tr>
 	<tr>
 		<td colspan="2">
 			<table class="vis" align="center">
@@ -56,15 +56,15 @@
 					<td width="35"><img src="{$config.cdn}/graphic/unit/{$dbname}.png" title="{$name}" alt="" /></td>
 					{/foreach}
 				</tr>
-				<tr class="center"><td>Tropas:</td>{foreach from=$report_units.units_a item=num_units}{if $num_units>0}<td>{$num_units}</td>{else}<td class="hidden">0</td>{/if}{/foreach}</tr>
-				<tr class="center"><td>Perdas:</td>{foreach from=$report_units.units_b item=num_units}{if $num_units>0}<td>{$num_units}</td>{else}<td class="hidden">0</td>{/if}{/foreach}</tr>
+				<tr class="center"><td style="white-space:nowrap;">{$lang->get('Tropas')}:</td>{foreach from=$report_units.units_a item=num_units}{if $num_units>0}<td>{$num_units}</td>{else}<td class="hidden">0</td>{/if}{/foreach}</tr>
+				<tr class="center"><td style="white-space:nowrap;">{$lang->get('Perdas')}:</td>{foreach from=$report_units.units_b item=num_units}{if $num_units>0}<td>{$num_units}</td>{else}<td class="hidden">0</td>{/if}{/foreach}</tr>
 			</table>
 		</td>
 	</tr>
 </table><br />
 <table width="428" style="border:1px solid #804000;" align="center">
-	<tr><th style="width:20%">Defensor:</th><th><a href="game.php?village={$village.id}&amp;screen=info_player&amp;id={$report.to_user}">{$report.to_username|entparse}</a></th></tr>
-	<tr><td>Destino:</td><td><a href="game.php?village={$village.id}&amp;screen=info_village&amp;id={$report.to_village}">{$report.to_villagename} ({$report.to_x}|{$report.to_y}) K{$report.to_continent}</a></td></tr>
+	<tr><th style="width:20%">{$lang->get('Defensor')}:</th><th><a href="game.php?village={$village.id}&amp;screen=info_player&amp;id={$report.to_user}">{$report.to_username|entparse}</a></th></tr>
+	<tr><td>{$lang->get('Destino')}:</td><td><a href="game.php?village={$village.id}&amp;screen=info_village&amp;id={$report.to_village}">{$report.to_villagename} ({$report.to_x}|{$report.to_y}) K{$report.to_continent}</a></td></tr>
 	<tr>
 		<td colspan="2">
 		{if $see_def_units}
@@ -75,8 +75,8 @@
 					<td width="35"><img src="{$config.cdn}/graphic/unit/{$dbname}.png" title="{$name}" alt="" /></td>
 					{/foreach}
 				</tr>
-				<tr class="center"><td>Tropas:</td>{foreach from=$report_units.units_c item=num_units}{if $num_units>0}<td>{$num_units}</td>{else}<td class="hidden">0</td>{/if}{/foreach}</tr>
-				<tr class="center"><td>Perdas:</td>{foreach from=$report_units.units_d item=num_units}{if $num_units>0}<td>{$num_units}</td>{else}<td class="hidden">0</td>{/if}{/foreach}</tr>
+				<tr class="center"><td style="white-space:nowrap;">{$lang->get('Tropas')}:</td>{foreach from=$report_units.units_c item=num_units}{if $num_units>0}<td>{$num_units}</td>{else}<td class="hidden">0</td>{/if}{/foreach}</tr>
+				<tr class="center"><td style="white-space:nowrap;">{$lang->get('Perdas')}:</td>{foreach from=$report_units.units_d item=num_units}{if $num_units>0}<td>{$num_units}</td>{else}<td class="hidden">0</td>{/if}{/foreach}</tr>
 			</table>
 		{else}
 			<p>Nenhuma unidade voltou com informaçes das tropas inimigas.</p>
@@ -146,7 +146,7 @@
 <table width="428" style="border:1px solid #804000;" align="center">
 	{if $report_ress.wood > 0 || $report_ress.stone > 0 || $report_ress.iron > 0}
 	<tr>
-		<th>Saque:</th>
+		<th>{$lang->get('Saque')}:</th>
 		<td width="220">
 			{if $report_ress.wood > 0}<img src="{$config.cdn}/graphic/icons/wood.png" title="Madeira" /> {$report_ress.wood} {/if}
 			{if $report_ress.stone > 0}<img src="{$config.cdn}/graphic/icons/stone.png" title="Argila" /> {$report_ress.stone} {/if}

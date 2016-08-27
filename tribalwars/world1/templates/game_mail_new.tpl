@@ -8,13 +8,13 @@
 
 <form name="header" action="game.php?village={$village.id}&amp;screen=mail&amp;mode=new&amp;action=send&amp;answer_mail_id={$view}&amp;h={$hkey}" method="post">
 <table>
-<tr><td>An:</td><td><input type="text" name="to" size="50" value="{$inputs.to}" />
-{if $user.ally_mass_mail==1 && $user.ally!=-1}<a href="javascript:popup_scroll('igm_to.php?', 250, 300)">Empfänger einfügen</a>{/if}</td></tr>
-<tr><td>Betreff:</td><td><input type="text" name="subject" size="50" value="{$inputs.subject}" /></td></tr>
+<tr><td>{$lang->get('An')}:</td><td><input type="text" name="to" size="50" value="{$inputs.to}" />
+{if $user.ally_mass_mail==1 && $user.ally!=-1}<a href="javascript:popup_scroll('igm_to.php?', 250, 300)">{$lang->get('Empfanger einfugen')}</a>{/if}</td></tr>
+<tr><td>{$lang->get('Betreff')}:</td><td><input type="text" name="subject" size="50" value="{$inputs.subject}" /></td></tr>
 <tr><td colspan="2">
 </td></tr>
 <tr><td colspan="2"><textarea name="text" cols="70" rows="20">{$inputs.text}</textarea></td></tr>
-<tr><td><input type="submit" name="preview" value="Vorschau" /> <input type="submit" name="send" value="Senden"> </td>
+<tr><td><input type="submit" name="preview" value="{$lang->get('Vorschau')}" /> <input type="submit" name="send" value="{$lang->get('Senden')}"> </td>
 <td align="right"><a onclick="javascript:popup_scroll('help.php?mode=bb', 700, 400); return false;" href="help.php?mode=bb" target="_blank"></a></td>
 </tr>
 </table>

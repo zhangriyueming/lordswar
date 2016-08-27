@@ -41,7 +41,7 @@ if(isset($_GET['action']) && $_GET['action'] == "new_offer"){
 		$c = new do_action($user['id']);
         $c->close();
 		$ratio_max = round($buy/$sell, 2);
-		$db->query("INSERT INTO `offers` (`sell`,`buy`,`sell_ress`,`buy_ress`,`multi`,`from_village`,`time`,`ratio_max`,`userid`,`x`,`y`) VALUES ('".parse($sell)."','".parse($buy)."','".parse($_POST['res_sell'])."','".parse($_POST['res_buy'])."','".parse($multi)."','".$village['id']."','".time()."','".$ratio_max."','".$user['id']."','".$village['x']."','".$village['y']."')");
+		$db->query("INSERT INTO `offers` (`sell`,`buy`,`sell_ress`,`buy_ress`,`multi`,`from_village`,`time`,`do_action`,`ratio_max`,`userid`,`x`,`y`) VALUES ('".parse($sell)."','".parse($buy)."','".parse($_POST['res_sell'])."','".parse($_POST['res_buy'])."','".parse($multi)."','".$village['id']."','".time()."','','".$ratio_max."','".$user['id']."','".$village['x']."','".$village['y']."')");
 		$id = $db->getlastid();
 		for($i=1; $i<=$multi; ++$i){
 			$db->query("INSERT INTO `offers_multi` (`id`) VALUES ('".$id."')");

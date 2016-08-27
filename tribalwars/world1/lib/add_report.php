@@ -130,9 +130,10 @@ class add_report{
     }
     function assume_offer($from_player,$from_playername,$from_village,$to_player,$to_playername,$to_village,$buy,$sell,$buy_ress,$sell_ress){
 		global $db;
+		global $lang;
 
 		$time = time();
-		$title = parse("A oferta de ".$from_playername." foi aceita.");
+		$title = parse($lang->get('A oferta de').$from_playername.$lang->get('foi aceita'));
 		$ress = "$buy;$sell;$buy_ress;$sell_ress";
 		if($from_player != "-1"){
 		    $db->query("INSERT into reports (title,time,type,in_group,receiver_userid,to_user,to_village,from_user,from_village,hives) VALUES ('$title','$time','offer','trade','$to_player','$to_player','$to_village','$from_player','$from_village','$ress')");
@@ -332,9 +333,10 @@ class add_report{
 	
 	function new_knight_item($userid, $item){
 		global $db;
+		global $lang;
 
 		$time = time();
-		$title = parse("O paladino encontrou um item");
+		$title = parse($lang->get('O paladino encontrou um item'));
 
 		if($to_userid != "-1"){
 		    $db->query("INSERT INTO `reports` (`title`,`time`,`type`,`message`,`in_group`,`receiver_userid`,`from_user`) VALUES ('$title','$time','knight_item','$item','other','$userid','0')");

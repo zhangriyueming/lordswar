@@ -81,7 +81,7 @@
 	</tr>
 	{foreach from=$own item=arr key=id}
 	<tr>
-		<td>{if $arr.type=='to'}{$lang->get('Transporte à')}{else}Retorno de{/if}<br /><a href="game.php?village={$village.id}&amp;screen=info_village&amp;id={$arr.villageid}">{$arr.villagename}</a></td>
+		<td>{if $arr.type=='to'}{$lang->get('Transporte à')}{else}{$lang->get('Retorno de')}{/if}<br /><a href="game.php?village={$village.id}&amp;screen=info_village&amp;id={$arr.villageid}">{$arr.villagename}</a></td>
 		<td>{if $arr.wood > 0}<img src="{$config.cdn}/graphic/icons/wood.png" title="Madeira" alt="" />{$arr.wood} {/if}{if $arr.stone > 0}<img src="{$config.cdn}/graphic/icons/stone.png" title="Argila" alt="" />{$arr.stone} {/if}{if $arr.iron > 0}<img src="{$config.cdn}/graphic/icons/iron.png" title="Ferro" alt="" />{$arr.iron} {/if}</td>
 		<td>{$arr.dealers}</td>
 		<td>{$arr.duration}</td>

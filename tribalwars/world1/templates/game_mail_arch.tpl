@@ -15,7 +15,7 @@
 			</td>
 		</tr>
 	{/if}
-	<tr><th>Betreff</th><th width="160">Absender</th><th width="160">Empf&auml;nger</th><th width="140">Gesendet</th></tr>
+	<tr><th>{$lang->get('Betreff')}</th><th width="160">{$lang->get('Absender')}</th><th width="160">{$lang->get('Receiver')}</th><th width="140">{$lang->get('Gesendet')}</th></tr>
 	
 		{foreach from=$mails item=arr key=id}
 			<tr>
@@ -26,30 +26,30 @@
 			</tr>
 		{/foreach}
 		{if count($mails)>0}
-			<tr><th><input name="all" type="checkbox" onclick="selectAll(this.form, this.checked)">alle ausw&auml;hlen</th><th colspan="3"></th></tr>
+			<tr><th><input name="all" type="checkbox" onclick="selectAll(this.form, this.checked)">{$lang->get('Selecionar todos')}</th><th colspan="3"></th></tr>
 		{/if}
 	</table>
 	
 		<table align="left"><tr>
-		<td><input type="submit" value="L&ouml;schen" name="del" /></td>
+		<td><input type="submit" value="{$lang->get('Delete')}" name="del" /></td>
 		</tr></table>
 	
 	</form>
 {else}
 	{if empty($error)}
 		<table align="center" class="vis"><tr>
-		<td align="center" width="120">{if $mail.from_id==-1}Antworten{else}<a href="game.php?village={$village.id}&amp;screen=mail&amp;mode=new&amp;reply={$mail.id}">Antworten</a>{/if}</td>
-		<td align="center" width="25%"><a href="game.php?village={$village.id}&amp;screen=mail&amp;mode=new&amp;reply={$mail.id}&amp;forward=true">Weiterleiten</a></td>
-		<td align="center" width="25%"><a href="game.php?village={$village.id}&amp;screen=mail&amp;mode=arch">Archivieren</a></td>
-		<td align="center" width="25%"><a href="game.php?village={$village.id}&amp;screen=mail&amp;action=del&amp;id={$mail.id}&amp;mode=arch&amp;h={$hkey}">Löschen</a></td>
+		<td align="center" width="120">{if $mail.from_id==-1}{$lang->get('Antworten')}{else}<a href="game.php?village={$village.id}&amp;screen=mail&amp;mode=new&amp;reply={$mail.id}">{$lang->get('Antworten')}</a>{/if}</td>
+		<td align="center" width="25%"><a href="game.php?village={$village.id}&amp;screen=mail&amp;mode=new&amp;reply={$mail.id}&amp;forward=true">{$lang->get('Weiterleiten')}</a></td>
+		<td align="center" width="25%"><a href="game.php?village={$village.id}&amp;screen=mail&amp;mode=arch">{$lang->get('Archivieren')}</a></td>
+		<td align="center" width="25%"><a href="game.php?village={$village.id}&amp;screen=mail&amp;action=del&amp;id={$mail.id}&amp;mode=arch&amp;h={$hkey}">{$lang->get('Delete')}</a></td>
 		</tr>
 		</table>
 		
 		<table class="vis" width="100%">
-		<tr><th width="140">Betreff</th><th width="300">{$mail.subject}</th></tr>
-		<tr><td>Absender</td><td><a href="game.php?village={$village.id}&amp;screen=info_player&amp;id={$mail.from_id}">{$mail.from_username}</a></td></tr>
-		<tr><td>Empfänger</td><td><a href="game.php?village={$village.id}&amp;screen=info_player&amp;id={$mail.to_id}">{$mail.to_username}</a></td></tr>
-		<tr><td>Gesendet</td><td>{$mail.time}</td></tr>
+		<tr><th width="140">{$lang->get('Betreff')}</th><th width="300">{$mail.subject}</th></tr>
+		<tr><td>{$lang->get('Absender')}</td><td><a href="game.php?village={$village.id}&amp;screen=info_player&amp;id={$mail.from_id}">{$mail.from_username}</a></td></tr>
+		<tr><td>{$lang->get('Receiver')}</td><td><a href="game.php?village={$village.id}&amp;screen=info_player&amp;id={$mail.to_id}">{$mail.to_username}</a></td></tr>
+		<tr><td>{$lang->get('Gesendet')}</td><td>{$mail.time}</td></tr>
 		</table>
 		
 		<table class="vis" width="100%">
@@ -59,10 +59,10 @@
 		</table>
 		
 		<table align="center" class="vis"><tr>
-		<td align="center" width="120">{if $mail.from_id==-1}Antworten{else}<a href="game.php?village={$village.id}&amp;screen=mail&amp;mode=new&amp;reply={$mail.id}">Antworten</a>{/if}</td>
-		<td align="center" width="25%"><a href="game.php?village={$village.id}&amp;screen=mail&amp;mode=new&amp;reply={$mail.id}&amp;forward=true">Weiterleiten</a></td>
-		<td align="center" width="25%"><a href="game.php?village={$village.id}&amp;screen=mail&amp;mode=arch">Archivieren</a></td>
-		<td align="center" width="25%"><a href="game.php?village={$village.id}&amp;screen=mail&amp;action=del&amp;id={$mail.id}&amp;mode=arch&amp;h={$hkey}">Löschen</a></td>
+		<td align="center" width="120">{if $mail.from_id==-1}Antworten{else}<a href="game.php?village={$village.id}&amp;screen=mail&amp;mode=new&amp;reply={$mail.id}">{$lang->get('Antworten')}</a>{/if}</td>
+		<td align="center" width="25%"><a href="game.php?village={$village.id}&amp;screen=mail&amp;mode=new&amp;reply={$mail.id}&amp;forward=true">{$lang->get('Weiterleiten')}</a></td>
+		<td align="center" width="25%"><a href="game.php?village={$village.id}&amp;screen=mail&amp;mode=arch">{$lang->get('Archivieren')}</a></td>
+		<td align="center" width="25%"><a href="game.php?village={$village.id}&amp;screen=mail&amp;action=del&amp;id={$mail.id}&amp;mode=arch&amp;h={$hkey}">{$lang->get('Delete')}</a></td>
 		</tr>
 		</table><br />
 	{/if}

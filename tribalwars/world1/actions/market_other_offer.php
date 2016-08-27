@@ -4,17 +4,21 @@ if($ACTIONS_MASSIVKEY_HIGHAAASSDD != "sdjahsdkJHSAJDKHALKJHSADJHSADNsjdhaksjdlhJ
 }
 if(isset($_GET['action']) && $_GET['action'] == "accept_multi"){
 	if($session['hkey'] != $_GET['h']){
-		$error = "Desculpe, más o código de segurança está invalido!";
+		$error = $lang->get('Desculpe, más o código de segurança está invalido');
 	}
 	$result = $db->query("SELECT `userid`,`sell`,`buy`,`sell_ress`,`buy_ress`,`from_village`,`ratio_max`,`multi`,`x`,`y` FROM `offers` WHERE `id`='".parse(@$_GET['id'])."'");
 	$row = $db->fetch($result);
 	$row['id'] = parse(@$_GET['id']);
 	if(empty($row['userid']) || $row['userid'] == $user['id']){
-		$error = "Desculpe, más está oferta não está disponivel!";
+		$error = $lang->get('Desculpe, más está oferta não está disponivel');
 	}
 	$count = (int)@$_POST['count'];
 	if($count < 1){
-		$error = "Desculpe, más você deve especificar a quantidade!";
+		$error = $lang->get('Desculpe, más você deve especificar a quantidade');
+	}
+	if ($row['multi'] < 1)
+	{
+		$db->query("DELETE FROM `offers` WHERE `id`='".$row['id']."' AND `multi`=0 AND `do_action`!='update'");
 	}
 	if(empty($error)){
 		$c = new do_action($user['id']);
@@ -22,9 +26,9 @@ if(isset($_GET['action']) && $_GET['action'] == "accept_multi"){
 
 		$return = assume_offer($row,$inside_dealers,$village['r_wood'],$village['r_stone'],$village['r_iron'],$count,true);
 		switch($return){
-			case "not_enough_multi" :	$error = "Desculpe, más não existe ofertas suficientes!";	break;
-			case "not_enough_dealers" :	$error = "Desculpe, más não existe mercadores suficientes!";	break;
-			case "not_enough_ress" :	$error = "Desculpe, más não existe recursos suficientes!";	break;
+			case "not_enough_multi" :	$error = $lang->get("Desculpe, más não existe ofertas suficientes");	break;
+			case "not_enough_dealers" :	$error = $lang->get("Desculpe, más não existe mercadores suficientes");	break;
+			case "not_enough_ress" :	$error = $lang->get("Desculpe, más não existe recursos suficientes");	break;
 			case 'ok':
 				$c->open();
 				header("LOCATION: game.php?village=".$village['id']."&screen=market&mode=other_offer");
@@ -36,7 +40,7 @@ if(isset($_GET['action']) && $_GET['action'] == "accept_multi"){
 }
 if(isset($_GET['action']) && $_GET['action'] == "search"){
 	if($session['hkey'] != $_GET['h']){
-		$error = "Desculpe, más o código de segurança está invalido!";
+		$error = $lang->get('Desculpe, más o código de segurança está invalido');
 	}
 
 	$valid_values = array("all","wood","stone","iron");

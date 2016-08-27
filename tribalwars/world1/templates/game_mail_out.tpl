@@ -15,23 +15,23 @@
 			</td>
 		</tr>
 	{/if}
-	<tr><th>Betreff</th><th width="160">Empfänger</th><th width="140">Gesendet</th></tr>
+	<tr><th>{$lang->get('Betreff')}</th><th width="160">{$lang->get('Receiver')}</th><th width="140">{$lang->get('Gesendet')}</th></tr>
 	
 		{foreach from=$mails item=arr key=id}
 			<tr>
 				<td><input name="id_{$id}" type="checkbox" /><a href="game.php?village={$village.id}&amp;screen=mail&amp;mode=out&amp;view={$id}">{$arr.subject}</a></td>
-				<td><a href="game.php?village={$village.id}&amp;screen=info_player&amp;id={$arr.to_id}">{$arr.to_username}</a>{if $arr.is_read==0} (nicht gelesen){/if}</td>
+				<td><a href="game.php?village={$village.id}&amp;screen=info_player&amp;id={$arr.to_id}">{$arr.to_username}</a>{if $arr.is_read==0} ({$lang->get('nicht gelesen')}){/if}</td>
 				<td>{$arr.time}</td>
 			</tr>
 		{/foreach}
 		{if count($mails)>0}
-			<tr><th><input name="all" type="checkbox" onclick="selectAll(this.form, this.checked)">alle auswählen</th><th colspan="2"></th></tr>
+			<tr><th><input name="all" type="checkbox" onclick="selectAll(this.form, this.checked)">{$lang->get('Selecionar todos')}</th><th colspan="2"></th></tr>
 		{/if}
 	</table>
 	
 		<table align="left"><tr>
-		<td><input type="submit" value="Löschen" name="del" /></td>
-		<td><input type="submit" value="Archivieren" name="arch" /></td>
+		<td><input type="submit" value="{$lang->get('Delete')}" name="del" /></td>
+		<td><input type="submit" value="{$lang->get('Archivieren')}" name="arch" /></td>
 		</tr></table>
 	
 	</form>
