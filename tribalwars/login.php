@@ -34,7 +34,7 @@ if(!$check_db){
 				$check_session = $db->numrows($db->query("SELECT * FROM `$world[db]`.`sessions` WHERE `userid`='".$user['id']."' AND `username`='".$user['username']."'"));
 				if($User['banned'] != 'Y'){
 					if($check_session != 1){
-						$db->query("INSERT INTO `$world[db]`.`sessions` (`userid`, `hkey`,`sid`, `username`) VALUES ('".$user['id']."','".$session['sid']."','".$hkey."','".$user['username']."')");
+						$db->query("INSERT INTO `$world[db]`.`sessions` (`userid`, `hkey`,`sid`, `username`) VALUES ('".$user['id']."','".$hkey."','".$session['sid']."','".$user['username']."')");
 						$db->query("INSERT INTO `$world[db]`.`logins` (`username`, `time`,`ip`,`userid`) VALUES ('".$user['username']."','".$time."','".$ip."','".$user['id']."')");
 					}else{
 						$db->query("UPDATE `$world[db]`.`sessions` SET `sid`='".$session['sid']."',`hkey`='".$hkey."'  WHERE `userid`='".$user['id']."'");
