@@ -40,13 +40,16 @@ if(!$check_db){
 						$db->query("UPDATE `$world[db]`.`sessions` SET `sid`='".$session['sid']."',`hkey`='".$hkey."'  WHERE `userid`='".$user['id']."'");
 						$db->query("INSERT INTO `$world[db]`.`logins` (`username`, `time`,`ip`,`userid`) VALUES ('".$user['username']."','".$time."','".$ip."','".$user['id']."')");
 					}
-					
+
 						header('Location: /'.$world['dir'].'/game.php?acvila='.$_COOKIE['session']);
 						exit;
 				}
 			}else{
 				if($_GET['action'] == 'create' && $_GET['h'] == $hkey){
-					$db->query("INSERT INTO `$world[db]`.`users` (`id`,`username`) VALUES ('".$user['id']."', '".$user['username']."')");
+					$users = new vhWorldUsers();
+					$users->table = $world['db'].'`.`users';
+					$users->create(array('id' => $user['id'], 'username' => $user['username']));
+					// $db->query("INSERT INTO `$world[db]`.`users` (`id`,`username`) VALUES ('".$user['id']."', '".$user['username']."')");
 					header("Location: login.php?world=".$world['db']);
 					exit;
 				}

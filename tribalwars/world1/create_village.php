@@ -50,5 +50,6 @@ if(isset($_GET['action']) && $_GET['action'] == "create" && $user['villages'] < 
 $tpl = new TWLan_Smarty();
 $tpl->assign("ennobled_by", entparse($user['ennobled_by']));
 $tpl->assign("config", $config);
+$tpl->assign('lang', $lang);
 $tpl->display("createvillage.tpl");
 ?>

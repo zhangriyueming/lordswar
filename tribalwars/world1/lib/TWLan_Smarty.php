@@ -1,5 +1,5 @@
 <?php
-class TWLan_Smarty extends Smarty {
+class TWLan_Smarty extends SmartyBC {
 	function __construct() {
 		parent::__construct();
 		// $this->registerPlugin('function', 'continent', 'twlan_smarty_continent');

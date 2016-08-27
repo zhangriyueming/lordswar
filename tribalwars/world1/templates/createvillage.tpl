@@ -14,38 +14,38 @@
 <table class="principal" align="center" style="width:800px; min-width:800px;">
 	<tr>
 		<td>
-			<h3 style="margin-bottom:10px;">Construir nova aldeia</h3>
+			<h3 style="margin-bottom:10px;">{$lang->get('Construir nova aldeia')}</h3>
 			{if !empty($ennobled_by)}
 			<div class="error">Você teve sua última/única aldeia dominada por {$ennobled_by}. Felizmente alguns de seus guerreiros sobreviveram e estão dispostos a combater este jogador e retomar o que é seu por direito. Caso queira entrar nesta guerra...</div>
 			{/if}
 			<table class="vis" width="100%" cellspacing="0" align="center" style="border:1px solid #804000;">
-				<tr><th colspan="2">Em que direção deseja que sua nova aldeia seja criada?</th></tr>
+				<tr><th colspan="2">{$lang->get('Em que direção deseja que sua nova aldeia seja criada')}</th></tr>
 				<tr>
 					<td width="50%" align="center">
 						<form action="create_village.php?action=create" method="post">
 							<table width="250" align="center" cellspacing="0" style="border:2px solid #804000;">
-								<tr><th style="text-align:center;">#</th><th style="text-align:center;">Direção</th></tr>
+								<tr><th style="text-align:center;">#</th><th style="text-align:center;">{$lang->get('Direção')}</th></tr>
 								<tr class="lit">
 									<td align="center"><input type="radio" name="direction" value="random" checked="checked" /></td>
-									<td align="center">Aleatório</td>
+									<td align="center">{$lang->get('Aleatório')}</td>
 								</tr>
 								<tr class="lit">
 									<td align="center"><input type="radio" name="direction" value="nw" /></td>
-									<td align="center">Noroeste</td>
+									<td align="center">{$lang->get('Noroeste')}</td>
 								</tr>
 								<tr class="lit">
 									<td align="center"><input type="radio" name="direction" value="no" /></td>
-									<td align="center">Nordeste</td>
+									<td align="center">{$lang->get('Nordeste')}</td>
 								</tr>
 								<tr class="lit">
 									<td align="center"><input type="radio" name="direction" value="sw" /></td>
-									<td align="center">Sudoeste</td>
+									<td align="center">{$lang->get('Sudoeste')}</td>
 								</tr>
 								<tr class="lit">
 									<td align="center"><input type="radio" name="direction" value="so" /></td>
-									<td align="center">Sudeste</td>
+									<td align="center">{$lang->get('Sudeste')}</td>
 								</tr>
-								<tr><th colspan="2"><span style="float:right;"><input type="submit" value="CONFIRMAR" class="button" /></span></th></tr>
+								<tr><th colspan="2"><span style="float:right;"><input type="submit" value="{$lang->get('CONFIRMAR')}" class="button" /></span></th></tr>
 							</table>
 						</form>
 					</td>
@@ -63,7 +63,7 @@
 	</tr>
 </table>
 <table class="principal" style="width:800px; min-width:800px; margin-bottom: 30px;" align="center">
-	<tr><th style="text-align:center;">&copy;{php}echo date('Y');{/php} | {$config.name} - Todos os direitos reservados</th></tr>
+	<tr><th style="text-align:center;">&copy;{php}echo date('Y');{/php} | {$config.name} - {$lang->get('rights')}</th></tr>
 </table>
 <script type="text/javascript">setImageTitles();</script>
 </body>

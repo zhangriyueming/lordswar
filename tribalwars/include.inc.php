@@ -8,6 +8,7 @@ function __autoload($class_name){
     $search_dirs = array(
 		'{name}.php',
 		'{name}.class.php',
+		'models/{name}.php',
 		'class/{name}.php',
 		'class/{name}.class.php',
 		'smarty/{name}.class.php'
