@@ -217,18 +217,18 @@ if($config['noob_protection'] > 0){
 }
 
 if($user['join_actions'] == "n"){
-	$title = parse("Welkom bij ".$config['name']."!");
+	$title = parse($lang->get('Welkom bij').$config['name']."!");
 	$db->query("INSERT INTO `mail_subject` (`subject`,`last_post`,`from_id`,`to_id`,`from_username`,`to_username`,`post_num`,`status_from`,`status_to`,`delete_from`,`delete_to`) VALUES ('".$title."', '".time()."', '-1', '".	    $user['id']."', 'Equipe ".$config['name']."', '".$user['username']."', '1', 'answered', 'new', 'n', 'n')");
-	$text = parse("Welkom bij ".$config['world_name']." [player]".entparse($user['username'])."[/player]!
+	$text = parse($lang->get('Welkom bij').$config['world_name']." [player]".entparse($user['username'])."[/player]!
 
-    We hopen dat je veel plezier hebt tijdens dit nieuwe avontuur!
-	
-	Als je vragen of problemen hebt met spel, neem dan contact op met de support
-	
-	Meld je aan op het forum, en blijf op de hoogte van het laatste nieuws :)!
+    我们希望你在这里享受冒险的乐趣。
 
-	Gegroet, 
-	Het team");
+    如果您有任何疑问或游戏中遇到了问题，请联系我们。
+
+    在论坛上注册，可以保持对最新消息的知情。 :)
+
+    祝你好远,
+    Lordswar 小组");
 	$db->query("INSERT INTO `mail_in` (`from_id`,`from_username`,`to_id`,`to_username`,`subject`,`text`,`time`) VALUES ('-1','Equipe ".$config['name']."','".$user['id']."' ,'".entparse($user['username'])."','".$title ."','".$text."','".time()."')");
 	$db->query("UPDATE `users` SET `new_mail`='1',`join_actions`='y' WHERE `id`='".$user['id']."' LIMIT 1");
 	header("LOCATION: game.php?village=".$_GET['village']."&screen=overview");
