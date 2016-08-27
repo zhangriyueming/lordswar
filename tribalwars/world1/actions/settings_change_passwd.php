@@ -24,7 +24,7 @@ if(isset($_GET['action']) && $_GET['action'] == "change_passwd"){
 			header("LOCATION: game.php?village=".$village['id']."&screen=settings&mode=change_passwd&changed");
 		}
 	}else{
-		$error = "Desculpe, más a senha atual está invalida!";
+		$error = $lang->get('Desculpe, más a senha atual está invalida');
 	}
 }
 if(isset($_GET['changed'])){

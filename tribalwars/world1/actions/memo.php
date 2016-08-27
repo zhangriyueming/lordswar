@@ -4,10 +4,10 @@ if($ACTIONS_MASSIVKEY_HIGHAAASSDD != "sdjahsdkJHSAJDKHALKJHSADJHSADNsjdhaksjdlhJ
 }
 if(isset($_GET['action']) && $_GET['action'] == "edit"){
 	if($session['hkey'] != $_GET['h']){
-		$error = "Desculpe, más o código de segurança está invalido!";
+		$error = $lang->get('Desculpe, más o código de segurança está invalido');
 	}
 	if(empty($error) && strlen($_POST['memo']) > 10000){
-		$error = "Desculpe, más você não pode exeder 10000 caracteres!";
+		$error = $lang->get('Desculpe, más você não pode exeder 10000 caracteres');
 	}
 	if(empty($error)){
 		$memo = parse($_POST['memo']);
