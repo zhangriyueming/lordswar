@@ -11,7 +11,7 @@
 	</tr>
 	{foreach from=$friends.activ item=friend}
 	<tr>
-		<td width="10"><a href="game.php?village{$village.id}&amp;screen=friends&amp;action=delete_buddy&amp;id={$friend.id}" onclick="return confirm('Certeza que gostaria de remover este jogador da lista de amigos?')"><img src="{$config.cdn}/graphic/icons/delete.png" /></a></td>
+		<td width="10"><a href="game.php?village{$village.id}&amp;screen=friends&amp;action=delete_buddy&amp;id={$friend.id}" onclick="return confirm('{$lang->get('Certeza que gostaria de remover este jogador da lista de amigos')}')"><img src="{$config.cdn}/graphic/icons/delete.png" /></a></td>
 		<td><a href="game.php?village={$village.id}&amp;screen=info_player&amp;id={$friend.uid}">{$friend.name}</a></td>
 		{if $friend.status}
 		<td style="background-color:green; text-align:center; color:white; font-weight:bold;">{$lang->get('ONLINE')}</td>

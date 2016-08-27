@@ -76,8 +76,8 @@ if(isset($_GET['action']) && $_GET['action'] == "cancel_invitation"){
 		$error = "Desculpe, más este convite não pertence a sua tribo!";
 	}
 	if(empty($error)){
-		$db->query("DELETE FROM `ally_invites` WHERE `id`='".$id."'");
-        if($db->affectedrows() == 0){
+		$res = $db->query("DELETE FROM `ally_invites` WHERE `id`='".$id."'");
+        if($res->rowCount() == 0){
 			$error = "Desculpe, más a ação não pode ser executada!";
 		}else{
             $cl_reports->ally_cancel_invite($user['id'], $row['to_userid'], $user['ally'], $ally['name']);

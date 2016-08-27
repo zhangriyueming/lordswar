@@ -100,7 +100,7 @@ class add_report{
 		global $db;
 		global $config;
 
-		$title = parse("Seu apoio de ".$from_villagename." em ".$to_villagename." foi atacado.");
+		$title = parse($lang->get("report_support_att_1").$from_villagename.$lang->get("report_support_att_2").$to_villagename.$lang->get("report_support_att_3"));
 		$titleimage = "".$config['cdn']."/graphic/dots/".$color.".png";
 		if($from_player != "-1"){
 		    $db->query("INSERT into reports (title,title_image,time,type,in_group,receiver_userid,to_user,to_village,from_user,from_village,a_units,b_units) VALUES ('$title','$titleimage','$time','supportAttack','defense','$from_player','$to_player','$to_village','$from_player','$from_village','$a_units','$b_units')");
@@ -149,7 +149,7 @@ class add_report{
 		global $db;
 
 		$time = time();
-		$title = parse($from_username." lhe convidou para à tribo '".$allyname."'.");
+		$title = parse($from_username.tr('lhe convidou para à tribo')." '".$allyname."'.");
 
 		if($to_userid != "-1"){
 		    $db->query("INSERT into reports (title,time,type,in_group,receiver_userid,to_user,from_user,ally,allyname) VALUES ('$title','$time','ally_invite','other','$to_userid','$to_userid','$from_userid','$ally','$allyname')");
@@ -160,7 +160,7 @@ class add_report{
 		global $db;
 
 		$time = time();
-		$title = parse("O convite para à tribo ".$allyname." foi cancelado.");
+		$title = parse(tr("O convite para à tribo").$allyname.tr("foi cancelado."));
 
 		if($to_userid != "-1"){
 		    $db->query("INSERT into reports (title,time,type,in_group,receiver_userid,to_user,from_user,ally,allyname) VALUES ('$title','$time','ally_cancel_invite','other','$to_userid','$to_userid','$from_userid','$ally','$allyname')");
@@ -171,7 +171,7 @@ class add_report{
 		global $db;
 
 		$time = time();
-		$title = parse(entparse($from_username)." debandou sua tribo.");
+		$title = parse(entparse($from_username).tr('debandou sua tribo'));
 
 		if($to_userid != "-1"){
 		    $db->query("INSERT into reports (title,time,type,in_group,receiver_userid,from_username,from_user) VALUES ('$title','$time','ally_clear','other','$to_userid','$from_username','$from_userid')");
@@ -182,7 +182,7 @@ class add_report{
 		global $db;
 
 		$time = time();
-		$title = parse(entparse($from_username)." aceitou a substituição de férias.");
+		$title = parse(entparse($from_username).tr('aceitou a substituição de férias'));
 
 		if($to_userid != "-1"){
 		    $db->query("INSERT into reports (title,time,type,in_group,receiver_userid,from_username,from_user) VALUES ('$title','$time','accept_uv','other','$to_userid','$from_username','$from_userid')");
@@ -193,7 +193,7 @@ class add_report{
 		global $db;
 
 		$time = time();
-		$title = parse(entparse($from_username)." solicitou uma substituição de férias.");
+		$title = parse(entparse($from_username).tr('solicitou uma substituição de férias'));
 
 		if($to_userid != "-1"){
 		    $db->query("INSERT into reports (title,time,type,in_group,receiver_userid,from_username,from_user) VALUES			('$title','$time','inquires_uv','other','$to_userid','$from_username','$from_userid')");
@@ -204,7 +204,7 @@ class add_report{
 		global $db;
 
 		$time = time();
-		$title = parse(entparse($from_username)." rejeitou a substituição de férias.");
+		$title = parse(entparse($from_username).tr('rejeitou a substituição de férias'));
 
 		if($to_userid != "-1"){
 		    $db->query("INSERT into reports (title,time,type,in_group,receiver_userid,from_username,from_user) VALUES ('$title','$time','reject_uv','other','$to_userid','$from_username','$from_userid')");
@@ -215,7 +215,7 @@ class add_report{
 		global $db;
 
 		$time = time();
-		$title = parse(entparse($from_username)." cacelou a substituição de férias.");
+		$title = parse(entparse($from_username).tr('cacelou a substituição de férias'));
 
 		if($to_userid != "-1"){
 		    $db->query("INSERT into reports (title,time,type,in_group,receiver_userid,from_username,from_user) VALUES ('$title','$time','cancel_uv','other','$to_userid','$from_username','$from_userid')");
@@ -225,7 +225,7 @@ class add_report{
     function attack_ally_visit($from_player,$from_playername,$to_player,$to_village,$to_villagename){
 		global $db;
 
-		$title = parse($from_playername." visitou ".$to_villagename.".");
+		$title = parse($from_playername.tr('visitou').$to_villagename.".");
 		$time = time();
 
 		if($from_player != "-1"){
@@ -241,7 +241,7 @@ class add_report{
 		global $db;
 
 		$time = time();
-		$title = parse(entparse($from_username)." deseja adicionar você em sua lista de amigos.");
+		$title = parse(entparse($from_username).tr('deseja adicionar você em sua lista de amigos'));
 
 		if($to_userid != "-1"){
 		    $db->query("INSERT INTO `reports` (`title`,`time`,`type`,`in_group`,`receiver_userid`,`from_username`,`from_user`) VALUES ('$title','$time','invite_friend','other','$to_userid','$from_username','$from_userid')");
@@ -252,7 +252,7 @@ class add_report{
 		global $db;
 
 		$time = time();
-		$title = parse(entparse($from_username)." removeu você de sua lista de amigos.");
+		$title = parse(entparse($from_username).tr('removeu você de sua lista de amigos'));
 
 		if($to_userid != "-1"){
 		    $db->query("INSERT INTO `reports` (`title`,`time`,`type`,`in_group`,`receiver_userid`,`from_username`,`from_user`) VALUES ('$title','$time','delete_friend','other','$to_userid','$from_username','$from_userid')");
@@ -263,7 +263,7 @@ class add_report{
 		global $db;
 
 		$time = time();
-		$title = parse(entparse($from_username)." cancelou o pedido de amizade.");
+		$title = parse(entparse($from_username).tr('cancelou o pedido de amizade'));
 
 		if($to_userid != "-1"){
 		    $db->query("INSERT INTO `reports` (`title`,`time`,`type`,`in_group`,`receiver_userid`,`from_username`,`from_user`) VALUES ('$title','$time','cancel_friend','other','$to_userid','$from_username','$from_userid')");
@@ -274,7 +274,7 @@ class add_report{
 		global $db;
 
 		$time = time();
-		$title = parse(entparse($from_username)." aceitou seu pedido de amizade.");
+		$title = parse(entparse($from_username).tr('aceitou seu pedido de amizade'));
 
 		if($to_userid != "-1"){
 		    $db->query("INSERT INTO `reports` (`title`,`time`,`type`,`in_group`,`receiver_userid`,`from_username`,`from_user`) VALUES ('$title','$time','approve_friend','other','$to_userid','$from_username','$from_userid')");
@@ -285,7 +285,7 @@ class add_report{
 		global $db;
 
 		$time = time();
-		$title = parse(entparse($from_username)." rejeitou seu pedido de amizade.");
+		$title = parse(entparse($from_username).tr('rejeitou seu pedido de amizade'));
 
 		if($to_userid != "-1"){
 		    $db->query("INSERT INTO `reports` (`title`,`time`,`type`,`in_group`,`receiver_userid`,`from_username`,`from_user`) VALUES ('$title','$time','reject_friend','other','$to_userid','$from_username','$from_userid')");
@@ -313,7 +313,7 @@ class add_report{
 			    $spya += $bb[$count];
 		        $spyb += $dd[$count];
 			}
-		}	 			 
+		}
 		if($spya == $spyb){
 			if($spy){
 				return true;

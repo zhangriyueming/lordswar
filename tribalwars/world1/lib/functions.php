@@ -1,4 +1,8 @@
 <?php
+function tr($str) {
+	global $lang;
+	return $lang->get($str);
+}
 function userdata_encode($key, $text){
     $l_k = strlen($key);
     $l_t = strlen($text);
