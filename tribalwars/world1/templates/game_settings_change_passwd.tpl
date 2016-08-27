@@ -2,7 +2,6 @@
 {if $changed}
 	<b>{$lang->get('Passwort geandert')}</b><br />
 {/if}
-<p>Hier kannst du dein Passwort ändern. Gib dazu dein altes Passwort und dein neues Passwort an. Das neue Passwort musst du zur Sicherheit zwei mal eingeben.</p>
 <p>Dein neues Passwort wird auf <em>allen Welten geändert</em> und ist nach der Änderung <em>sofort</em> gültig und braucht nicht per E-Mail bestätigt werden</p>
 
 <form method="post" action="game.php?village={$village.id}&amp;screen=settings&amp;mode=change_passwd&amp;action=change_passwd&amp;h={$hkey}">
