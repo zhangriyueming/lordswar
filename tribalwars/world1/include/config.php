@@ -27,12 +27,12 @@ date_default_timezone_set("Asia/Shanghai");
 
 // Configurações especiais:
 $config['name'] = 'Lordswar'; // Game name :) Can be your own ;D
-$config['ano'] = '2014'; // Year of server start
+$config['ano'] = '2016'; // Year of server start
 $config['cdn'] = 'http://localhost/global_cdn'; // Image / JS directory
-$config['forum'] = ''; // Link to your forum
+$config['forum'] = 'http://localhost:8080'; // Link to your forum
 $config['version'] = 'V0.1 '; // Version number
 $config['global_db'] = 'tribalwars_main'; // DATABASE name!
-$config['world_name'] = 'Wereld 1'; // Name of the World :) 
+$config['world_name'] = 'World 1'; // Name of the World :) 
 $config['c_db_name'] = 'pkmhunters_world'; // Name of the world database
 
 // $config['lang'] = 'PT';
@@ -43,14 +43,15 @@ $config['lang'] = 'CN';
 
 
 
-// Senha da administração:
-$config['master_pw'] = "testtest";
+// 管理密码:
+$config['master_pw'] = "12396kw9o69Q6";
 
-// Velocidade do jogo:
+// 游戏速度:
 $config['speed'] = 100;
 
 // Depois de quantas aldeias criadas, será adicionada uma aldeia barbára?
 // Se definido "-1" não será criado aldeias barbáras automaticamente.
+// 如果设置为“-1”将不会自动创建野蛮的村庄
 $config['count_create_left'] = 1;
 
 // Quantas aldeias, um jogador deve ter pelo menos?
@@ -66,13 +67,14 @@ $config['min_villages'] = 1;
 $config['map_incircle'] = 0;
 
 //Qual o nome padrão da aldeia de barbáros?
-$config['left_name'] = 'Barbarendorp';
+$config['left_name'] = '废墟';
 
 // Quando alguem for criar uma aldeia, poderá escolher a direção?
 // Use true ou false
 $config['village_choose_direction'] = true;
 
 // Defesa básica de cada aldeia.
+// 每个村的基本防御
 $config['reason_defense'] = 50;
 
 // O que se aplica a um fator em espiões? O valor "2" meios: 2x Se o defensor
@@ -84,11 +86,14 @@ $config['factor_spy'] = 2;
 // Em minutos após um ataque pode ser interrompido?
 // NOTA: Este valor não depende da velocidade! Isto é, aos 10 minutos
 // Horário de visitação estão em uma velocidade de jogo de 300 ainda 10 minutos!
+// 几分钟之内后的攻击可以停止
 $config['cancel_movement'] = 10;
 
 // Velocidade das unidades. Quanto menor for o valor, mais lento será o
 // Unidades. Velocidade normal tem o valor "1".
-$config['movement_speed'] = 0.03;
+// 速度单位。该值越低，单位越慢。正常速度是“1”。
+// $config['movement_speed'] = 0.03;
+$config['movement_speed'] = 0.1;
 
 // Deve ser moralidade ativa ou não?
 // true => Moral é ativo
