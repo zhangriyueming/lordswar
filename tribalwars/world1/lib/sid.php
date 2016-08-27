@@ -23,7 +23,11 @@ class sid{
 			$hkey .= $sid_letters[rand(0, 61)];
 		}
 		$is_uv = $is_uv ? 1 : 0;
-		$this->db->query("INSERT INTO `sessions` (`userid`,`sid`,`hkey`,`is_vacation`) VALUES ('".$userid."','".$sid."','".$hkey."','".$is_uv."')");
+		$sessions = new vhSessions();
+		$sessions->create(array(
+			'userid' => $userid, 'sid' => $sid, 'hkey' => $hkey,
+			'is_vacation' => $is_uv));
+		// $this->db->query("INSERT INTO `sessions` (`userid`,`sid`,`hkey`,`is_vacation`) VALUES ('".$userid."','".$sid."','".$hkey."','".$is_uv."')");
 		setcookie("session", $sid);
 	}
 	function logout($userid){

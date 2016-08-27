@@ -8,20 +8,20 @@ if(isset($_GET['action']) && $_GET['action'] == 'sitter_offer'){
 	$c->close();
 
 	if(@$session['hkey'] != $_GET['h']){
-		$error = "Desculpe, más o código de segurança está invalido!";
+		$error = $lang->get('Desculpe, más o código de segurança está invalido');
 	}
 
 	$username = parse(trim(@$_POST['sitter']));
 	$result = $db->query("SELECT `id`,`username` FROM `users` WHERE `username`='".$username."'");
 	$row = $db->fetch($result);
 	if(empty($error) && empty($row['id'])){
-		$error = "Desculpe, más não encontramos nennhum jogador com este nome!";
+		$error = $lang->get('Desculpe, más não encontramos nennhum jogador com este nome');
 	}
 	if(!empty($user['vacation_name'])){
-		$error = "Desculpe, más você ja tem uma solicitação de férias em aberto!";
+		$error = $lang->get('Desculpe, más você ja tem uma solicitação de férias em aberto');
 	}
 	if(empty($error) && $row['id'] == $user['id']){
- 		$error = "Desculpe, más você não pode ser seu próprio substituto!";
+ 		$error = $lang->get('Desculpe, más você não pode ser seu próprio substituto');
 	}
 	if(empty($error)){
 		$cl_reports->inquires_uv($user['username'],$user['id'],$row['id']);
@@ -116,11 +116,11 @@ if(isset($_GET['action']) && $_GET['action'] == 'sitter_accept' && !$sid->is_vac
 		$error = "Desculpe, más está solicitação não pertence a você!";
 	}
 	if(empty($error) && $row['vacation_accept'] == 1){
-		$error = "Desculpe, más não é possível executar está ação!";
+		$error = $lang->get('Desculpe, más não é possível executar está ação');
 	}
 	if(empty($error)){
 		$cl_reports->accept_uv($user['username'],$user['id'],$playerid);
-		$db->query("UPDATE `users` SET `vacation_accept`='1' WHERE `id`='".$playerid['id']."'");
+		$db->query("UPDATE `users` SET `vacation_accept`='1' WHERE `id`='".$playerid."'");
 		header("LOCATION: game.php?village=".$village['id']."&screen=settings&mode=vacation");
 		exit;
 	}

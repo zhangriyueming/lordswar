@@ -6,11 +6,11 @@ if($ACTIONS_MASSIVKEY_HIGHAAASSDD != "sdjahsdkJHSAJDKHALKJHSADJHSADNsjdhaksjdlhJ
 if(!isset($_GET['mode'])) $_GET['mode'] = "profile";
 
 $links = array(
-	"Perfil" => "profile",
-	"Minha conta" => "settings",
-	"Modo de férias" => "vacation",
-	"Acessos" => "logins",
-	"Trocar senha" => "change_passwd"
+	$lang->get("Perfil") => "profile",
+	$lang->get("Minha conta") => "settings",
+	$lang->get("Modo de férias") => "vacation",
+	$lang->get("Acessos") => "logins",
+	$lang->get("Trocar senha") => "change_passwd"
 );
 if(in_array($_GET['mode'], $links)){
 	include("settings_".$_GET['mode'].".php");

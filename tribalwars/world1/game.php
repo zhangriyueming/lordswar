@@ -67,6 +67,7 @@ if(!$sid->is_vacation() && $user['vacation_accept'] == '1'){
     $tpl = new Smarty();
     $tpl->assign("vacation_name", entparse($user['vacation_name']));
     $tpl->assign("hkey", $session['hkey']);
+    $tpl->assign("lang", $lang);
     $tpl->display('vacation_window.tpl');
     exit;
 }

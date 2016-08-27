@@ -1,6 +1,6 @@
-<h3>Passwort ändern</h3>
+<h3>{$lang->get('Passwort andern')}</h3>
 {if $changed}
-	<b>Passwort geändert</b><br />
+	<b>{$lang->get('Passwort geandert')}</b><br />
 {/if}
 <p>Hier kannst du dein Passwort ändern. Gib dazu dein altes Passwort und dein neues Passwort an. Das neue Passwort musst du zur Sicherheit zwei mal eingeben.</p>
 <p>Dein neues Passwort wird auf <em>allen Welten geändert</em> und ist nach der Änderung <em>sofort</em> gültig und braucht nicht per E-Mail bestätigt werden</p>
