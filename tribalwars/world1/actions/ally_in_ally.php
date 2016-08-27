@@ -5,13 +5,13 @@ if($ACTIONS_MASSIVKEY_HIGHAAASSDD != "sdjahsdkJHSAJDKHALKJHSADJHSADNsjdhaksjdlhJ
 
 if(!isset($_GET['mode'])) $_GET['mode'] = "overview";
 
-$links['Geral'] = "overview";
-$links['Perfil'] = "profile";
-$links['Membros'] = "members";
-if($user['ally_diplomacy'] == 1) $links['Diplomacia'] = "contracts";
-if($user['ally_invite'] == 1) $links['Convites'] = "invite";
-if($user['ally_lead'] == 1) $links['Boas vindas'] = "intro_igm";
-if($user['ally_diplomacy'] == 1) $links['Propriedades'] = "properties";
+$links[$lang->get('Geral')] = "overview";
+$links[$lang->get('Perfil')] = "profile";
+$links[$lang->get('Membros')] = "members";
+if($user['ally_diplomacy'] == 1) $links[$lang->get('Diplomacia')] = "contracts";
+if($user['ally_invite'] == 1) $links[$lang->get('Convites')] = "invite";
+if($user['ally_lead'] == 1) $links[$lang->get('Boas vindas')] = "intro_igm";
+if($user['ally_diplomacy'] == 1) $links[$lang->get('Propriedades')] = "properties";
 
 $result = $db->query("SELECT `id`,`image`,`name`,`short`,`intern_text`,`homepage`,`irc`,`description`,`intro_igm` FROM `ally` WHERE `id`='".$user['ally']."'");
 $ally = $db->fetch($result);

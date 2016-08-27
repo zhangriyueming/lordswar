@@ -119,7 +119,7 @@ if(isset($_GET['action']) && $_GET['action'] == "ally_image" && $user['ally_dipl
 		@unlink("./graphic/ally/".$ally['image']);
 
 		if(empty($_FILES['image']['name'])){
-			$c->open();
+			// $c->open();
 			header("LOCATION: game.php?village=".$village['id']."&screen=ally&mode=properties");
 			exit;
 		}

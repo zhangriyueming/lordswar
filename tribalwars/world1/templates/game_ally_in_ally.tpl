@@ -1,7 +1,7 @@
 <h2 style="font-size:20px; font-weight:bold; text-transform:uppercase; margin-bottom:0px;"><div align="center">{$ally.name}</div></h2>
 {if !empty($error)}<div class="error">{$error}</div>{/if}
 <table class="vis" id="menu" width="100%" style="border:1px solid #804000;">
-	<tr><th colspan="100%">Submenus</th></tr>
+	<tr><th colspan="100%">{$lang->get('Submenus')}</th></tr>
 	<tr>
 	{foreach from=$links item=f_mode key=f_name}
 		{if $f_mode==$mode}

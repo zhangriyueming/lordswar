@@ -1,4 +1,4 @@
-<h3>Besiegte Gegner</h3>
+<h3>{$lang->get('Pontos de batalha tribos')}</h3>
 
 <table class="vis">
 	<tr>
