@@ -1,10 +1,10 @@
 <?php
-class TWLan_Smarty extends Smarty {
+class TWLan_Smarty extends SmartyBC {
 	function __construct() {
 		parent::__construct();
-		$this->register_function('continent', 'twlan_smarty_continent');
-		$this->register_function('generateLink', array(&$this, 'generateLink'));
-		$this->register_modifier('round', 'round');
+		// $this->registerPlugin('function', 'continent', 'twlan_smarty_continent');
+		$this->registerPlugin('function', 'generateLink', array(&$this, 'generateLink'));
+		$this->registerPlugin('modifier', 'round', 'round');
 		$this->template_dir = 'templates';
 		$this->compile_dir = 'templates_c';
 		if(function_exists('smarty_graphic_package')){

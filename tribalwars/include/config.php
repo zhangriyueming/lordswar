@@ -16,17 +16,19 @@ $config['db_user'] = 'root'; // Database Username
 $config['db_pw'] = '96kw9o69Q6'; // Database Password
 $config['db_name'] = ''; // Database Name
 
+$config['lang'] = 'CN';
+
 // Acesso master ao painel administrativo
 $config['master_user'] = 'Admin';
 $config['master_pw'] = 'Zapping1234';
 
 // Configurações especiais...
-$config['name'] = '';
-$config['ano'] = '2014';
+$config['name'] = 'Lordswar';
+$config['ano'] = '2016';
 $config['cdn'] = 'global_cdn';
 $config['forum'] = '#';
 $config['support'] = 'zapping_support/';
-$config['version'] = 'V0.1 DEVELOPMENT';
+$config['version'] = 'v0.1';
 $config['prefix'] = '';
 
 ?>

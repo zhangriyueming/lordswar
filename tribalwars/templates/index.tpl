@@ -18,17 +18,25 @@
 		<table width="100%" height="32" id="menu_top">
 			<tr>
 				<td><div align="center"><a href="?screen=home">{$lang->get("menuHome")}</a></div></td>
+				{if false}
 				<td><div align="center"><a href="?screen=rules">{$lang->get("menuRules")}</a></div></td>
+				{/if}
+				{if false}
 				<td><div align="center"><a href="?screen=team">{$lang->get("menuTeam")}</a></div></td>
+				{/if}
+				{if false}
 				<td><div align="center"><a href="{$config.support}" target="_blank">{$lang->get("menuSupport")}</a></div></td>
+				{/if}
+				{if false}
 				<td><div align="center"><a href="stats.php">{$lang->get("menuStatistics")}</a></div></td>
+				{/if}
 				<td><div align="center"><a href="{$config.forum}" target="_blank" target="_blank">{$lang->get("menuForum")}</a></div></td>
 			</tr>
 		</table>
 		<table class="antet">
 			<tr>
 				<td class="stanga"></td>
-				<td class="header" width="90%" style="background: transparent url('{$config.cdn}/Imperalis.png') no-repeat 20% bottom;">
+				<td class="header" width="90%" {if false}style="background: transparent url('{$config.cdn}/Imperalis.png') no-repeat 20% bottom;"{/if}>
 					<table width="100%" style="border-spacing:0px;">
 						<tr>
 							<td width="50%" valign="middle" align="center"></td>
@@ -40,7 +48,7 @@
 										<td width="50%"><a onclick="setVisibility('words', 'inline');"><div id="world" class="button">{$lang->get("login")}</div></a></td>
 										<form action="process.php" id="logout" method="POST">
 											<input type="hidden" name="action" value="logout">
-											<td><input type="button" id="do_logout" onclick="TWLan.logout();" class="button red" value="Uitloggen" style="width:115px" /></td>
+											<td><input type="button" id="do_logout" onclick="TWLan.logout();" class="button red" value="{$lang->get('Uitloggen')}" style="width:115px" /></td>
 										</form>
 									</tr>
 								{else}
@@ -82,13 +90,14 @@
 		</div>
 		<table class="principal" id="round">
 			<tr>
-				<th class="sus_s">&raquo; {if $logged_in}{$lang->get("userinfo")}{else}{$lang->get("registernow")}{/if}</th>
-				<th style="text-align: right;"><img src="{$config.cdn}/NL.png" title="Nederlands" /></th>
+				<th class="sus_s">&raquo; {if $logged_in}{else}{$lang->get("registernow")}{/if}</th>
+				<th style="text-align: right;">{if false}<img src="{$config.cdn}/NL.png" title="Nederlands" />{/if}</th>
 			</tr>
 			<tr>
 				<td width="27%">
 					<table class="vis" cellspacing="1" width="100%" align="center">
 					{if $logged_in}
+						{if false}
                     	<tr><td>{$lang->get("premiumpoints")}:</td><td align="right">{$user.premium_points|format_number}</td></tr>
                         <tr><td>{$lang->get("email")}:</td><td align="right">{$user.email}</td></tr>
                         <tr><td>{$lang->get("ipaddress")}:</td><td align="right">{$ip}</td></tr>
@@ -96,6 +105,7 @@
 					    <tr><td>{$lang->get("rank")}:</td><td align="right">{$rank}</td></tr>
 					    <tr><td>{$lang->get("victorys")}:</td><td align="right">{$user.wins|format_number}</td></tr>
 						<tr><th colspan="2" style="text-align:center;">{$lang->get("registeredsince")} {$user.join_date|format_date}</th></tr>
+						{/if}
 					{else}
 						<form action="process.php" id="register" method="post">
 							<input type="hidden" name="action" value="register">
@@ -149,7 +159,7 @@
 			</tr>
 		<tr>
 			<th style="text-align:center;">
-				<span id="slim">{$lang->get('loadingtime')}: <strong>{$load_msec}</strong>ms</span>
+				<span id="slim">{$lang->get('loadingtime')} <strong>{$load_msec}</strong>ms</span>
 			</th>
 			<th style="text-align:center;">
 				{$config.version}

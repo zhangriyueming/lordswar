@@ -59,5 +59,4 @@ if($time+5 < time())
 $run_key = generate_key();
 $country = new Country();
 include('bbcodes.php');
-
 ?>

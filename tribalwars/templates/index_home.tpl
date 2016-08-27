@@ -1,6 +1,8 @@
-<h2>{$config.name} - Het is oorlog!</h2>
-					<p><strong>{$config.name}</strong> Testverhaal.</p>
+<h2>{$config.name} - {$lang->get('Het is oorlog')}!</h2>
+					<p><strong>{$config.name}</strong> 已经开始了，快来加入战斗吧。</p>
+					{if false}
 					<p align="center">Er zijn <b>{$players}</b> spelers geregistreerd | <b>{$online}</b> Spelers online</p>
+					{/if}
 					{if count($announcement)>0}
 					<table class="vis" width="100%" cellspacing="1">
 						<tr><th colspan="2">Mededelingen:</th></tr>

@@ -62,7 +62,7 @@ while ($row = $db->Fetch($result)) {
 }
 
 $allow_screens = array("home","rules","team","support");
-$lang = new aLang("index", "PT");
+$lang = new aLang("index", $config['lang']);
 $tpl = new TWLan_Smarty();
 $tpl->assign("screen", $_GET['screen']);
 $tpl->assign('allow_screens', $allow_screens);

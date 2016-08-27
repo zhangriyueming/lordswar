@@ -2,8 +2,8 @@
 require_once("./include.inc.php");
 ob_start();
 session_start();
+$lang = new aLang('index', $config['lang']);
 
-$tpl = new TWLan_Smarty();
 $world = $db->fetch($db->query("SELECT * FROM `worlds` WHERE `db`='".parse($_GET['world'])."'"));
 $check_db = $db->query("SELECT * FROM `$world[db]`.`users`");
 if(!$check_db){ 
@@ -50,6 +50,7 @@ if(!$check_db){
 					header("Location: login.php?world=".$world['db']);
 					exit;
 				}
+				$tpl = new TWLan_Smarty();
 				$tpl->assign("world", $world);
 				$tpl->assign("User", $User);
 				$tpl->assign("configy", $config);
@@ -64,5 +65,9 @@ if(!$check_db){
 		}
 	}
 }
+if (!isset($tpl)) {
+	$tpl = new TWLan_Smarty();
+}
+$tpl->assign('lang', $lang);
 $tpl->display("login.tpl");
 ?>
