@@ -1,4 +1,4 @@
-<h2>Mensagens</h2>
+<h2>{$lang->get('Mensagens')}</h2>
 {if !empty($error)}
 	<div class="error">{$error}</div>
 {/if}

@@ -41,7 +41,7 @@
 					<tr><td><a href="game.php?village={$village.id}&amp;screen=report&amp;mode=attack">&raquo; {$lang->get("attacks")}</a></td></tr>
 					<tr><td><a href="game.php?village={$village.id}&amp;screen=report&amp;mode=defense">&raquo; {$lang->get("defjes")}</a></td></tr>
 					<tr><td><a href="game.php?village={$village.id}&amp;screen=report&amp;mode=support">&raquo; {$lang->get("os")}</a></td></tr>
-					<tr><td><a href="game.php?village={$village.id}&amp;screen=report&amp;mode=trade">&raquo; {$lang->get("market")}</a></td></tr>
+					<tr><td><a href="game.php?village={$village.id}&amp;screen=report&amp;mode=trade">&raquo; {$lang->get("Mercado")}</a></td></tr>
 					<tr><td><a href="game.php?village={$village.id}&amp;screen=report&amp;mode=other">&raquo; {$lang->get("else")}</a></td></tr>
 				</table>
 			</td>

@@ -3,14 +3,16 @@ if($ACTIONS_MASSIVKEY_HIGHAAASSDD != "sdjahsdkJHSAJDKHALKJHSADJHSADNsjdhaksjdlhJ
 	exit;
 }
 
+$lang = new aLang('game', $config['lang']);
+
 if(!isset($_GET['mode'])) $_GET['mode'] = "in";
 
 $links = array(
-	"Entrada" => "in",
-	"Saída" => "out",
-	"Arquivo" => "arch",
-	"Escrever mensagem" => "new",
-	"Bloquear remetente" => "block"
+	$lang->get("Entrada") => "in",
+	$lang->get("Saída") => "out",
+	$lang->get("Arquivo") => "arch",
+	$lang->get("Escrever mensagem") => "new",
+	$lang->get("Bloquear remetente") => "block"
 );
 $allow_mods = array("in","out","new","block","arch");
 if(in_array($_GET['mode'], $allow_mods)){
