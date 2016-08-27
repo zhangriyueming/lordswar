@@ -99,7 +99,7 @@
 						<th width="50%" valign="bottom" align="left" style="padding: 0px;">
 							<table class="header_login" style="padding:2px;" width="30%">
 								<tr>
-									<td align="center"><font color="black"><b>Rank: {$user.rang}º ({$user.points|format_number} P)</b></font></td>
+									<td align="center"><font color="black"><b>{$lang->get('Might')}: {$user.points|format_number}</b></font></td>
 									{if $user.villages>1}
                                                                               <td>
 											{if !empty($village_array.last)}

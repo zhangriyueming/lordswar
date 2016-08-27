@@ -72,7 +72,8 @@ function numberFormat($num){
      return preg_replace("/(?<=\d)(?=(\d{3})+(?!\d))/",",",$num);
 } 
 function format_number($number){
-	return str_replace(",","<span class=\"grey\">,</span>",numberFormat($number));
+	return numberFormat($number);
+	// return str_replace(",","<span class=\"grey\">,</span>",numberFormat($number));
 }
 function getfirstvillage($userid){
 	global $db;
