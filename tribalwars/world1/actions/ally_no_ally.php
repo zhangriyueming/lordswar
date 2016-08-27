@@ -40,7 +40,8 @@ if(isset($_GET['action']) && $_GET['action'] == "create"){
 	if(empty($error)){
 		$intern_text = parse("Tribo fundada por [player]".entparse($user['username'])."[/player]\n\nEste texto pode ser alterado pelos administradores da tribo.");
 		$description = parse("[ally]".$_POST['tag']."[/ally] foi fundada por [player]".entparse($user['username'])."[/player].\nEm caso de dúvidas dirija-se à [player]".entparse($user['username'])."[/player]\n\nEste texto pode ser alterado pelos diplomatas da tribo.");
-		$db->query("INSERT INTO `ally` (`short`,`name`,`intern_text`,`description`,`homepage`,`irc`,`image`,`intro_igm`) VALUES ('".parse($_POST['tag'])."','".parse($_POST['name'])."','".$intern_text."','".$description."','','','','')");
+		$ally = new vhAlly();
+		$ally->create(array('short' => parse($_POST['tag']), 'name' => parse($_POST['name']), 'intern_text' => $intern_text, 'description' => $description));
 		$id = $db->getlastid();
 		$db->query("UPDATE `users` SET `ally`=".$id.",`ally_titel`='',`ally_found`='1',`ally_lead`='1',`ally_invite`='1',`ally_diplomacy`='1',`ally_mass_mail`='1' WHERE `id`='".$user['id']."'");
 		reload_ally_points($id);

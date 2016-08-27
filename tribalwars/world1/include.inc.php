@@ -9,6 +9,7 @@ function LoadFuncVV1($class_name){
 		'{name}.php',
 		'{name}.class.php',
 		'class/{name}.php',
+    'models/{name}.php',
 		'class/{name}.class.php',
 		'smarty/{name}.class.php'
     );
