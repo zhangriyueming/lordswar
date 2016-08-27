@@ -19,8 +19,8 @@ $config['db_name'] = ''; // Database Name
 $config['lang'] = 'CN';
 
 // Acesso master ao painel administrativo
-$config['master_user'] = 'Admin';
-$config['master_pw'] = 'Zapping1234';
+$config['master_user'] = 'sowicm';
+$config['master_pw'] = '12396kw9o69Q6';
 
 // Configurações especiais...
 $config['name'] = 'Lordswar';
