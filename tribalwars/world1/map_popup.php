@@ -1,6 +1,7 @@
 <?php
 	include('include.inc.php');
 	$timp = time();
+	$lang = new aLang('game', $config['lang']);
 
 	// Get vars
 	$v = $_GET['v'];
@@ -44,8 +45,8 @@
 	$info_title = "$villages[name] ($villages[x]|$villages[y]) K$villages[continent]";
 	$info_points = $villages['points'];
 	$username = urldecode($users['username']);
-	$info_owner = "$username ($users[points] Pts.)";
-	$info_tribe = "$ally[name] ($ally[points] Pts.)";
+	$info_owner = "$username ($users[points] ".$lang->get('Pts').")";
+	$info_tribe = "$ally[name] ($ally[points] ".$lang->get('Pts').")";
 	$info_noob = date("d.m.Y H:i", $users['noob_protection']);
 
 	// Calculate farm info
@@ -74,6 +75,7 @@
     	$hms .= str_pad($seconds, 2, "0", STR_PAD_LEFT);
 	    return $hms;
 	}
+
 ?>
 <table class="vis" style="background-color: #F0E6C8; border:1px solid rgb(128, 64, 0);" width="100%">
 	<tr><?php if($villages['bonus'] > 0){ ?>
@@ -97,41 +99,41 @@
     	<th colspan="2"><?php echo $info_title;?></th>
     </tr>
 <?php if($users['noob_protection'] >= $timp){ ?>
-    <tr><td colspan="2"><div class="error">Jogador sob prote&ccedil;&atilde;o de iniciantes! Fim da Prote&ccedil;&atilde;o: <?php echo $info_noob; ?></div></td></tr>
+    <tr><td colspan="2"><div class="error"><?=$lang->get('Jogador sob proteção de iniciantes Fim da Proteção')?> <?php echo $info_noob; ?></div></td></tr>
 <?php } ?>
 <?php if($villages['bonus'] > 0){ ?>
 		<tr><td colspan="2" align="center">
 <?php 
 	if($villages['bonus'] == 1){
-		echo "<b>50% meer opslagcapaciteit en handelaren</b>";
+		echo "<b>50% ".$lang->get('meer opslagcapaciteit en handelaren')."</b>";
 	}elseif($villages['bonus'] == 2){
-		echo "<b>10% meer populatie</b>";
+		echo "<b>10% ".$lang->get('meer populatie')."</b>";
 	}elseif($villages['bonus'] == 3){
-		echo "<b>33% snellere productie in de stal</b>";
+		echo "<b>33% ".$lang->get('snellere productie in de stal')."</b>";
 	}elseif($villages['bonus'] == 4){
-		echo "<b>33% snellere productie in de kazerne</b>";
+		echo "<b>33% ".$lang->get("snellere productie in de kazerne")."</b>";
 	}elseif($villages['bonus'] == 5){
-		echo "<b>50% snellere productie in de werkplaats</b>";
+		echo "<b>50% ".$lang->get('snellere productie in de werkplaats')."</b>";
 	}elseif($villages['bonus'] == 6){
-		echo "<b>30% verhoogde productie van grondstoffen</b>";
+		echo "<b>30% ".$lang->get('verhoogde productie van grondstoffen')."</b>";
 	}
 ?>
 	 </td></tr>
 <?php } ?>
     <tr>
-        <td width="30%">Punten:</td><td><?php echo $info_points;?></td>     
+        <td width="30%"><?=$lang->get('Punten')?>:</td><td><?php echo $info_points;?></td>     
     </tr>
     <?php if($villages['userid'] == -1){ ?>
     <tr>
-        <td colspan="2" align="center">Verlaten dorp</td>     
+        <td colspan="2" align="center"><?=$lang->get('Verlaten dorp')?></td>
     </tr>
     <?php }else{ ?>
     <tr>
-        <td width="30%">Eigenaar:</td><td><?php echo $info_owner;?></td>     
+        <td width="30%"><?=$lang->get('Eigenaar')?>:</td><td><?php echo $info_owner;?></td>     
     </tr>
     <?php } if($users['ally'] != -1 && $villages['userid'] != -1){ ?>
     <tr>
-        <td width="30%">Stam:</td><td><?php echo $info_tribe;?></td>     
+        <td width="30%"><?=$lang->get('Stam')?>:</td><td><?php echo $info_tribe;?></td>     
     </tr>
     <?php } if($u == $villages['userid']){ ?>
     <tr>
