@@ -6,13 +6,14 @@ if($ACTIONS_MASSIVKEY_HIGHAAASSDD != "sdjahsdkJHSAJDKHALKJHSADJHSADNsjdhaksjdlhJ
 if(!isset($_GET['mode']))
 	$_GET['mode'] = "all";
 
+$lang = new aLang('game', $config['lang']);
 $links = array(
-	"Todos" => "all",
-	"Ataques" => "attack",
-	"Defesas" => "defense",
-	"Apoio" => "support",
-	"Mercado" => "trade",
-	"Outros" => "other"
+	$lang->get("Todos") => "all",
+	$lang->get("Ataques") => "attack",
+	$lang->get("Defesas") => "defense",
+	$lang->get("Apoio") => "support",
+	$lang->get("Mercado") => "trade",
+	$lang->get("Outros") => "other"
 );
 $allow_mods = array("all","attack","defense","support","trade","other");
 

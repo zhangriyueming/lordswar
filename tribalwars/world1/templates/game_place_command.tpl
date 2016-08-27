@@ -27,12 +27,12 @@
 	</table>
 </form>
 {if count($my_movements)>0}
-<h3>Seus comandos</h3>
+<h3>{$lang->get('Seus comandos')}</h3>
 <table class="vis">
 	<tr>
-		<th width="250">Comando</th>
-		<th width="160">Chegada</th>
-		<th width="80">Chegada em</th>
+		<th width="250">{$lang->get('Comando')}</th>
+		<th width="160">{$lang->get('Chegada')}</th>
+		<th width="80">{$lang->get('Chegada em')}</th>
 	</tr>
 	{foreach from=$my_movements item=array}
 	    <tr>
@@ -48,7 +48,7 @@
 	        	<td><span class="timer">{$array.arrival_in|format_time}</span></td>
 	        {/if}
 	        {if $array.can_cancel}
-	        	<td><a href="game.php?village={$village.id}&amp;screen=place&amp;action=cancel&amp;id={$array.id}&amp;h={$hkey}">cancelar</a></td>
+	        	<td><a href="game.php?village={$village.id}&amp;screen=place&amp;action=cancel&amp;id={$array.id}&amp;h={$hkey}">{$lang->get('cancelar')}</a></td>
 	        {/if}
 	    </tr>
 	{/foreach}

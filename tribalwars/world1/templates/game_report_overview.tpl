@@ -14,8 +14,8 @@
 			</tr>
 		{/if}
 		<tr>
-			<th>Betreff</th>
-			<th width="140">Empfangen</th>
+			<th>{$lang->get('Betreff')}</th>
+			<th width="140">{$lang->get('Empfangen')}</th>
 		</tr>
 		{if count($reports)>0}
 			{foreach from=$reports key=key item=array}
@@ -26,8 +26,8 @@
 				</tr>
 			{/foreach}
 			<tr>
-				<th><input name="all" type="checkbox" onclick="selectAll(this.form, this.checked)" /> alle ausw�hlen </th>
-				<th><div align="center"><input type="submit" value="L�schen" name="del" /></div></th>
+				<th><input name="all" type="checkbox" onclick="selectAll(this.form, this.checked)" /> {$lang->get('Selecionar todos')} </th>
+				<th><div align="center"><input type="submit" value="{$lang->get('Delete')}" name="del" /></div></th>
 			</tr>
 		{/if}
 	</table>

@@ -7,11 +7,12 @@ class add_report{
     }
     function support($from_player,$from_village,$from_villagename,$to_player,$to_playername,$to_village,$units,$time){
 		global $db;
+		global $lang;
 
 		if($to_player != "-1"){
-			$title = parse($from_villagename." apoiou ".$to_playername.".");
+			$title = parse($from_villagename." ".$lang->get('apoiou')." ".$to_playername.".");
 		}else{
-			$title = parse($from_villagename." apoiou (aldeia abandonada).");
+			$title = parse($from_villagename." ".$lang->get('apoiou')." (".$lang->get('aldeia abandonada').").");
 		}
 		if($to_player != "-1"){
 			$db->query("INSERT INTO `reports` (`title`,`time`,`type`,`in_group`,`receiver_userid`,`to_user`,`to_village`,`from_user`,`from_village`,`a_units`) VALUES ('".$title."','".$time."','support','support','".$to_player."','".$to_player."','".$to_village."','".$from_player."','".$from_village."','".$units."')");
@@ -25,9 +26,10 @@ class add_report{
     function attack($from_player,$from_playername,$from_village,$from_villagename,$to_player,$to_village,$to_villagename,$wins,$att_color,$def_color,$time,$a_units,$b_units,$c_units,$d_units,$e_units,$agreement,$ram,$catapult,$hives,$luck,$moral,$see_def_units){
 		global $db;
 		global $config;
+		global $lang;
 
 		if($to_playername == ""){
-			$to_playername = "Bárbaros";
+			$to_playername = $lang->get('Bárbaros');
 		}
 
    	    $nobre = explode(';',$agreement);	
@@ -38,14 +40,14 @@ class add_report{
 	    $see_def_units = (!$see_def_units) ? "0" : "1";
 		$ex_agreement = explode(";", $agreement);
 		if($ex_agreement['1'] <= 0){
-			$title_att = parse($from_playername." (".$from_villagename.") conquista ".$to_villagename.".");
+			$title_att = parse($from_playername." (".$from_villagename.") ".$lang->get('conquista')." ".$to_villagename.".");
 			$titleimage_att = "".$config['cdn']."/graphic/dots/".$att_color.".png";
-			$title_def = parse($to_villagename." foi conquistada por ".$from_playername." (".$from_villagename.")");
+			$title_def = parse($to_villagename." ".$lang->get('foi conquistada por')." ".$from_playername." (".$from_villagename.")");
 			$titleimage_def = "".$config['cdn']."/graphic/dots/".$def_color.".png";
 		}else{
-			$title_att = parse($from_playername." (".$from_villagename.") ataca ".$to_villagename.".");
+			$title_att = parse($from_playername." (".$from_villagename.") ".$lang->get('ataca')." ".$to_villagename.".");
 			$titleimage_att = "".$config['cdn']."/graphic/dots/".$att_color.".png";
-			$title_def = parse($to_villagename." foi atacada por ".$from_playername." (".$from_villagename.")");
+			$title_def = parse($to_villagename." ".$lang->get('foi atacada por')." ".$from_playername." (".$from_villagename.")");
 			$titleimage_def = "".$config['cdn']."/graphic/dots/".$def_color.".png";
 		}
 
@@ -112,8 +114,9 @@ class add_report{
     }
     function sendRess($from_player,$from_village,$from_villagename,$to_player,$to_playername,$to_village,$wood,$stone,$iron,$time){
 		global $db;
+		global $lang;
 
-		$title = parse($from_villagename." forneceu ".$to_playername.".");
+		$title = parse($from_villagename." ".$lang->get('forneceu')." ".$to_playername.".");
 		$ress = $wood.";".$stone.";".$iron;
 
 		if($from_player != "-1"){
@@ -135,7 +138,7 @@ class add_report{
 		    $db->query("INSERT into reports (title,time,type,in_group,receiver_userid,to_user,to_village,from_user,from_village,hives) VALUES ('$title','$time','offer','trade','$to_player','$to_player','$to_village','$from_player','$from_village','$ress')");
 		    $this->new_report($from_player);
 		}
-		$title = parse($to_playername." aceitou sua oferta.");
+		$title = parse($to_playername." ".$lang->get('aceitou sua oferta'));
 		if($to_player != "-1"){
 		    $db->query("INSERT into reports (title,time,type,in_group,receiver_userid,to_user,to_village,from_user,from_village,hives) VALUES ('$title','$time','offer','trade','$from_player','$to_player','$to_village','$from_player','$from_village','$ress')");
 		    $this->new_report($to_player);

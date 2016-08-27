@@ -86,10 +86,10 @@
 	{if count($recruit_units)>0}
 	    <table class="vis">
 			<tr>
-				<th width="150">Trinamento</th>
-				<th width="120">Dura&ccedil;&atilde;o</th>
-				<th width="150">Conclus&atilde;o</th>
-				<th width="100">Cancelar *</th>
+				<th width="150">{$lang->get('Trinamento')}</th>
+				<th width="120">{$lang->get('Duração')}</th>
+				<th width="150">{$lang->get('Conclusão')}</th>
+				<th width="100">{$lang->get('Cancelar')} *</th>
 			</tr>
 
 			{foreach from=$recruit_units key=key item=value}
@@ -101,12 +101,12 @@
 					   	<td>{$recruit_units.$key.countdown|format_time}</td>
 					{/if}
 					<td>{$recruit_units.$key.time_finished|format_date}</td>
-					<td><a href="game.php?t=129107&amp;village={$village.id}&amp;screen={$dbname}&amp;action=cancel&amp;id={$key}&amp;h={$hkey}">Cancelar</a></td>
+					<td><a href="game.php?t=129107&amp;village={$village.id}&amp;screen={$dbname}&amp;action=cancel&amp;id={$key}&amp;h={$hkey}">{$lang->get('Cancelar')}</a></td>
 			    </tr>
 			{/foreach}
 
 		</table>
-		<div style="font-size: 7pt;">* (90% dos recursos ser&atilde;o devolvidos)</div>
+		<div style="font-size: 7pt;">* ({$lang->get('der_rohstoffe_werden_wiedergegeben_1')}90%{$lang->get('der_rohstoffe_werden_wiedergegeben_2')})</div>
 		<br />
 	{/if}
 
@@ -117,10 +117,10 @@
 	<form action="game.php?village={$village.id}&amp;screen={$dbname}&amp;action=train&amp;h={$hkey}" method="post" onsubmit="this.submit.disabled=true;">
 		<table class="vis">
 			<tr>
-				<th width="150">Unidade</th>
-				<th colspan="4" width="120">Custos</th>
-				<th width="130">Dura&ccedil;&atilde;o (hh:mm:ss)</th>
-				<th>Nomear paladino</th>
+				<th width="150">{$lang->get('Unidade')}</th>
+				<th colspan="4" width="120">{$lang->get('Custos')}</th>
+				<th width="130">{$lang->get('Duração')}</th>
+				<th>{$lang->get('Nomear paladino')}</th>
 			</tr>
 
 			{foreach from=$units key=unit_dbname item=name}
@@ -147,7 +147,7 @@
 					{elseif $pala_exists}
 						<td class="inactive">{$lang->grab("statue", "pala_exists")}</td>
 					{else}
-						<td><a href="game.php?village={$village.id}&amp;screen={$dbname}&amp;action=train&amp;h={$hkey}">Nomear paladino</a></td>
+						<td><a href="game.php?village={$village.id}&amp;screen={$dbname}&amp;action=train&amp;h={$hkey}">{$lang->get('Nomear paladino')}</a></td>
 					{/if}
 				</tr>
 			{/foreach}

@@ -1,4 +1,4 @@
-<h2>Berichte</h2>
+<h2>{$lang->get('Berichte')}</h2>
 
 <table width="100%">
 	<tr>

@@ -23,7 +23,7 @@ else
 $result = $db->query("SELECT `knightname` FROM `users` WHERE `id` = '".$user['id']."'");
 $row = $db->fetch($result);
 $knightname = $row['knightname'];
-if(empty($knightname))
+if(empty($knightname) || $knightname == 'Paladin')
 {
 	$knightname = $lang->grab("configs_units", "knight");
 }
