@@ -100,30 +100,30 @@
 			<tr><th>Es k�nnen noch erzeugt werden:</th><th>{$village.snob_info.can_prod}</th></tr>
 			</table>
 		{elseif $ag_style==2}
-			<h4>Anzahl Adelsgeschlechter, die noch erzeugt werden k�nnen</h4>
+			<h4>仍然可以招募贵族骑士</h4>
 			<table class="vis">
-				<tr><td>AG-Limit:</td><td>{$snobLimit}</td></tr>
-				<tr><td>- AGs vorhanden:</td><td>{$snobsNow}</td></tr>
-				<tr><td>- AGs in Produktion:</td><td>{$inRecruit}</td></tr>
-				<tr><td>- Anzahl eroberter D�rfer:</td><td>{if $enobled != 0}{$enobled}{else}0{/if}</td></tr>
-				<tr><th>Es k�nnen noch erzeugt werden:</th><th>{$amountSnobsCanBeRecruited}</th></tr>
+				<tr><td>- 数量限制:</td><td>{$snobLimit}</td></tr>
+				<tr><td>- 当前可用:</td><td>{$snobsNow}</td></tr>
+				<tr><td>- 正在招募:</td><td>{$inRecruit}</td></tr>
+				<tr><td>- 征服领地:</td><td>{if $enobled != 0}{$enobled}{else}0{/if}</td></tr>
+				<tr><th>可以生产:</th><th>{$amountSnobsCanBeRecruited}</th></tr>
 			</table><br />
 			<table>
 				<tr>
 					<td><img alt="Goldm�nzen" src="{$config.cdn}/graphic/gold_big.png" /></td>
 					<td>
-						<h4>Goldm�nzen</h4>
-						<p>Um weitere Adelsgeschlechter zu erschaffen, musst du Goldm�nzen pr�gen. Je mehr Goldm�nzen du besitzt, desto mehr D�rfer kannst du beherrschen.</p>
+						<h4>金币</h4>
+						<p>招募贵族骑士需要金币，你拥有越多的金币，就可以主宰越多的领地。</p>
 					</td>
 				</tr>
 			</table>
 			<table class="vis">
-				<tr><td>Goldm�nzen insgesamt:</td><td>{$coinsAll}</td></tr>
-				<tr><td>Goldm�nzen bis zum n�chsten AG:</td><td>{$coinsNext}</td></tr>
-				<tr><td>AG-Limit:</td><td>{$snobLimit}</td></tr>
+				<tr><td>总金币:</td><td>{$coinsAll}</td></tr>
+				<tr><td>下一次招募需要:</td><td>{$coinsNext}</td></tr>
+				<tr><td>贵族骑士数量限制:</td><td>{$snobLimit}</td></tr>
 			</table>
 			<table class="vis">
-				<tr><th>{$lang->get('Bedarf')}</th><th>Pr�gen</th></tr>
+				<tr><th>{$lang->get('Bedarf')}</th><th>{$lang->get('Ação')}</th></tr>
 				<tr>
 					<td>
 						<img alt="" title="Holz" src="{$config.cdn}/graphic/holz.png"/> {$coinPrice.wood}
@@ -132,9 +132,9 @@
 					</td>
 					<td class="inactive">
 					{if $makeCoin}
-						<a href="game.php?village={$village.id}&screen=snob&action=coin&h={$hkey}">&raquo; Goldm�nze pr�gen</a>
+						<a href="game.php?village={$village.id}&screen=snob&action=coin&h={$hkey}">&raquo; 换取金币</a>
 					{else}
-						<span>Rohstoffe verf�gbar in <span class="timer_replace">{$coinError}</span></span>
+						<span>资源不足，还需要等待 <span class="timer_replace">{$coinError}</span></span>
 						<span style="display:none">Rohstoffe sind verf�gbar.</span>
 					{/if}
 					</td>
@@ -143,7 +143,7 @@
 		{/if}
 		{if $ag_style != 2 && count($snobed_villages) > 0}
 		<table class="vis" width="300">
-			<tr><th>Von diesem Dorf beherschte D�rfer</th></tr>
+			<tr><th>被影响的领地</th></tr>
 			{foreach from=$snobed_villages key=id item=villagename}
 			<tr><td><a href="game.php?village={$village.id}&amp;screen=info_village&amp;id={$id}">{$villagename}</a></td></tr>
 			{/foreach}

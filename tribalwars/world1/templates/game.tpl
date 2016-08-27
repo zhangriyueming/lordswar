@@ -190,7 +190,7 @@
 		<div id="linkContainer">
 			<div id="footer_left">
 				<a href="http://{$config.forum}" target="_blank">{$lang->get("forum")}</a> - 
-				<a href="help.php">{$lang->get("help")}</a> - 
+{if false}				<a href="help.php">{$lang->get("help")}</a> -  {/if}
 				<a href="game.php?village={$village.id}&amp;screen=settings&amp;mode=profile">{$lang->get("profile")}</a>
 			</div>
 			<div id="footer_right">
