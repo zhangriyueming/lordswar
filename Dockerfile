@@ -27,6 +27,13 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo_mysql
 
 RUN apt-get install -y cron
+
+# for phpBB
+RUN docker-php-ext-install mysqli
+RUN apt-get install -y libmagickwand-dev \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick
+
 ADD php-cron /etc/cron.d/php-cron
 RUN chmod 644 /etc/cron.d/php-cron
 
