@@ -56,7 +56,7 @@ for ($i = 0; $i < 59; ++$i) {
 
     $run_key = generate_key();
     $cl_reports = new add_report();
-    print("Done Broedert.");
+    print(".");
     // for($i = 0; $i < (2 << 15); ++$i){
     //     $last = time();
         check_events();
