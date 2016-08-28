@@ -144,7 +144,7 @@ if($_GET['page'] == 'mark'){
 		$image_objects[$row['x']][$row['y']] = $row['image'];
 	}
 
-	$hour = date("H");
+	$hour = unreal_time()['hour'];
 	if($config['night_start'] > $config['night_end']){
 		if($hour >= $config['night_start'] || $hour <= $config['night_end']){
 			$map_base = "map_dark";

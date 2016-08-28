@@ -119,7 +119,7 @@ if($query && $db->numrows($query)){
 	}
 }
 
-  $hour = date("H");
+  $hour = unreal_time()['hour'];
    if($config['night_start'] > $config['night_end']){
     if($hour >= $config['night_start'] || $hour <= $config['night_end']){
      $graphic = "visual_night/";

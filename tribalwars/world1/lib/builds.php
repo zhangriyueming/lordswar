@@ -264,7 +264,7 @@ class builds{
 function getGraphic($building, $stage){
   global $db, $config;
 
-  $hour = date("H");
+  $hour = unreal_time()['hour'];
   $graphic = 'graphic/';
   if($_GET['screen'] != "overview"){
    $noOverview = true;
