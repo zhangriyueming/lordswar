@@ -144,12 +144,14 @@
 			</td>
 		{/if}
 			<td align="center" {if $user.attacks <= 0}colspan="2"{else}colspan="1"{/if}>
+				{if false}
 				<a href="game.php?village={$village.id}&screen=main">{$lang->get("main")}</a> | 
 				<a href="game.php?village={$village.id}&screen=train">{$lang->get("kazerne")}</a> | 
 				<a href="game.php?village={$village.id}&screen=snob">{$lang->get("adelshoeve")}</a> | 
 				<a href="game.php?village={$village.id}&screen=place">{$lang->get("verzamelplaats")}</a> | 
 				<a href="game.php?village={$village.id}&screen=smith">{$lang->get("smederij")}</a> | 
 				<a href="game.php?village={$village.id}&screen=market">{$lang->get("markt")}</a>
+				{/if}
 			</td>
 		</tr>
 		<tr>

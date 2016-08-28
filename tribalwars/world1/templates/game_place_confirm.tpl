@@ -1,5 +1,5 @@
 {if $type=="attack"}
-	<h2>Angriff</h2>
+	<h2>{$lang->get('Angriff')}</h2>
 {else}
 	<h2>Unterstützung</h2>
 {/if}
@@ -10,11 +10,11 @@
 	<input type="hidden" name="y" value="{$values.y}">
 	
 	<table class="vis" width="300">
-		<tr><th colspan="2">Befehl</th></tr>
-		<tr><td>Ziel:</td><td><a href="game.php?village={$village.id}&amp;screen=info_village&amp;id={$info_village.id}">{$info_village.name} ({$values.x}|{$values.y}) K{$info_village.continent}</a></td></tr>
-		<tr><td>Spieler:</td><td><a href="game.php?village={$village.id}&amp;screen=info_player&amp;id={$info_village.userid}">{$info_user.username}</a></td></tr>
-		<tr><td>Dauer:</td><td>{$unit_runtime|format_time}</td></tr>
-		<tr><td>Ankunft:</td><td>{$arrival|format_date}</td></tr>
+		<tr><th colspan="2">{$lang->get('Befehl')}</th></tr>
+		<tr><td>{$lang->get('Ziel')}:</td><td><a href="game.php?village={$village.id}&amp;screen=info_village&amp;id={$info_village.id}">{$info_village.name} ({$values.x}|{$values.y}) K{$info_village.continent}</a></td></tr>
+		<tr><td>{$lang->get('Spieler')}:</td><td><a href="game.php?village={$village.id}&amp;screen=info_player&amp;id={$info_village.userid}">{$info_user.username}</a></td></tr>
+		<tr><td>{$lang->get('Dauer')}:</td><td>{$unit_runtime|format_time}</td></tr>
+		<tr><td>{$lang->get('Ankunft')}:</td><td>{$arrival|format_date}</td></tr>
 	</table>
 	<br>
 	<table class="vis">

@@ -160,7 +160,7 @@
 
 
 
-	{if count($in_village_units)>0}
+	{if true || count($in_village_units)>0}
 	<table class="vis" width="100%" style="margin-bottom:3px; border-spacing:1px;">
 		<tr><th colspan="2">{$lang->get("troepen")}</th></tr>
 		{foreach from=$in_village_units item=num key=dbname}
@@ -171,9 +171,10 @@
 
 {else}
 			<td><b>{$num}</b> <a href="javascript:popup('popup_unit.php?unit={$dbname}', 520, 520)">{$cl_units->get_name($dbname)}</a></td>
-{/if}	
+{/if}
 	</tr>
 		{/foreach}
+		<tr><th width="10"><img src="{$config.cdn}/graphic/unit/booty.png"></th><td><a href="game.php?village={$village.id}&screen=train">{$lang->get("kazerne")}</a></td></tr>
 	</table>
 	{/if}
 
