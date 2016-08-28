@@ -16,7 +16,8 @@ if($user['ally_diplomacy'] == 1) $links[$lang->get('Propriedades')] = "propertie
 $result = $db->query("SELECT `id`,`image`,`name`,`short`,`intern_text`,`homepage`,`irc`,`description`,`intro_igm` FROM `ally` WHERE `id`='".$user['ally']."'");
 $ally = $db->fetch($result);
 $ally['edit_intern_text'] = entparse($ally['intern_text']);
-$ally['intern_text'] = nl2br(entparse($ally['intern_text']));
+// $ally['intern_text'] = nl2br(entparse(bb_format($ally['intern_text'])));
+$ally['intern_text'] = bb_format(nl2br(entparse($ally['intern_text'])));
 $ally['edit_description'] = entparse($ally['description']);
 $ally['description'] = nl2br(entparse($ally['description']));
 $ally['name'] = entparse($ally['name']);

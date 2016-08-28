@@ -1,9 +1,5 @@
 <?php
 
-
-
-
-
 function bb_player($var) {
         $var = parse($var[1]);
 
@@ -25,8 +21,6 @@ function bb_player($var) {
 
 }
 
-
-
 function bb_ally($var) {
         $var = parse($var[1]);
         //$var1=str_replace(' ','+',$var);
@@ -45,11 +39,6 @@ function bb_ally($var) {
         }
 
 }
-
-
-
-
-
 
 function bb_village($var)
 {
@@ -71,16 +60,9 @@ function bb_village($var)
         }
 }
 
-
-
-
-
 function bb_format($test) {
 
     $str=$test;
-    
-
-
 
     $simple_search = array(  
                 '/\[b\](.*?)\[\/b\]/is',  
@@ -98,10 +80,6 @@ function bb_format($test) {
                 '/\[spoiler\](.*?)\[\/spoiler\]/is',  
                 );  
 
-
-
-
-
     $simple_replace = array(  
                 '<strong>$1</strong>',  
                 '<em>$1</em>',  
@@ -118,12 +96,6 @@ function bb_format($test) {
                 '<div id="spoiler"><input value="Spoiler" onclick="toggle_spoiler(this)" type="button"><div><span style="display: none;">$1</span></div></div>'
                 );  
 
-  
-
-
-
-
-
     $aa = array(  
                 '/\[player\](.*?)\[\/player\]/is',  
                 );
@@ -137,15 +109,12 @@ function bb_format($test) {
                 '/\[village\](.*?)\|(.*?)\[\/village\]/is',  
                 );
 
-
-
     $a=preg_replace_callback($aa, "bb_player", $str);
     $b=preg_replace_callback($bb, "bb_ally", $a);
     $c=preg_replace_callback($cc, "bb_village", $b);
     $d=preg_replace($simple_search, $simple_replace, $c);
 
     return $d;
-
 }
 
 

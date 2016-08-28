@@ -1,45 +1,44 @@
 <?php
-// include('include/config.php');
-// ini_set('error_reporting', E_ALL);
-// $var = 'Mugaru';
-function bb_player($var) {
-        $var = parse($var[1]);
 
-        $r1 = mysql_query("SELECT * FROM users WHERE username='$var'");
-        $n1 = mysql_num_rows($r1);
-        if($n1=="1") {
-            if(isset($_GET['village'])) { $villageid='village='.$_GET['village'].'&'; } else { $villageid=""; }
-            $result = mysql_query("SELECT * FROM users WHERE username='$var'");
-            while($row = mysql_fetch_array($result))
-            {
-                $echo='<a href="game.php?'.$villageid.'screen=info_player&id='.$row['id'].'">'.entparse($row['username']).'</a>';
-                return $echo;
-            }
-        } else {
-            return entparse($var);
-        }
+function bb_player($var) {
+    global $db;
+
+    $var = parse($var[1]);
+
+    $n1 = $db->query("SELECT * FROM users WHERE username='$var' LIMIT 1");
+    if ($row = $n1->fetch())
+    {
+        if(isset($_GET['village'])) { $villageid='village='.$_GET['village'].'&'; } else { $villageid=""; }
+            $echo='<a href="game.php?'.$villageid.'screen=info_player&id='.$row['id'].'">'.entparse($row['username']).'</a>';
+            return $echo;
+    } else {
+        return entparse($var);
+    }
 }
+
 function bb_ally($var) {
-        $var = parse($var[1]);
-        //$var1=str_replace(' ','+',$var);
-        $r1 = mysql_query("SELECT * FROM ally WHERE short='$var'");
-        $n1 = mysql_num_rows($r1);
-        if($n1=="1") {
-            if(isset($_GET['village'])) { $villageid='village='.$_GET['village'].'&'; } else { $villageid=""; }
-            $result = mysql_query("SELECT * FROM ally WHERE short='$var'");
-            while($row = mysql_fetch_array($result))
-            {
-                $echo='<a href="game.php?'.$villageid.'screen=info_ally&id='.$row['id'].'">'.entparse($row['short']).'</a>';
-                return $echo;
-            }
-        } else {
-            return entparse($var);
+    global $db;
+    $var = parse($var[1]);
+    //$var1=str_replace(' ','+',$var);
+    $n1 = $db->query("SELECT COUNT(*) FROM ally WHERE short='$var'");
+    if ($n1 > 0) {
+        if(isset($_GET['village'])) { $villageid='village='.$_GET['village'].'&'; } else { $villageid=""; }
+        $result = $db->query("SELECT * FROM ally WHERE short='$var'");
+        while($row = mysql_fetch_array($result))
+        {
+            $echo='<a href="game.php?'.$villageid.'screen=info_ally&id='.$row['id'].'">'.entparse($row['short']).'</a>';
+            return $echo;
         }
+    } else {
+        return entparse($var);
+    }
 
 }
 
 function bb_village($var)
 {
+
+
         $r1 = mysql_query("SELECT * FROM villages WHERE x='$var[1]' AND y='$var[2]'");
         $n1 = mysql_num_rows($r1);
         if($n1=="1") {
@@ -57,7 +56,9 @@ function bb_village($var)
 }
 
 function bb_format($test) {
+
     $str=$test;
+
     $simple_search = array(  
                 '/\[b\](.*?)\[\/b\]/is',  
                 '/\[i\](.*?)\[\/i\]/is',  
@@ -73,7 +74,8 @@ function bb_format($test) {
                 '/\[quote\=(.*?)\](.*?)\[\/quote\]/is',
                 '/\[spoiler\](.*?)\[\/spoiler\]/is',  
                 );  
-   $simple_replace = array(  
+
+    $simple_replace = array(  
                 '<strong>$1</strong>',  
                 '<em>$1</em>',  
                 '<u>$1</u>',
@@ -88,7 +90,8 @@ function bb_format($test) {
                 '<table class="quote"><tbody><tr><td></td><td class="quote_author">$1 hat folgendes geschrieben:</td></tr><tr><td width="10"></td><td class="quote_message">$2</td></tr></tbody></table>',  
                 '<div id="spoiler"><input value="Spoiler" onclick="toggle_spoiler(this)" type="button"><div><span style="display: none;">$1</span></div></div>'
                 );  
-  $aa = array(  
+
+    $aa = array(  
                 '/\[player\](.*?)\[\/player\]/is',  
                 );
 
@@ -100,10 +103,12 @@ function bb_format($test) {
     $cc = array(  
                 '/\[village\](.*?)\|(.*?)\[\/village\]/is',  
                 );
+
     $a=preg_replace_callback($aa, "bb_player", $str);
     $b=preg_replace_callback($bb, "bb_ally", $a);
     $c=preg_replace_callback($cc, "bb_village", $b);
     $d=preg_replace($simple_search, $simple_replace, $c);
+
     return $d;
 }
 
