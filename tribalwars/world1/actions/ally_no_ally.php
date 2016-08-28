@@ -47,7 +47,7 @@ if(isset($_GET['action']) && $_GET['action'] == "create"){
 		reload_ally_points($id);
 		reload_ally_rangs();
 		reload_kill_ally();
-        add_allyevent($id, "Tribo fundada por <a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a>.");
+        add_allyevent($id, tr('ally_create_1')."<a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a>".tr('ally_create_2'));
 		header("LOCATION: game.php?village=".$village['id']."&screen=ally");
         $c->open();
 	}
