@@ -64,7 +64,7 @@
 					<img src="graphic/player/{$user.image}" alt="Wappen" />
 					<br />
 					<input name="del_image" type="checkbox" />
-					Wappen löschen
+					{$lang->get('Apagar brasao')}
 					<br />
 				{/if}
 	           	<input name="image" type="file" size="40" accept="image/*" maxlength="1048576" />
