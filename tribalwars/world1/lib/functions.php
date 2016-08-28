@@ -3,6 +3,26 @@ function tr($str) {
 	global $lang;
 	return $lang->get($str);
 }
+function unreal_time() {
+	global $config;
+	$ret = array();
+	$diff = time() - $config['world_begin'];
+	// $ret['value'] = $diff;
+	$ret['value'] = $config['world_begin'];
+	$diff *= 72;
+	$ret['sec'] = $diff % 60;
+	$diff /= 60;
+	$ret['min'] = floor($diff) % 60;
+	$diff /= 60;
+	$ret['hour'] = floor($diff) % 24;
+	$diff /= 24;
+	$ret['day'] = floor($diff) % 30 + 1;
+	$diff /= 30;
+	$ret['month'] = floor($diff) % 12 + 1;
+	$diff /= 12;
+	$ret['year'] = floor($diff) + 93;
+	return $ret;
+}
 function userdata_encode($key, $text){
     $l_k = strlen($key);
     $l_t = strlen($text);

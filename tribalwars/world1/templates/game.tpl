@@ -167,7 +167,15 @@
 			<th style="text-align:center;">{$lang->get("geladenin")} <strong>{$load_msec}</strong>ms</th>
 			<th>
 				<span style="float:right;">
+				{if false}
 					<span id="slim">{$lang->get("servertijd")}: <strong><span id="serverTime">{$servertime}</span> | {$serverdate}</strong></span>
+					<span id="worldTimeV" style="display:none">{$worldtime.value}</span>
+				
+				{else}
+				<span id="worldTimeV" style="display:none">{$worldtime.value}</span>
+				<span id="server_now" style="display:none">{$now}</span>
+				<span id="slim"><span style="display:none"><strong><span id="serverTime">{$servertime}</span> | {$serverdate}</strong></span>大陆纪元 <strong><span id="worldTime">{$worldtime.year}年{$worldtime.month}月{$worldtime.day}日 {$worldtime.hour}时</span></strong></span>
+				{/if}
 				</span>
 			</th>
 		</tr>

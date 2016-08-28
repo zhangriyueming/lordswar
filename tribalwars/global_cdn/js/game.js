@@ -28,6 +28,9 @@ function knight_item_move() {
 var timeDiff = null;
 var timeStart = null;
 
+var timeDiff2 = null;
+var worldTimeV = null;
+
 function overviewShowLevel(){labels=overviewGetLabels();for(var i=0,len=labels.length;i<len;i++){var label=labels[i];if(!label)continue;label.css('display','inline')}}
 
 function openrename(mid){
@@ -168,8 +171,14 @@ function addTimer(element, endTime, reload){
 }
 function startTimer(){
 	var serverTime = getTime(document.getElementById("serverTime"));
+	var serverNow = document.getElementById("server_now").innerHTML;
+	// alert(serverNow);
 	timeDiff = serverTime-getLocalTime();
+	timeDiff2 = serverNow - getLocalTime();
 	timeStart = serverTime;
+	// alert(document.getElementById("worldTimeV").innerHTML);
+	worldTimeV = document.getElementById("worldTimeV").innerHTML;
+	// alert(worldTime);
 
 	var spans = document.getElementsByTagName("span");
 	for(var span_id in spans){
@@ -181,11 +190,11 @@ function startTimer(){
 			}
 		}
 	}
-
+	// alert(timeDiff);
 	startResTicker('wood');
 	startResTicker('stone');
 	startResTicker('iron');
-
+	// alert('ok');
 	window.setInterval("tick()", 1000);
 }
 function startResTicker(resName){
@@ -241,6 +250,27 @@ function tickTime(){
 		time = getLocalTime()+timeDiff;
 		formatTime(serverTime, time, true);
 	}
+	var worldTime = document.getElementById("worldTime");
+	var now = new Date();
+	var diff = (now.getTime()/1000)+timeDiff2 - worldTimeV;
+	diff *= 72;
+	var sec = diff % 60;
+	diff /= 60;
+	var min = Math.floor(diff) % 60;
+	diff /= 60;
+	var hour = Math.floor(diff) % 24;
+	diff /= 24;
+	var day = Math.floor(diff) % 30 + 1;
+	diff /= 30;
+	var month = Math.floor(diff) % 12 + 1;
+	diff /= 12;
+	var year = Math.floor(diff) + 93;
+
+	var timeString = year+"年"+month+"月"+day+"日 "+hour+"时";
+	// {$worldtime.year}年{$worldtime.month}月{$worldtime.day}日 {$worldtime.hour}时
+	// timeString = "["+((now.getTime()/1000)+timeDiff) + "----"+worldTimeV+"---";
+	// timeString = getLocalTime()+timeDiff;
+	worldTime.firstChild.nodeValue = timeString;
 }
 function tickTimer(timer){
 	var time = timer['endTime']-(getLocalTime()+timeDiff);
