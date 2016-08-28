@@ -157,19 +157,19 @@
 	{/if}
 	{if $report_ram.from != $report_ram.to}
 	<tr>
-		<th>Aríetes:</th>
-		<td colspan="2">Muralha demolida do nível <b>{$report_ram.from}</b> para o nível <b>{$report_ram.to}</b></td>
+		<th>{$lang->get('Aríetes')}:</th>
+		<td colspan="2">将对方的城墙从 Level <b>{$report_ram.from}</b> 摧毁到 Level <b>{$report_ram.to}</b></td>
 	</tr>
 	{/if}
 	{if $report_agreement.from != $report_agreement.to}
 	<tr>
-		<th>Lealdade</th>
-		<td colspan="2">A lealdade foi reduzida de <b>{$report_agreement.from}%</b> para <b>{$report_agreement.to}%</b></td>
+		<th>{$lang->get('Lealdade')}</th>
+		<td colspan="2">对方的忠诚度从 <b>{$report_agreement.from}%</b> 下降到 <b>{$report_agreement.to}%</b></td>
 	</tr>
 	{/if}
 	{if $report_catapult.from != $report_catapult.to}
 	<tr>
-		<th>Catapultas:</th>
+		<th>{$lang->get('Catapultas')}:</th>
 		<td colspan="2">{$cl_builds->get_name($report_catapult.building)} demolido do nível <b>{$report_catapult.from}</b> para o nível<b>{$report_catapult.to}</b></td>
 	</tr>
 	{/if}
