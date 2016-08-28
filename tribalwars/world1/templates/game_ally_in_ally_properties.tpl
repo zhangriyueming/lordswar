@@ -14,7 +14,7 @@
 			</form>
 			<table class="vis" width="100%" style="border:1px solid #804000;">
 				<tr><th>{$lang->get('Debandar tribo')}</th></tr>
-				<tr><td><a href="javascript:ask('Willst du wirklich deinen Stamm aufl&ouml;sen?', 'game.php?village={$village.id}&amp;screen=ally&amp;mode=properties&amp;action=close&amp;h={$hkey}')">&raquo; {$lang->get('debandar')}</a></td></tr>
+				<tr><td><a href="javascript:ask('{$lang->get('confirm_close_ally')}', 'game.php?village={$village.id}&amp;screen=ally&amp;mode=properties&amp;action=close&amp;h={$hkey}')">&raquo; {$lang->get('debandar')}</a></td></tr>
 			</table>
 		{/if}
 		</td>

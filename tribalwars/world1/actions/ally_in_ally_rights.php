@@ -52,7 +52,7 @@ if(isset($_GET['action']) || $_GET['action'] == "edit_rights"){
 			$mass_mail = 1;
 		}
 		$db->query("UPDATE `users` SET `ally_titel`='".$title."',`ally_found`='".$found."',`ally_lead`='".$lead."',`ally_diplomacy`='".$diplomacy."',`ally_invite`='".$invite."',`ally_mass_mail`='".$mass_mail."' WHERE `id`='".$playerid."'");
-		add_allyevent($user['ally'], "<a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a> alterou titulos e permissões de <a href=\"game.php?village=;&screen=info_player&id=".$rights['id']."\">".entparse($rights['username'])."</a>.");
+		add_allyevent($user['ally'], "<a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a>".tr('alterou titulos e permissões de 1')."<a href=\"game.php?village=;&screen=info_player&id=".$rights['id']."\">".entparse($rights['username'])."</a>".tr('alterou titulos e permissões de 2'));
 		header("LOCATION: game.php?village=".$village['id']."&screen=ally&mode=rights");
 	}
 }

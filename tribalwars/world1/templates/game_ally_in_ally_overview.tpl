@@ -29,7 +29,7 @@
 		</td>
 		<td valign="top" width="50%">
 			<table class="vis" width="100%" style="border:1px solid #804000; border-bottom:none;">
-				<tr><td><a href="game.php?village=36841&amp;screen=ally&amp;action=exit&amp;h=cc6f" onclick="javascript:ask('Você deseja realmente abandonar a tribo que faz parte?', 'game.php?village={$village.id}&amp;screen=ally&amp;action=exit&amp;h={$hkey}'); return false;">&raquo; {$lang->get('deixar tribo')}</a></td></tr>
+				<tr><td><a href="game.php?village=36841&amp;screen=ally&amp;action=exit&amp;h=cc6f" onclick="javascript:ask('{$lang->get('Você deseja realmente abandonar a tribo que faz parte')}', 'game.php?village={$village.id}&amp;screen=ally&amp;action=exit&amp;h={$hkey}'); return false;">&raquo; {$lang->get('deixar tribo')}</a></td></tr>
 			</table>
 			{if !empty($preview)}
 			<table class="vis" width="100%" style="border:1px solid #804000; border-bottom:none;">

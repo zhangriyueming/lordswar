@@ -26,7 +26,7 @@ if(isset($_GET['action']) && $_GET['action'] == "invite"){
 	if(empty($error)){
         $db->query("INSERT INTO `ally_invites` (`time`,`from_ally`,`to_userid`,`to_username`) VALUES ('".time()."','".$user['ally']."','".$row['id']."','".$row['username']."')" );
 		$cl_reports->ally_invite(entparse($user['username']), $user['id'], $row['id'], $user['ally'], $ally['name']);
-		add_allyevent($user['ally'], "<a href=\"game.php?village=;&screen=info_player&id=".$row['id']."\">".entparse($row['username'])."</a> foi convidado por <a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a>.");
+		add_allyevent($user['ally'], "<a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a>".tr('foi convidado por')."<a href=\"game.php?village=;&screen=info_player&id=".$row['id']."\">".entparse($row['username'])."</a>.");
         $d->open();
         header("LOCATION: game.php?village=".$village['id']."&screen=ally&mode=invite");
         exit;
@@ -57,7 +57,7 @@ if(isset($_GET['action']) && $_GET['action'] == "invite_id"){
 	if(empty($error)){
         $db->query("INSERT INTO `ally_invites` (`time`,`from_ally`,`to_userid`,`to_username`) VALUES ('".time()."','".$user['ally']."','".$row['id']."','".$row['username']."')" );
 		$cl_reports->ally_invite(entparse($user['username']), $user['id'], $row['id'], $user['ally'], $ally['name']);
-		add_allyevent($user['ally'], "<a href=\"game.php?village=;&screen=info_player&id=".$row['id']."\">".entparse($row['username'])."</a> foi convidado por <a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a>.");
+		add_allyevent($user['ally'], "<a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a>".tr('foi convidado por')."<a href=\"game.php?village=;&screen=info_player&id=".$row['id']."\">".entparse($row['username'])."</a>.");
         $d->open();
         header("LOCATION: game.php?village=".$village['id']."&screen=ally&mode=invite");
         exit;
@@ -83,7 +83,7 @@ if(isset($_GET['action']) && $_GET['action'] == "cancel_invitation"){
             $cl_reports->ally_cancel_invite($user['id'], $row['to_userid'], $user['ally'], $ally['name']);
 			$result = $db->query("SELECT `username` FROM `users` WHERE `id`='".$row['to_userid']."'");
             $user_to = $db->fetch($result);
-            add_allyevent($user['ally'], "O convite para <a href=\"game.php?village=;&screen=info_player&id=".$row['to_userid']."\">".entparse($user_to['username'])."</a> foi cancelado por <a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a>.");
+            add_allyevent($user['ally'], tr('ally_invite_cancle_1')."<a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a>".tr('ally_invite_cancle_2')."<a href=\"game.php?village=;&screen=info_player&id=".$row['to_userid']."\">".entparse($user_to['username'])."</a>".tr('ally_invite_cancle_3'));
             $d->open();
             header("LOCATION: game.php?village=".$village['id']."&screen=ally&mode=invite");
             exit;

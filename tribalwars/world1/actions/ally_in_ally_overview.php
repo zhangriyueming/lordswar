@@ -20,7 +20,7 @@ if(isset($_GET['action']) && $_GET['action'] == "exit"){
         reload_ally_points($user['ally']);
         reload_ally_rangs();
 		reload_kill_ally();
-        add_allyevent($user['ally'], "<a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a> deixou a tribo.");
+        add_allyevent($user['ally'], "<a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a>".tr('deixou a tribo'));
 		$d->open();
 		header("LOCATION: game.php?village=".$village['id']."&screen=ally");
 		exit;
@@ -44,7 +44,7 @@ if(isset($_GET['action']) && $_GET['action'] == "edit_intern" && $user['ally_fou
 		if(isset($_POST['edit'])){
 			$text = parse($_POST['intern']);
             $db->query("UPDATE ally SET intern_text='".$text."' where id=".$user['ally']."");
-			add_allyevent($user['ally'], "<a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a> modificou o quadro de anúncios." );
+			add_allyevent($user['ally'], "<a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a>".tr('modificou o quadro de anúncios') );
             $d->open();
             header("LOCATION: game.php?village=".$village['id']."&screen=ally");
             exit;

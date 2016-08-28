@@ -38,8 +38,8 @@ if(isset($_GET['action']) && $_GET['action'] == "create"){
 		$error = "你已经属于一个联盟，无法创建!";
 	}
 	if(empty($error)){
-		$intern_text = parse("Tribo fundada por [player]".entparse($user['username'])."[/player]\n\nEste texto pode ser alterado pelos administradores da tribo.");
-		$description = parse("[ally]".$_POST['tag']."[/ally] foi fundada por [player]".entparse($user['username'])."[/player].\nEm caso de dúvidas dirija-se à [player]".entparse($user['username'])."[/player]\n\nEste texto pode ser alterado pelos diplomatas da tribo.");
+		$intern_text = parse(tr('init_intern_1').entparse($user['username']).tr('init_intern_2'));
+		$description = parse(tr('init_ally_desc_1').$_POST['tag'].tr('init_ally_desc_2').entparse($user['username']).tr('init_ally_desc_3').entparse($user['username']).tr('init_ally_desc_4'));
 		$ally = new vhAlly();
 		$ally->create(array('short' => parse($_POST['tag']), 'name' => parse($_POST['name']), 'intern_text' => $intern_text, 'description' => $description));
 		$id = $db->getlastid();
@@ -81,7 +81,7 @@ if(isset($_GET['action']) && $_GET['action'] == "accept"){
 			reload_ally_rangs();
 			reload_kill_ally();
 			$db->query("DELETE FROM `ally_invites` WHERE `to_userid`='".$user['id']."'");
-			add_allyevent($row['from_ally'], "<a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a> juntou-se à tribo.");
+			add_allyevent($row['from_ally'], "<a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a>".tr('juntou-se à tribo'));
 			$c->open();
 			header("LOCATION: game.php?village=".$village['id']."&screen=ally");
 			exit;
@@ -96,16 +96,16 @@ if(isset($_GET['action']) && $_GET['action'] == "reject" ){
 		$error = "Desculpe, más o código de segurança está invalido!";
 	}
 	$id = (int)parse($_GET['id']);
-	$result = $db->query("SELECT `to_userid`,`from_ally`,`id` FROM `ally_invites` WHERE `id`=".$id);
-	$row = $db->query($result);
+	$result = $db->query_r("SELECT `to_userid`,`from_ally`,`id` FROM `ally_invites` WHERE `id`=:id", array('id' =>$id));
+	$row = $db->fetch($result);
 	if($user['id'] != $row['to_userid']){
 		$c->open();
-		exit("ERRO DESCONHECIDO!");
+		exit(tr('ERRO DESCONHECIDO'));
 	}
 	if(empty($error)){
-		$db->query("DELETE FROM `ally_invites` WHERE `id`='".$id."'");
-        if($affectedrows() != 0){
-            add_allyevent($row['from_ally'], "<a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a> recusou o convite.");
+		$res = $db->query("DELETE FROM `ally_invites` WHERE `id`='".$id."'");
+        if($res->rowCount() != 0){
+            add_allyevent($row['from_ally'], "<a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a>".tr('recusou o convite'));
 			$c->open();
 			header("LOCATION: game.php?village=".$village['id']."&screen=ally");
 			exit;

@@ -12,7 +12,7 @@
 				{/if}
 				<tr><td colspan="2"><a href="game.php?village={$village.id}&amp;screen=mail&amp;mode=new&amp;player={$info_user.id}">&raquo; {$lang->get('Enviar mensagem')}</a></td></tr>
 			{if $can_invite}
-				<tr><td colspan="2"><a href="javascript:ask('Deseja convidar o jogador {$info_user.username} para sua tribo?', 'game.php?village={$village.id}&screen=ally&mode=invite&action=invite_id&id={$info_user.id}&h={$hkey}')">&raquo; {$lang->get('Convidar para tribo')}</a></td></tr>
+				<tr><td colspan="2"><a href="javascript:ask('{$lang->get('Deseja convidar o jogador')}', 'game.php?village={$village.id}&screen=ally&mode=invite&action=invite_id&id={$info_user.id}&h={$hkey}')">&raquo; {$lang->get('Convidar para tribo')}</a></td></tr>
 			{/if}
 			{if $friend_invite && $info_user.id != $user.id}
 				<tr><td colspan="2"><a href="game.php?village={$village.id}&screen=friends&amp;action=add_buddy_id&id={$info_user.id}">&raquo; {$lang->get('Adicionar como amigo')}</a></td></tr>

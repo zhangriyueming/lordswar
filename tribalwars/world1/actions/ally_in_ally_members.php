@@ -15,10 +15,10 @@ if(isset($_GET['action']) && $_GET['action'] == "mod" && $user['ally_lead'] == 1
 		exit;
     }
 	if(empty($error) && $user['ally_found'] == 0 && $row['ally_found'] == 1){
-		$error = "Desculpe, más você não pode expulsar um fundador!";
+		$error = tr('Desculpe, más você não pode expulsar um fundador');
 	}
 	if(empty($error) && $row['ally'] != $user['ally']){
-		$error = "Desculpe, más este jogador não pertence à esta aliança!";
+		$error = tr('Desculpe, más este jogador não pertence à esta aliança');
 	}
 	if(empty($error)){
 		if(isset($_POST['action']) && $_POST['action'] == "rights"){
@@ -28,11 +28,11 @@ if(isset($_GET['action']) && $_GET['action'] == "mod" && $user['ally_lead'] == 1
 			$result = $db->query("SELECT `ally`,`ally_found`,`username` FROM `users` WHERE `id`='".$playerid."'");
 			$row = $db->fetch($result);
 			if(empty($error) && $playerid == $user['id']){
-				$error = "Desculpe, más você não pode se expulsar!";
+				$error = tr('Desculpe, más você não pode se expulsar');
             }
-			if(!$config['leave_ally']) $error = "Desculpe, más está ação não está permitida!";
+			if(!$config['leave_ally']) $error = tr('Desculpe, más está ação não está permitida');
 			if(empty($error)){
-				add_allyevent($user['ally'], "<a href=\"game.php?village=".$village['id']."&amp;screen=info_player&amp;id=".$playerid."\">".entparse($row['username'])."</a> wurde von <a href=\"game.php?village=".$village['id']."&amp;screen=info_player&amp;id=".$user['id']."\">".entparse($user['username'])."</a> entlassen.");
+				add_allyevent($user['ally'], tr('ally_remove_1')."<a href=\"game.php?village=".$village['id']."&amp;screen=info_player&amp;id=".$user['id']."\">".entparse($user['username'])."</a>".tr('ally_remove_2')."<a href=\"game.php?village=".$village['id']."&amp;screen=info_player&amp;id=".$playerid."\">".entparse($row['username'])."</a>");
 				$db->query("UPDATE `users` SET `ally`='-1' WHERE `id`='".$playerid."'");
 				reload_ally_points($user['ally']);
 				reload_ally_rangs();

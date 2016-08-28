@@ -102,7 +102,7 @@ if(isset($_GET['action']) && $_GET['action'] == "change_desc" && $user['ally_dip
 		if(isset($_POST['edit'])){
 			$text = parse($_POST['desc_text']);
 			$db->query("UPDATE `ally` SET `description`='".$text."' WHERE `id`='".$user['ally']."'");
-			add_allyevent($user['ally'], "<a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a> alterou o perfil da tribo.");
+			add_allyevent($user['ally'], "<a href=\"game.php?village=;&screen=info_player&id=".$user['id']."\">".entparse($user['username'])."</a>".tr('alterou o perfil da tribo'));
 			$d->open();
 			header("LOCATION: game.php?village=".$village['id']."&screen=ally&mode=properties");
 			exit;
