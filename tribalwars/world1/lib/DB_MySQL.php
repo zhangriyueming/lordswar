@@ -53,6 +53,23 @@ class DB_MySQL{
 		// }
 	}
 
+	function query_r($sql, $params = null) {
+		if ($params && !is_array($params))
+			$params = array($params);
+		// if ($params) {
+			if (!$stmt = $this->pdo->prepare($sql)) {
+				throw new Exception('解析查询语句出错，SQL语句：'.$sql);
+			}
+			if (!$ret = $stmt->execute($params)) {
+				$err = $stmt->errorInfo();
+				throw new Exception(end($err));
+			}
+			return $stmt;
+		// } else {
+		// 	 ($this->pdo->exec($sql))
+		// }
+	}
+
 	function insert($sql, $params = null) {
 		if ($params && !is_array($params))
 			$params = array($params);

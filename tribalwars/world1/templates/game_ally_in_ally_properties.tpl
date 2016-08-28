@@ -23,7 +23,7 @@
 			{if !empty($preview)}
 				<table class="vis" width="100%" style="border:1px solid #804000; border-bottom:none;">
 					<tr><th colspan="2">{$lang->get('Visualização')}</th></tr>
-					<tr><td colspan="2" align="center">{$ally.description}</td></tr>
+					<tr><td colspan="2" align="center">{$ally.description|bb_format}</td></tr>
 				</table>
 			{/if}
 			<script type="text/javascript">
@@ -45,7 +45,7 @@
 			<form action="game.php?village={$village.id}&amp;screen=ally&amp;mode=properties&amp;action=change_desc&amp;h={$hkey}" method="post" name="edit_profile">
 				<table class="vis" width="100%" style="border:1px solid #804000; border-bottom:none;">
 					<tr><th colspan="2">{$lang->get('Descrição da tribo')} <span style="float:right;"><a id="edit_link" href="javascript:bbEdit()" style="display:none"><span class="button">{$lang->get('EDITAR')}</span></a><a id="edit_link_close" href="javascript:bbEdit_close()" style="display:none"><span class="button">{$lang->get('CANCELAR')}</span></a></span></th></tr>
-					<tr id="show_row" align="center"><td colspan="2">{$ally.description}</td></tr>
+					<tr id="show_row" align="center"><td colspan="2">{$ally.description|bb_format}</td></tr>
 					<tr id="edit_row"><td colspan="2"><textarea name="desc_text" cols="56" rows="10">{$ally.edit_description}</textarea></td></tr>
 					<tr id="submit_row">
 						<th align="left" width="50%"></th>

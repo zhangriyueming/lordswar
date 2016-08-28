@@ -19,7 +19,7 @@
 				<tr><td align="center"><img src="{$config.cdn}/graphic/ally/{$info.image}"></td></tr>
 				{/if}
 				<tr><th>{$lang->get('Perfil da tribo')}</th></tr>
-				<tr><td align="center">{$info.description}</td></tr>
+				<tr><td align="center">{$info.description|bb_format}</td></tr>
 			</table>
 		</td>
 	</tr>

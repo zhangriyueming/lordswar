@@ -5,12 +5,11 @@ function bb_player($var) {
 
     $var = parse($var[1]);
 
-    $n1 = $db->query("SELECT * FROM users WHERE username='$var' LIMIT 1");
+    $n1 = $db->query_r("SELECT `id`,`username` FROM users WHERE username=:var LIMIT 1", array('var' => $var));
     if ($row = $n1->fetch())
     {
         if(isset($_GET['village'])) { $villageid='village='.$_GET['village'].'&'; } else { $villageid=""; }
-            $echo='<a href="game.php?'.$villageid.'screen=info_player&id='.$row['id'].'">'.entparse($row['username']).'</a>';
-            return $echo;
+        return '<a href="game.php?'.$villageid.'screen=info_player&id='.$row['id'].'">'.entparse($row['username']).'</a>';
     } else {
         return entparse($var);
     }
@@ -18,18 +17,17 @@ function bb_player($var) {
 
 function bb_ally($var) {
     global $db;
+
     $var = parse($var[1]);
     //$var1=str_replace(' ','+',$var);
-    $n1 = $db->query("SELECT COUNT(*) FROM ally WHERE short='$var'");
-    if ($n1 > 0) {
+
+    $n1 = $db->query_r("SELECT `id`,`short` FROM ally WHERE short=:var LIMIT 1", array('var' => $var));
+    if ($row = $n1->fetch())
+    {
         if(isset($_GET['village'])) { $villageid='village='.$_GET['village'].'&'; } else { $villageid=""; }
-        $result = $db->query("SELECT * FROM ally WHERE short='$var'");
-        while($row = mysql_fetch_array($result))
-        {
-            $echo='<a href="game.php?'.$villageid.'screen=info_ally&id='.$row['id'].'">'.entparse($row['short']).'</a>';
-            return $echo;
-        }
-    } else {
+        return '<a href="game.php?'.$villageid.'screen=info_ally&id='.$row['id'].'">'.entparse($row['short']).'</a>';
+    }
+    else {
         return entparse($var);
     }
 
@@ -37,22 +35,18 @@ function bb_ally($var) {
 
 function bb_village($var)
 {
+    global $db;
+    $x = intval($var[1]);
+    $y = intval($var[2]);
 
-
-        $r1 = mysql_query("SELECT * FROM villages WHERE x='$var[1]' AND y='$var[2]'");
-        $n1 = mysql_num_rows($r1);
-        if($n1=="1") {
-            if(isset($_GET['village'])) { $villageid='village='.$_GET['village'].'&'; } else { $villageid=""; }
-            $result = mysql_query("SELECT * FROM villages WHERE x='$var[1]' AND y='$var[2]'");
-            while($row = mysql_fetch_array($result))
-            {
-                $echo='<a href="game.php?'.$villageid.'screen=info_village&id='.$row['id'].'">'.entparse($row['name']).'</a>';
-                return $echo;
-            }
-        } else {
-            $echo="(Ung&uuml;ltieges Dorf)";
-            return $echo;
-        }
+    $res = $db->query_r("SELECT `id`,`name` FROM villages WHERE x=:x AND y=:y LIMIT 1", array('x' => $x, 'y' => $y));
+    if ($row = $res->fetch())
+    {
+        if(isset($_GET['village'])) { $villageid='village='.$_GET['village'].'&'; } else { $villageid=""; }
+        return '<a href="game.php?'.$villageid.'screen=info_village&id='.$row['id'].'">'.entparse($row['name']).'</a>';
+    } else {
+        return "(无效的坐标)";
+    }
 }
 
 function bb_format($test) {

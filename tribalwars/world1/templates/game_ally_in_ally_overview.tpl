@@ -33,8 +33,8 @@
 			</table>
 			{if !empty($preview)}
 			<table class="vis" width="100%" style="border:1px solid #804000; border-bottom:none;">
-				<tr><th colspan="2">Visualizar</th></tr>
-				<tr><td colspan="2" align="center">{$ally.intern_text}</td></tr>
+				<tr><th colspan="2">{$lang->get('Visualizar')}</th></tr>
+				<tr><td colspan="2" align="center">{$ally.intern_text|bb_format}</td></tr>
 			</table>
 			{/if}
 			<script type="text/javascript">
@@ -55,14 +55,14 @@
 			</script>
 			<form action="game.php?village={$village.id}&amp;screen=ally&amp;action=edit_intern&amp;h={$hkey}" method="post" name="edit_profile">
 				<table class="vis" width="100%" style="border:1px solid #804000;">
-					<tr><th colspan="2" width="100%">{$lang->get('Quadro de anúncios')} {if $user.ally_found == '1'}<span style="float:right;"><a id="edit_link" href="javascript:bbEdit()" style="display:none"><span class="button">{$lang->get('EDITAR')}</span></a><a id="edit_link_close" href="javascript:bbEdit_close()" style="display:none"><span class="button">CANCELAR</span></a></span>{/if}</th></tr>
+					<tr><th colspan="2" width="100%">{$lang->get('Quadro de anúncios')} {if $user.ally_found == '1'}<span style="float:right;"><a id="edit_link" href="javascript:bbEdit()" style="display:none"><span class="button">{$lang->get('EDITAR')}</span></a><a id="edit_link_close" href="javascript:bbEdit_close()" style="display:none"><span class="button">{$lang->get('CANCELAR')}</span></a></span>{/if}</th></tr>
 					<tr id="show_row" align="center"><td colspan="2">{$ally.intern_text}</td></tr>
 					{if $user.ally_found == '1'}
 					<tr id="edit_row"><td colspan="2" align="center"><textarea name="intern" cols="56" rows="10">{$ally.edit_intern_text}</textarea></td></tr>
 					<tr id="submit_row">
 						<th><div align="right">
-							<input type="submit" name="preview" value="VISUALIZAR" class="button" />
-							<input type="submit" name="edit" value="SALVAR" class="button green" />
+							<input type="submit" name="preview" value="{$lang->get('VISUALIZAR')}" class="button" />
+							<input type="submit" name="edit" value="{$lang->get('SALVAR')}" class="button green" />
 						</div></th>
 					</tr>
 					{/if}
