@@ -20,7 +20,8 @@ function unreal_time() {
 	$diff /= 30;
 	$ret['month'] = floor($diff) % 12 + 1;
 	$diff /= 12;
-	$ret['year'] = floor($diff) + 93;
+	// $ret['year'] = floor($diff) + 93;
+	$ret['year'] = floor($diff);
 	return $ret;
 }
 function userdata_encode($key, $text){

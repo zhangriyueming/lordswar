@@ -40,7 +40,9 @@ $config['lang'] = 'CN';
 
 // Stuff down here are just configuration lines. Like the world speed, movement speed etc. 
 
-$config['world_begin'] = 1472348122;
+// $config['world_begin'] = 1472348122;
+$config['world_begin'] = 1405506041;
+// $config['world_begin'] = 15084887225;
 
 
 // 管理密码:

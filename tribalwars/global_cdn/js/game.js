@@ -264,7 +264,8 @@ function tickTime(){
 	diff /= 30;
 	var month = Math.floor(diff) % 12 + 1;
 	diff /= 12;
-	var year = Math.floor(diff) + 93;
+	// var year = Math.floor(diff) + 93;
+	var year = Math.floor(diff);
 
 	var timeString = year+"年"+month+"月"+day+"日 "+hour+"时";
 	// {$worldtime.year}年{$worldtime.month}月{$worldtime.day}日 {$worldtime.hour}时
