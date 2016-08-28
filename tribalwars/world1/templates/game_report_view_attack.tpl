@@ -170,7 +170,7 @@
 	{if $report_catapult.from != $report_catapult.to}
 	<tr>
 		<th>{$lang->get('Catapultas')}:</th>
-		<td colspan="2">{$cl_builds->get_name($report_catapult.building)} demolido do nível <b>{$report_catapult.from}</b> para o nível<b>{$report_catapult.to}</b></td>
+		<td colspan="2">将对方的{$cl_builds->get_name($report_catapult.building)}从 Level <b>{$report_catapult.from}</b> 破坏到 Level <b>{$report_catapult.to}</b></td>
 	</tr>
 	{/if}
 </table>

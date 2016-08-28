@@ -102,9 +102,9 @@
 		{elseif $ag_style==2}
 			<h4>仍然可以招募贵族骑士</h4>
 			<table class="vis">
-				<tr><td>- 数量限制:</td><td>{$snobLimit}</td></tr>
-				<tr><td>- 当前可用:</td><td>{$snobsNow}</td></tr>
-				<tr><td>- 正在招募:</td><td>{$inRecruit}</td></tr>
+				<tr><td>- 当前限制:</td><td>{$snobLimit}</td></tr>
+				<tr><td>- 当前拥有:</td><td>{$snobsNow}</td></tr>
+				<tr><td>- 正在训练:</td><td>{$inRecruit}</td></tr>
 				<tr><td>- 征服领地:</td><td>{if $enobled != 0}{$enobled}{else}0{/if}</td></tr>
 				<tr><th>可以生产:</th><th>{$amountSnobsCanBeRecruited}</th></tr>
 			</table><br />
@@ -113,14 +113,14 @@
 					<td><img alt="Goldm�nzen" src="{$config.cdn}/graphic/gold_big.png" /></td>
 					<td>
 						<h4>金币</h4>
-						<p>招募贵族骑士需要金币，你拥有越多的金币，就可以主宰越多的领地。</p>
+						<p>训练贵族骑士需要金币，你拥有越多的金币，就可以训练越多的贵族骑士来主宰更多的领地。</p>
 					</td>
 				</tr>
 			</table>
 			<table class="vis">
 				<tr><td>总金币:</td><td>{$coinsAll}</td></tr>
-				<tr><td>下一次招募需要:</td><td>{$coinsNext}</td></tr>
-				<tr><td>贵族骑士数量限制:</td><td>{$snobLimit}</td></tr>
+				<tr><td>还需要:</td><td>{$coinsNext}</td></tr>
+				<tr><td>当前限制:</td><td>{$snobLimit}</td></tr>
 			</table>
 			<table class="vis">
 				<tr><th>{$lang->get('Bedarf')}</th><th>{$lang->get('Ação')}</th></tr>

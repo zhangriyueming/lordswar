@@ -1,13 +1,15 @@
 <table class="vis">
 <tr><th width="60">{$lang->get('Rang')}</th><th width="180">{$lang->get('Name')}</th><th width="100">{$lang->get('Stamm')}</th>
-<th width="60">{$lang->get('Punkte')}</th><th>{$lang->get('Medalhas')}</th></tr>
+<th width="60">{$lang->get('Medalhas')}</th>{if false}<th>{$lang->get('Medalhas')}</th>{/if}</tr>
 	{foreach from=$ranks item=item key=id}
 		<tr {$ranks.$id.mark}>
 			<td>{$ranks.$id.rang}</td>
 			<td><a href="game.php?village={$village.id}&screen=info_player&id={$id}">{$ranks.$id.username}</a></td>
 			<td><a href="game.php?village={$village.id}&screen=info_ally&id={$ranks.$id.ally}">{$ranks.$id.allyname}</a></td>
 			<td>{$ranks.$id.points}</td>
+			{if false}
 			<td>{$ranks.$id.villages}</td>
+			{/if}
 		</tr>
 	{/foreach}
 </table>
