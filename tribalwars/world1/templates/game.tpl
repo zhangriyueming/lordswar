@@ -93,7 +93,7 @@
 	<table class="antet" style="width:{$user.window_width}px;">
 		<tr>
 			<td class="stanga"></td>
-			<td class="header" width="90%" style="background: transparent url('{$config.cdn}/logo3.png') no-repeat bottom right;">
+			<td class="header" width="90%" {if false}style="background: transparent url('{$config.cdn}/logo3.png') no-repeat bottom right;"{/if}>
 				<table width="100%" style="border-spacing: 0px;">
 					<tr>
 						<th width="50%" valign="bottom" align="left" style="padding: 0px;">
