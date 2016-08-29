@@ -53,6 +53,7 @@ $fgeneral_forumadmin = 'Administrare forum';
 
 // Neues Thema
 $foverview_newthread = 'Tema noua';
+$foverview_newthread = '创建主题';
 // Themen
 $foverview_thread = 'Teme';
 // Autor

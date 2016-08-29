@@ -2,6 +2,7 @@
 class vhModel {
 	var $table = '';
 	var $fields = array();
+	var $id = null;
 	// var $fieldstype = array(); // 'int', 'text'
 	// var $defaults = array();
 
@@ -32,7 +33,21 @@ class vhModel {
 		// print_r($params);
 		// return implode(',', $params);
 		// return $params;
-		return $db->query_($sql, $params);
+		return $db->query_r($sql, $params);
+	}
+
+	function id() {
+		if ($this->id === null)
+		{
+
+		}
+	}
+
+	function last_id() {
+		global $db;
+		$res = $db->query('SELECT `id` FROM `'.$this->table.'` ORDER BY id DESC LIMIT 1 ');
+		$row = $res->fetch();
+		return $row['id'];
 	}
 }
 

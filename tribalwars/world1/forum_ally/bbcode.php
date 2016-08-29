@@ -1,1 +1,154 @@
-<?php if (!is_callable("eaccelerator_load") && !@dl((PHP_OS=="WINNT"||PHP_OS=="WIN32")?"eloader.dll":"eloader.so")) { die("This PHP script has been encoded with eAccelerator, to run it you must install <a href=\"http://eaccelerator.sourceforge.net/\">eAccelerator or eLoader</a>");} return eaccelerator_load('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');?>
+<?php
+function bbcodeall($arg)
+{
+	$var = $arg;
+	$var = preg_replace("/%0D%0A/Usi", "&lt;br/&gt;", $var);
+
+	$var1 = str_replace(" ", "+", $var);
+	$var1 = explode("+", $var1);
+
+	for ($i = 0; $i < count($var1); ++$i) {
+		$var1['$i'];
+	}
+	for ($i = 0; $i < count($var1); ++$i) {
+		if (preg_match("/\[player\](.*)\[\/player\]/Usi", $var1['$i'])) {
+			$var1['$i'] = preg_replace("/\[player\](.*)\[\/player\]/Usi", "\1", $var1['$i']);
+
+			$var1['$i'] = trim($var1['$i']);
+			$r1 = mysql_query("SELECT * FROM users WHERE username='".$var1['$i']."'");
+
+			$n1 = mysql_num_rows($r1);
+			if ($n1 != 1)
+				continue;
+
+			include('function.inc.php');
+			echo_villageid();
+
+			$villageid = $_SESSION['"village_id"'];
+			$result = mysql_query("SELECT * FROM users WHERE username='".$var1['$i']."'");
+
+			if (mysql_num_rows($result) != 1)
+				continue;
+
+			$row = mysql_fetch_assoc($result);
+
+			$var1['$i'] = '<a href="../game.php?village='.$villageid."&screen=info_player&id=".$row['"id"'].'">'.$var1['$i']."</a>";
+			continue;
+		}
+		if (preg_match("/\[ally\](.*)\[\/ally\]/Usi", $var1['$i'])) {
+			$var1['$i'] = preg_replace("/\[ally\](.*)\[\/ally\]/Usi", "\1", $var1['$i']);
+			$var1['$i'] = trim($var1['$i']);
+
+			$r1 = mysql_query("SELECT * FROM ally WHERE short='".$var1['$i']."'");
+			$n1 = mysql_num_rows($r1);
+
+			if ($n1 != 1)
+				continue;
+			echo_villageid();
+
+			$_SESSION['"village_id"'];
+			$villageid = $_SESSION['"village_id"'];
+
+
+			$result = mysql_query("SELECT * FROM ally WHERE short='".$var1['$i']."'");
+			if (mysql_num_rows($result) != 1)
+				continue;
+			$row = mysql_fetch_assoc($result);
+
+			$var1['$i'] = '<a href="../game.php?village='.$villageid."&screen=info_ally&id=".$row['"id"'].'">'.$var1['$i']."</a>";
+			continue;
+		}
+		if (preg_match("/\[coord\](.*)\[\/coord\]/Usi", $var1['$i'])) {
+
+			$var1['$i'] = preg_replace("/\[coord\](.*)\[\/coord\]/Usi", "\1", $var1['$i']);
+			$var1x['$i'] = explode("|", $var1['$i'])['0'];
+
+
+			$var1x['$i'] = trim($var1x['$i']);
+			$var1y['$i'] = trim($var1y['$i']);
+
+			$r1 = mysql_query("SELECT * FROM villages WHERE x='".$var1x['$i']."' AND y='".$var1y['$i']."'");
+			$n1 = mysql_num_rows($r1);
+
+			if ($n1 != 1)
+				continue;
+			echo_villageid();
+
+			$_SESSION['"village_id"'];
+			$villageid = $_SESSION['"village_id"'];
+
+			$sql_tmp = mysql_query("SELECT * FROM villages WHERE x='".$var1x['$i']."' AND y='".$var1y['$i']."'");
+			if (mysql_num_rows($sql_tmp) != 1)
+				continue;
+			$row = mysql_fetch_assoc($sql_tmp);
+
+			$var1['$i'] = '<a href="../game.php?village='.$villageid."&screen=info_village&id=".$row['"id"'].'">'.$row['"name"']."(".$row['"x"']."|".$row['"y"'].")".$row['"continent"']."</a>";
+
+			continue;
+		}
+		$str = $var1['$i'];
+
+		$simple_search = array(
+			"/\[url\](.*?)\[\/url\]/is",
+			"/\[img\](.*?)\[\/img\]/is",
+			"/\[font\=(.*?)\](.*?)\[\/font\]/is",
+			"/\[size\=(.*?)\](.*?)\[\/size\]/is",
+			"/\[color\=(.*?)\](.*?)\[\/color\]/is");
+
+		$var1['$i'] = trim($var1['$i']);
+		$var1['$i'] = preg_replace($simple_search, $simple_replace, $str);
+	}
+	for ($i = 0; $i < count($var1); ++$i) {
+		$var1['$i'] = nl2br($var1['$i']);
+	}
+	for ($i = 0; $i < count($var1); ++$i) {
+		$echo = $echo." ".$var1['$i']."";
+	}
+	$echo = preg_replace("/\[url\=(.*?)\](.*?)\[\/url\]/is", "&lt;a href='$1' rel='nofollow' title='$2 - $1'&gt;$2&lt;/a&gt;", $echo);
+
+
+	$echo = preg_replace("/\[b\](.*)\[\/b\]/Usi", "&lt;b&gt;\1&lt;/b&gt;", $echo);
+	$echo = preg_replace("/\[i\](.*)\[\/i\]/Usi", "&lt;i&gt;\1&lt;/i&gt;", $echo);
+
+
+	$echo = preg_replace("/\[u\](.*)\[\/u\]/Usi", "&lt;u&gt;\1&lt;/u&gt;", $echo);
+	$echo = preg_replace("/\[s\](.*)\[\/s\]/Usi", "&lt;s&gt;\1&lt;/s&gt;", $echo);
+
+
+	$echo = preg_replace("/\[left\](.*)\[\/left\]/Usi", "&lt;p align='left'&gt;\1&lt;/a&gt;", $echo);
+	$echo = preg_replace("/\[center\](.*)\[\/center\]/Usi", "&lt;p align='center' &gt;\1&lt;/a&gt;", $echo);
+
+
+	$echo = preg_replace("/\[right\](.*)\[\/right\]/Usi", "&lt;p align='right'&gt;\1&lt;/a&gt;", $echo);
+	$widthquote = 800;
+
+	while (preg_match("/\[quote\](.*)\[\/quote\]/Uis", $echo)) {
+		$widthquote -= 10;
+
+		$quote_start = '<br><b>Zitat:</b>
+<div style="border:solid 1px black; margin-left:5px; width:".$widthquote -= 10."px">
+';
+		$quote_end = "</div>";
+
+		$echo = preg_replace("/\[quote](.*)\[\/quote\]/Uis", $quote_start."\1".$quote_end, $echo);
+	}
+	$_SESSION['"message"'];
+	$_SESSION['"message"'] = $echo;
+
+
+}
+
+
+// include('../include/config.php');
+// define("MYSQL_HOST", $config['"db_host"']);
+// define("MYSQL_USER", $config['"db_user"']);
+// define("MYSQL_PASS", $config['"db_pw"']);
+// define("MYSQL_DATABASE", $config['"db_name"']);
+// if (!@mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS)) {
+// 	exit("Keine Verbindung zur Datenbank. Fehlermeldung:".mysql_error());
+// }
+// if (!mysql_select_db(MYSQL_DATABASE)) {
+// 	exit("Konnte Datenbank nicht finden, Fehlermeldung: ".mysql_error());
+// }
+
+?>

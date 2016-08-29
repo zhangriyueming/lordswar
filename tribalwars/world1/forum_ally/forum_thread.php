@@ -1,1 +1,197 @@
-<?php if (!is_callable("eaccelerator_load") && !@dl((PHP_OS=="WINNT"||PHP_OS=="WIN32")?"eloader.dll":"eloader.so")) { die("This PHP script has been encoded with eAccelerator, to run it you must install <a href=\"http://eaccelerator.sourceforge.net/\">eAccelerator or eLoader</a>");} return eaccelerator_load('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');?>
+<?php
+
+
+checkright();
+$ally_lead_test = $_SESSION["ally_right"];
+
+echo_userid();
+$user_id_tmp = $_SESSION["user_id"];
+
+if ($id == "") {
+	echo '<script language="JavaScript">';
+
+	echo 'self.location.href="forum.php?page=thread&id='.$id_1.'"';
+	echo "</script>";
+
+
+
+}
+overviewarea();
+
+$session_query = $db->query("SELECT * FROM forum_thread WHERE id = '".$id."'");
+
+$session = $db->fetch_assoc($session_query);
+$status_test = $session["status"];
+
+$session_query = $db->query("SELECT * FROM forum_thread WHERE id = '".$id."'");
+$session = $db->fetch_assoc($session_query);
+
+$subject_test = $session["subject"];
+if ($status_test == 1) {
+
+	echo "<h3>".$subject_test." ".$fthread_closed."</h3>";
+}
+else
+{
+	echo "<h3>".$subject_test."</h3>";
+}
+
+$session_query = $db->query("SELECT * FROM forum_thread WHERE id = '".$id."'");
+
+$session = $db->fetch_assoc($session_query);
+$ally_id_test = $session["ally_id"];
+
+if ($ally_id_test != $ally_id) {
+	$status_error .= $status_error_thread_right;
+
+	echo $status_error;
+}
+
+if (empty($status_error)) {
+
+
+	echo '
+<table width="100%"><tbody><tr>
+<td style="min-width: 150px;">
+</td><td align="right">
+Seite:&nbsp;
+<b>&gt;1&lt;</b>
+</td></tr></tbody></table>';
+	if ($result = $db->query("SELECT * FROM forum_message WHERE ally_id = '".$ally_id."' AND thread_id = '".$id."' ORDER BY id")) {
+
+		while ($row = $db->fetch_assoc($result)) {
+			// die('ok');
+			$player_id_1 = htmlentities($row["user_id"]);
+
+			echo '<div class="post"><div class="igmline small">';
+			if ($result1 = $db->query("SELECT * FROM users WHERE id = '".$player_id_1."' ")) {
+
+				while ($row1 = $db->fetch_assoc($result1)) {
+					$player_name = htmlentities($row1["username"]);
+
+				}
+				$db->free_result($result1);
+
+
+			}
+			// $date = explode($row["time"], htmlentities($row["time"]))[0];
+
+			// $year = explode("-", $date)[0];
+			// $hor = explode(":", $time)[0];
+
+			// $ts_tmp = mktime($hor, $min, $sec, $mon, $day, $year);
+			$ts_tmp = $row['time'];
+			$date = date("d.m.Y", $ts_tmp);
+
+			$time = date("H:i", $ts_tmp);
+			echo_villageid();
+
+			$villageid = $_SESSION["village_id"];
+			echo '<span><a style="font-size: 9pt;" target="_blank" href="../game.php?village='.$villageid."&screen=info_player&amp;id=".htmlentities($row["user_id"]).'"> '.$player_name." </a>am ".$date." um ".$time." Uhr</span>";
+
+			echo '<span class="right">';
+			$session_query = $db->query("SELECT * FROM forum_message WHERE `id` = '".$id."' ORDER BY id DESC LIMIT 1");
+
+			$session = $db->fetch_assoc($session_query);
+			$user_id_test = $session["user_id"];
+
+
+
+			if ($ally_lead_test == 1 || $user_id_test == $user_id_tmp) {
+				echo ' <a href="forum.php?page=medit&id='.htmlentities($row["id"]).'">'.$fthread_edit.'</a>
+					   			<a onclick="return confirm('.$fthread_delete_sure_m.')" href="forum.php?page=thread&do=mdelete&id='.htmlentities($row["id"]).'">'.$fthread_delete."</a>
+					   			</span>";
+			}
+			// die($row["message"]);
+			$text_temp = htmlentities($row["message"]);
+
+			bbcodeall($text_temp);
+
+			$text_temp = $_SESSION["message"];
+			// die($_SESSION["message"]);
+			echo "</div>";
+
+			echo '<div class="text">'.$text_temp."</div>";
+			echo "</div>";
+
+		}
+		$db->free_result($result);
+	}
+	else
+	{
+		echo $status_error_thread_zero;
+
+	}
+	echo '
+	<table width="100%"><tbody><tr>
+<td style="min-width: 150px;">';
+
+	if ($status_test == 0) {
+
+		echo '<a class="thread_button" href="forum.php?page=answer&id='.$id.'">';
+		echo '
+		<span class="thread_answer_open"></span>
+		<span class="thread_answer">Antworten</span>
+		<span class="thread_answer_close"></span>
+	</a>';
+	}
+	else {
+
+		if ($ally_lead_test == 1) {
+
+			echo $fthread_admin_write;
+			echo '<a class="thread_button" href="forum.php?page=answer&id='.$id.'">';
+
+
+
+
+
+
+			echo '
+		<span class="thread_answer_open"></span>
+		<span class="thread_answer">Antworten</span>
+		<span class="thread_answer_close"></span>
+	</a>';
+		}
+	}
+	if ($ally_lead_test == 1) {
+
+		echo '<a class="thread_button" href="forum.php?page=tedit&id='.$id.'">';
+		'
+	<span class="thread_edit_open"></span>
+	<span class="thread_edit">'.$fthread_edit;
+
+
+		echo '
+	<span class="thread_edit_open"></span>
+	<span class="thread_edit">'.$fthread_edit.'</span>
+	<span class="thread_edit_close"></span>
+</a>';
+		if ($status_test == 0) {
+
+			echo '<a href="forum.php?page=thread&do=closed&id='.$id.'"><img alt="'.$fthread_close.'" src="graphic/forum/thread_close.png?1" title="Schließen"></a>';
+		}
+		else
+		{
+			'<a href="forum.php?page=thread&do=open&id='.$id;
+			echo '<a href="forum.php?page=thread&do=open&id='.$id.'"><img alt="'.$fthread_open.'" src="graphic/forum/thread_open.png?1" title="Schließen"></a>';
+
+
+		}
+		'<a onclick="return confirm('.$fthread_delete_sure;
+		echo '<a onclick="return confirm('.$fthread_delete_sure.')" href="forum.php?page=thread&do=tdelete&id='.$id.'"><img alt="'.$fthread_delete.'" src="graphic/forum/thread_delete.png?1" title="'.$fthread_delete.'"></a>';
+
+
+
+
+
+
+	}
+	echo '
+</td><td align="right">
+Seite:&nbsp;
+<b>&gt;1&lt;</b>
+</td></tr></tbody></table>';
+}
+
+?>

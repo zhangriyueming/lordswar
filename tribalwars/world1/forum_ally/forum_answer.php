@@ -1,1 +1,235 @@
-<?php if (!is_callable("eaccelerator_load") && !@dl((PHP_OS=="WINNT"||PHP_OS=="WIN32")?"eloader.dll":"eloader.so")) { die("This PHP script has been encoded with eAccelerator, to run it you must install <a href=\"http://eaccelerator.sourceforge.net/\">eAccelerator or eLoader</a>");} return eaccelerator_load('eJzdmN1v2zYQwCUnD/lYhg1DhwItClZrHTeoIyfNhsyWVARB3gYsKPJWDAEl0TYRidQoynb2UGDDHjfsD9s/teOHHHXRgr05DQFblHg8Hu93pKg7Ozk9Pfvh7N3JxY/vnHXHcVzH6TjOmqNK3zGl11ENa/vwH6R0hkp5nZHQm9NUTofo++OXI5RjMaFsiA4GxQLhSvKRF+1sBetWg+O6a5/Bhc+ImFEyx4Lg3rbW+ofSGgtfiUscZwRpvaF3MBi89BDO6ISFXkKYJMJDSYbLMvRyTJkaYHMzkDFPr6NACn0L92ltX4HTlLLJEB0Vi5GRhvbpYXRSjdHFFExIEWZyzoUkLPChYWdrZ+t82xi8piZNU3dj25h/puwcc5EjhnPQzsj8Mo49lBM55SmMxksJ5iaScrAXBKt8v5gWb8tEEMJCzMo5EV2ahuuOVul0QOkXcO2mPFTKjIQXab90nN5X2oox/G9ax0BnpTi/UHdLX8xo+ZEr1CT0TKVAM+s+yQtv6Z8o8OHPigW6quTPH9mJK1DjOE54Si5jnoELHhkXzOCCmhEgyUL29RBDlJGxHCEFeJzx+RCBWRTMXDr+pgQYcZZkNLkKPTNMb/d9/NPua7T73ofrKw8BnHHofeMhSaUaCHz2uPbZLxCinvZFHF/GlZScaTNvDdS0NKVlkeHrIaIso4z044wnVyMU4+RqInjF0iGqRNbr/lxxOZoIXExp4hvjyvq6X7DJ2wMj8gox3hekIFgiIMyzDKnIVz8pgGQBEc7AHzYG+8o7Q9V88yjmYHpuH5r10xd0MgW5w8ajWuyNemaX3KHuMyVWeqDju8vishgFPsz6X54IfHwLwn+ToJYEbSVx/lhHp7v2eSNKqIQgSFzNyO04652NJzWtDy20jPiqefUPHwqxyhKr2ok9scS+bBADDxKhPOtqVAbasxrary3Qlj1Wzu3ooXArLbeyndszy+3rBrdSCnoFbxzwJVjkamQG3vMa3p8t8D7qtnKA3z0UgGqGxEK09TaQzy3InQZILe5qaobfi5rfby38tPTKuR08mJUHrqj3TFVrg/bCQttu7poiczUog6xbI/u2bb8U2eqB3fOVhnpdc9bd0wfPp+qse0c537Mn1ObZQzmRCHdjz5xRQ3VMb0Nu5Cz1+qb9qNmvuf7ewtV0XTna4/tN9v8vRZxl15aKqbYtxr5djM1PEyXtalZmNQ5qan+1UIP3X3wPNtDBJ0jtbnwJ5yK1/Gy9DeCgCXCs+WlpV2MzAI9qgEULQC29eoCf4jfDstzV2jsyOzHTG+zfZidephL0cLpi0wVQETbpcJN4iS7IQg6XMibXoHIEKt2DJI4pfEMsQu/QQ4LPy9A7gFrCM6gdDzybV8lJWeIJMfzrG5WysHqi2zY0fvDM5IN8nTKBZgTlfNFMbZSEpTas3I2FeW301GuDsqKSSF4XYEZZxTmVtVGqi6eyKZV5QyzqUFVJIi/qLYzzPuhBTpUuXyVqoqXXbxl929DAt+mbwJ/KPIsirc11bQbtH4YFSpA=');?>
+<?php
+
+
+echo '<div style="width: 98%; margin: 10px auto;">
+';
+overviewarea();
+
+
+
+
+
+
+
+echo '<br/>
+<table width="100%" align="center" class="main">
+		<tbody><tr>
+			<td style="padding: 4px;">
+				<h2>Auf Thread antworten</h2>
+
+';
+echo '<form name="new_bb" method="post" action="forum.php?screen=answer&id='.$id.'&do=new_answer">';
+echo '	<table id="formTable" class="vis">
+		<tbody>
+
+				<tr valign="top">
+			<td></td>
+
+			<td>
+				';
+
+
+' <div style="text-align: left; overflow: visible;">
+														<a onclick="bbcode(\'[b]\', \'[/b]\')" href="#" title="'.$fbbcode_bold;
+' <div style="text-align: left; overflow: visible;">
+														<a onclick="bbcode(\'[b]\', \'[/b]\')" href="#" title="'.$fbbcode_bold.'" id="bb_button_bold">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll 0px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[i]\', \'[/i]\')" href="#" title="'.$fbbcode_italic;
+
+
+
+' <div style="text-align: left; overflow: visible;">
+														<a onclick="bbcode(\'[b]\', \'[/b]\')" href="#" title="'.$fbbcode_bold.'" id="bb_button_bold">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll 0px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[i]\', \'[/i]\')" href="#" title="'.$fbbcode_italic.'" id="bb_button_italic">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -20px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[u]\', \'[/u]\')" href="#" title="'.$fbbcode_underline;
+' <div style="text-align: left; overflow: visible;">
+														<a onclick="bbcode(\'[b]\', \'[/b]\')" href="#" title="'.$fbbcode_bold.'" id="bb_button_bold">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll 0px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[i]\', \'[/i]\')" href="#" title="'.$fbbcode_italic.'" id="bb_button_italic">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -20px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[u]\', \'[/u]\')" href="#" title="'.$fbbcode_underline.'" id="bb_button_underline">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -40px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[s]\', \'[/s]\')" href="#" title="'.$fbbcode_strikethrought;
+
+
+
+' <div style="text-align: left; overflow: visible;">
+														<a onclick="bbcode(\'[b]\', \'[/b]\')" href="#" title="'.$fbbcode_bold.'" id="bb_button_bold">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll 0px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[i]\', \'[/i]\')" href="#" title="'.$fbbcode_italic.'" id="bb_button_italic">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -20px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[u]\', \'[/u]\')" href="#" title="'.$fbbcode_underline.'" id="bb_button_underline">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -40px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[s]\', \'[/s]\')" href="#" title="'.$fbbcode_strikethrought.'" id="bb_button_strikethrough">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -60px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[quote]\', \'[/quote]\')" href="#" title="'.$fbbcode_quote;
+' <div style="text-align: left; overflow: visible;">
+														<a onclick="bbcode(\'[b]\', \'[/b]\')" href="#" title="'.$fbbcode_bold.'" id="bb_button_bold">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll 0px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[i]\', \'[/i]\')" href="#" title="'.$fbbcode_italic.'" id="bb_button_italic">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -20px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[u]\', \'[/u]\')" href="#" title="'.$fbbcode_underline.'" id="bb_button_underline">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -40px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[s]\', \'[/s]\')" href="#" title="'.$fbbcode_strikethrought.'" id="bb_button_strikethrough">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -60px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[quote]\', \'[/quote]\')" href="#" title="'.$fbbcode_quote.'" id="bb_button_quote">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -140px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[url]\', \'[/url]\')" href="#" title="'.$fbbcode_url;
+
+
+echo ' <div style="text-align: left; overflow: visible;">
+														<a onclick="bbcode(\'[b]\', \'[/b]\')" href="#" title="'.$fbbcode_bold.'" id="bb_button_bold">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll 0px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[i]\', \'[/i]\')" href="#" title="'.$fbbcode_italic.'" id="bb_button_italic">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -20px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[u]\', \'[/u]\')" href="#" title="'.$fbbcode_underline.'" id="bb_button_underline">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -40px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[s]\', \'[/s]\')" href="#" title="'.$fbbcode_strikethrought.'" id="bb_button_strikethrough">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -60px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[quote]\', \'[/quote]\')" href="#" title="'.$fbbcode_quote.'" id="bb_button_quote">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -140px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[url]\', \'[/url]\')" href="#" title="'.$fbbcode_url.'" id="bb_button_url">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -160px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a> ';
+echo "																												";
+
+
+
+'<a onclick="bbcode(\'[player]\', \'[/player]\')" href="#" title="'.$fbbcode_player.'" id="bb_button_player">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -80px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[ally]\', \'[/ally]\')" href="#" title="';
+'<a onclick="bbcode(\'[player]\', \'[/player]\')" href="#" title="'.$fbbcode_player.'" id="bb_button_player">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -80px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[ally]\', \'[/ally]\')" href="#" title="'.$fbbcode_ally;
+
+
+
+'<a onclick="bbcode(\'[player]\', \'[/player]\')" href="#" title="'.$fbbcode_player.'" id="bb_button_player">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -80px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[ally]\', \'[/ally]\')" href="#" title="'.$fbbcode_ally.'" id="bb_button_tribe">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -100px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																												<a onclick="bbcode(\'[coord]\', \'[/coord]\')" href="#" title="'.$ffcode_coord;
+echo '<a onclick="bbcode(\'[player]\', \'[/player]\')" href="#" title="'.$fbbcode_player.'" id="bb_button_player">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -80px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																			<a onclick="bbcode(\'[ally]\', \'[/ally]\')" href="#" title="'.$fbbcode_ally.'" id="bb_button_tribe">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -100px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																												<a onclick="bbcode(\'[coord]\', \'[/coord]\')" href="#" title="'.$ffcode_coord.'" id="bb_button_coord">
+													<div style="display: inline-block; background: url(&quot;graphic/bbcodes/bbcodes.png?1&quot;) no-repeat scroll -120px 0px transparent; padding-left: 0px; padding-bottom: 0px; margin-right: 2px; margin-bottom: 3px; width: 20px; height: 20px;">&nbsp;</div>
+												</a>
+																												
+																										';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+echo '			
+
+				</div>			</td>
+		</tr>
+		<tr>
+			<td>Text:</td>
+			<td><textarea tabindex="2" rows="12" cols="80" name="message" id="message"></textarea></td>
+		</tr>
+		
+		
+		
+	</tbody></table>
+    ';
+echo '<input type="submit" name="send" value="'.$fsend_button.'">';
+
+
+
+
+
+
+echo "</form>				
+			</td>
+		</tr>
+	</tbody></table>
+</body>
+</html>";
+
+
+?>

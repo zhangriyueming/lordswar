@@ -147,6 +147,19 @@ class DB_MySQL{
     function fetch_assoc($result) {
     	return $result->fetch(PDO::FETCH_ASSOC);
     }
+    function fetch_object($result) {
+    	return $result->fetch(PDO::FETCH_OBJ);
+    }
+    function close_cursor($stmt) {
+    	return $stmt->closeCursor();
+    }
+	function free_result($result){
+		return $result->closeCursor();
+	}
+	function num_rows($result){
+		$row_count = $result->rowCount();
+		return $row_count ? $row_count : 0;
+	}
 
 	function freeresult($result){
 		return $result->closeCursor();

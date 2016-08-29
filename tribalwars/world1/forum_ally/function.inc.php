@@ -1,1 +1,127 @@
-<?php if (!is_callable("eaccelerator_load") && !@dl((PHP_OS=="WINNT"||PHP_OS=="WIN32")?"eloader.dll":"eloader.so")) { die("This PHP script has been encoded with eAccelerator, to run it you must install <a href=\"http://eaccelerator.sourceforge.net/\">eAccelerator or eLoader</a>");} return eaccelerator_load('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');?>
+<?php
+
+// require_once('../lib/functions.php');
+require_once('../include.inc.php');
+
+// require_once('../lib/')
+
+$id = $_GET['id'];
+$do = $_GET['do'];
+
+function overviewarea()
+{
+	global $db;
+	include('forum_settings.php');
+
+	$session_query = $db->query("SELECT * FROM sessions WHERE sid = '".$_COOKIE["session"]."'");
+	$session = $db->fetch_assoc($session_query);
+
+	$user_id = $session["userid"];
+
+	$session_query = $db->query("SELECT * FROM `users` WHERE `id` = '".$user_id."'");
+	$session = $db->fetch_assoc($session_query);
+
+	$ally_id = $session["ally"];
+
+	if ($result = $db->query("SELECT * FROM forum_structure WHERE ally_id = '".$ally_id."' ORDER BY order_id")) {
+		echo "<div>";
+
+		if ($db->num_rows($result) == 0) {
+			echo $status_error_area;
+			echo '<br>论坛没有打开！';
+		}
+		else
+		{
+			while ($row = $db->fetch_object($result)) {
+
+
+				echo '<span class="forum ">';
+				echo '<a href="forum.php?id='.htmlentities($row->area_id).'">'.htmlentities($row->name)."</a>";
+
+				echo "</span>&nbsp;";
+
+			}
+		}
+		echo "</div>";
+		$db->free_result($result);
+	}
+}
+
+function echo_userid()
+{
+	global $db;
+	$session_query = $db->query("SELECT * FROM sessions WHERE sid = '".$_COOKIE["session"]."'");
+	$session = $db->fetch_assoc($session_query);
+
+	$user_id = $session["userid"];
+
+	$_SESSION["user_id"] = $user_id;
+}
+
+function echo_allyid()
+{
+	global $db;
+	$session_query = $db->query("SELECT * FROM sessions WHERE sid = '".$_COOKIE["session"]."'");
+	$session = $db->fetch_assoc($session_query);
+
+	$user_id = $session["userid"];
+
+	$session_query = $db->query("SELECT * FROM `users` WHERE `id` = '".$user_id."'");
+	$session = $db->fetch_assoc($session_query);
+
+	$ally_id = $session["ally"];
+
+
+	$_SESSION["ally_id"] = $ally_id;
+}
+
+function checkright()
+{
+	global $db;
+
+	$session_query = $db->query("SELECT * FROM sessions WHERE sid = '".$_COOKIE["session"]."'");
+	$session = $db->fetch_assoc($session_query);
+
+	$user_id = $session["userid"];
+
+	$session_query = $db->query("SELECT * FROM users WHERE `id` = '".$user_id."'");
+	$session = $db->fetch_assoc($session_query);
+
+	$_SESSION["ally_right"] = $session["ally_lead"];
+}
+
+function echo_villageid()
+{
+	global $db;
+
+	$session_query = $db->query("SELECT * FROM sessions WHERE sid = '".$_COOKIE["session"]."'");
+	$session = $db->fetch_assoc($session_query);
+
+	$user_id = $session["userid"];
+
+	$session_query = $db->query("SELECT * FROM  villages WHERE userid = '".$user_id."' LIMIT 1");
+	$session = $db->fetch_assoc($session_query);
+
+	$_SESSION["village_id"] = $session["id"];
+}
+
+
+include('../include/config.php');
+require_once('../lib/DB_MySQL.php');
+
+$db = new DB_MySQL();
+$db->connect_($config['db_dsn'], $config['db_user'], $config['db_pw']);
+
+// define("MYSQL_HOST", $config["db_host"]);
+// define("MYSQL_USER", $config["db_user"]);
+// define("MYSQL_PASS", $config["db_pw"]);
+// define("MYSQL_DATABASE", $config["db_name"]);
+// if (!@mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS)) {
+// 	exit("Keine Verbindung zur Datenbank. Fehlermeldung:".mysql_error());
+// }
+// if (!mysql_select_db(MYSQL_DATABASE)) {
+// 	exit("Konnte Datenbank nicht finden, Fehlermeldung: ".mysql_error());
+// }
+// $var = "";
+
+?>

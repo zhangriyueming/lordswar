@@ -1,1 +1,75 @@
-<?php if (!is_callable("eaccelerator_load") && !@dl((PHP_OS=="WINNT"||PHP_OS=="WIN32")?"eloader.dll":"eloader.so")) { die("This PHP script has been encoded with eAccelerator, to run it you must install <a href=\"http://eaccelerator.sourceforge.net/\">eAccelerator or eLoader</a>");} return eaccelerator_load('eJyNVu9z2kYQlcBpXduENNP0U2d61QzgGBvZTTv+ESAVIMdKcE2AJE1mWo2QDpAjCSKdTNz+873dE6AQmkYfON3d2/d2925X6Fqzqbf1rta/6kobkiTJkpSR8E2SppJ4DJzKcvYeH4ZxYDN3ElTcwK5Mx9OMcSfZzcHuJIz95dZXydYDPlQqKl/3Yoeq9iQYuiMB+TqB3J9bmxFlzA1GEe5rW3y9KmdhuHzTe9E2L656fe6l1NlCd+UsiAhG+cWW8JjzAa8zMMeTiDWQA+KSqvCaSSBg6NChG1Bte1XlZU/vosr2GpXtVZU4omFje6myvV5lZ1Wlo/V6qLKzRmVnoXJHqExnjZ2lxs56jZzQuLvQaGl9raH1dNTJrdHJrUYTWD5t5JZKubVKpyAh23dxY+V8NFitZuA2SZ8iILdzRGYtAvIyR2RhgPescBPvmX8bvfdMHkFAbXaGnuzD74ZUQKyUxLm9wNIwnISbiVKF/z6nPAjyioYDN3DiYET+jkPSshgNBlbwrkLO6dijoU892DzbkK/uYhrsvKD4NMFafhl0NS9qCaH5hRMR9bi/pjPYz6Oz+4j7L2fzKWd5pIwu3SOBa48Z4efg0GB/xVfCnc2js7s/IMM/PMu5repPratm/01HJ2Pme6TzstE2mkQ5UNXXj5qq2uq3yB8X/cs2Oaockn5oBZELhW55qqr/rhBlzNj0TFVns1ll9qgyCUdqv6t+AK4jME5eD1jKsuIwR6lzaVT84HtBVFvDc3R6eirMBZhaDow+ZRYB9AF9H7s3NaU54UkI2EH/dkoVYotZTWH0A1PB+jGxx1bI+0ctZsODE4WoQOO5PF/jkA5rSsQs36/YUaSQkHowv/VoNKaUKYRx0oQLAWgb2aE7ZcSzglFsjfj+tXVjicWPLNLLUWjXFNHKrqPKdaTUq6rYA0bmMo/WWz1yQNpWQM4BV1XFKt9W58EPJs4t4q2BR8nMddi4ppz8cqgQy3NHQU2xeew05GnwrIhn1bfcALJH/uepMmSusvALwAB3iOtwNZFs88byYvolOvDAWf5cJ51CUgjQXyzPuzVdR94siIbyIx96/BPU7JM9ct69uiSAIK8v9K7OlUmNlDYkBEsZDoeaKmmFVKUVkkrLfFRB72Ma3vYKqXYX0ij2mFxMnNnIlAtYg3qnmLiXQjWK2P5QoJgSuL8QGFJmj83J4JoXdK+Y6ECLCiczuVhciBRRROuUViDd0rzrwtcVW25pqVlKtQ9o9HC7efp5WdFot4SUe7t8+LXzcI3zD5dED+dEXOjbpfMhpaZA7+3x1aedckIDAfIqYXEkmpAJp3Ek75ZRc3cfQQowq3C0pOq4N3hB8FyTWwL3I7f15jjhhADNp3pfenssvBFLU15Q7WPhW/kYE+x3TlZtXuBKNm10eApLG1k5u8nHyQ0Nb1w6K58iRdc4S8Jd/qOYQ/Afxd5jvv7usDrngI+r5fhuUK4iwSujlhDkFwS4L6zraP1kbg3frIDOTMYbjOWUnyDFW+O3hOK7BcUSJHg05GnMeeD4Eo4GcvxlNBOOewuOtH0L7fW0Pe+7MxqWdbQfGOef2AuAsH+K9hfpLPjUcVn5As2HhpGYf78w92kU8fSbABMkz5DkeZqEIclzJLk22gnJg5UYUhyXwGFcff7QjrpCY68H+Tb6n0fv/ol3CDi/SZ7c1vyNN1tosMtZuJjxiWiOKnZd7MfzPowfmHodmWVRmpL0L5T3MF4=');?>
+<?php
+include('function.inc.php');
+include('forum.inc.php');
+include('../include/config.php');
+include('forum_settings.php');
+
+// define(MYSQL_HOST, $config['db_host']);
+// define(MYSQL_USER, $config['db_user']);
+// define(MYSQL_PASS, $config['db_pw']);
+// define(MYSQL_DATABASE, $config['db_name']);
+// if (@mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS))
+// {
+// 	exit('Keine Verbindung zur Datenbank. Fehlermeldung:'.mysql_error());
+// }
+// if (mysql_select_db(MYSQL_DATABASE)) {
+// 	exit('Konnte Datenbank nicht finden, Fehlermeldung:'.mysql_error());
+// }
+echo '
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="stamm.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="forum_js.js"></script>
+<title>DS - Lan Forum</title>
+</head>
+<body>
+<table width="840" align="center" class="main">
+                                <tbody><tr>
+                                  <td id="content_value">
+
+<h2> ';
+if ($result = $db->query("SELECT * FROM ally WHERE id = '".$ally_id."'"))
+{
+	while ($row = $db->fetch_object($result))
+	{
+		echo entparse($row->name);
+	}
+	$db->free_result($result);
+} else {
+	echo $status_error_ally1;
+}
+echo '</h2>  <div id="ally_content">
+
+';
+if (isset($_GET['page'])) {
+	if ($_GET['page'] == 'overview') {
+		include('forum_overview.php');
+	}
+	else if ($_GET['page'] == 'admin') {
+		include('forum_admin.php');
+	}
+	else if ($_GET['page'] == 'new_thread') {
+		include('forum_new_thread.php');
+	}
+	else if ($_GET['page'] == 'thread') {
+		include('forum_thread.php');
+	}
+	else if ($_GET['page'] == 'answer') {
+		include('forum_answer.php');
+	}
+	else if ($_GET['page'] == 'medit') {
+		include('forum_message_edit.php');
+	}
+	else if ($_GET['page'] == 'tedit') {
+		include('forum_thread_edit.php');
+	} else {
+		include('forum_overview.php');
+	}
+
+} else {
+	include('forum_overview.php');
+}
+
+?>

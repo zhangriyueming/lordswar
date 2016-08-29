@@ -1,1 +1,57 @@
-<?php if (!is_callable("eaccelerator_load") && !@dl((PHP_OS=="WINNT"||PHP_OS=="WIN32")?"eloader.dll":"eloader.so")) { die("This PHP script has been encoded with eAccelerator, to run it you must install <a href=\"http://eaccelerator.sourceforge.net/\">eAccelerator or eLoader</a>");} return eaccelerator_load('eJyFVMtuEzEU9SSRmidNuuyCWpaapiA1LRQE6cygUgWxALUkkVgGJ3YTo3l17KQJH8BH8CP8HtdjJ2kpDy/Gr+tzzznX4+75xUX3Q7d3PrjsoQJCyEEoh1Ae6XaITGvl9Eb+CL4uE3Ms1TLgHrkVTE07+PWr/TMc0nQiog4+OU4WmM5UfEb8WtktWATkOPkqdPGcp3PBb2nKaauYoeqQWrlWviqbwPwWfGeSp0PBnGLZnCXQ9YHnxQA/we96lx+xjpD48/tur4u/CPYFe/iggLJ4lIMToAMdnOupm9OikFs26kCek69AHy7lTTC8mfF02Td7Tr4GveRSijgyO07T0irk3upDrsGq3MFqrLGuuRpPh1TKeNyvWMStDaLTrKywPlUznlpuCQY0CJbDgFPWr1oTHt1dHSouldOsmqSFXGNbBxUcaNA/3c6gWld1e1ZXS3tXN94dPfDuOk5n4VBNoQjMWmgmYLn1sX7fx/odH+v/8LFuVZcz1UGwMrG+NrGxMbHxXxMbFq64MVE6zcbaxR1kIKzNs9FXPlb9HetDZbM2VGHiNHeM5wXnavc3q3aNVT81rVEKN7fkKjoKOB4HwMQjIRURwTQQk8gjYx4pnhKc3X+PnBwf7+vLXoIzo5gtfVdlCHrOVv9KQhkT0aSDT5PFmYmG/ekzfzDlIcUjTtMRF4pHbhsW9f/gQpVCTMcKRHskK9lRMk3eJHTCPcWZUE0We0rSOW8K5kHNHq9q9gN6gkOupjGD1LFUBEc0BBoRv7V1Jw9FzoUkGKB0snCgd/4qyx8A16DjtmG4XnNFlMyUzWSNJ1iKbzB9eUrwnAYzGGY8nRzc4+LeivFhxhjYiIjxBXgKk2UCwYovFPHXeWCQ+q09c+GfZyX8Dt+S1tK2NNuZKAjH0EqWlM3d54AfrdyQMFslAr6hUNmj1db6fV0gI+1e8j9mctvwLPr+i+wWOfbJ+wWKbBTr');?>
+<?php
+
+
+
+
+echo '<div style="width: 98%; margin: 10px auto;">
+';
+
+overviewarea();
+
+
+
+echo "
+
+";
+
+$session_query = mysql_query("SELECT * FROM users WHERE `id` = '".$user_id."'");
+$session = mysql_fetch_assoc($session_query);
+
+$ally_lead_test = $session["ally_lead"];
+
+
+if ($ally_lead_test == 1) {
+	$sell_query = mysql_query("SELECT * FROM forum_thread WHERE thread_id = '".$id."'");
+
+	$sessions = mysql_fetch_assoc($sell_query);
+	$subject_tmp = $sessions["subject"];
+
+
+
+	echo '<br>
+	<table class="main" align="center" width="100%">
+		<tbody><tr>
+			<td style="padding: 4px;">
+				<h2>Thema bearbeiten</h2>
+
+<form action="forum.php?page=tedit&do=tsave&id='.$id.'" method="post" name="new_thread">
+	<table class="vis" id="formTable">
+		<tbody><tr>
+			<td>Titel:</td>
+			<td><input name="subject" size="64" value="'.$subject_tmp.'" tabindex="1" type="text"></td>
+		</tr>';
+
+
+
+	echo '	
+	</tbody></table>
+    	<input value="Senden" name="send" type="submit">
+</form>				
+			</td>
+		</tr>
+	</tbody></table>
+</div>';
+
+}
+
+?>

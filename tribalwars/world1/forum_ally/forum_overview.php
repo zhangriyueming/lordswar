@@ -1,1 +1,204 @@
-<?php if (!is_callable("eaccelerator_load") && !@dl((PHP_OS=="WINNT"||PHP_OS=="WIN32")?"eloader.dll":"eloader.so")) { die("This PHP script has been encoded with eAccelerator, to run it you must install <a href=\"http://eaccelerator.sourceforge.net/\">eAccelerator or eLoader</a>");} return eaccelerator_load('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');?>
+<?php
+
+// try forum_structure -> forum, not work
+
+echo_allyid();
+echo_villageid();
+
+checkright();
+
+$id = $_GET['id'];
+
+if ($id == "") {
+	if ($result = $db->query("SELECT * FROM forum_structure WHERE ally_id = '".$ally_id."' LIMIT 1")) {
+		if ($row = $db->fetch_object($result)) {
+
+			$area_tmp_id = htmlentities($row->area_id);
+			// die('to:'.$area_tmp_id);
+			echo '<script language="JavaScript">';
+			echo 'self.location.href="forum.php?page=overview&id='.$area_tmp_id.'"';
+			echo "</script>";
+
+			exit();
+		}
+		$db->free_result($result);
+	}
+	else
+	{
+		echo $status_error_ally0;
+	}
+}
+echo '<div style="width: 98%; margin: 10px auto;">
+';
+
+overviewarea();
+echo "<br/>";
+
+$session_query = $db->query("SELECT * FROM `forum_structure` WHERE `area_id` = '".$id."'");
+
+$session = $db->fetch_assoc($session_query);
+$ally_id_test = $session["ally_id"];
+
+$area_name_test = $session["name"];
+if ($ally_id_test != $_SESSION["ally_id"]) {
+
+	echo $status_error .= $status_error_ally;
+	echo '<br>无法访问论坛';
+}
+empty($status_error);
+if (empty($status_error)) {
+
+
+
+	echo '<table width="100%" align="center" class="main">
+	<tbody><tr>
+			<td style="padding: 4px;">';
+	echo "<h1>".$area_name_test."</h1>";
+
+
+
+	echo '<table width="100%">
+	<tbody><tr>
+		<td>';
+	echo '<a class="thread_button" href="forum.php?page=new_thread&id='.$id.'">';
+
+
+	'					<span class="thread_new_open"></span>
+					<span class="thread_new">'.$foverview_newthread;
+	echo '					<span class="thread_new_open"></span>
+					<span class="thread_new">'.$foverview_newthread.'</span>
+					<span class="thread_new_close"></span>
+			</a>
+		</td>
+<td align="right">';
+
+
+
+
+
+
+
+
+
+
+
+
+	'</td></tr></tbody></table>
+
+<form method="post" action="forum.php?page=view_forum&amp;forum_id=81987&amp;action=mod&amp;h=6ced">
+
+<table width="100%" class="vis nowrap">
+<colgroup>
+	<col width="*">
+	<col width="180">
+	<col width="180">
+	<col width="70">
+</colgroup>
+<tbody><tr><th>'.$foverview_thread."</th><th>".$foverview_author."</th><th>".$foverview_lastpost."</th><th>".$foverview_answer;
+	echo '</td></tr></tbody></table>
+
+<form method="post" action="forum.php?page=view_forum&amp;forum_id=81987&amp;action=mod&amp;h=6ced">
+
+<table width="100%" class="vis nowrap">
+<colgroup>
+	<col width="*">
+	<col width="180">
+	<col width="180">
+	<col width="70">
+</colgroup>
+<tbody><tr><th>'.$foverview_thread."</th><th>".$foverview_author."</th><th>".$foverview_lastpost."</th><th>".$foverview_answer."</th></tr>
+<tr>";
+
+
+
+
+
+
+	if ($result = $db->query("SELECT * FROM forum_thread WHERE ally_id = '".$_SESSION["ally_id"]."' AND area_id = '".$id."' ORDER BY id ")) {
+		if ($db->num_rows($result) == 0) {
+			echo $status_error_thread;
+			echo '<br>没有任何主题！';
+		}
+		else
+		{
+			while ($row = $db->fetch_assoc($result)) {
+
+				$date1 = explode($row["flagman_ts"], htmlentities($row["flagman_ts"]))[0];
+				$year1 = explode("-", $date1)[0];
+
+				$hor1 = explode(":", $time1)[0];
+				$flagman_ts_tmp = mktime($hor1, $min1, $sec1, $mon1, $day1, $year1);
+
+
+
+				$date2 = explode($row["last_post_ts"], htmlentities($row["last_post_ts"]))[0];
+				$year2 = explode("-", $date2)[0];
+
+				$hor2 = explode(":", $time2)[0];
+				$last_post_ts_tmp = mktime($hor2, $min2, $sec2, $mon2, $day2, $year2);
+
+
+
+				$date1 = date("d.m.Y", $flagman_ts_tmp);
+				$time1 = date("H:i", $flagman_ts_tmp);
+
+				$date2 = date("d.m.Y", $last_post_ts_tmp);
+				$time2 = date("H:i", $last_post_ts_tmp);
+
+				$player_id_f = htmlentities($row["flagman_id"]);
+				$player_id_l = htmlentities($row["last_post_id"]);
+
+				if ($result2 = $db->query("SELECT * FROM users WHERE id = '".$player_id_f."' ")) {
+					while ($row2 = $db->fetch_object($result2)) {
+
+						$player_name_f = htmlentities();
+
+					}
+					$db->free_result($result2);
+				}
+				if ($result3 = $db->query("SELECT * FROM users WHERE id = '".$player_id_l."' ")) {
+
+					while ($row3 = $db->fetch_object($result3)) {
+						$player_name_l = htmlentities();
+
+					}
+					$db->free_result($result3);
+
+
+				}
+				echo '<tr><td style="white-space: normal;">';
+
+				echo '<img alt="" src="graphic/forum/thread_read.png?1" title="Gelesen">&nbsp;<a href="forum.php?page=thread&id='.htmlentities($row['thread_id']).'">'.htmlentities($row['subject'])."</a>";
+
+				echo "</td>";
+				echo '<td><div align="center" style="font-size: 8pt;"><a target="_blank" href="../game.php?village='.$_SESSION["village_id"]."screen=info_player&amp;id=".$player_id_f.'">'.$player_name_f."</a><br>".$fgeneral_on."".$date1."".$fgeneral_to."".$time1." Uhr</div></td>";
+
+				echo '<td><div align="center" style="font-size: 8pt;"><a target="_blank" href="../game.php?village='.$_SESSION["village_id"]."&screen=info_player&amp;id=".$player_id_l.'">'.$player_name_l."</a><br>".$fgeneral_on."".$date2."".$fgeneral_to."".$time2." Uhr</div></td>";
+				echo '<td align="center">'.htmlentities($row["answer"])."</td>";
+
+				echo "</tr>";
+
+
+
+			}
+			echo '<tr><th colspan="2"></th><th colspan="3"></th></tr></tbody></table>';
+		}
+		$db->free_result($result);
+	}
+	else {
+		echo "Fehler beim Verbinden mit Mysql!";
+	}
+	echo "
+</form>
+
+			</td>
+		</tr>
+	</tbody></table>";
+}
+if ($_SESSION["ally_right"] == 1) {
+
+
+	echo '<p align="center"><a href="forum.php?page=admin">Foren Administrieren</a></p>';
+}
+
+?>

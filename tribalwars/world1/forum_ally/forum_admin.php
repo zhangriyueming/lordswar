@@ -1,1 +1,88 @@
-<?php if (!is_callable("eaccelerator_load") && !@dl((PHP_OS=="WINNT"||PHP_OS=="WIN32")?"eloader.dll":"eloader.so")) { die("This PHP script has been encoded with eAccelerator, to run it you must install <a href=\"http://eaccelerator.sourceforge.net/\">eAccelerator or eLoader</a>");} return eaccelerator_load('eJylV1tv40QUtpOw2zSbhVBAggc0MoprdcO6hcLSNjFKS1aAlm1IFiEeVpFjT+Ohvu143As/jCfe9ufwJ5gz40sS3BQJt8rYJ+f6nZszGp6djV6MJsNX5xOloSiKqig1RakrcIWKvPr17EZR1fo2PxwPO5eULDw2bkh6fYt/zqaj6fSH85fKz4JaAzqw275/OxPs05z9cU72se3OGE6YqmfmG7XOA2BqqPzi55MHQtel8VBI9sAhl1yhhN36eKBdE5d5x+jom+4JCmy6IOExOtiPb5CdsuhEs8bNzOTD3CRx1a2mDMbkx5THf/YK7aHnk/Of0EVE02CWMJo6LKUY/fr9aDJCmRwaoN2GIoSVGhff4ecuOp98N5qg099QRF1MOdsQGPo1CEbpN2VUPAK13uJncJu88WdvUkxvp/I7tQ4RUpykPkchc7dRewJ3DaVnbAv338nitsatLKAlqVOg9aXB1pLB9wuDF5g53iya/44dNm1ldiGvNLpW9VZhtCWM7hqPhIkPQWES2yFyfDtJBpqAB3FU22sqJu28QATOFNsciNN26VY7cwvUgnKPBT4OGWEEJ1ttKfoRMNrIo/giM/U09uJviTvgqLdz1HldKZkHtXUPVM5Rh0IK7QBL8+qK+dqd5mu88kojoKNv2pYhzRiPheNCoQmAWHo4T+KTvXc5pWO8VySkb4ocdSpy1CnB6ORgcEudMkcU45nk3oPMPR3vZGqAJ2E2S5MZpjSiMwBYNXZEsoxPBc/f/LO93Ww2+Ud/Ti04mD33cZ67wCahxkuZLMKB5vDgMdWQaJ+BdrC/39VAhMvMI/fW6jOhAZ7dvNVi23VJuDhGh/HNieRu5jaW9eQGr0gCXEsa+8yznkNe+ya/g6cpcTw2t+klJqwgTjDxcHgR+Qtc0IaXjEShfDS5qjGq6mv0f/oa5cn/oLqv0RAtNTba0NioorFR0WNIpM0baxVFopVFot3fyNp6I2uFEU0YcY3PlHw8ywS41ri73rvdqt7tlp50N/VuV4oeAiNHOUC2A5labuDYXuCB7QYk1N1o4Hh2uMDQoLrs7G6OO7SRhgLMvMjl5RYlTLOMroBgrK87redOF+2ulx7rmzzWpdwnwEjCOGWI3ca8vhm+YRq6sv2UP3C/9Nyvj4VfCfmD07/8QkNgjbMT5mPuoC4nxK4w9uO60iSdB6RU+0swxyEO+b/G6xjwgnJ2RWKev/2LQknigjLurUfdq0pVrwy8tynwnhQFTyvG7GqW0jjLTi9H4WtAwfIix4PBiEx0rw43ug5Biwijth6GmNX/CkNdCaNyXIsvxbgufHskfKMpDDUxtqVF43MBhNjHBabmOqZmFaZmiam5CVNTih785/K3Xexjlte+ubH2TRnFvjD97J7SevH2z4S/ma0XFgzLva+47LPxUcXAOSrjPMrjvHMrHXMqMU6U/IVkNJmcT4yhHDE1AbKc9abYCjD8pSv8Zk7NpUNAtRLtvcCF+BqSo1mwdpqwV5a3W+WyQU7kw7YeaIea9RKnOEFi/SBME4Z5py0tFJDNtqYrlxS0+TGqGBEr/S9QlpuTox2XXcwHhtxtfTO2YCM3V1k3pLJwr1Cfu3g3wPAngYGtXFgys6AqBOFNhZ/x2juBtbmv7SDmy58DhEM0BArhW5VgCljaFsTa3rZmooqgmMavs6KDFbbyDiN+EajGa7GoliTg+gehtqLu');?>
+<?php
+
+checkright();
+$ally_lead_test = $_SESSION['"ally_right"'];
+
+
+if (($ally_lead_test = $_SESSION['"ally_right"']) == 1) {
+	echo '<div style="width: 98%; margin: 10px auto;">';
+
+
+	if ($result = mysql_query("SELECT * FROM forum_structure WHERE ally_id = '".$ally_id."' ORDER BY order_id")) {
+		echo "<div>";
+
+		while ($row = mysql_fetch_object($result)) {
+			echo '<span class="forum ">';
+
+			echo '<a href="forum.php?id='.htmlentities($row['area_id']).'">'.htmlentities($row['name'])."</a>";
+			echo "</span>&nbsp;";
+		}
+		echo "</div>";
+		mysql_free_result($result);
+	}
+	else
+	{
+		echo $status_error_area;
+	}
+
+	echo '
+
+	<br>
+	<table class="main" align="center" width="100%">
+		<tbody><tr>
+			<td style="padding: 4px;">
+				<table width="100%" class="vis">
+<tbody><tr><th>Forum</th><th>Sichtbarkeit</th><th>Reihenfolge</th><th>Aktion</th></tr>';
+	if ($result = mysql_query("SELECT * FROM forum_structure WHERE ally_id = '".$ally_id."' ORDER BY order_id ")) {
+
+
+		while ($row = mysql_fetch_object($result)) {
+			echo "<tr><td>";
+
+
+			echo '<form action="forum.php?page=admin&do=changename&id='.htmlentities($row['area_id']).'" method="post">';
+			echo '<input type="text" value="'.htmlentities($row['name']).'" size="32" name="title">';
+
+			echo '<input type="submit" value="Umbenennen"></form></td><td>Für alle</td><td>';
+			echo '<a href="forum.php?page=admin&do=up&id='.htmlentities($row['area_id']).'">hoch</a> / <a href="forum.php?page=admin&do=down&id='.htmlentities($row['area_id']).'">runter</a>';
+
+			echo "</td><td>";
+			echo '<form action="forum.php?page=admin&do=adelete&id='.htmlentities($row['area_id']).'" method="post">';
+
+			echo '<input type="submit" value="Löschen"></form></td></tr>';
+		}
+		mysql_free_result($result);
+	}
+	else
+	{
+		echo "ERROR";
+	}
+	echo '</tbody></table>
+</form>
+<br/>
+<br/>
+<form method="post" action="forum.php?page=admin&do=newarea">					
+<table class="vis">
+<tbody><tr><th colspan="4">Neues Forum erstellen</th></tr>
+<tr>
+	<td>Forumname: <input type="text" name="title"></td>
+		<td><p>Für alle sichtbar</p><br>	</td>
+		<td><input type="submit" value="erstellen"></td>
+</tr>
+</tbody></table>
+</form>
+
+
+				
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+<p align="center"><a href="forum.php?page=admin&amp;">Foren Administrieren</a></p>
+';
+}
+else {
+	echo $status_error_right;
+}
+
+?>
