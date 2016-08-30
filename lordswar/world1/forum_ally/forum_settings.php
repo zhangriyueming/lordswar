@@ -10,15 +10,16 @@
 ////////////////////////
 
 // keine SF/SG Rechte
-$status_error_right = 'Nu ai dreptul de fondatorul tribului!';
+// $status_error_right = 'Nu ai dreptul de fondatorul tribului!';
+$status_error_right = '你没有权限!';
 // anderes Ally Forum
-$status_error_ally = 'Nu ai acces la aceste forumuri!';
+$status_error_ally = '无法访问非自己联盟论坛!';
 // keine Rechte zum Bearbeiten des Beitrages
 $status_error_message = 'Nu aveti dreptul de a edita!';
 // Kein Bereich verfügbar
-$status_error_area = 'Forumul nu are nici un topic deschis!';
+$status_error_area = '未创建任何板块，只有盟主可以创建';
 // Kein Thread verfügbar
-$status_error_thread = 'Nici un subiect nu a fost creat!';
+$status_error_thread = '没有任何主题！';
 // Kein Thread Error
 $status_error_thread_zero = 'Topic gol!';
 // Keine Ally verfügbar

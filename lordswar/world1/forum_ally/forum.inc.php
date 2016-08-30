@@ -21,8 +21,8 @@ if ($do == "newarea")
 	echo $status_error;
 	if (empty($status_error)) {
 		$sql_putin = $db->query("SELECT * FROM forum_structure WHERE ally_id = '".$ally_id."'");
-		$ordernumber = mysql_num_rows($sql_putin) + 1;
-		$sql_putin = $db->query("INSERT INTO forum_structure(ally_id, name, order_id) VALUES ('".$ally_id."', '".$newforumname.', '.$ordernumber."' )");
+		$ordernumber = $db->num_rows($sql_putin) + 1;
+		$sql_putin = $db->query("INSERT INTO forum_structure(ally_id, name, order_id) VALUES ('".$ally_id."', '".$newforumname."', '".$ordernumber."' )");
 	}
 }
 else if ($do == 'adelete')
@@ -42,13 +42,13 @@ else if ($do == 'adelete')
 	echo $status_error;
 	if (empty($status_error)) { // => 170
 		$result = $db->query("SELECT * FROM forum_structure WHERE area_id = '".$id."'");
-		while ($row = mysql_fetch_object($result)) // while ??
+		while ($row = $db->fetch_assoc($result)) // while ??
 		{
 			$old_order_id = htmlentities($row['order_id']);
 		}
 		$sql_putin = $db->query("DELETE FROM forum_structure WHERE area_id = '".$id."'");
 		$sql_putin = $db->query("SELECT * FROM forum_structure WHERE ally_id = '".$ally_id."'");
-		$order_number = mysql_num_rows($sql_putin);
+		$order_number = $db->num_rows($sql_putin);
 		$new_order_id = $old_order_id - 1;
 		while ($order_number <= $new_order_id) { // => 170
 			$result = $db->query("UPDATE forum_structure SET order_id = '".$new_order_id."' WHERE order_id = '".$old_order_id."'");
@@ -60,7 +60,7 @@ else if ($do == 'adelete')
 else if ($do == 'up') // => 275
 {
 	$result = $db->query("SELECT * FROM forum_structure WHERE area_id = '".$id."'");
-	while ($row = mysql_fetch_object($result)) // or goto 193;
+	while ($row = $db->fetch_assoc($result)) // or goto 193;
 	{
 		$old_order_id = htmlentities($row['order_id']);
 	}
@@ -99,7 +99,7 @@ else if ($do == 'up') // => 275
 else if ($do == 'down')
 {
 	$result = $db->query("SELECT * FROM forum_structure WHERE area_id = '".$id."'");
-	while ($row = mysql_fetch_object($result))
+	while ($row = $db->fetch_assoc($result))
 	{
 		$old_order_id = htmlentities($row['order_id']);
 	}

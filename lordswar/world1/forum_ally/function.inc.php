@@ -11,6 +11,8 @@ $do = $_GET['do'];
 function overviewarea()
 {
 	global $db;
+	global $status_error;
+
 	include('forum_settings.php');
 
 	$session_query = $db->query("SELECT * FROM sessions WHERE sid = '".$_COOKIE["session"]."'");
@@ -27,8 +29,7 @@ function overviewarea()
 		echo "<div>";
 
 		if ($db->num_rows($result) == 0) {
-			echo $status_error_area;
-			echo '<br>论坛没有打开！';
+			echo $status_error .= $status_error_area;
 		}
 		else
 		{

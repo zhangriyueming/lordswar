@@ -34,18 +34,21 @@ echo '<div style="width: 98%; margin: 10px auto;">
 overviewarea();
 echo "<br/>";
 
-$session_query = $db->query("SELECT * FROM `forum_structure` WHERE `area_id` = '".$id."'");
+if (empty($status_error))
+{
+	$session_query = $db->query("SELECT * FROM `forum_structure` WHERE `area_id` = '".$id."'");
 
-$session = $db->fetch_assoc($session_query);
-$ally_id_test = $session["ally_id"];
+	$session = $db->fetch_assoc($session_query);
+	$ally_id_test = $session["ally_id"];
 
-$area_name_test = $session["name"];
-if ($ally_id_test != $_SESSION["ally_id"]) {
+	$area_name_test = $session["name"];
+	if ($ally_id_test != $_SESSION["ally_id"]) {
 
-	echo $status_error .= $status_error_ally;
-	echo '<br>无法访问论坛';
+		echo $status_error .= $status_error_ally;
+		// echo '<br>无法访问论坛';
+	}
 }
-empty($status_error);
+
 if (empty($status_error)) {
 
 
@@ -117,7 +120,6 @@ if (empty($status_error)) {
 	if ($result = $db->query("SELECT * FROM forum_thread WHERE ally_id = '".$_SESSION["ally_id"]."' AND area_id = '".$id."' ORDER BY id ")) {
 		if ($db->num_rows($result) == 0) {
 			echo $status_error_thread;
-			echo '<br>没有任何主题！';
 		}
 		else
 		{
@@ -188,7 +190,7 @@ if (empty($status_error)) {
 if ($_SESSION["ally_right"] == 1) {
 
 
-	echo '<p align="center"><a href="forum.php?page=admin">Foren Administrieren</a></p>';
+	echo '<p align="center"><a href="forum.php?page=admin">论坛管理</a></p>';
 }
 
 ?>
