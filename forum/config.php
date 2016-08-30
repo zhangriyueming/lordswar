@@ -2,7 +2,7 @@
 // phpBB 3.1.x auto-generated configuration file
 // Do not change anything in this file!
 $dbms = 'phpbb\\db\\driver\\mysqli';
-$dbhost = 'tribalwars_db_1';
+$dbhost = 'lordswar_db_1';
 $dbport = '';
 $dbname = 'tribalwars_forum';
 $dbuser = 'root';
