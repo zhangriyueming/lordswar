@@ -1,7 +1,7 @@
 {if $type=="attack"}
 	<h2>{$lang->get('Angriff')}</h2>
 {else}
-	<h2>Unterst�tzung</h2>
+	<h2>{$lang->get('Unterstützung')}</h2>
 {/if}
 
 <form action="game.php?village={$village.id}&amp;screen=place&amp;action=command&amp;h={$hkey}" method="post" onSubmit="this.submit.disabled=true;">
@@ -37,11 +37,10 @@
     {foreach from=$cl_units->get_array("dbname") item=dbname key=name}
         <input type="hidden" name="{$dbname}" value="{$send_units.$dbname}">
 	{/foreach}
-	{* Falls auch Katapulte ausgew�hlt wurde *}
 	{if $send_units.unit_catapult>0 && $type!='support'}
 	    <table class="vis">
 	        <tr>
-	            <th>Geb�ude angreifen:</th>
+	            <th>攻击建筑物:</th>
 	            <td>
                     <select name="building" size="1">
                         {foreach from=$cl_builds->get_array("dbname") item=dbname key=id}
