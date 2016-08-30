@@ -6,7 +6,7 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<link rel="icon" href="{$config.cdn}/rabe.png" type="image/x-icon"> 
 	<link rel="shortcut icon" href="{$config.cdn}/rabe.png" type="image/x-icon">
-	<title>Construir nova aldeia - {$config.name}</title>
+	<title>{$lang->get('Construir nova aldeia')} - {$config.name}</title>
 	<link rel="stylesheet" type="text/css" href="{$config.cdn}/css/game.css" />
 	<script src="{$config.cdn}/js/game.js" type="text/javascript"></script>
 </head>
