@@ -12,6 +12,10 @@ rsync -vhtP server_main_config.php root@104.236.242.31:/root/docks/lordswar/lord
 rsync -vhtP server_world_config.php root@104.236.242.31:/root/docks/lordswar/lordswar/world1/include/config.php
 
 ssh root@104.236.242.31 'chown -R www-data:www-data /root/docks/lordswar/forum'
+# ssh root@104.236.242.31 'chown -R www-data:www-data /root/docks/lordswar/lordswar'
+ssh root@104.236.242.31 'chown -R 82:82 /root/docks/lordswar/lordswar'
+#ssh root@104.236.242.31 'chown -R 999:999 /root/docks/lordswar/mysql'
+
 
 ssh root@104.236.242.31 'sed -i -e "s/error_reporting/#error_reporting/g" /root/docks/lordswar/lordswar/index.php'
 ssh root@104.236.242.31 'sed -i -e "s/error_reporting/#error_reporting/g" /root/docks/lordswar/lordswar/include.inc.php'
