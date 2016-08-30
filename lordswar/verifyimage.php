@@ -1,10 +1,8 @@
 <?php
 
-include('./include/config.php');
-
 $alphanum = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 $rand = substr(str_shuffle($alphanum), 0, 5);
-$image = imagecreatefrompng($config['cdn']."/captcha.png");
+$image = imagecreatefrompng("captcha.png");
 $textColor = imagecolorallocate($image, 0, 0, 0);
 imagestring($image, 5, 3, 3, $rand, $textColor);
 setcookie("security", md5($rand));
