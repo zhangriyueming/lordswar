@@ -50,7 +50,7 @@ $config['world_begin'] = 1405506041;
 $config['master_pw'] = "12396kw9o69Q6";
 
 // 游戏速度:
-$config['speed'] = 1;
+$config['speed'] = 10;
 
 // Depois de quantas aldeias criadas, será adicionada uma aldeia barbára?
 // Se definido "-1" não será criado aldeias barbáras automaticamente.
