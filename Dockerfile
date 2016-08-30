@@ -23,7 +23,11 @@ RUN apk update && apk add \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install iconv mcrypt pdo_mysql gd
 
-ADD php-cron /etc/cron.d/php-cron
-RUN chmod 644 /etc/cron.d/php-cron
+#ADD php-cron /etc/cron.d/php-cron
+#RUN chmod 644 /etc/cron.d/php-cron
+
+ADD php-cron /root/php-cron
+#RUN crontab -l | { cat; echo "00    00       *       *       *       run-parts /etc/periodic/midnight"; } | crontab -
+RUN cat /root/php-cron | crontab -
 
 CMD crond && php-fpm
