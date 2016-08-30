@@ -39,7 +39,7 @@
 		<td>{$do_build.$id.dauer|format_time}</td>
 		{/if}
 		<td>{$do_build.$id.finished|format_date}</td>
-		<td><a href="javascript:ask('Weet je zeker dat je dit wilt annuleren?', 'game.php?village={$village.id}&amp;screen=main&amp;action=cancel&amp;id={$do_build.$id.r_id}&amp;mode={$mode}&amp;h={$hkey}')">{$lang->get("cancel")}</a></td>
+		<td><a href="javascript:ask({$lang->get('Weet je zeker dat je dit wilt annuleren')}, 'game.php?village={$village.id}&amp;screen=main&amp;action=cancel&amp;id={$do_build.$id.r_id}&amp;mode={$mode}&amp;h={$hkey}')">{$lang->get("cancel")}</a></td>
 	</tr>
 	{/foreach}
 	{if $num_do_build > 2}
