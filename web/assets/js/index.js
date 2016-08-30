@@ -59,7 +59,7 @@ var TWLan = {
 		if(opt.length > 0)
 			message = opt;
 		else
-			message = 'Een ogenblik geduld terwijl wij je aanvraag verwerken!';
+			message = '请稍候，我们正在处理您的请求...';
 		TWLan.print_info(message,'info',false,true);
 	},
 	'request':function(data,opts){
