@@ -10,7 +10,8 @@ class DB_MySQL{
 		try	{
 			$this->pdo = new PDO($dsn, $user, $pass);
 		} catch (Exception $e) {
-			throw new Exception('连接数据库失败');
+			// throw new Exception('连接数据库失败');
+			die('连接数据库失败');
 		}
 		return true;
 	}
