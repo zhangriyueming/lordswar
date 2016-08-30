@@ -10,7 +10,7 @@
 	<script type="text/javascript" src="{$config.cdn}/js/jquery.js?{$now}"></script>
 	<script type="text/javascript" src="{$config.cdn}/js/jquery.form.js?{$now}"></script>
 	<script type="text/javascript" src="{$config.cdn}/js/game.js?{$now}"></script>
-	<script type="text/javascript" src="quests.js"></script>
+	<script type="text/javascript" src="{$config.cdn}/js/quests.js?{$now}"></script>
 	<script type="text/javascript">
 		var vid = {$village.id};
 		var act_vid = {$village.id};
