@@ -9,7 +9,7 @@ $cl_awards->desc_stage[3] = "Zilver - Level 3";
 $cl_awards->desc_stage[4] = "Goud - Level 4";
 
 //medalhas Fixas
-// $cl_awards->add_awards("Campeão de Pontuação","points");
+// $cl_awards->add_awards("分数冠军","points");
 // $cl_awards->set_need(array("1" => "100", "2" => "5000", "3" => "100000", "4" => "10000000"));
 // $cl_awards->set_maxstage("4");
 // $cl_awards->set_nextStage("Chegar a %*% pontos!");
@@ -17,7 +17,7 @@ $cl_awards->desc_stage[4] = "Goud - Level 4";
 // $cl_awards->set_type("fix");
 // $cl_awards->set_description("É necessário atingir uma certa pontuação para poder ganhar esta medalha.");
 
-// $cl_awards->add_awards("Líder em pontos","rank");
+// $cl_awards->add_awards("排名","rank");
 // $cl_awards->set_need(array("1" => "1000", "2" => "100", "3" => "20", "4" => "1"));
 // $cl_awards->set_maxstage("4");
 // $cl_awards->set_nextStage("Chegue ao top %*% neste mundo!");
@@ -25,7 +25,7 @@ $cl_awards->desc_stage[4] = "Goud - Level 4";
 // $cl_awards->set_type("fix_rank");
 // $cl_awards->set_description("É necessário estar em uma determinada classificação na classificação geral.");
 
-// $cl_awards->add_awards("Ladrão","lad");
+// $cl_awards->add_awards("掠夺者","lad");
 // $cl_awards->set_need(array("1" => "500", "2" => "10000", "3" => "100000", "4" => "1000000"));
 // $cl_awards->set_maxstage("4");
 // $cl_awards->set_nextStage("Roube %*% recursos!");
@@ -33,7 +33,7 @@ $cl_awards->desc_stage[4] = "Goud - Level 4";
 // $cl_awards->set_type("fix");
 // $cl_awards->set_description("É necessário saquear um certo número de recursos.");
 
-// $cl_awards->add_awards("Saqueador","saque");
+// $cl_awards->add_awards("征服者","saque");
 // $cl_awards->set_need(array("1" => "10", "2" => "100", "3" => "1000", "4" => "10000"));
 // $cl_awards->set_maxstage("4");
 // $cl_awards->set_nextStage("Saqueie %*% aldeias!");
@@ -41,13 +41,13 @@ $cl_awards->desc_stage[4] = "Goud - Level 4";
 // $cl_awards->set_type("fix");
 // $cl_awards->set_description("É necessário saquear um certo número de aldeias.");
 
-// $cl_awards->add_awards("Conquista","conquer");
-// $cl_awards->set_need(array("1" => "5", "2" => "50", "3" => "500", "4" => "1000"));
-// $cl_awards->set_maxstage("4");
-// $cl_awards->set_nextStage("Conquiste %*% aldeias!");
-// $cl_awards->set_thisStage("Você já conquistou %*% aldeias!");
-// $cl_awards->set_type("fix");
-// $cl_awards->set_description("Medalha ganha quando conquista uma certa quantidade de aldeias.");
+$cl_awards->add_awards("征服者","conquer");
+$cl_awards->set_need(array("1" => "5", "2" => "50", "3" => "500", "4" => "1000"));
+$cl_awards->set_maxstage("4");
+$cl_awards->set_nextStage("征服 %*% 个领地!");
+$cl_awards->set_thisStage("你征服了 %*% 个领地!");
+$cl_awards->set_type("fix");
+$cl_awards->set_description("征服一定的村庄来赢取成就");
 
 // $cl_awards->add_awards("Líder","lider");
 // $cl_awards->set_need(array("1" => "10000", "2" => "100000", "3" => "1000000", "4" => "20000000"));
