@@ -1,4 +1,6 @@
-FROM php:7-fpm
+FROM php:7-apache
+
+#COPY php/php.ini /usr/local/etc/php/
 
 RUN echo "Asia/shanghai" > /etc/timezone
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
@@ -11,7 +13,6 @@ RUN echo "deb http://mirrors.ustc.edu.cn/debian/ jessie-backports main contrib n
 RUN echo "deb-src http://mirrors.ustc.edu.cn/debian/ jessie-backports main contrib non-free" >> /etc/apt/sources.list
 RUN echo "deb http://mirrors.ustc.edu.cn/debian-security/ jessie/updates main contrib non-free" >> /etc/apt/sources.list
 RUN echo "deb-src http://mirrors.ustc.edu.cn/debian-security/ jessie/updates main contrib non-free" >> /etc/apt/sources.list
-
 
 # COPY sources.list /etc/apt/sources.list
 
@@ -36,4 +37,4 @@ RUN apt-get install -y libmagickwand-dev \
 ADD php-cron /etc/cron.d/php-cron
 RUN chmod 644 /etc/cron.d/php-cron
 
-CMD cron && php-fpm
+CMD cron && apache2-foreground

@@ -1,12 +1,38 @@
 
+# web:
+#     build: ./
+#     ports:
+#         - "8081:80"
+#     expose:
+#         - "80"
+#     volumes:
+#         - ./lordswar:/var/www/html
+#         - ./log:/var/log
+#     environment:
+#         - VIRTUAL_HOST=lordswar.cn
+#     links:
+#         - db
+
 web:
-    build: ./
+    build: ./web
     ports:
         - "80:80"
     expose:
         - "80"
     volumes:
-        - ./tribalwars:/var/www/html
+        - ./web/conf.d:/etc/nginx/conf.d
+    links:
+        - php
+        - db
+
+php:
+    build: ./
+    ports:
+        - "9000:9000"
+    expose:
+        - "9000"
+    volumes:
+        - ./lordswar:/var/www/html
         - ./log:/var/log
     environment:
         - VIRTUAL_HOST=lordswar.cn
@@ -22,7 +48,7 @@ web:
 #     volumes:
 #         - ./world1:/var/www/html
 #     environment:
-#         - VIRTUAL_HOST=s1.tribalwars.sowicm.com
+#         - VIRTUAL_HOST=s1.lordswar.sowicm.com
 #     links:
 #         - db
 
