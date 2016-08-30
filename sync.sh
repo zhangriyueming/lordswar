@@ -8,6 +8,8 @@ rsync -vhtP php-cron root@104.236.242.31:/root/docks/lordswar/php-cron
 rsync -rvhtP forum/ root@104.236.242.31:/root/docks/lordswar/forum
 rsync -avhtP web/ root@104.236.242.31:/root/docks/lordswar/web
 rsync -avhtP lordswar/ root@104.236.242.31:/root/docks/lordswar/lordswar
+rsync -vhtP server_main_config.php root@104.236.242.31:/root/docks/lordswar/lordswar/include/config.php
+rsync -vhtP server_world_config.php root@104.236.242.31:/root/docks/lordswar/lordswar/world1/include/config.php
 
 ssh root@104.236.242.31 'chown -R www-data:www-data /root/docks/lordswar/forum'
 
