@@ -16,6 +16,8 @@
 web:
 #    restart: always
     build: ./web
+    ports:
+        - '8888:80'
     expose:
         - "80"
     volumes:
@@ -38,6 +40,8 @@ php:
 
 forum:
     build: ./php5forum
+    ports:
+        - '9999:80'
     expose:
         - "80"
     volumes:
