@@ -1,0 +1,17 @@
+FROM php:7-fpm-alpine
+
+RUN echo "Asia/shanghai" > /etc/timezone
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+RUN apk update && apk add \
+        freetype-dev \
+        libjpeg-turbo-dev \
+        libmcrypt-dev \
+        libpng-dev \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install iconv mcrypt pdo_mysql gd
+
+ADD php-cron /root/php-cron
+RUN cat /root/php-cron | crontab -
+
+CMD crond && php-fpm

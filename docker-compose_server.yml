@@ -1,0 +1,59 @@
+
+# web:
+#     build: ./
+#     ports:
+#         - "8081:80"
+#     expose:
+#         - "80"
+#     volumes:
+#         - ./lordswar:/var/www/html
+#         - ./log:/var/log
+#     environment:
+#         - VIRTUAL_HOST=lordswar.cn
+#     links:
+#         - db
+
+web:
+    restart: always
+    build: ./web
+    expose:
+        - "80"
+    volumes:
+        - ./web/conf.d:/etc/nginx/conf.d
+    environment:
+        - VIRTUAL_HOST=lordswar.cn
+    links:
+        - php
+        - db
+
+php:
+    build: ./
+    expose:
+        - "9000"
+    volumes:
+        - ./lordswar:/var/www/html
+        - ./log:/var/log
+    links:
+        - db
+
+forum:
+    build: ./php5forum
+    expose:
+        - "80"
+    volumes:
+        - ./forum:/var/www/html
+    environment:
+        - VIRTUAL_HOST=forum.lordswar.cn
+    links:
+        - db
+
+db:
+    image: "mysql:latest"
+    expose:
+        - "3306"
+    ports:
+        - "33062:3306"
+    environment:
+        - MYSQL_ROOT_PASSWORD=96kw9o69Q6
+    volumes:
+        - ./mysql:/var/lib/mysql
