@@ -123,26 +123,16 @@ if (empty($status_error)) {
 		{
 			while ($row = $db->fetch_assoc($result)) {
 
-				$date1 = explode($row["flagman_ts"], htmlentities($row["flagman_ts"]))[0];
-				$year1 = explode("-", $date1)[0];
+				$flagman_ts_tmp = $row["flagman_ts"];
 
-				$hor1 = explode(":", $time1)[0];
-				$flagman_ts_tmp = mktime($hor1, $min1, $sec1, $mon1, $day1, $year1);
+				$last_post_ts_tmp = $row["last_post_ts"];
 
-
-
-				$date2 = explode($row["last_post_ts"], htmlentities($row["last_post_ts"]))[0];
-				$year2 = explode("-", $date2)[0];
-
-				$hor2 = explode(":", $time2)[0];
-				$last_post_ts_tmp = mktime($hor2, $min2, $sec2, $mon2, $day2, $year2);
-
-
-
-				$date1 = date("d.m.Y", $flagman_ts_tmp);
+				// $date1 = date("d.m.Y", $flagman_ts_tmp);
+				$date1 = date("Y-m-d", $flagman_ts_tmp);
 				$time1 = date("H:i", $flagman_ts_tmp);
 
-				$date2 = date("d.m.Y", $last_post_ts_tmp);
+				// $date2 = date("d.m.Y", $last_post_ts_tmp);
+				$date2 = date("Y-m-d", $last_post_ts_tmp);
 				$time2 = date("H:i", $last_post_ts_tmp);
 
 				$player_id_f = htmlentities($row["flagman_id"]);
@@ -151,7 +141,7 @@ if (empty($status_error)) {
 				if ($result2 = $db->query("SELECT * FROM users WHERE id = '".$player_id_f."' ")) {
 					while ($row2 = $db->fetch_object($result2)) {
 
-						$player_name_f = htmlentities();
+						$player_name_f = htmlentities($row2->username);
 
 					}
 					$db->free_result($result2);
@@ -159,7 +149,7 @@ if (empty($status_error)) {
 				if ($result3 = $db->query("SELECT * FROM users WHERE id = '".$player_id_l."' ")) {
 
 					while ($row3 = $db->fetch_object($result3)) {
-						$player_name_l = htmlentities();
+						$player_name_l = htmlentities($row3->username);
 
 					}
 					$db->free_result($result3);
@@ -168,12 +158,12 @@ if (empty($status_error)) {
 				}
 				echo '<tr><td style="white-space: normal;">';
 
-				echo '<img alt="" src="graphic/forum/thread_read.png?1" title="Gelesen">&nbsp;<a href="forum.php?page=thread&id='.htmlentities($row['thread_id']).'">'.htmlentities($row['subject'])."</a>";
+				echo '<img alt="" src="graphic/forum/thread_read.png?1" title="Gelesen">&nbsp;<a href="forum.php?page=thread&id='.htmlentities($row['id']).'">'.htmlentities($row['subject'])."</a>";
 
 				echo "</td>";
-				echo '<td><div align="center" style="font-size: 8pt;"><a target="_blank" href="../game.php?village='.$_SESSION["village_id"]."screen=info_player&amp;id=".$player_id_f.'">'.$player_name_f."</a><br>".$fgeneral_on."".$date1."".$fgeneral_to."".$time1." Uhr</div></td>";
+				echo '<td><div align="center" style="font-size: 8pt;"><a target="_blank" href="../game.php?village='.$_SESSION["village_id"]."screen=info_player&amp;id=".$player_id_f.'">'.$player_name_f."</a><br>".$fgeneral_on."".$date1."".$fgeneral_to."".$time1."</div></td>";
 
-				echo '<td><div align="center" style="font-size: 8pt;"><a target="_blank" href="../game.php?village='.$_SESSION["village_id"]."&screen=info_player&amp;id=".$player_id_l.'">'.$player_name_l."</a><br>".$fgeneral_on."".$date2."".$fgeneral_to."".$time2." Uhr</div></td>";
+				echo '<td><div align="center" style="font-size: 8pt;"><a target="_blank" href="../game.php?village='.$_SESSION["village_id"]."&screen=info_player&amp;id=".$player_id_l.'">'.$player_name_l."</a><br>".$fgeneral_on."".$date2."".$fgeneral_to."".$time2."</div></td>";
 				echo '<td align="center">'.htmlentities($row["answer"])."</td>";
 
 				echo "</tr>";

@@ -1,5 +1,5 @@
 <?php
-include('bbcode.php');
+// include('bbcode.php');
 include('forum_settings.php');
 
 $session_query = $db->query("SELECT * FROM `sessions` WHERE `sid` = '".$_COOKIE['session']."'");
@@ -243,11 +243,14 @@ if ($do == "new_answer")
 	if (strlen($message) < 3)
 		$status_error .= "Der Text muss mindestens 3 Buchstaben lang sein!<br>";
 
-	$session_query = $db->query("SELECT * FROM forum_thread WHERE thread_id = '".$id."'");
+	$session_query = $db->query("SELECT * FROM forum_thread WHERE id = '".$id."'");
 	$session = $db->fetch_assoc($session_query);
 
 	$ally_id_test = $session['ally_id'];
-	if ($ally_id_test != $ally_id);
+	// print('id_test:'.$ally_id_test);
+	// print('<br>ally_id:'.$ally_id);
+	// die('');
+	if ($ally_id_test != $ally_id)
 		$status_error .= "Kein Zugriff!";
 	echo $status_error;
 
@@ -255,21 +258,28 @@ if ($do == "new_answer")
 	{
 		$message = nl2br($message);
 
-		$message = preg_replace("/\<br \/\>/usi", " %0D%0A ", $message);
-		$sql_putin = $db->query("INSERT INTO forum_message(thread_id, ally_id, user_id, text) VALUES( '".$id."','".$ally_id."', '".$user_id."', '".$message."')");
+		$ts_tmp = time();
 
-		$sql_p = $db->query("SELECT * FROM forum_thread WHERE thread_id = '".$id."' ");
+		$message = preg_replace("/\<br \/\>/usi", " %0D%0A ", $message);
+		// die('ok');
+		// $sql_putin = $db->query("INSERT INTO forum_message(thread_id, ally_id, user_id, message, `time`) VALUES( '".$id."','".$ally_id."', '".$user_id."', '".$message."')");
+		// die('ok');
+
+		$vhmsg = new vhMessage();
+		$vhmsg->create(array('thread_id' => $id, 'ally_id' => $ally_id, 'user_id' => $user_id, 'message' => $message, 'time' => $ts_tmp));
+
+		$sql_p = $db->query("SELECT * FROM forum_thread WHERE id = '".$id."' ");
 		$sess = $db->fetch_assoc($sql_p);
 
 		$answer_test = $sess['answer'];
 		$answer_test += 1;
 
 
-		$sql_t = $db->query("SELECT * FROM forum_message WHERE thread_id = '".$id."' ORDER BY message_id DESC LIMIT 1");
+		$sql_t = $db->query("SELECT * FROM forum_message WHERE id = '".$id."' ORDER BY id DESC LIMIT 1");
 		$sess = $db->fetch_assoc($sql_t);
 
-		$ts_tmp = $sess['time'];
-		$sql_putin = $db->query("UPDATE forum_thread SET last_post_ts = '".$ts_tmp."', answer = '".$answer_test."', last_post_id = '".$user_id."' WHERE thread_id = '".$id."' ");
+		// $ts_tmp = $sess['time'];
+		$sql_putin = $db->query("UPDATE forum_thread SET last_post_ts = '".$ts_tmp."', answer = '".$answer_test."', last_post_id = '".$user_id."' WHERE id = '".$id."' ");
 
 
 		echo '<script language="JavaScript">';
@@ -282,7 +292,7 @@ else if ($do == "msave") {
 	echo_allyid();
 	$ally_lead_test = $_SESSION['ally_id'];
 
-	$se_query = $db->query("SELECT * FROM forum_message WHERE `message_id` = '".$id."'");
+	$se_query = $db->query("SELECT * FROM forum_message WHERE `id` = '".$id."'");
 	$session = $db->fetch_assoc($se_query);
 
 	$user_id_test = $session['user_id'];
@@ -300,9 +310,9 @@ else if ($do == "msave") {
 			$message = nl2br($message);
 
 			$message = preg_replace("/\<br \/\>/usi", " %0D%0A ", $message);
-			$sql_putin = $db->query("UPDATE forum_message SET text = '".$message."' WHERE message_id = '".$id."'");
+			$sql_putin = $db->query("UPDATE forum_message SET text = '".$message."' WHERE id = '".$id."'");
 
-			$sql_putin = $db->query("SELECT * FROM forum_message WHERE message_id = '".$id."'");
+			$sql_putin = $db->query("SELECT * FROM forum_message WHERE id = '".$id."'");
 			$session = $db->fetch_assoc($sql_putin);
 
 			$thread_id_test = $session['thread_id'];
@@ -321,7 +331,7 @@ else if ($do == "mdelete") {
 	$_SESSION['ally_right'];
 	$ally_lead_test = $_SESSION['ally_right'];
 
-	$se_query = $db->query("SELECT * FROM forum_message WHERE `message_id` = '".$id."'");
+	$se_query = $db->query("SELECT * FROM forum_message WHERE `id` = '".$id."'");
 	$session = $db->fetch_assoc($se_query);
 
 	$user_id_test = $session['user_id'];
@@ -330,11 +340,11 @@ else if ($do == "mdelete") {
 		echo $status_error;
 		empty($status_error);
 		if (empty($status_error)) {
-			$sql_putin = $db->query("SELECT * FROM forum_message WHERE message_id = '".$id."'");
+			$sql_putin = $db->query("SELECT * FROM forum_message WHERE id = '".$id."'");
 			$session = $db->fetch_assoc($sql_putin);
 
 			$thread_id_tmp = $session['thread_id'];
-			$sql_putin = $db->query("DELETE FROM forum_message WHERE message_id = '".$id."'");
+			$sql_putin = $db->query("DELETE FROM forum_message WHERE id = '".$id."'");
 
 			$sql_putin = $db->query("SELECT * FROM forum_thread WHERE thread_id = '".$thread_id_tmp."'");
 			$session = $db->fetch_assoc($sql_putin);
@@ -361,7 +371,7 @@ else if ($do == "tsave") {
 	echo_allyid();
 
 	$ally_lead_test = $_SESSION['ally_id'];
-	$se_query = $db->query("SELECT * FROM forum_message WHERE `message_id` = '".$id."'");
+	$se_query = $db->query("SELECT * FROM forum_message WHERE `id` = '".$id."'");
 
 	$session = $db->fetch_assoc($se_query);
 	$user_id_test = $session['user_id'];

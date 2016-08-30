@@ -41,8 +41,10 @@ $status_error_thread_right = 'Nici un drept Topic disponibile!';
 // Allgemein
 // ******************
 
-$fgeneral_on = 'in data de ';
-$fgeneral_to = ' la ora ';
+// $fgeneral_on = 'in data de ';
+$fgeneral_on = ' ';
+// $fgeneral_to = ' la ora ';
+$fgeneral_to = ' ';
 $fgeneral_oclock = '';
 // Forum Administrieren
 $fgeneral_forumadmin = 'Administrare forum';
@@ -55,13 +57,17 @@ $fgeneral_forumadmin = 'Administrare forum';
 $foverview_newthread = 'Tema noua';
 $foverview_newthread = '创建主题';
 // Themen
-$foverview_thread = 'Teme';
+// $foverview_thread = 'Teme';
+$foverview_thread = '标题';
 // Autor
-$foverview_author = 'Autor';
+// $foverview_author = 'Autor';
+$foverview_author = '作者';
 // Letzter Post
-$foverview_lastpost = '	Ultima tema';
+// $foverview_lastpost = '	Ultima tema';
+$foverview_lastpost = '最后回复';
 // Antworten
-$foverview_answer = 'Raspunde';
+// $foverview_answer = 'Raspunde';
+$foverview_answer = '回帖数';
 
 // ******************
 //Thread
@@ -94,25 +100,25 @@ $fthread_admin_write = 'Acest tipic a fost inchis.';
 // ******************
 
 // Fett
-$fbbcode_bold = 'Ingrosat';
+$fbbcode_bold = '粗体';
 // Kursiv
-$fbbcode_italic = 'Cursiv';
+$fbbcode_italic = '斜体';
 // Unterstrichen
-$fbbcode_underline = 'Subliniat';
+$fbbcode_underline = '下划线';
 // Durchgestrichen
-$fbbcode_strikethrought = 'Taiat';
+$fbbcode_strikethrought = '删除线';
 // Zitat
-$fbbcode_quote = 'Citat';
+$fbbcode_quote = '引用';
 // URL Link
-$fbbcode_url = 'Link';
+$fbbcode_url = '链接';
 // Spieler Verlinkung
-$fbbcode_player = 'Jucator';
+$fbbcode_player = '领主';
 // Stammesverlinkung
-$fbbcode_ally = 'Trib';
+$fbbcode_ally = '联盟';
 // Koordinate
-$ffcode_coord = 'Coordonate';
+$ffcode_coord = '领地坐标';
 // Sende Button
-$fsend_button = 'Trimis';
+$fsend_button = '发送';
 
 // ******************
 // Admincenter

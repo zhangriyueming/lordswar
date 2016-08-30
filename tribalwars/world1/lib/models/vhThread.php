@@ -26,7 +26,7 @@ class vhThread extends vhModel {
 			'last_post' => -1,
 			'last_post_id' => -1,
 			'last_post_ts' => 0,
-			
+			'answer' => 0,
 			);
 	}
 

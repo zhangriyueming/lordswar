@@ -41,8 +41,8 @@ if ($result = $db->query("SELECT * FROM ally WHERE id = '".$ally_id."'"))
 	echo $status_error_ally1;
 }
 echo '</h2>  <div id="ally_content">
-
 ';
+// 	<a href="?page=overview">Back</a>
 if (isset($_GET['page'])) {
 	if ($_GET['page'] == 'overview') {
 		include('forum_overview.php');

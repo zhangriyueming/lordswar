@@ -81,13 +81,14 @@ Seite:&nbsp;
 
 			// $ts_tmp = mktime($hor, $min, $sec, $mon, $day, $year);
 			$ts_tmp = $row['time'];
-			$date = date("d.m.Y", $ts_tmp);
+			// $date = date("d.m.Y", $ts_tmp);
+			$date = date("Y-m-d", $ts_tmp);
 
 			$time = date("H:i", $ts_tmp);
 			echo_villageid();
 
 			$villageid = $_SESSION["village_id"];
-			echo '<span><a style="font-size: 9pt;" target="_blank" href="../game.php?village='.$villageid."&screen=info_player&amp;id=".htmlentities($row["user_id"]).'"> '.$player_name." </a>am ".$date." um ".$time." Uhr</span>";
+			echo '<span><a style="font-size: 9pt;" target="_blank" href="../game.php?village='.$villageid."&screen=info_player&amp;id=".htmlentities($row["user_id"]).'"> '.$player_name." </a>".$date." ".$time."</span>";
 
 			echo '<span class="right">';
 			$session_query = $db->query("SELECT * FROM forum_message WHERE `id` = '".$id."' ORDER BY id DESC LIMIT 1");
@@ -105,10 +106,7 @@ Seite:&nbsp;
 			// die($row["message"]);
 			$text_temp = htmlentities($row["message"]);
 
-			bbcodeall($text_temp);
-
-			$text_temp = $_SESSION["message"];
-			// die($_SESSION["message"]);
+			$text_temp = bb_format($text_temp);
 			echo "</div>";
 
 			echo '<div class="text">'.$text_temp."</div>";
@@ -131,7 +129,7 @@ Seite:&nbsp;
 		echo '<a class="thread_button" href="forum.php?page=answer&id='.$id.'">';
 		echo '
 		<span class="thread_answer_open"></span>
-		<span class="thread_answer">Antworten</span>
+		<span class="thread_answer">回复</span>
 		<span class="thread_answer_close"></span>
 	</a>';
 	}
@@ -149,7 +147,7 @@ Seite:&nbsp;
 
 			echo '
 		<span class="thread_answer_open"></span>
-		<span class="thread_answer">Antworten</span>
+		<span class="thread_answer">回复</span>
 		<span class="thread_answer_close"></span>
 	</a>';
 		}

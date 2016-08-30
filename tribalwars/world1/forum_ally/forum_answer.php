@@ -15,7 +15,7 @@ echo '<br/>
 <table width="100%" align="center" class="main">
 		<tbody><tr>
 			<td style="padding: 4px;">
-				<h2>Auf Thread antworten</h2>
+				<h2>回复主题</h2>
 
 ';
 echo '<form name="new_bb" method="post" action="forum.php?screen=answer&id='.$id.'&do=new_answer">';
