@@ -78,7 +78,7 @@ if(!isset($_GET['view'])){
 		$reports[$row['id']]['id'] = $row['id'];
 		$reports[$row['id']]['time'] = $row['time'];
 		$reports[$row['id']]['is_new'] = $row['is_new'];
-		$reports[$row['id']]['title'] = (!empty($row['title_image']))?"<img src=\"".$row['title_image']."\"> ".entparse($row['title']):entparse($row['title']);
+		$reports[$row['id']]['title'] = (!empty($row['title_image']))?"<img src=\"".$config['cdn'].$row['title_image']."\"> ".entparse($row['title']):entparse($row['title']);
 		$reports[$row['id']]['date'] = date("d.m.Y H:i:s", $row['time']);
 	}
 
@@ -89,7 +89,7 @@ if(!isset($_GET['view'])){
 }else{
 	$result = $db->query("SELECT `from_username`,`ally`,`allyname`,`id`,`title`,`title_image`,`time`,`type`,`a_units`,`b_units`,`c_units`,`d_units`,`e_units`,`agreement`,`hives`,`ram`,`catapult`,`message`,`to_user`,`from_user`,`to_village`,`from_village`,`is_new`,`wins`,`receiver_userid`,`luck`,`moral`,`see_def_units` FROM `reports` WHERE `id`='".parse($_GET['view'])."'");
 	$report = $db->fetch($result);
-	$report['title'] = (!empty($report['title_image'])) ? "<img src=\"".$report['title_image']."\"> ".entparse($report['title']) : entparse($report['title']);
+	$report['title'] = (!empty($report['title_image'])) ? "<img src=\"".$config['cdn'].$report['title_image']."\"> ".entparse($report['title']) : entparse($report['title']);
 	$report['date'] = date("d.m.Y H:i:s", @$report['time']);
 
 	if($user['id'] != @$report['receiver_userid']){

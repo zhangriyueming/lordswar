@@ -22,7 +22,7 @@ $config['master_pw'] = 'Zapping1234';
 // Configurações especiais...
 $config['name'] = 'Imperalis';
 $config['ano'] = '2014';
-$config['cdn'] = 'global_cdn';
+$config['cdn'] = 'assets';
 $config['forum'] = '#';
 $config['support'] = 'zapping_support/';
 $config['version'] = 'V0.1 DEVELOPMENT';

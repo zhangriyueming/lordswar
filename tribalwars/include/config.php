@@ -25,7 +25,7 @@ $config['master_pw'] = '12396kw9o69Q6';
 // Configurações especiais...
 $config['name'] = 'Lordswar';
 $config['ano'] = '2016';
-$config['cdn'] = 'global_cdn';
+$config['cdn'] = 'assets';
 $config['forum'] = '#';
 $config['support'] = 'zapping_support/';
 $config['version'] = 'v0.1';

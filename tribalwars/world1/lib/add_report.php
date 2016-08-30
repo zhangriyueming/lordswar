@@ -41,14 +41,14 @@ class add_report{
 		$ex_agreement = explode(";", $agreement);
 		if($ex_agreement['1'] <= 0){
 			$title_att = parse($from_playername." (".$from_villagename.") ".$lang->get('conquista')." ".$to_villagename.".");
-			$titleimage_att = "".$config['cdn']."/graphic/dots/".$att_color.".png";
+			$titleimage_att = "/graphic/dots/".$att_color.".png";
 			$title_def = parse($to_villagename." ".$lang->get('foi conquistada por')." ".$from_playername." (".$from_villagename.")");
-			$titleimage_def = "".$config['cdn']."/graphic/dots/".$def_color.".png";
+			$titleimage_def = "/graphic/dots/".$def_color.".png";
 		}else{
 			$title_att = parse($from_playername." (".$from_villagename.") ".$lang->get('ataca')." ".$to_villagename.".");
-			$titleimage_att = "".$config['cdn']."/graphic/dots/".$att_color.".png";
+			$titleimage_att = "/graphic/dots/".$att_color.".png";
 			$title_def = parse($to_villagename." ".$lang->get('foi atacada por')." ".$from_playername." (".$from_villagename.")");
-			$titleimage_def = "".$config['cdn']."/graphic/dots/".$def_color.".png";
+			$titleimage_def = "/graphic/dots/".$def_color.".png";
 		}
 
 		if($from_player == $to_player){ 
@@ -101,7 +101,7 @@ class add_report{
 		global $config;
 
 		$title = parse($lang->get("report_support_att_1").$from_villagename.$lang->get("report_support_att_2").$to_villagename.$lang->get("report_support_att_3"));
-		$titleimage = "".$config['cdn']."/graphic/dots/".$color.".png";
+		$titleimage = "/graphic/dots/".$color.".png";
 		if($from_player != "-1"){
 		    $db->query("INSERT into reports (title,title_image,time,type,in_group,receiver_userid,to_user,to_village,from_user,from_village,a_units,b_units) VALUES ('$title','$titleimage','$time','supportAttack','defense','$from_player','$to_player','$to_village','$from_player','$from_village','$a_units','$b_units')");
 			$this->new_report($from_player);
