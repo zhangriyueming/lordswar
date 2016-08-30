@@ -28,6 +28,6 @@ RUN apt-get install -y cron
 
 # for phpBB
 RUN docker-php-ext-install mysqli
-RUN apt-get install -y libmagickwand-dev \
-    && pecl install imagick \
-    && docker-php-ext-enable imagick
+#RUN apt-get install -y libmagickwand-dev \
+#    && pecl install imagick \
+#    && docker-php-ext-enable imagick
