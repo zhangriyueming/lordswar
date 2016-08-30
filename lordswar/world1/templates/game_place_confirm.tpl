@@ -40,7 +40,7 @@
 	{if $send_units.unit_catapult>0 && $type!='support'}
 	    <table class="vis">
 	        <tr>
-	            <th>攻击建筑物:</th>
+	            <th>投石车目标:</th>
 	            <td>
                     <select name="building" size="1">
                         {foreach from=$cl_builds->get_array("dbname") item=dbname key=id}
