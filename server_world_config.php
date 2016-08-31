@@ -32,7 +32,7 @@ $config['ano'] = '2016'; // Year of server start
 if (isset($_SERVER['HTTP_HOST']))
 	$config['cdn'] = 'http://'.$_SERVER['HTTP_HOST'].'/assets'; // Image / JS directory
 $config['forum'] = 'http://forum.lordswar.cn'; // Link to your forum
-$config['forum'] = 'http://104.236.242.31:9999'; // Link to your forum
+// $config['forum'] = 'http://104.236.242.31:9999'; // Link to your forum
 $config['version'] = 'V0.1 '; // Version number
 $config['global_db'] = 'tribalwars_main'; // DATABASE name!
 $config['world_name'] = 'World 1'; // Name of the World :) 
