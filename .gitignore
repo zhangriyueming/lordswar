@@ -3,3 +3,5 @@ templates_c
 *-cron.log
 tribalwars/forum/cache
 forum/cache
+log/*.log
+Gemfile.lock
