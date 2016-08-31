@@ -10,8 +10,11 @@
 		</tr>
 		<tr>
 			<td colspan="2">
+{if false}
+			<div style="position:absolute;top:100px;width:100%;height:100%;">
+{/if}
 				<div style="position:relative">
-					<img width="600" height="418" src="{$config.cdn}/graphic/{$visual}/back_none.jpg" alt="" />
+					<img width="1020px" height="711px" src="{$config.cdn}/graphic/{$visual}/back_none.jpg" alt="" />
 					<img class="p_church" src="{$config.cdn}/graphic/{$visual}/church_disabled.png" alt="" />
 					<img class="npc_farmer" src="{$config.cdn}/graphic/{$visual}/farmer.gif" alt="" />
 					{if rand(0,5) == '1'}<img class="npc_guard" src="{$config.cdn}/graphic/{$visual}/guard.gif" alt="" />{/if}
@@ -40,7 +43,9 @@
 								{/php}
 							{/if}
 						{/if}
-                        
+                    {if false}
+					<img style="cursor:pointer" class="p_{$dbname}" src="{$config.cdn}/{$cl_builds->getGraphic($dbname, $village.$dbname)}" onclick="alert('test'); href="game.php?village={$village.id}&screen={$dbname}""  />
+					{/if}
 					<a href="game.php?village={$village.id}&screen={$dbname}"><img class="p_{$dbname}" src="{$config.cdn}/{$cl_builds->getGraphic($dbname, $village.$dbname)}" /></a>
 					{/foreach}
 					<img class="empty" src="{$config.cdn}/graphic/map/empty.png" alt="" usemap="#map" />
@@ -70,6 +75,9 @@
 					{/foreach}
 					<script type="text/javascript">overviewShowLevel();</script>
 				</div>
+{if false}
+	</div>
+{/if}
 			</td>
 		</tr>
 	</table>
@@ -137,6 +145,7 @@
     {/if}
 </td>
 
+{if false}
 
 		<td valign="top" width="100%">
 	<table class="vis" width="100%" style="margin-bottom:3px; border-spacing:1px;">
@@ -184,5 +193,7 @@
 			</table>
 			{/if}
 </td>
+{/if}
+
 	</tr>
 </table>

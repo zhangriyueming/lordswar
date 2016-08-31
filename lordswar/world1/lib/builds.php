@@ -73,7 +73,10 @@ class builds{
 		$this->speacials[$this->last_dbname] = $array;
 	}
 	function set_graphicCoords($coords){
-		$this->graphicCoords[$this->last_dbname] = $coords;
+		$arr = explode(',', $coords);
+		for ($i = 0; $i < count($arr); ++$i)
+			$arr[$i] = intval($arr[$i])/600*1020;
+		$this->graphicCoords[$this->last_dbname] = implode(',', $arr);//$coords;
 	}
 	function get_array($array){
 		return $this->$array;
