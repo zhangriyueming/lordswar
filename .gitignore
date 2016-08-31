@@ -5,3 +5,7 @@ tribalwars/forum/cache
 forum/cache
 log/*.log
 Gemfile.lock
+*.cachearray
+*.cachedata
+.sass-cache
+*.css.map
