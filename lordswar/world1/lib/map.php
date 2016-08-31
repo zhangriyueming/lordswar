@@ -133,7 +133,7 @@ class map{
 	function getclass($x,$y){
 		global $config;
 
-		$hour = date("H");
+		$hour = unreal_time()['hour'];
 		if($config['night_start'] > $config['night_end']){
 			if($hour >= $config['night_start'] || $hour <= $config['night_end']){
 				$night = "-night";

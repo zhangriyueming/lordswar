@@ -74,7 +74,7 @@ if($session['hkey'] != $_GET['hkey']){
 		 $image_objects[$array2[1]][$array2[2]] = $array2[0];
 	}
 
-	$hour = date("H");
+	$hour = unreal_time()['hour'];
 	if($config['night_start'] > $config['night_end']){
 		if($hour >= $config['night_start'] || $hour <= $config['night_end']){
 			$fond = imagecolorallocate($img,61,73,81);
