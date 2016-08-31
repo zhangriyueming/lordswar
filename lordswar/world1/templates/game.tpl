@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML>
+<html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>{$village.name} ({$village.x}|{$village.y}) K{$village.continent} - {$config.name}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" href="{$config.cdn}/css/game.css?{$now}" type="text/css" />
 	<link rel="shortcut icon" href="{$config.cdn}/rabe.png" type="image/x-icon">
 	<script type="text/javascript" src="{$config.cdn}/js/jquery.js?{$now}"></script>
