@@ -8,6 +8,7 @@ if(!isset($_GET['mode'])) $_GET['mode'] = "overview";
 $links[$lang->get('Geral')] = "overview";
 $links[$lang->get('Perfil')] = "profile";
 $links[$lang->get('Membros')] = "members";
+// $links[tr('tribeForum')] = 'forum';
 if($user['ally_diplomacy'] == 1) $links[$lang->get('Diplomacia')] = "contracts";
 if($user['ally_invite'] == 1) $links[$lang->get('Convites')] = "invite";
 if($user['ally_lead'] == 1) $links[$lang->get('Boas vindas')] = "intro_igm";
