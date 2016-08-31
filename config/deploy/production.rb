@@ -23,6 +23,7 @@ role :app, %w{root@104.236.242.31}
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
+set :assets_roles, [:app]
 
 
 # Configuration
