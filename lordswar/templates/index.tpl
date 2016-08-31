@@ -125,7 +125,7 @@
 							<td>{$lang->get("securitycode")}:</td>
 							<td>
 								<input type="text" size="7" id="reg_captcha" name="captcha" autocomplete="off" maxlength="30" onenter="TWLan.register();">
-								<img src="verifyimage.php" title="Security Code" style="position:absolute" />
+								<img id="captcha_img" src="verifyimage.php?{$now}" onclick="this.src='verifyimage.php?'+Math.random()" title="Security Code" style="position:absolute" />
 							</td>
 						</tr>
 							<tr><td colspan="2" align="right"><button type="submit" class="button green" id="do_reg" onclick="TWLan.register();">{$lang->get("register")}</button></td></tr>
