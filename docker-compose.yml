@@ -23,7 +23,7 @@ web:
         - ./web/conf.d:/etc/nginx/conf.d
         - ./web/assets:/usr/share/nginx/html/assets
     environment:
-        - VIRTUAL_HOST=127.0.0.1.xip.io,www.127.0.0.1.xip.io,s1.127.0.0.1.xip.io
+        - VIRTUAL_HOST=lordswar.local,www.lordswar.local,s1.lordswar.local
     links:
         - php
         - db
@@ -62,7 +62,7 @@ forum:
     volumes:
         - ./forum:/var/www/html
     environment:
-        - VIRTUAL_HOST=forum.127.0.0.1.xip.io
+        - VIRTUAL_HOST=forum.lordswar.local
     links:
         - db
 
