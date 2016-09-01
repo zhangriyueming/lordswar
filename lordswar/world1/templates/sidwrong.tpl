@@ -12,7 +12,7 @@
 
 <body >
 <table class="main" width="100%" align="center"><tr><td><h2>{$lang->get('Sitzung abgelaufen')}</h2>
-<p>{$lang->get('Sid Wrong desc')}</p>
+<p>{$lang->get('Sid Wrong desc')}<a href="{$url}">重新登录</a>。</p>
 
 </td></tr></table>
 <script type="text/javascript">setImageTitles();</script>

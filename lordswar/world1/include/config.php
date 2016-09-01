@@ -28,8 +28,9 @@ date_default_timezone_set("Asia/Shanghai");
 // Configurações especiais:
 $config['name'] = 'Lordswar'; // Game name :) Can be your own ;D
 $config['ano'] = '2016'; // Year of server start
-$config['cdn'] = 'http://localhost/assets'; // Image / JS directory
-$config['forum'] = 'http://localhost:8080'; // Link to your forum
+$config['main_site'] = 'http://lordswar.local';
+$config['cdn'] = 'http://lordswar.local/assets'; // Image / JS directory
+$config['forum'] = 'http://forum.lordswar.local'; // Link to your forum
 $config['version'] = 'V0.1 '; // Version number
 $config['global_db'] = 'tribalwars_main'; // DATABASE name!
 $config['world_name'] = 'World 1'; // Name of the World :) 

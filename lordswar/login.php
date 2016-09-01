@@ -41,7 +41,8 @@ if(!$check_db){
 						$db->query("INSERT INTO `$world[db]`.`logins` (`username`, `time`,`ip`,`userid`) VALUES ('".$user['username']."','".$time."','".$ip."','".$user['id']."')");
 					}
 
-						header('Location: /'.$world['dir'].'/game.php?acvila='.$_COOKIE['session']);
+						// header('Location: /'.$world['dir'].'/game.php?acvila='.$_COOKIE['session']);
+						header('Location: '.$world['link'].'/game.php?acvila='.$_COOKIE['session']);
 						exit;
 				}
 			}else{

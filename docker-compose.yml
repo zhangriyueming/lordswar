@@ -15,23 +15,23 @@
 
 web:
     build: ./web
-    ports:
-        - "80:80"
+    # ports:
+    #     - "80:80"
     expose:
         - "80"
     volumes:
         - ./web/conf.d:/etc/nginx/conf.d
         - ./web/assets:/usr/share/nginx/html/assets
     environment:
-        - VIRTUAL_HOST=lordswar.cn
+        - VIRTUAL_HOST=lordswar.local,www.lordswar.local,s1.lordswar.local
     links:
         - php
         - db
 
 php:
     build: ./
-    ports:
-        - "9000:9000"
+    # ports:
+    #     - "9000:9000"
     expose:
         - "9000"
     volumes:
@@ -55,14 +55,14 @@ php:
 
 forum:
     build: ./php5forum
-    ports:
-        - '8080:80'
+    # ports:
+    #     - '8080:80'
     expose:
         - "80"
     volumes:
         - ./forum:/var/www/html
     environment:
-        - VIRTUAL_HOST=forum.lordswar.cn
+        - VIRTUAL_HOST=forum.lordswar.local
     links:
         - db
 
