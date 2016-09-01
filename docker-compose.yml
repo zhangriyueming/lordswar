@@ -23,7 +23,7 @@ web:
         - ./web/conf.d:/etc/nginx/conf.d
         - ./web/assets:/usr/share/nginx/html/assets
     environment:
-        - VIRTUAL_HOST=127.0.0.1.xip.io
+        - VIRTUAL_HOST=127.0.0.1.xip.io,www.127.0.0.1.xip.io,s1.127.0.0.1.xip.io
     links:
         - php
         - db
