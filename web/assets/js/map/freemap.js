@@ -1,6 +1,7 @@
 /*484ac77b641eb4b73cb947a1616eec83*/
 
 function FreeMap(div, coordToPixelScale, sectorSize, userHandler, bias) {
+    console.log(div);
     var _self_map = this;
     this.el = {};
     this.el.root = div;
@@ -15,7 +16,7 @@ function FreeMap(div, coordToPixelScale, sectorSize, userHandler, bias) {
     this.handler = userHandler;
     if (userHandler.onClick) {
         var _me = this;
-        if ($.browser.msie) {
+        if (false && $.browser.msie) {
             $(this.el.root).mousedown(function (e) {
                 _me._downEl = (e.which == 2 ? 0 : 1)
             }).mouseup(function (e) {
@@ -380,7 +381,7 @@ function FreeMapMover(map) {
     };
     if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i)) {
         this.useDragTimer = 100
-    } else if ($.browser.webkit | $.browser.safari) {
+    } else if (true || $.browser.webkit | $.browser.safari) {
         this.useDragTimer = 40
     } else if ($.browser.mozilla) {
         this.useDragTimer = 40
@@ -442,7 +443,7 @@ function FreeMapMover(map) {
     };
     var el = document.createElement('div');
     el.setAttribute('id', map.el.root.id + '_mover');
-    $(el).attr('style', 'position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 12; background-image: url("index-Dateien/empty.png"); cursor: move; -moz-user-select: none;');
+    $(el).attr('style', 'position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 12; background-image: url("graphic/map/empty.png"); cursor: move; -moz-user-select: none;');
     this.crappy_browser = (el.setCapture && el.detachEvent);
     var _this = this;
     this._eventHandleMouseDown = function (event) {

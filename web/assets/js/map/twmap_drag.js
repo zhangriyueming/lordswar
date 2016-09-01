@@ -3,7 +3,7 @@ TWMap.initMap = function () {
     $('#map_blend').hide();
     this.mapHandler.scrollBound = this.scrollBound;
     var map = new FreeMap(document.getElementById('map'), this.tileSize, this.mapSubSectorSize, this.mapHandler, 26500);
-    if (!$.browser.msie || true) map.createMover(this.mobile ? 1 : 2);
+    if (true || !$.browser.msie || true) map.createMover(this.mobile ? 1 : 2);
     this.map = map;
     this.map_el_coordx = document.getElementById('map_coord_x');
     this.map_el_coordy = document.getElementById('map_coord_y');
@@ -44,14 +44,32 @@ TWMap.initMap = function () {
     this.popup.init();
     if (typeof (Warplanner) !== 'undefined') Warplanner.init()
 };
-TWMap.focus = function (x, y) {
-    x = ~~Math.max(x, (this.scrollBound[0] + this.size[0] / 2));
-    y = ~~Math.max(y, (this.scrollBound[1] + this.size[1] / 2));
-    x = Math.min(x, ((this.scrollBound[2] + 1) - this.size[0] / 2));
-    y = Math.min(y, ((this.scrollBound[3] + 1) - this.size[1] / 2));
+// TWMap.focus = function (x, y) {
+//     console.log('x:'+x+';y:'+y+';scrollBound:'+this.scrollBound['x_min']);
+//     x = ~~Math.max(x, (this.scrollBound[0] + this.size[0] / 2));
+//     console.log('x:'+x+';y:'+y);
+//     y = ~~Math.max(y, (this.scrollBound[1] + this.size[1] / 2));
+//     console.log('x:'+x+';y:'+y);
+//     x = Math.min(x, ((this.scrollBound[2] + 1) - this.size[0] / 2));
+//     console.log('x:'+x+';y:'+y);
+//     y = Math.min(y, ((this.scrollBound[3] + 1) - this.size[1] / 2));
+//     console.log('x:'+x+';y:'+y);
+//     if (TWMap.map) TWMap.map.centerPos(x, y, true);
+//     console.log('x:'+x+';y:'+y);
+//     // throw new error('test');
+//     TWMap.pos = [x, y]
+// };
+TWMap.focus = function(x, y) {
+    var x = ~~Math.max(x, (this.scrollBound.x_min + this.size[0] / 2)),
+    y = ~~Math.max(y, (this.scrollBound.y_min + this.size[1] / 2));
+    x = Math.min(x, ((this.scrollBound.x_max + 1) - this.size[0] / 2));
+    y = Math.min(y, ((this.scrollBound.y_max + 1) - this.size[1] / 2));
     if (TWMap.map) TWMap.map.centerPos(x, y, true);
-    TWMap.pos = [x, y]
-};
+    if (TWMap.minimap_only) TWMap.minimap.centerPos(x, y, true);
+    TWMap.pos = [x, y];
+    TWMap.home.updateDisplay()
+}
+
 TWMap.mapHandler.spawnSector = function (data, sector) {
     var beginX = sector.x - data.x,
         endX = beginX + TWMap.mapSubSectorSize,
@@ -121,7 +139,7 @@ TWMap.scrollBlock = function (x, y) {
     if (this.scrolling) return;
     this.scrolling = true;
     var dst = [TWMap.pos[0] + TWMap.size[0] * x, TWMap.pos[1] + TWMap.size[1] * y],
-        scrollTID = setInterval(function () {
+        scrollTID = setTimeout(function () {
             if ((x == -1 && TWMap.map.viewport[0] <= TWMap.scrollBound[0]) || (y == -1 && TWMap.map.viewport[1] <= TWMap.scrollBound[1]) || (x == 1 && TWMap.map.viewport[2] >= TWMap.scrollBound[2]) || (y == 1 && TWMap.map.viewport[3] >= TWMap.scrollBound[3])) {
                 clearInterval(scrollTID);
                 TWMap.scrolling = false;
@@ -160,7 +178,7 @@ TWMap.resize = function (size, smooth) {
         dstHeight = size * this.map.scale[1];
         this.isAutoSize = false
     };
-    if ($.browser.msie) smooth = false;
+    if (false && $.browser.msie) smooth = false;
     TWMap.map.resize(dstWidth, dstHeight, smooth ? 1 : 0)
 };
 TWMap.minimapHandler.onResize = function (sx, sy) {
