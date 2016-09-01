@@ -25,11 +25,11 @@ $.ajax({
       // dataType: "json",
       data: {'getQuest': 'getQuest'},
       success: function(getQuest) {
-          checkQuest = jQuery.parseJSON(getQuest);
-          var hout30 = checkQuest[0]['hout30'];
+          // checkQuest = jQuery.parseJSON(getQuest);
+          // var hout30 = checkQuest[0]['hout30'];
       }
 })
-quest = checkQuest[0];
+// quest = checkQuest[0];
 
 if(quest['hout30'] < 1){
   $.ajax({
