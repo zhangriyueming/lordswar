@@ -1,7 +1,6 @@
 /*484ac77b641eb4b73cb947a1616eec83*/
 
 function FreeMap(div, coordToPixelScale, sectorSize, userHandler, bias) {
-    console.log(div);
     var _self_map = this;
     this.el = {};
     this.el.root = div;
@@ -9,7 +8,7 @@ function FreeMap(div, coordToPixelScale, sectorSize, userHandler, bias) {
     $(this.el.container).attr('style', 'position: absolute; left:0px; top:0px; z-index:1; overflow:visible');
     this.el.container.setAttribute('id', div.id + '_container');
     div.appendChild(this.el.container);
-    this.size = [parseInt(div.style.width, 10), parseInt(div.style.height, 10)];
+    this.size = [$(div).width(), parseInt(div.style.height, 10)];
     this.scale = coordToPixelScale;
     this.sectorSize = sectorSize;
     this.pos = [-1, - 1];
@@ -78,8 +77,12 @@ function FreeMap(div, coordToPixelScale, sectorSize, userHandler, bias) {
     this.setPosPixel = function (x, y) {
         if (x == this.pos[0] && y == this.pos[1]) return 0;
         if (isNaN(x) || isNaN(y)) return 0;
-        x = Math.max(x, this.handler.scrollBound[0] * this.scale[0]);
-        y = Math.max(y, this.handler.scrollBound[1] * this.scale[1]);
+        var min_x = this.handler.scrollBound.x_min * this.scale[0],
+        max_x = this.handler.scrollBound.x_max * this.scale[0] - this.size[0] + this.scale[0];
+        x = Math.min(Math.max(x, min_x), max_x);
+        var min_y = this.handler.scrollBound.y_min * this.scale[1],
+        max_y = this.handler.scrollBound.y_max * this.scale[1] - this.size[1] + this.scale[1];
+        y = Math.min(Math.max(y, min_y), max_y);
         this.pos[0] = x;
         this.pos[1] = y;
         if (this.handler.onMovePixel) this.handler.onMovePixel(x, y);
@@ -133,7 +136,7 @@ function FreeMap(div, coordToPixelScale, sectorSize, userHandler, bias) {
                     r.style.top = ((sy * this.sectorSize) * this.scale[1] - this.bias) + 'px';
                     sector._element_root = r;
                     sector.spawn();
-                    if (!this.handler.scrollBound || (sector.x >= (this.handler.scrollBound[0] - this.sectorSize) && sector.y >= (this.handler.scrollBound[1] - this.sectorSize) && sector.x < this.handler.scrollBound[2] && sector.y < this.handler.scrollBound[3])) load_sectors.push(sector)
+                    if (!this.handler.scrollBound || (sector.x >= (this.handler.scrollBound.x_min - this.sectorSize) && sector.y >= (this.handler.scrollBound.y_min - this.sectorSize) && sector.x < this.handler.scrollBound.x_max && sector.y < this.handler.scrollBound.y_max)) load_sectors.push(sector)
                 };
                 _sectors.push(sector)
             };
@@ -180,7 +183,25 @@ function FreeMap(div, coordToPixelScale, sectorSize, userHandler, bias) {
     this.getCenter = function () {
         return this.coordByPixel(this.pos[0] + this.size[0] / 2, this.pos[1] + this.size[1] / 2)
     };
-    this.recalcViewport = function () {
+    this.getViewportTileDimensions = function() {
+        return {
+            width: TWMap.map.size[0] / TWMap.map.scale[0],
+            height: TWMap.map.size[1] / TWMap.map.scale[1]
+        }
+    };
+    this.getViewport = function() {
+        return {
+            top_left_tile: {
+                coord_x: this.viewport[0],
+                coord_y: this.viewport[1]
+            },
+            bottom_right_tile: {
+                coord_x: this.viewport[2],
+                coord_y: this.viewport[3]
+            }
+        }
+    };
+    this.recalcViewport = function() {
         var x = this.pos[0],
             y = this.pos[1],
             coordTopLeft = this.coordByPixel(x, y),
@@ -215,6 +236,11 @@ function FreeMap(div, coordToPixelScale, sectorSize, userHandler, bias) {
     this._resizeElements = [];
     this._resizeTargetPosition = [];
     this.resize = function (sx, sy, flags) {
+        if (typeof sx === 'undefined') {
+            var $container = $(this.el.root).parent();
+            sx = $container.width();
+            sy = $container.height()
+        };
         var els = [
             [],
             []
@@ -284,6 +310,30 @@ function FreeMap(div, coordToPixelScale, sectorSize, userHandler, bias) {
             this.centerPos(this._resizeTargetPosition[0], this._resizeTargetPosition[1], false);
             this.recalcViewport()
         }, _self_map))
+    };
+    this.effects = {
+        beaconVillage: function(x, y) {
+            if (!TWMap.map.inViewport(x, y)) return;
+            var $beacon = $('<div class="center_beacon"></div>'),
+            $beacon_container = $('<div class="map_beacon_container"></div>'),
+            top_left_tile = TWMap.map.getViewport().top_left_tile,
+            x_offset = (x - top_left_tile.coord_x + 0.5) * TWMap.tileSize[0],
+            y_offset = (y - top_left_tile.coord_y + 0.5) * TWMap.tileSize[1];
+            $beacon_container.css({
+                top: y_offset + 'px',
+                left: x_offset + 'px'
+            }).append($beacon);
+            var $fx_container = $('#special_effects_container');
+            $fx_container.append($beacon_container);
+            setTimeout(function() {
+                if (Modernizr.cssanimations) $beacon.addClass('end');
+                setTimeout(function() {
+                    $beacon_container.remove()
+                },
+                600)
+            },
+            100)
+        }
     };
     return true
 }
@@ -362,6 +412,7 @@ function FreeMapMover(map) {
             _ev.pageX = event.changedTouches[0].pageX;
             _ev.pageY = event.changedTouches[0].pageY;
             var pos = this._map.coordByEvent(_ev);
+            event.stopPropagation();
             this._map.handler.onClick(pos[0], pos[1])
         };
         setTimeout(jQuery.proxy(function () {
@@ -402,12 +453,12 @@ function FreeMapMover(map) {
         var pos = [this.containerPos[0] - diff[0] * this._speed, this.containerPos[1] - diff[1] * this._speed];
         if (this._map.handler.scrollBound) {
             var limit = this._map.handler.scrollBound,
-                nTL = this._map.coordByPixel(pos[0], pos[1], true);
-            if (nTL[0] < limit[0] && diff[0] > 0) diff[0] = 0;
-            if (nTL[1] < limit[1] && diff[1] > 0) diff[1] = 0;
+            nTL = this._map.coordByPixel(pos[0], pos[1], true);
+            if (nTL[0] < limit.x_min && diff[0] > 0) diff[0] = 0;
+            if (nTL[1] < limit.y_min && diff[1] > 0) diff[1] = 0;
             var nBR = this._map.coordByPixel(pos[0] + this._map.size[0], pos[1] + this._map.size[1]);
-            if (nBR[0] > limit[2] && diff[0] < 0) diff[0] = 0;
-            if (nBR[1] > limit[3] && diff[1] < 0) diff[1] = 0
+            if (nBR[0] > limit.x_max && diff[0] < 0) diff[0] = 0;
+            if (nBR[1] > limit.y_max && diff[1] < 0) diff[1] = 0
         };
         if ((diff[0] != 0 || diff[1] != 0) && this.moveDirty == false) {
             if (this.allowDrag && this._map.handler.onDragBegin) {
@@ -443,7 +494,8 @@ function FreeMapMover(map) {
     };
     var el = document.createElement('div');
     el.setAttribute('id', map.el.root.id + '_mover');
-    $(el).attr('style', 'position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 12; background-image: url("graphic/map/empty.png"); cursor: move; -moz-user-select: none;');
+    $(el).addClass('needsclick');
+    $(el).attr('style', 'position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 12; background-image: url("/graphic/map/empty.png"); cursor: move; -moz-user-select: none;');
     this.crappy_browser = (el.setCapture && el.detachEvent);
     var _this = this;
     this._eventHandleMouseDown = function (event) {

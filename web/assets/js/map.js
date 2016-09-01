@@ -322,7 +322,8 @@ var TWMap = {
             var pmap = (TWMap.politicalMap.displayed && !TWMap.warMode) ? TWMap.politicalMap.filter: 0,
             church = TWMap.church.displayed ? 1 : 0,
             war = TWMap.warMode ? 1 + TWMap.warModeGeneration: 0;
-            el.setAttribute('src', '/page.php?page=topo_image&player_id=' + game_data.player.id + vid + '&x=' + sector.x + '&y=' + sector.y + '&church=' + church + '&political=' + pmap + '&war=' + war + '&watchtower=' + (TribalWars._settings.map_show_watchtower ? 1 : 0) + '&key=' + TWMap.topoKey + '&cur=' + game_data.village.id + '&focus=' + TWMap.minimap_highlight + '&local_cache=' + TWMap.minimap_cache_stamp);
+            // el.setAttribute('src', '/page.php?page=topo_image&player_id=' + game_data.player.id + vid + '&x=' + sector.x + '&y=' + sector.y + '&church=' + church + '&political=' + pmap + '&war=' + war + '&watchtower=' + (TribalWars._settings.map_show_watchtower ? 1 : 0) + '&key=' + TWMap.topoKey + '&cur=' + game_data.village.id + '&focus=' + TWMap.minimap_highlight + '&local_cache=' + TWMap.minimap_cache_stamp);
+            el.setAttribute('src', 'map.php?player_id=' + game_data.player.id + '&x=' + sector.x + '&y=' + sector.y + '&key=' + TWMap.topoKey + '&cur=' + game_data.village.id);
             sector.appendElement(el, 0, 0);
             for (var village_id in TWMap.secrets) {
                 if (!TWMap.secrets.hasOwnProperty(village_id)) continue;

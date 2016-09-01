@@ -2,18 +2,30 @@
 TWMap.initMap = function () {
     $('#map_blend').hide();
     this.mapHandler.scrollBound = this.scrollBound;
-    var map = new FreeMap(document.getElementById('map'), this.tileSize, this.mapSubSectorSize, this.mapHandler, 26500);
-    if (true || !$.browser.msie || true) map.createMover(this.mobile ? 1 : 2);
-    this.map = map;
-    this.map_el_coordx = document.getElementById('map_coord_x');
-    this.map_el_coordy = document.getElementById('map_coord_y');
+    // var map = new FreeMap(document.getElementById('map'), this.tileSize, this.mapSubSectorSize, this.mapHandler, 26500);
+    // if (true || !$.browser.msie || true) map.createMover(this.mobile ? 1 : 2);
+    // this.map = map;
+    // this.map_el_coordx = document.getElementById('map_coord_x');
+    // this.map_el_coordy = document.getElementById('map_coord_y');
     var minimap = new FreeMap(document.getElementById('minimap'), [5, 5], 50, this.minimapHandler, 0);
     minimap.createMover(1);
     this.minimap = minimap;
     this.minimapWidth = $('#minimap').width();
     this.minimapHeight = $('#minimap').height();
+    this.minimapHandler.scrollBound = this.getMinimapScrollBound();
+    if (TWMap.minimap_only) {
+        this.scaleMinimap();
+        return
+    };
+    var map = new FreeMap(document.getElementById('map'), this.tileSize, this.mapSubSectorSize, this.mapHandler, 26500);
+    if (true || !$.browser.msie || true) map.createMover(this.mobile ? 1 : 2);
+    this.map = map;
+    this.legend = new MapLegend($('#map_legend'));
+    this.legend.updateVisibility();
     this.scaleMinimap();
     this.minimapHandler.scrollBound = this.getMinimapScrollBound();
+    this.map_el_coordx = document.getElementById('map_coord_x');
+    this.map_el_coordy = document.getElementById('map_coord_y');
     this._coord_el_y = [];
     this._coord_el_y_active = [];
     this._coord_el_x = [];
@@ -42,7 +54,19 @@ TWMap.initMap = function () {
         this._coord_el_x_active.push(false)
     };
     this.popup.init();
-    if (typeof (Warplanner) !== 'undefined') Warplanner.init()
+    if (typeof Warplanner !== 'undefined') Warplanner.init();
+    if (!mobile) CommandPopup.hookCommandSent(function(response) {
+        if (TWMap.premium && response.type === 'attack') {
+            TWMap.updateCommandIcon(response.target_village, 'attack', true);
+            TWMap.popup.invalidateVillage(response.target_village.id)
+        };
+        if (TWMap.premium && response.type === 'support') {
+            TWMap.updateCommandIcon(response.target_village, 'incoming_support', true);
+            TWMap.popup.invalidateVillage(response.target_village.id)
+        }
+    });
+    $(document).keydown(TWMap.onKeyDown);
+    $(document).keyup(TWMap.onKeyUp)
 };
 // TWMap.focus = function (x, y) {
 //     console.log('x:'+x+';y:'+y+';scrollBound:'+this.scrollBound['x_min']);
@@ -68,14 +92,14 @@ TWMap.focus = function(x, y) {
     if (TWMap.minimap_only) TWMap.minimap.centerPos(x, y, true);
     TWMap.pos = [x, y];
     TWMap.home.updateDisplay()
-}
-
-TWMap.mapHandler.spawnSector = function (data, sector) {
+};
+TWMap.mapHandler.spawnSector = function(data, sector) {
+    if (TWMap.minimap_only) return;
     var beginX = sector.x - data.x,
-        endX = beginX + TWMap.mapSubSectorSize,
-        beginY = sector.y - data.y,
-        endY = beginY + TWMap.mapSubSectorSize;
-    if (TWMap.church.displayed || TWMap.politicalMap.displayed || TWMap.warMode) MapCanvas.createCanvas(sector, data);
+    endX = beginX + TWMap.mapSubSectorSize,
+    beginY = sector.y - data.y,
+    endY = beginY + TWMap.mapSubSectorSize;
+    if (TWMap.church.displayed || TWMap.politicalMap.displayed || TWMap.warMode || TribalWars._settings.map_show_watchtower) MapCanvas.createCanvas(sector, data);
     sector.dom_fragment = document.createDocumentFragment();
     var el_border = this._createBorder(sector.x % 100 == 0);
     el_border.style.width = '1px';
@@ -85,6 +109,20 @@ TWMap.mapHandler.spawnSector = function (data, sector) {
     el_border.style.height = '1px';
     el_border.style.width = (TWMap.mapSubSectorSize * TWMap.tileSize[0]) + 'px';
     sector.appendElement(el_border, 0, 0);
+    if (TWMap.ghost) {
+        var ghostX = TWMap.ghost.x,
+        ghostY = TWMap.ghost.y;
+        if (ghostX >= sector.x && ghostX < sector.x + TWMap.mapSubSectorSize && ghostY >= sector.y && ghostY < sector.y + TWMap.mapSubSectorSize) {
+            var diffX = ghostX - TWMap.ghost.x,
+            diffY = ghostY - TWMap.ghost.y;
+            TWMap.villages[ghostX * 1e3 + ghostY] = {
+                owner: 0,
+                points: 0,
+                img: TWMap.ghost_village_tile,
+                special: 'ghost'
+            }
+        }
+    };
     var x;
     for (x in data.tiles) {
         if (!data.tiles.hasOwnProperty(x)) continue;
@@ -103,9 +141,9 @@ TWMap.mapHandler.spawnSector = function (data, sector) {
                 var owner = v.owner,
                     ally = (v.owner > 0 && TWMap.players[v.owner]) ? TWMap.players[v.owner].ally : 0;
                 if (v.owner == 0) {
-                    if (TWMap.villageGroups[v.id]) {
-                        var col = TWMap.villageGroups[v.id],
-                            circle = TWMap.createVillageDot(col);
+                    if (TWMap.villageColors[v.id]) {
+                        var col = TWMap.villageColors[v.id],
+                        circle = TWMap.createVillageDot(col);
                         sector.appendElement(circle, x - beginX, y - beginY)
                     }
                 } else {
@@ -115,14 +153,13 @@ TWMap.mapHandler.spawnSector = function (data, sector) {
                     } else col = TWMap.getColorByPlayer(owner, ally, v.id);
                     el.style.backgroundColor = 'rgb(' + col[0] + ',' + col[1] + ',' + col[2] + ')'
                 };
-                var imgsrc;
-                if (!TWMap.secrets.hasOwnProperty(v.id)) {
-                    imgsrc = TWMap.images[v.img]
-                } else if (TWMap.secrets[v.id][0] == 1) {
-                    imgsrc = TWMap.images_secret_blue[v.img]
-                } else imgsrc = TWMap.images_secret_yellow[v.img];
+                imgsrc = TWMap.images[v.img];
                 el.id = 'map_village_' + v.id;
                 el.setAttribute('src', TWMap.graphics + imgsrc);
+                if (TribalWars._settings.map_casual_hide && parseInt(v.owner) !== parseInt(game_data.player.id) && $.inArray(v.owner, TWMap.non_attackable_players) !== -1) {
+                    el.style.opacity = 0.4;
+                    el.style.filter = 'alpha(opacity=40)'
+                };
                 var icons = TWMap.createVillageIcons(v),
                     i;
                 for (i = 0; i < icons.length; i++) sector.appendElement(icons[i], x - beginX, y - beginY);
@@ -135,26 +172,27 @@ TWMap.mapHandler.spawnSector = function (data, sector) {
     sector.dom_fragment = undefined
 };
 TWMap.scrolling = false;
-TWMap.scrollBlock = function (x, y) {
+TWMap.scrollBlock = function(x, y) {
     if (this.scrolling) return;
     this.scrolling = true;
     var dst = [TWMap.pos[0] + TWMap.size[0] * x, TWMap.pos[1] + TWMap.size[1] * y],
-        scrollTID = setTimeout(function () {
-            if ((x == -1 && TWMap.map.viewport[0] <= TWMap.scrollBound[0]) || (y == -1 && TWMap.map.viewport[1] <= TWMap.scrollBound[1]) || (x == 1 && TWMap.map.viewport[2] >= TWMap.scrollBound[2]) || (y == 1 && TWMap.map.viewport[3] >= TWMap.scrollBound[3])) {
-                clearInterval(scrollTID);
-                TWMap.scrolling = false;
-                return
-            };
-            if ((x > 0 && TWMap.pos[0] >= dst[0]) || (x < 0 && TWMap.pos[0] <= dst[0]) || (y > 0 && TWMap.pos[1] >= dst[1]) || (y < 0 && TWMap.pos[1] <= dst[1])) {
-                clearInterval(scrollTID);
-                TWMap.scrolling = false;
-                return
-            };
-            var p = [TWMap.pos[0], TWMap.pos[1]];
-            if (TWMap.pos[0] != dst[0]) p[0] += x;
-            if (TWMap.pos[1] != dst[1]) p[1] += y;
-            TWMap.focus(p[0], p[1])
-        }, 30)
+    scrollTID = setInterval(function() {
+        if ((x == -1 && TWMap.map.viewport[0] <= TWMap.scrollBound.x_min) || (y == -1 && TWMap.map.viewport[1] <= TWMap.scrollBound.y_min) || (x == 1 && TWMap.map.viewport[2] >= TWMap.scrollBound.x_max) || (y == 1 && TWMap.map.viewport[3] >= TWMap.scrollBound.y_max)) {
+            clearInterval(scrollTID);
+            TWMap.scrolling = false;
+            return
+        };
+        if ((x > 0 && TWMap.pos[0] >= dst[0]) || (x < 0 && TWMap.pos[0] <= dst[0]) || (y > 0 && TWMap.pos[1] >= dst[1]) || (y < 0 && TWMap.pos[1] <= dst[1])) {
+            clearInterval(scrollTID);
+            TWMap.scrolling = false;
+            return
+        };
+        var p = [TWMap.pos[0], TWMap.pos[1]];
+        if (TWMap.pos[0] != dst[0]) p[0] += x;
+        if (TWMap.pos[1] != dst[1]) p[1] += y;
+        TWMap.focus(p[0], p[1])
+    },
+    30)
 };
 TWMap._resizeID = null;
 TWMap.resizeMinimap = function (size, smooth) {
@@ -165,44 +203,87 @@ TWMap.resizeMinimap = function (size, smooth) {
         TWMap.notifyMapSize()
     }, 250)
 };
-TWMap.resize = function (size, smooth) {
-    var isAuto;
+// TWMap.resize = function (size, smooth) {
+//     var isAuto;
+//     if (size == 0) {
+//         dstWidth = $(window).width() - 100;
+//         dstHeight = $(window).height() - 50;
+//         var sizex = Math.ceil((dstWidth) / TWMap.tileSize[0]),
+//             sizey = Math.ceil(($(window).height() - 100) / TWMap.tileSize[1]);
+//         this.isAutoSize = true
+//     } else {
+//         dstWidth = size * this.map.scale[0];
+//         dstHeight = size * this.map.scale[1];
+//         this.isAutoSize = false
+//     };
+//     if (false && $.browser.msie) smooth = false;
+//     TWMap.map.resize(dstWidth, dstHeight, smooth ? 1 : 0)
+// };
+TWMap.resize = function(size, smooth) {
     if (size == 0) {
-        dstWidth = $(window).width() - 100;
-        dstHeight = $(window).height() - 50;
-        var sizex = Math.ceil((dstWidth) / TWMap.tileSize[0]),
-            sizey = Math.ceil(($(window).height() - 100) / TWMap.tileSize[1]);
+        dstWidth = $(window).width();
+        dstHeight = Math.max(window.outerHeight, window.innerHeight);
+        if (!TWMap.fullscreen) {
+            dstWidth -= 100;
+            dstHeight -= 100
+        };
         this.isAutoSize = true
-    } else {
+    } else if (typeof size == 'number') {
         dstWidth = size * this.map.scale[0];
         dstHeight = size * this.map.scale[1];
         this.isAutoSize = false
+    } else {
+        dstWidth = size[0] * this.map.scale[0];
+        dstHeight = size[1] * this.map.scale[1];
+        this.isAutoSize = false
     };
-    if (false && $.browser.msie) smooth = false;
-    TWMap.map.resize(dstWidth, dstHeight, smooth ? 1 : 0)
+    if ($.browser.msie) smooth = false;
+    TWMap.map.resize(dstWidth, dstHeight, smooth ? 1 : 0);
+    TWMap.home.updateDisplay()
 };
-TWMap.minimapHandler.onResize = function (sx, sy) {
+TWMap.minimapHandler.onResize = function(sx, sy) {
     TWMap.scaleMinimap()
 };
-TWMap.mapHandler.onResizeBegin = function () {
+TWMap.mapHandler.onResizeBegin = function() {
     TWMap.isAutoSize = false;
     TWMap.isDragResizing = true;
     TWMap.popup.unregister()
 };
-TWMap.mapHandler.onResizeEnd = function () {
+TWMap.mapHandler.onResizeEnd = function() {
     TWMap.notifyMapSize(false);
     TWMap.isDragResizing = false;
-    TWMap.popup.register()
+    TWMap.popup.register();
+    var $y_axis = $('#map_coord_y_wrap');
+    $y_axis.css('height', ($y_axis.height() - 17) + 'px')
 };
-TWMap.minimapHandler.onResizeEnd = function () {
+TWMap.minimapHandler.onResizeEnd = function() {
     TWMap.notifyMapSize(false);
     TWMap.positionMinimap()
 };
-TWMap.mapHandler.onResize = function (sx, sy) {
+TWMap.mapHandler.onResize = function(sx, sy) {
     TWMap.scaleMinimap();
     TWMap.size = TWMap.map.coordByPixel(sx, sy, false);
     if (!TWMap.isDragResizing) TWMap.notifyMapSize(TWMap.isAutoSize)
 };
-TWMap.mapHandler.getResizableElements = function () {
+TWMap.mapHandler.getResizableElements = function() {
     return [[document.getElementById('map_coord_x_wrap')], [document.getElementById('map_coord_y_wrap')]]
+};
+TWMap.onKeyDown = function(e) {
+    var active_element = document.activeElement,
+    is_user_inputting_text = active_element.tagName === 'INPUT' && active_element.type === 'text';
+    if (!HotKeys.enabled || is_user_inputting_text) return;
+    TWMap.keys[e.keyCode] = true;
+    var pos = TWMap.map.pos,
+    move_direction = [0, 0];
+    if (TWMap.keys.hasOwnProperty(37)) move_direction[0] -= 15;
+    if (TWMap.keys.hasOwnProperty(38)) move_direction[1] -= 15;
+    if (TWMap.keys.hasOwnProperty(39)) move_direction[0] += 15;
+    if (TWMap.keys.hasOwnProperty(40)) move_direction[1] += 15;
+    if (move_direction[0] == 0 && move_direction[1] == 0) return;
+    e.preventDefault();
+    TWMap.map.setPosPixel(pos[0] + move_direction[0], pos[1] + move_direction[1])
+};
+TWMap.onKeyUp = function(e) {
+    if (!HotKeys.enabled) return;
+    delete TWMap.keys[e.keyCode]
 }
