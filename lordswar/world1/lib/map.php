@@ -147,22 +147,23 @@ class map{
 				$night = "";
 			}
 		}
-		$return = '';
-		if($x%100 == 0){
-			$return .= 'border-left ';
-		}elseif($x%5 == 0){
-			$return .= 'space-left'.$night.' ';
-		}else{
-			$return .= '';
-		}
-		if(($y)%100 == 0){
-			$return .= 'border-bottom ';
-		}elseif(($y)%5 == 0){
-			$return .= 'space-bottom'.$night.' ';
-		}else{
-			$return .= '';
-		}
-		return $return;
+		return '';
+		// $return = '';
+		// if($x%100 == 0){
+		// 	$return .= 'border-left ';
+		// }elseif($x%5 == 0){
+		// 	$return .= 'space-left'.$night.' ';
+		// }else{
+		// 	$return .= '';
+		// }
+		// if(($y)%100 == 0){
+		// 	$return .= 'border-bottom ';
+		// }elseif(($y)%5 == 0){
+		// 	$return .= 'space-bottom'.$night.' ';
+		// }else{
+		// 	$return .= '';
+		// }
+		// return $return;
     }
 	function getcon($x,$y){
 		return $this->villages[$x][$y]['continent'];
