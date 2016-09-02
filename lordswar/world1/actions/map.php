@@ -54,7 +54,7 @@ if($_GET['page'] == 'mark'){
 	}else{
 		$map['y'] = $village['y'];
 	}
-	
+
 	if($map['x'] > 999){
 		$map['x'] = 999;
 	}
@@ -67,111 +67,77 @@ if($_GET['page'] == 'mark'){
 	if($map['y'] < 0){
 		$map['y'] = 0;
 	}
-	
-	$map['size'] = $user['map_size'];
-	$one_right_coords = ($map['size']-1)/2;
-	$x_begin = $map['x']-$one_right_coords;
-	$x_end = $map['x'] +$one_right_coords;
-	$y_begin = $map['y']-$one_right_coords;
-	$y_end = $map['y']+$one_right_coords;
 
-	for($n = $x_begin; $n <= $x_end; ++$n){
-		$x_coords[] = ceil($n);
-	}
-	for($n=$y_end; $y_begin<=$n; --$n){
-		$y_coords[] = ceil($n);
-	}
+	$map['size'] = $user['map_size'];
+	$one_right_coords = 10;
 
 	$arr = convert_to_continents($map['x'], $map['y']);
 	$con = $arr['con'];
-	
-	$cl_map = new map();
-	$cl_map->search_villages($x_begin, $x_end, $y_begin, $y_end);
-	
-	/* MINIMAP */
-	$pixeli_minimap = 267;
-	$cat = round($pixeli_minimap/5/1.2);
-	$minimap_pixel = $pixeli_minimap;
-	$image_diameter = $minimap_pixel/5;
-	$image_radius = floor($image_diameter/2);
-	
-	$url = $_SERVER["REQUEST_URI"];
-	$ex = explode("?x=",$url);
-	$url = $ex[0];
-	$ex = explode("&x=",$url);
-	$url = $ex[0];
-	if(strpos($url, "?") === FALSE) $url.="?"; else $url.="&";
-	if(!isset($_POST['x'])){
-		$x = 0;
-		$y = 0;
-		if(isset($_GET['x']) && isset($_GET['y'])){
-			$x = parse($_GET['x']);
-			$y = parse($_GET['y']);
-		}else{
-			$x = $village['x'];
-			$y = $village['y'];
-			$map['x'] = $x;
-			$map['y'] = $y;
-			$_GET['x'] = $x;
-			$_GET['y'] = $y;
-		}
-	}elseif(isset($_POST['x']) && isset($_POST['go'])){
-		$x = $_POST['x'];
-		$y = $_POST['y'];
-	}elseif(isset($_POST['curx']) && isset($_POST['cury'])){
-		$curx = $_POST['curx'];
-		$cury = $_POST['cury'];
-	
-		$x = $_POST['x'];
-		$y = $_POST['y'];
-		$y = $minimap_pixel-$y;
-		$x = floor($x/5);
-		$y = floor($y/5);
-		$x = ($curx-$image_radius)+$x;
-		$y = ($cury-$image_radius)+$y;
-		header("Location: ".$url."x=".$x."&y=".$y);
-	}
 
-	$map_radius = floor($user['map_size']/2);
+	$x = $map['x'];
+	$y = $map['y'];
+	$map_radius = 10;//floor($user['map_size']/2);
 	$start_left_x = $x-$map_radius;
 	$start_left_y = $y-$map_radius;
 	$end_right_x = $x+$map_radius;
 	$end_right_y = $y+$map_radius;
-
-	$sql = $db->query("SELECT `image`,`x`,`y` FROM `map` WHERE `x` BETWEEN $start_left_x AND $end_right_x AND `y` BETWEEN $start_left_y AND $end_right_y");
-	// while($row = mysql_fetch_array($sql)){
-	while ($row = $sql->fetch()) {
-		$image_objects[$row['x']][$row['y']] = $row['image'];
-	}
+	$night = false;
 
 	$hour = unreal_time()['hour'];
 	if($config['night_start'] > $config['night_end']){
 		if($hour >= $config['night_start'] || $hour <= $config['night_end']){
 			$map_base = "map_dark";
+			$night = true;
 		}else{
 			$map_base = "map";
 		}
 	}else{
 		if($hour >= $config['night_start'] && $hour <= $config['night_end']){
 			$map_base = "map_dark";
+			$night = true;
 		}else{
 			$map_base = "map";
 		}
 	}
-	
+
+	$block1 = computeBlock($start_left_x, $start_left_y);
+	$block2 = computeBlock($x, $y);
+	$block3 = computeBlock($end_right_x, $end_right_y);
+
+	$mapdata = array();
+	array_push($mapdata, block_data($block1));
+	if ($block2 != $block1) {
+		array_push($mapdata, block_data($block2));
+		array_push($mapdata, block_data(array($block1[0] + 20, $block1[1])));
+		array_push($mapdata, block_data(array($block1[0], $block1[1] + 20)));
+	}
+	if ($block3 != $block1 && $block3 != $block2) {
+		array_push($mapdata, block_data($block3));
+		array_push($mapdata, block_data(array($block2[0] + 20, $block2[1])));
+		array_push($mapdata, block_data(array($block2[0], $block2[1] + 20)));
+	}
+
 	$tpl->assign("map", $map);
-	$tpl->assign("image_objects", $image_objects);
+	$tpl->assign("x", $x);
+	$tpl->assign("y", $y);
+	$tpl->assign("night", $night);
 	$tpl->assign("mapdesign", $config['map_design']);
-	$tpl->assign("x_coords", $x_coords);
-	$tpl->assign("y_coords", $y_coords);
 	$tpl->assign("cl_map", $cl_map);
-	$tpl->assign("bigMapRectTop", $bigMapRectTop);
-	$tpl->assign("bigMapRectLeft", $bigMapRectLeft);
+	$tpl->assign("mapdata", $mapdata);
 	$tpl->assign("mapSize", $map['size']);
 	$tpl->assign("continent", $con);
 	$tpl->assign("one_right_coords", $one_right_coords);
 	$tpl->assign("map_base", $map_base);
 }
+
+function computeBlock($x, $y) {
+	$block = array();
+	$block[0] = floor($x/20)*20;
+	$block[1] = floor($y/20)*20;
+	return $block;
+}
+
+
 $marked = array();
 $result = $db->query("SELECT * FROM `marked` WHERE `marker_id`='".$user['id']."'");
 $i = 0;

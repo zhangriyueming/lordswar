@@ -35,12 +35,26 @@ if($_POST['user']){
 			echo "Ocorreu um erro inesperado!";
 		}
 	}
-}else{
+}else if ($_GET['player_id']) {
+	echo '';
+}
+else if ($_GET['v']) {
 	$sid = new sid();
 	$session = $sid->check_sid($_COOKIE['session']);
 	if(!$session['userid']){
 		echo "Ação invalida!";
 	}else{
+		$mapdata = array();
+		foreach ($_GET as $key => $value) {
+			if ($key[0] >= '0' && $key[0] <= '9')
+			{
+				$block = explode('_', $key);
+				array_push($mapdata, block_data($block));
+			}
+		}
+		echo json_encode($mapdata);
+	}
+}else{
 		if(isset($_GET['k']) && $_GET['k'] >= 0 && $_GET['k'] <= 99){
 			require_once("lib/map_db/".$_GET['k'].".php");
 		}

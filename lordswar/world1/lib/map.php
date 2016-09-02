@@ -7,6 +7,8 @@ class map{
 	var $user;
 	var $village;
 	var $config;
+	var $x;
+	var $y;
 
 	function __construct(){
 		global $db, $user, $village, $config;
@@ -17,14 +19,16 @@ class map{
 		$this->config = $config;
 	}
     function search_villages($x_begin,$x_end,$y_begin,$y_end){
-		$result = $this->db->query("SELECT `id`,`userid`,`x`,`y`,`points`,`name`,`continent` FROM `villages` WHERE (`x`>='".$x_begin."' AND `x`<='".$x_end."') AND (`y`>='".$y_begin."' AND `y`<='".$y_end."')");
+    	$this->x = $x_begin;
+    	$this->y = $y_begin;
+		$result = $this->db->query("SELECT `id`,`userid`,`x`,`y`,`points`,`name`,`continent`,`bonus` FROM `villages` WHERE (`x`>='".$x_begin."' AND `x`<'".$x_end."') AND (`y`>='".$y_begin."' AND `y`<'".$y_end."')");
 		while($row_vill = $this->db->fetch($result)){
 			foreach($row_vill as $key=>$value){
-				$this->villages[$row_vill['x']][$row_vill['y']][$key] = $value;
+				$this->villages[$row_vill['x'] - $x_begin][$row_vill['y'] - $y_begin][$key] = $value;
 			}
 			if($row_vill['userid'] != "-1"){
 				if(!isset($this->players[$row_vill['userid']])){
-					$result2 = $this->db->query("SELECT `ally`,`username`,`points` FROM `users` WHERE `id`='".$row_vill['userid']."'");
+					$result2 = $this->db->query("SELECT `ally`,`username`,`points`,`villages` FROM `users` WHERE `id`='".$row_vill['userid']."'");
 					$row_user = $this->db->fetch($result2);
 					if(is_array($row_user)){
 						foreach($row_user as $key=>$value){
@@ -98,7 +102,9 @@ class map{
 		}
 		return $rgb;
     }
+
 	function graphic($x, $y){
+		$images = array('gras1.png', 'gras2.png', 'gras3.png', 'gras4.png', 'v1_left.png', 'v1.png', 'v2_left.png', 'v2.png', 'v3_left.png', 'v3.png', 'v4_left.png', 'v4.png', 'v5_left.png', 'v5.png', 'v6_left.png', 'v6.png', 'b1_left.png', 'b1.png', 'b2_left.png', 'b2.png', 'b3_left.png', 'b3.png', 'b4_left.png', 'b4.png', 'b5_left.png', 'b5.png', 'b6_left.png', 'b6.png', 'berg1.png', 'berg2.png', 'berg3.png', 'berg4.png', 'forest0000.png', 'forest0001.png', 'forest0010.png', 'forest0011.png', 'forest0100.png', 'forest0101.png', 'forest0110.png', 'forest0111.png', 'forest1000.png', 'forest1001.png', 'forest1010.png', 'forest1011.png', 'forest1100.png', 'forest1101.png', 'forest1110.png', 'forest1111.png', 'see.png', 'event_xmas.png', 'event_easter.png', 'ghost.png', 'event_merchant.png', 'event_wizard.png', 'event_easter2014.png', 'event_fall2014.png');
 		$graphic = "";
 		if($this->villages[$x][$y]["bonus"] != 0){
 			$graphic .= "b";
@@ -128,7 +134,7 @@ class map{
 			$graphic .= "";
 		}
 		$graphic .= ".png";
-		return $graphic;
+		return array_search($graphic, $images);
 	}
 	function getclass($x,$y){
 		global $config;

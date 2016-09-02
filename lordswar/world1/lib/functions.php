@@ -1276,4 +1276,110 @@ function farm_fill_zeroes($vill){
 	return $db->unb_query($sql);
 
 }
+
+function get_bonusinfo($var) {
+	switch ($var) {
+		case 1:
+			return array("50% ".tr('meer opslagcapaciteit en handelaren'), "bonus/storage.png");
+			break;
+		case 2:
+			return array("10% ".tr('meer populatie'), "bonus/farm.png");
+			break;
+		case 3:
+			return array("33% ".tr('snellere productie in de stal'), "bonus/stable.png");
+			break;
+		case 4:
+			return array("33% ".tr("snellere productie in de kazerne"), "bonus/barracks.png");
+			break;
+		case 5:
+			return array("50% ".tr('snellere productie in de werkplaats'), "bonus/garage.png");
+			break;
+		case 6:
+			return array("30% ".tr('verhoogde productie van grondstoffen'), "bonus/all.png");
+			break;
+		default:
+			return null;
+			break;
+	}
+}
+
+function block_data($block) {
+	global $db;
+
+	$x_begin = $block[0];
+	$x_end = $x_begin + 20;
+	$y_begin = $block[1];
+	$y_end = $y_begin + 20;
+
+	$data = array();
+	$data['x'] = $x_begin;
+	$data['y'] = $y_begin;
+	$data['tiles'] = array();
+	$data['data'] = array();
+	$data['data']['x'] = $x_begin;
+	$data['data']['y'] = $y_begin;
+	$data['data']['villages'] = array();
+	$data['data']['players'] = array();
+	$data['data']['allies'] = array();
+
+	$cl_map = new map();
+	$cl_map->search_villages($x_begin, $x_end, $y_begin, $y_end);
+
+	$villages = array();
+	$players = array();
+	$allies = array();
+
+	for($x = 0; $x < 20; ++$x){
+		for($y = 0; $y < 20; ++$y){
+			$data['tiles'][$x][$y] = $cl_map->graphic($x, $y);
+
+			if (isset($cl_map->villages[$x][$y]))
+			{
+				$data['data']['villages'][$x][$y] = array(
+						$cl_map->villages[$x][$y]['id'],
+						$cl_map->graphic($x, $y),
+						urldecode($cl_map->villages[$x][$y]['name']),
+						$cl_map->villages[$x][$y]['points'],
+						$cl_map->villages[$x][$y]['userid'] == -1 ? 0 : $cl_map->villages[$x][$y]['userid'],
+						42,
+						get_bonusinfo($cl_map->villages[$x][$y]['bonus']),
+						"0"
+					);
+				// "11156615": ["sowicm2", "26", "0", "on 04.09. at 12:09", false, "0", "1 Village"],
+				$userid = $cl_map->villages[$x][$y]['userid'];
+				if ($userid > 0)
+				{
+					if (!isset($data['data']['players'][$userid]))
+					{
+						$data['data']['players'][$userid] = array(
+								urldecode($cl_map->players[$userid]['username']),
+								$cl_map->players[$userid]['points'],
+								$cl_map->players[$userid]['ally'] == -1 ? 0 : $cl_map->players[$userid]['ally'],
+								null,
+								false,
+								"0",
+								$cl_map->players[$userid]['villages'].' '.tr('Village')
+							);
+
+						$allyid = $cl_map->players[$userid]['ally'];
+						if ($allyid > 0 && !isset($data['data']['allies'][$allyid]))
+						{
+							// "14": ["Pirates Of Caribbean", "821", "PC", "70924"],
+							$data['data']['allies'][$allyid] = array(
+									urldecode($cl_map->ally[$allyid]['name']),
+									$cl_map->ally[$allyid]['points'],
+									urldecode($cl_map->ally[$allyid]['short']),
+									"0" // image
+								);
+						}
+					}
+				}
+			}
+
+		}
+	}
+	// $data['data']['villages'] = $cl_map->villages === null ? array() : $cl_map->villages;
+	return $data;
+}
+
 ?>

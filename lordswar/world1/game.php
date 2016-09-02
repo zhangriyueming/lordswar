@@ -239,7 +239,50 @@ if($user['join_actions'] == "n"){
 	exit;
 }
 
+$game_data = array();
+$game_data['player'] = array(
+		'id' => $user['id'],
+		'name' => $user['username'],
+		'ally' => $user['ally'],
+		'sitter' => '0',
+        "sleep_start" => "0",
+        "sitter_type" => "normal",
+        "sleep_end" => "0",
+        "sleep_last" => "0",
+        "interstitial" => "0",
+        "email_valid" => "1",
+        'villages' => $user['villages'],
+        'incomings' => '0',
+        "supports" => 0,
+        "knight_location" => null,
+        "knight_unit" => null,
+        "rank" => $user['rank'],
+        "points" => $user['points'],
+        "date_started" => $config['world_begin'],
+        "is_guest" => "0",
+        "birthdate" => "0000-00-00",
+        "quest_progress" => "0",
+        "premium" => false,
+        "account_manager" => false,
+        "farm_manager" => false,
+        "points_formatted" => number_format($user['points']),
+        "rank_formatted" => number_format($user['rank']),
+        "pp" => "0",
+        "new_ally_application" => 0,
+        "new_ally_invite" => "0",
+        "new_buddy_request" => "0",
+        "new_daily_bonus" => "0",
+        "new_forum_post" => 0,
+        "new_igm" => 0,
+        "new_items" => 0,
+        "new_report" => 0,
+        "fire_pixel" => "0",
+        "new_quest" => 0
+	);
+$game_data['village'] = $village;
+
 $tpl->assign("lang", $lang);
+$tpl->assign("game_data", $game_data);
 $tpl->assign("servertime", date("G:i:s"));
 $tpl->assign("serverdate", date("d/m/Y"));
 // die(date("G:i:s d/m/Y", $config['world_begin']));

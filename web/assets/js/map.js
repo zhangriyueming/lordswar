@@ -51,7 +51,7 @@ var TWMap = {
     ignore_villages: [],
     non_attackable_players: null,
     goFullscreen: function() {
-        if (!TWMap.premium) return false;
+        // if (!TWMap.premium) return false;
         var el = document.getElementById('map_wrap'),
         events = 'fullscreenchange mozfullscreenchange webkitfullscreenchange';
         if (el.requestFullScreen) {
@@ -323,7 +323,7 @@ var TWMap = {
             church = TWMap.church.displayed ? 1 : 0,
             war = TWMap.warMode ? 1 + TWMap.warModeGeneration: 0;
             // el.setAttribute('src', '/page.php?page=topo_image&player_id=' + game_data.player.id + vid + '&x=' + sector.x + '&y=' + sector.y + '&church=' + church + '&political=' + pmap + '&war=' + war + '&watchtower=' + (TribalWars._settings.map_show_watchtower ? 1 : 0) + '&key=' + TWMap.topoKey + '&cur=' + game_data.village.id + '&focus=' + TWMap.minimap_highlight + '&local_cache=' + TWMap.minimap_cache_stamp);
-            el.setAttribute('src', 'map.php?player_id=' + game_data.player.id + '&x=' + sector.x + '&y=' + sector.y + '&key=' + TWMap.topoKey + '&cur=' + game_data.village.id);
+            // el.setAttribute('src', 'map.php?player_id=' + game_data.player.id + '&x=' + sector.x + '&y=' + sector.y + '&key=' + TWMap.topoKey + '&cur=' + game_data.village.id);
             sector.appendElement(el, 0, 0);
             for (var village_id in TWMap.secrets) {
                 if (!TWMap.secrets.hasOwnProperty(village_id)) continue;
@@ -982,8 +982,8 @@ var TWMap = {
             x = this._px + 15;
             x -= Math.max(0, x + el_size[0] - constraint[2]);
             x = Math.max(x, $(window).scrollLeft());
-            this.el.css('left', x + 'px');
-            this.el.css('top', y + 'px')
+            this.el.css('left', x-350 + 'px');
+            this.el.css('top', y-150 + 'px')
         },
         initTimers: function() {
             var popup = this;
