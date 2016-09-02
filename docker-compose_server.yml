@@ -23,7 +23,7 @@ web:
     volumes:
         - ./web/conf.d:/etc/nginx/conf.d
     environment:
-        - VIRTUAL_HOST=lordswar.cn,www.lordswar.cn
+        - VIRTUAL_HOST=lordswar.cn,www.lordswar.cn,s1.lordswar.cn
     links:
         - php
         - db
