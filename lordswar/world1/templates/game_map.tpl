@@ -32,9 +32,9 @@
 	TWMap.con.SEC_COUNT = 20;
 	TWMap.con.SUB_COUNT = 5;
 
-	TWMap.image_base = 'http://s1.lordswar.local/graphic/';
+	TWMap.image_base = '{$img_host}/graphic/';
 	// TWMap.graphics = 'http://s1.lordswar.local/graphic//map/version2/';
-	TWMap.graphics = 'http://s1.lordswar.local/graphic//map/';
+	TWMap.graphics = '{$img_host}/graphic//map/';
 
 			TWMap.currentVillage = {$village.id};
 		TWMap.cachePopupContents = true;

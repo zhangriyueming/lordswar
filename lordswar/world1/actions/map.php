@@ -137,7 +137,7 @@ function computeBlock($x, $y) {
 	return $block;
 }
 
-
+$img_host = 'http://'.$_SERVER['HTTP_HOST'].'/'
 $marked = array();
 $result = $db->query("SELECT * FROM `marked` WHERE `marker_id`='".$user['id']."'");
 $i = 0;
@@ -151,5 +151,6 @@ while($row = $db->fetch($result)){
 	$i++;
 }
 $tpl->assign("marked", $marked);
+$tpl->assign("img_host", $img_host);
 $tpl->assign("page", $_GET['page']);
 ?>
