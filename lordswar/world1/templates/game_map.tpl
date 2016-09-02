@@ -137,7 +137,7 @@
 										<a class="mp" id="mp_invite" title="Invite player" href="/game.php?screen=map"></a>
 					<a class="mp" id="mp_invite_hide" title="Hide invitation hint" href="/game.php?screen=map"></a>
 
-					                        <a id="map" href="#" style="width:1020px; height:711px;overflow:hidden;position:relative;background-image:url('https://dsen.innogamescdn.com/8.53/30378/graphic/map/version2/gras4.png');">
+					                        <a id="map" href="#" style="width:1020px; height:711px;overflow:hidden;position:relative;background-image:url('/graphic/map/gras4.png');">
                             <div id="map_blend" style="position:absolute; top:0px; left:0px; width:100%; height:100%; background-color:black; z-index: 20; opacity:0;  "></div>
                         </a>
                         <div id="special_effects_container"></div>
