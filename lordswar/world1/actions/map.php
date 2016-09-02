@@ -137,7 +137,7 @@ function computeBlock($x, $y) {
 	return $block;
 }
 
-$img_host = 'http://'.$_SERVER['HTTP_HOST'].'/'
+$img_host = 'http://'.$_SERVER['HTTP_HOST'].'/';
 $marked = array();
 $result = $db->query("SELECT * FROM `marked` WHERE `marker_id`='".$user['id']."'");
 $i = 0;
