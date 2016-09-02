@@ -70,6 +70,5 @@ else if ($_GET['v']) {
 			}
 		}
 		echo $JSON->encode($cords);
-	}
 }
 ?>
