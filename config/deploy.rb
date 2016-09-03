@@ -50,6 +50,10 @@ namespace :deploy do
 				"mv php5forum/Dockerfile_server php5forum/Dockerfile",
 				"mv server_main_config.php lordswar/include/config.php",
 				"mv server_world_config.php lordswar/world1/include/config.php",
+				"mv lordswar/templates/cssjs_server.tpl lordswar/templates/cssjs.tpl",
+				"mv lordswar/world1/templates/cssjs_server.tpl lordswar/world1/templates/cssjs.tpl",
+				"rm -rf lordswar/zapping_support",
+				"rm -rf lordswar/world1/admin",
 				"chown -R 82:82 lordswar",
 				'sed -i -e "s/error_reporting/#error_reporting/g" lordswar/index.php',
 				'sed -i -e "s/error_reporting/#error_reporting/g" lordswar/include.inc.php',
@@ -76,6 +80,13 @@ namespace :deploy do
 				].join(" && ")
 		end
 	end
+	task :docker_restart do
+		on roles(:app) do
+			execute [ "cd /root/docks/lordswar",
+				"docker-compose restart",
+				].join(" && ")
+		end
+	end
 	task :docker_recreate do
 		on roles(:app) do
 			execute [ "cd /root/docks/lordswar",
@@ -87,6 +98,7 @@ namespace :deploy do
 end
 
 after "deploy", "deploy:on_server"
+after "deploy:on_server", "deploy:docker_restart"
 # after "deploy:on_server", "deploy:docker_build"
 # after "deploy:docker_build", "deploy:docker_recreate"
 
