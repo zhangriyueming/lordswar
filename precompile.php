@@ -87,4 +87,14 @@ $cssjs = '
 
 file_put_contents('lordswar/world1/templates/cssjs_server.tpl', $cssjs);
 
+function protect_img($dir)
+{
+	$files = glob($dir.'/*.png');
+	foreach ($files as $file) {
+		# code...
+	}
+}
+
+// protect_img('web/assets/graphic/buildings');
+
 ?>
