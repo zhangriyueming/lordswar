@@ -48,7 +48,7 @@ function compress_css($files, $name)
 		$to .= file_get_contents('_min.css');
 	}
 	$filename = $name.'_'.md5($to).'.css';
-	file_put_contents('web/assets/'.$filename, $to);
+	file_put_contents('web/assets/css/'.$filename, $to);
 	return $filename;
 }
 function compress_js($files, $name)
@@ -64,27 +64,27 @@ function compress_js($files, $name)
 	}
 	$to = file_get_contents('_merged.js');
 	$filename = $name.'_'.md5($to).'.js';
-	file_put_contents('web/assets/'.$filename, $to);
+	file_put_contents('web/assets/js/'.$filename, $to);
 	return $filename;
 }
 $css = compress_css($index_css, 'index');
 $js = compress_js($index_js, 'index');
 
 $cssjs = '
-	<link rel="stylesheet" href="{$config.cdn}/'.$css.'" type="text/css" />
-	<script type="text/javascript" src="{$config.cdn}/'.$js.'"></script>
+	<link rel="stylesheet" href="{$config.cdn}/css/'.$css.'" type="text/css" />
+	<script type="text/javascript" src="{$config.cdn}/js/'.$js.'"></script>
 ';
 
-file_put_contents('lordswar/templates/cssjs.tpl', $cssjs);
+file_put_contents('lordswar/templates/cssjs_server.tpl', $cssjs);
 
 $css = compress_css($game_css, 'game');
 $js = compress_js($game_js, 'game');
 
 $cssjs = '
-	<link rel="stylesheet" href="{$config.cdn}/'.$css.'" type="text/css" />
-	<script type="text/javascript" src="{$config.cdn}/'.$js.'"></script>
+	<link rel="stylesheet" href="{$config.cdn}/css/'.$css.'" type="text/css" />
+	<script type="text/javascript" src="{$config.cdn}/js/'.$js.'"></script>
 ';
 
-file_put_contents('lordswar/world1/templates/cssjs.tpl', $cssjs);
+file_put_contents('lordswar/world1/templates/cssjs_server.tpl', $cssjs);
 
 ?>
