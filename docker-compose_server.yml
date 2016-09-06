@@ -14,7 +14,7 @@
 #         - db
 
 web:
-#    restart: always
+    restart: always
     build: ./web
     ports:
         - '8888:80'
@@ -29,6 +29,7 @@ web:
         - db
 
 php:
+    restart: always
     build: ./
     expose:
         - "9000"
@@ -39,6 +40,7 @@ php:
         - db
 
 forum:
+    restart: always
     build: ./php5forum
     ports:
         - '9999:80'
@@ -52,6 +54,7 @@ forum:
         - db
 
 db:
+    restart: always
     image: "mysql:latest"
     expose:
         - "3306"
