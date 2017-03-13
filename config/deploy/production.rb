@@ -6,7 +6,7 @@
 # server 'example.com', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
-server '104.236.242.31', user: 'root', roles: %w{app}
+server '128.199.92.45', user: 'root', roles: %w{app}
 
 
 
@@ -19,7 +19,7 @@ server '104.236.242.31', user: 'root', roles: %w{app}
 # Don't use `:all`, it's a meta role.
 
 # role :app, %w{deploy@example.com}, my_property: :my_value
-role :app, %w{root@104.236.242.31}
+role :app, %w{root@128.199.92.45}
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
