@@ -2,80 +2,102 @@
 # web:
 #     build: ./
 #     ports:
-#         - "8081:80"
+#       - "8081:80"
 #     expose:
-#         - "80"
+#       - "80"
 #     volumes:
-#         - ./lordswar:/var/www/html
-#         - ./log:/var/log
+#       - ./lordswar:/var/www/html
+#       - ./log:/var/log
 #     environment:
 #         - VIRTUAL_HOST=lordswar.cn
 #     links:
 #         - db
-
-web:
+version: "2"
+services:
+  web:
     build: ./web
     # ports:
     #     - "80:80"
     expose:
-        - "80"
+      - "80"
     volumes:
-        - ./web/conf.d:/etc/nginx/conf.d
-        - ./web/assets:/usr/share/nginx/html/assets
+      - ./web/conf.d:/etc/nginx/conf.d
+      - ./web/assets:/usr/share/nginx/html/assets
     environment:
-        - VIRTUAL_HOST=lordswar.local,www.lordswar.local,s1.lordswar.local
+      - VIRTUAL_HOST=lordswar.local,www.lordswar.local,s1.lordswar.local
     links:
-        - php
-        - db
+      - php
+      - db
+    networks:
+      - default
+      - proxy
 
-php:
+  php:
     build: ./
     # ports:
     #     - "9000:9000"
     expose:
-        - "9000"
+      - "9000"
     volumes:
-        - ./lordswar:/var/www/html
-        - ./log:/var/log
+      - ./lordswar:/var/www/html
+      - ./log:/var/log
     links:
-        - db
+      - db
+    networks:
+      - default
 
 # s1:
 #     build: ./
 #     ports:
-#         - "8080:80"
+#       - "8080:80"
 #     expose:
-#         - "80"
+#       - "80"
 #     volumes:
-#         - ./world1:/var/www/html
+#       - ./world1:/var/www/html
 #     environment:
-#         - VIRTUAL_HOST=s1.lordswar.sowicm.com
+#       - VIRTUAL_HOST=s1.lordswar.sowicm.com
 #     links:
-#         - db
+#       - db
 
-forum:
-    build: ./php5forum
+  forum:
+    build:
+      context: .
+      dockerfile: Dockerfile-forum
     # ports:
     #     - '8080:80'
     expose:
-        - "80"
+      - "80"
     volumes:
-        - ./forum:/var/www/html
+      - ./forum:/var/www/html
     environment:
-        - VIRTUAL_HOST=forum.lordswar.local
+      - VIRTUAL_HOST=forum.lordswar.local
     links:
-        - db
+      - db
+    networks:
+      - default
+      - proxy
 
-db:
+  db:
     image: "mysql:latest"
     expose:
-        - "3306"
+      - "3306"
     ports:
-        - "3306:3306"
+      - "3306:3306"
     environment:
-        - MYSQL_ROOT_PASSWORD=96kw9o69Q6
+      - MYSQL_ROOT_PASSWORD=96kw9o69Q6
     volumes:
-        - ./mysql:/var/lib/mysql
+      - mysql:/var/lib/mysql
+    networks:
+      - default
+
+volumes:
+  mysql:
+
+networks:
+  default:
+  proxy:
+    external:
+      name: nginxproxy_proxy
 
 # # scp lordswar_backup_* vhbackup@backup.sowicm.com:/docker_backups/
 # backup_sh
@@ -86,4 +108,3 @@ db:
 # mv lordswar_backup_* /root/docker_backups/
 # rm lordswar_backup_*
 #
-

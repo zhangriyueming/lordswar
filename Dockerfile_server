@@ -26,3 +26,6 @@ ADD php-cron /root/php-cron
 RUN cat /root/php-cron | crontab -
 
 CMD crond && php-fpm
+
+COPY lordswar /var/www/html
+RUN chown -R www-data:www-data /var/www/html

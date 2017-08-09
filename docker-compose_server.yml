@@ -12,58 +12,73 @@
 #         - VIRTUAL_HOST=lordswar.cn
 #     links:
 #         - db
-
-web:
+version: "2"
+services:
+  web:
     restart: always
     build: ./web
     ports:
-        - '8888:80'
+      - '8888:80'
     expose:
-        - "80"
-    volumes:
-        - ./web/conf.d:/etc/nginx/conf.d
+      - "80"
     environment:
-        - VIRTUAL_HOST=lordswar.cn,www.lordswar.cn,s1.lordswar.cn
+      - VIRTUAL_HOST=lordswar.cn,www.lordswar.cn,s1.lordswar.cn
     links:
-        - php
-        - db
+      - php
+      - db
+    networks:
+      - default
+      - proxy
 
-php:
+  php:
     restart: always
-    build: ./
+    build: .
     expose:
-        - "9000"
-    volumes:
-        - ./lordswar:/var/www/html
-        - ./log:/var/log
+      - "9000"
     links:
-        - db
+      - db
+    networks:
+      - default
 
-forum:
+  forum:
     restart: always
-    build: ./php5forum
+    build:
+      context: .
+      dockerfile: Dockerfile-forum_server
     ports:
-        - '9999:80'
+      - '9999:80'
     expose:
-        - "80"
-    volumes:
-        - ./forum:/var/www/html
+      - "80"
     environment:
-        - VIRTUAL_HOST=forum.lordswar.cn
+      - VIRTUAL_HOST=forum.lordswar.cn
     links:
-        - db
+      - db
+    networks:
+      - default
+      - proxy
 
-db:
+  db:
     restart: always
     image: "mysql:latest"
     expose:
-        - "3306"
+      - "3306"
     ports:
-        - "33062:3306"
+      - "33062:3306"
     environment:
-        - MYSQL_ROOT_PASSWORD=96kw9o69Q6
+      - MYSQL_ROOT_PASSWORD=96kw9o69Q6
     volumes:
-        - ./mysql:/var/lib/mysql
+      - mysql:/var/lib/mysql
+    networks:
+      - default
+
+volumes:
+  mysql:
+
+networks:
+  default:
+  proxy:
+    external:
+      name: nginxproxy_proxy
 
 # # scp lordswar_backup_* vhbackup@backup.sowicm.com:/docker_backups/
 # backup_sh
