@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.6.1'
+lock '3.9.0'
 
 set :application, 'lordswar.cn'
 set :repo_url, "git@git.coding.net:sowicm/#{fetch(:application)}.git"
@@ -12,7 +12,7 @@ set :tmp_dir,   "/srv/cap/tmp"
 set :deploy_to, "/srv/cap/#{fetch(:application)}"
 set :run_dir,   "/srv/docks/#{fetch(:application)}"
 
-set :need_move, ['php5forum', 'php-cron', 'web', 'lordswar']
+set :need_move, ['*.yml', 'Dockerfile*', 'php-cron', 'web', 'lordswar', 'forum']
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -45,14 +45,14 @@ namespace :deploy do
 		on roles(:app) do
 			execute [
 				"cd #{fetch(:deploy_to)}/current",
-				"mv php5forum/Dockerfile_server php5forum/Dockerfile",
+#				"mv Dockerfile-forum_server Dockerfile-forum", # already specified 
 				"mv server_main_config.php lordswar/include/config.php",
 				"mv server_world_config.php lordswar/world1/include/config.php",
 				"mv lordswar/templates/cssjs_server.tpl lordswar/templates/cssjs.tpl",
 				"mv lordswar/world1/templates/cssjs_server.tpl lordswar/world1/templates/cssjs.tpl",
 				"rm -rf lordswar/zapping_support",
 				"rm -rf lordswar/world1/admin",
-				"chown -R 82:82 lordswar",
+#				"chown -R 82:82 lordswar",
 				'sed -i -e "s/error_reporting/#error_reporting/g" lordswar/index.php',
 				'sed -i -e "s/error_reporting/#error_reporting/g" lordswar/include.inc.php',
 				'sed -i -e "s/error_reporting/#error_reporting/g" lordswar/world1/include.inc.php',
