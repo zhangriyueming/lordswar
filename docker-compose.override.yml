@@ -1,0 +1,27 @@
+version: "2"
+services:
+  web:
+    build: ./web
+    environment:
+      - VIRTUAL_HOST=lordswar.local,www.lordswar.local,s1.lordswar.local
+
+  php:
+    build: ./
+
+  forum:
+    environment:
+      - VIRTUAL_HOST=forum.lordswar.local
+
+  db:
+    ports:
+      - "3306:3306"
+
+# # scp lordswar_backup_* vhbackup@backup.sowicm.com:/docker_backups/
+# backup_sh
+# docker-compose exec db sh -c 'exec mysqldump -uroot -p96kw9o69Q6 tribalwars_main' > tribalwars_main_`date "+%F_%H"`.sql
+# docker-compose exec db sh -c 'exec mysqldump -uroot -p96kw9o69Q6 pkmhunters_world' > pkmhunters_world_`date "+%F_%H"`.sql
+# 7z a lordswar_backup_`date "+%F_%H"`_`pwgen -Bsv1 8` *.sql
+# rm *.sql
+# mv lordswar_backup_* /root/docker_backups/
+# rm lordswar_backup_*
+#
