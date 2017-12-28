@@ -65,6 +65,7 @@ services:
       - MYSQL_ROOT_PASSWORD=96kw9o69Q6
     volumes:
       - mysql:/var/lib/mysql
+      - ./data:/var/backup
     networks:
       - default
 

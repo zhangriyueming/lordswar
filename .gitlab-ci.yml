@@ -1,0 +1,44 @@
+
+image: sowicm/deployer:v1
+
+stages:
+  - deploy
+
+before_script:
+
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  - ssh-keyscan linode >> ~/.ssh/known_hosts
+  - chmod 644 ~/.ssh/known_hosts
+  - mkdir deploy
+  - cp -ar /deployer/* ./
+  - echo "# Config staging"
+  - mv server_main_config.php lordswar/include/config.php
+  - mv server_world_config.php lordswar/world1/include/config.php
+  - mv lordswar/templates/cssjs_server.tpl lordswar/templates/cssjs.tpl
+  - mv lordswar/world1/templates/cssjs_server.tpl lordswar/world1/templates/cssjs.tpl
+  - rm -rf lordswar/zapping_support
+  - rm -rf lordswar/world1/admin
+#       "chown -R 82:82 lordswar",
+  - sed -i -e "s/error_reporting/#error_reporting/g" lordswar/index.php
+  - sed -i -e "s/error_reporting/#error_reporting/g" lordswar/include.inc.php
+  - sed -i -e "s/error_reporting/#error_reporting/g" lordswar/world1/include.inc.php
+  - sed -i -e "s/ini_set/#ini_set/g" lordswar/world1/include.inc.php
+  - sed -i -e "s/lordswar.local/lordswar.cn/g" web/conf.d/s1.conf
+  #    - mv .env deploy/
+  - mv docker-compose.yml deploy/
+  - mv docker-compose.override.production.yml deploy/docker-compose.override.yml
+  - mv Dockerfile* deploy/
+  - mv php-cron deploy/
+  - mv web deploy/
+  - mv lordswar deploy/
+  - mv forum deploy/
+
+linode_deploy:
+  stage: deploy
+  script:
+    - cap staging deploy app=lordswar target=deploy@linode
+  only:
+    - master
