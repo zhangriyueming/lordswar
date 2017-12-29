@@ -3,8 +3,8 @@ FROM php:7-fpm-alpine
 RUN echo "Asia/shanghai" > /etc/timezone
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-RUN echo 'http://mirrors.aliyun.com/alpine/alpine/v3.4/main/' > /etc/apk/repositories
-RUN echo 'http://mirrors.aliyun.com/alpine/alpine/v3.4/community/' >> /etc/apk/repositories
+# RUN echo 'http://mirrors.aliyun.com/alpine/alpine/v3.4/main/' > /etc/apk/repositories
+# RUN echo 'http://mirrors.aliyun.com/alpine/alpine/v3.4/community/' >> /etc/apk/repositories
 
 RUN apk update && apk add \
         freetype-dev \
